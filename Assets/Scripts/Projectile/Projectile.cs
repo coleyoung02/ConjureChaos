@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     
     [SerializeField]
     private Rigidbody2D rb;
+    
     private void Start()
     {
         ProjectileMove();
