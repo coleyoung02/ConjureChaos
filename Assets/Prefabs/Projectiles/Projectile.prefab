@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 410172720991065021}
   - component: {fileID: 4208838712778685265}
   - component: {fileID: 353530167533101386}
-  - component: {fileID: 8027605492256520719}
+  - component: {fileID: 423575857615850628}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -149,7 +149,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8027605492256520719
+--- !u!114 &423575857615850628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,5 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08205ecd7be26f45b550f5cd635cfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 20
+  damage: 10
   rb: {fileID: 4208838712778685265}
