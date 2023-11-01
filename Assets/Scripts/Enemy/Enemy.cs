@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
             health = maxHealth;
     }
 
-    bool DamageEnemy(float dmg)
+    public bool DamageEnemy(float dmg)
     {
         //setup to allow a return of boolean before destruction, in case damager has to know if the attack killed the enemy. If multiplayer allows for kill counts per player
         if (health < dmg)
