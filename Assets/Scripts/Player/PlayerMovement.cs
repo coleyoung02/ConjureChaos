@@ -7,11 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpPower = 5f;
+    [SerializeField] float fallPower = 2f;
     [SerializeField] BoxCollider2D foot;
 
     Rigidbody2D myRigidbody;
     Vector2 moveInput;
     Collider2D myCollider;
+    GameObject currentOneWayPlatform;
 
     void Awake() {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -20,6 +22,41 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() {
         Move();
+    }
+
+
+    //One way platforms developed from https://www.youtube.com/watch?v=7rCUt6mqqE8
+    void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("OneWayPlatform"))
+        {
+            currentOneWayPlatform = other.gameObject;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("OneWayPlatform"))
+        {
+            currentOneWayPlatform = null;
+        }
+    }
+
+    IEnumerator DisableCollision()
+    {
+        BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(myCollider, platformCollider);
+        myRigidbody.velocity += new Vector2(myRigidbody.velocity.x, -fallPower); //add some force to the fall
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreCollision(myCollider, platformCollider, false);
+    }
+
+    void OnFall(InputValue value)
+    {
+        if(value.isPressed && currentOneWayPlatform != null)
+        {
+            StartCoroutine(DisableCollision());
+        }
     }
 
     //Handles the player's movement. Also handles other restrictions such as whether or not the player
