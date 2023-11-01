@@ -7,11 +7,13 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public float health;
     public int contactDamage;
-    
+    public GameObject player;
+    PlayerHealth playerHealth;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+         playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -50,9 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Damage Player!");
-        //call method on player to do contact damage
-        //collider.gameObject.scriptName.damagePlayer(contactDamage);
+        playerHealth.PlayerTakeDamage(contactDamage);
     }
 
 }

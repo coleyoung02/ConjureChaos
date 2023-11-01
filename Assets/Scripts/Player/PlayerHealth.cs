@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] Image healthIcon;
 
-    int health = 100;
+    public int health = 100;
     
     void Start()
     {

@@ -439,7 +439,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &830897862
+--- !u!1001 &927043355
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -447,59 +447,91 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2586097237445304443, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 505372310319169130, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 722467843673638417, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 722467843673638417, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1807928307}
-    - target: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_Name
-      value: FlyingEnemy
+      value: WalkingEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.54
+      value: -9.04
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2
+      value: 1.59
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 4999673567452520607, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5955157563315690089, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162617857986154060, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162617857986154060, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162617857986154060, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001370447503038021, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1807928307}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
 --- !u!1 &939832669
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +931,7 @@ GameObject:
   - component: {fileID: 1122025186}
   - component: {fileID: 1122025185}
   - component: {fileID: 1122025184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1437,7 +1469,7 @@ GameObject:
   - component: {fileID: 1807928311}
   - component: {fileID: 1807928312}
   - component: {fileID: 1807928313}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sprite_test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,6 +1602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpPower: 5
+  fallPower: 2
   foot: {fileID: 1807928310}
 --- !u!50 &1807928312
 Rigidbody2D:
@@ -2110,4 +2143,4 @@ SceneRoots:
   - {fileID: 1807928309}
   - {fileID: 945406835}
   - {fileID: 1272423300}
-  - {fileID: 830897862}
+  - {fileID: 927043355}
