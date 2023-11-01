@@ -28,7 +28,7 @@ public class ProjectileConjurer : MonoBehaviour
         
         if (Input.GetMouseButton(0) && _canFire)
         {
-            Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            GameObject temp = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             _canFire = false;
         }
     }
