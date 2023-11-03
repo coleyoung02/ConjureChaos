@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flying_AI : Parent_AI
+public class Parent_AI : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,6 @@ public class Flying_AI : Parent_AI
     // Update is called once per frame
     void Update()
     {
-        float dist_move = speed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position,player.transform.position,dist_move);
+        
     }
 }

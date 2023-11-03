@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //playerHealth.PlayerTakeDamage(contactDamage);
+        playerHealth.PlayerTakeDamage(contactDamage);
     }
 
 }

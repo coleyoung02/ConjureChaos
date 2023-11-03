@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walking_AI : MonoBehaviour
+public class Walking_AI : Parent_AI
 {
-    public GameObject player;
+
     public float speed = 1.0f;
 
     // Start is called before the first frame update
