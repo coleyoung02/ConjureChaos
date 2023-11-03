@@ -9,7 +9,7 @@ public class Flying_AI : Parent_AI
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindAnyObjectByType<PlayerMovement>().gameObject;
     }
 
     // Update is called once per frame
