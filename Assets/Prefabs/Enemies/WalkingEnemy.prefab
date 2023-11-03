@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6162617857986154060}
   - component: {fileID: 9001370447503038021}
   - component: {fileID: 722467843673638417}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: WalkingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2465370298245345416}
   - component: {fileID: 505372310319169130}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Physical Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 520
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
