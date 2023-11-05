@@ -281,7 +281,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &648191047
+--- !u!1001 &283328378
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -297,6 +297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6945313711109720573, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1807928307}
     - target: {fileID: 7810913572183534023, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1203,7 +1207,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10.351966
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2053,6 +2057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1807928309}
     m_Modifications:
+    - target: {fileID: 2109715296924742105, guid: 2b6b0257a0c273847871882f71308f75, type: 3}
+      propertyPath: orthographic size
+      value: 10.351966
+      objectReference: {fileID: 0}
     - target: {fileID: 8477060206093765671, guid: 2b6b0257a0c273847871882f71308f75, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -2109,4 +2117,4 @@ SceneRoots:
   - {fileID: 1807928309}
   - {fileID: 945406835}
   - {fileID: 1272423300}
-  - {fileID: 648191047}
+  - {fileID: 283328378}

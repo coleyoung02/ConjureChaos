@@ -18,6 +18,9 @@ public class ProjectileConjurer : MonoBehaviour
     
     // Time last fired
     private float _timer = 0;
+    
+    // Main Camera
+    private Camera _mainCamera;
 
     // The float listed for fire rate is the cooldown time between shots.
     // Lowering it will give it a higher fire rate. Increasing it will give a lower fire rate.
@@ -45,6 +48,18 @@ public class ProjectileConjurer : MonoBehaviour
         return _statsList;
     }
     
+    public Vector3 GetProjectileDirection()
+    {
+        Vector3 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mousePos - transform.position;
+        return direction;
+    }
+
+    private void Start()
+    {
+        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
     private void Update()
     {
         Shoot();

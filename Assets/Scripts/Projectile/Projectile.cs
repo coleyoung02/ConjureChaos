@@ -11,34 +11,49 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     
+    // The Projectile Conjurer class
+    private ProjectileConjurer _conjurer;
+    
+    // Stats that the projectile will grab from conjuerer
     private float _damage;
     private float _speed;
     private float _size;
     private float _range;
+    
+    // Direction for the projectile to travel
+    private Vector3 _direction;
 
     private void Start()
     {
+        // Saves the conjurer so we only have to get it once
+        _conjurer = FindObjectOfType<ProjectileConjurer>();
+        
+        // Initializes everything needed for projectile
         InitializeStats();
+        InitializeDirection();
+        
+        // Moves projectile
         ProjectileMove();
     }
 
     private void InitializeStats()
     {
-        ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
-        Dictionary<ProjectileConjurer.Stats, float> stats = conjurer.GetStats();
+        Dictionary<ProjectileConjurer.Stats, float> stats = _conjurer.GetStats();
 
         _damage = stats[ProjectileConjurer.Stats.Damage];
         _speed = stats[ProjectileConjurer.Stats.Speed];
         _size = stats[ProjectileConjurer.Stats.Size];
         _range = stats[ProjectileConjurer.Stats.Range];
     }
+
+    private void InitializeDirection()
+    {
+        _direction = _conjurer.GetProjectileDirection();
+    }
     
     private void ProjectileMove()
     {
-        Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * _speed;
+        rb.velocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
     }
 
     private void OnTriggerEnter2D(Collider2D myCollider)
