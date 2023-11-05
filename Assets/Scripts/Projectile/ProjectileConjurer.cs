@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class ProjectileConjurer : MonoBehaviour
 {
-    // This is so we can choose an offset from where the projectile fires from the body
+    // Fire positions
     [SerializeField]
-    private Transform firePoint;
+    private float rightFirePosition;
+
+    [SerializeField]
+    private float leftFirePosition;
     
     // Prefab of our projectile
     [SerializeField]
@@ -28,7 +31,7 @@ public class ProjectileConjurer : MonoBehaviour
     {
         { Stats.Damage, 10f },
         { Stats.Speed, 20f},
-        { Stats.Size, 0.3f},
+        { Stats.Size, 0.1f},
         { Stats.Range, 20f},
         { Stats.Rate, 0.3f}
     };
@@ -60,9 +63,17 @@ public class ProjectileConjurer : MonoBehaviour
         }
     }
 
+    public void FlipFirePoint(bool flipRight)
+    {
+        float xPos = flipRight ? rightFirePosition : leftFirePosition;
+        Transform myTransform = transform;
+        Vector3 currentPos = myTransform.localPosition;
+        myTransform.localPosition = new Vector3(xPos, currentPos.y, currentPos.z);
+    }
+
     private void Start()
     {
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _mainCamera = Camera.main;
     }
 
     private void Update()
@@ -76,7 +87,8 @@ public class ProjectileConjurer : MonoBehaviour
         
         if (Input.GetMouseButton(0) && _canFire)
         {
-            Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            Transform myTransform = transform;
+            Instantiate(projectilePrefab, myTransform.position, myTransform.rotation);
             _canFire = false;
         }
     }
