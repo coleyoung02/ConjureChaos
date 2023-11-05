@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
         ProjectileMove();
     }
     
-    public void ProjectileMove()
+    private void ProjectileMove()
     {
         Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
