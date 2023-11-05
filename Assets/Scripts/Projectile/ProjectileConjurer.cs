@@ -30,29 +30,26 @@ public class ProjectileConjurer : MonoBehaviour
         { Stats.Speed, 20f},
         { Stats.Size, 1f},
         { Stats.Range, 10f},
-        { Stats.FireRate, 0.3f}
+        { Stats.Rate, 0.3f}
     };
-
-    public enum Stats
-    {
-        Damage,
-        Speed,
-        Size,
-        Range,
-        FireRate,
-    }
-
+    
     // Method so other classes can grab the stats
     public Dictionary<Stats, float> GetStats()
     {
         return _statsList;
     }
     
+    // Method so other classes can grab direction of projectile
     public Vector3 GetProjectileDirection()
     {
         Vector3 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
         return direction;
+    }
+
+    public void UpdateStats(Stats stat, float value, bool mode)
+    {
+        
     }
 
     private void Start()
@@ -82,7 +79,7 @@ public class ProjectileConjurer : MonoBehaviour
         {
             _timer += Time.deltaTime;
 
-            if (_timer > _statsList[Stats.FireRate])
+            if (_timer > _statsList[Stats.Rate])
             {
                 _canFire = true;
                 _timer = 0;

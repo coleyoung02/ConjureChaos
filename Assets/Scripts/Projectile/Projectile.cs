@@ -38,12 +38,12 @@ public class Projectile : MonoBehaviour
 
     private void InitializeStats()
     {
-        Dictionary<ProjectileConjurer.Stats, float> stats = _conjurer.GetStats();
+        Dictionary<Stats, float> stats = _conjurer.GetStats();
 
-        _damage = stats[ProjectileConjurer.Stats.Damage];
-        _speed = stats[ProjectileConjurer.Stats.Speed];
-        _size = stats[ProjectileConjurer.Stats.Size];
-        _range = stats[ProjectileConjurer.Stats.Range];
+        _damage = stats[Stats.Damage];
+        _speed = stats[Stats.Speed];
+        _size = stats[Stats.Size];
+        _range = stats[Stats.Range];
     }
 
     private void InitializeDirection()
