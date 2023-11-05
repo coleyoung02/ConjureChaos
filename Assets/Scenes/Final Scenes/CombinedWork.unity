@@ -1569,6 +1569,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1272423300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1778175261 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3368454346411627028, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+  m_PrefabInstance: {fileID: 2106127201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1846702032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2144,10 @@ PrefabInstance:
       propertyPath: upgradeManager
       value: 
       objectReference: {fileID: 43800585}
+    - target: {fileID: 4611678377388438076, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1778175261}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
