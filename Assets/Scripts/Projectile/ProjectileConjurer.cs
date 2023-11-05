@@ -47,9 +47,17 @@ public class ProjectileConjurer : MonoBehaviour
         return direction;
     }
 
-    public void UpdateStats(Stats stat, float value, bool mode)
+    // Method takes in a stat and changes its value
+    public void UpdateStats(Stats stat, float value, bool additionMode)
     {
-        
+        if (additionMode)
+        {
+            _statsList[stat] += value;
+        }
+        else
+        {
+            _statsList[stat] *= value;
+        }
     }
 
     private void Start()
