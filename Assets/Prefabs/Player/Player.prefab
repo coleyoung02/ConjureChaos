@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 4224342122173723303}
   - component: {fileID: 8092729141397369473}
   - component: {fileID: 4657599158838961215}
-  m_Layer: 0
+  - component: {fileID: 2495883686228081858}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +133,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925b3ebb715751f4398b77bf49182f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7.5
   jumpPower: 20
   fallPower: 10
   foot: {fileID: 7718183375553169430}
@@ -226,6 +227,19 @@ MonoBehaviour:
   maxHealth: 3
   healthText: {fileID: 2561969534914343783}
   healthIcon: {fileID: 336643207011902217}
+--- !u!114 &2495883686228081858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213064085987646136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c5f4f2b4d98e94787f02029bd8a6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeManager: {fileID: 0}
 --- !u!1 &3291408471451780808
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,8 +267,8 @@ Transform:
   m_GameObject: {fileID: 3291408471451780808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9797, z: 0}
-  m_LocalScale: {x: 0.5623443, y: 0.36585638, z: 1}
+  m_LocalPosition: {x: 0, y: -0.925, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2295093850878497540}

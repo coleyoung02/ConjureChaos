@@ -54,7 +54,8 @@ MonoBehaviour:
   description: +1 Range
   statsList: 02000000
   valuesList:
-  - 1
+  - 10
+  modeList: 01
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0

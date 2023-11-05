@@ -42,6 +42,8 @@ public class Projectile : MonoBehaviour
         
         // Moves projectile
         ProjectileMove();
+
+        Destroy(gameObject, _range / _speed);
     }
 
     private void InitializeStats()
@@ -72,6 +74,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
+        print(myCollider.gameObject.name);
         if (myCollider.CompareTag("Enemy"))
         {
             // Is this the best way to do this?
@@ -79,17 +82,5 @@ public class Projectile : MonoBehaviour
             script.DamageEnemy(_damage);
         }
         Destroy(gameObject);
-    }
-
-    private void Update()
-    {
-        Vector3 position = transform.position;
-        _calculatedDistance += (position - _previousPosition).magnitude;
-        _previousPosition = position;
-
-        if (_calculatedDistance >= _range)
-        {
-            Destroy(gameObject);
-        }
     }
 }

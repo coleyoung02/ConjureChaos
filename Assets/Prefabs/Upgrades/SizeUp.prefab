@@ -54,7 +54,8 @@ MonoBehaviour:
   description: +1 Projectile Size
   statsList: 04000000
   valuesList:
-  - 1
+  - 3
+  modeList: 00
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0
