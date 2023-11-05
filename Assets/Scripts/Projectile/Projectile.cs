@@ -22,11 +22,18 @@ public class Projectile : MonoBehaviour
     
     // Direction for the projectile to travel
     private Vector3 _direction;
+    
+    // For keeping track of distance projectile traveled
+    private Vector3 _previousPosition;
+    private float _calculatedDistance = 0f;
 
     private void Start()
     {
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
+        
+        // Sets position
+        _previousPosition = transform.position;
         
         // Initializes everything needed for projectile
         InitializeStats();
@@ -74,4 +81,15 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Update()
+    {
+        Vector3 position = transform.position;
+        _calculatedDistance += (position - _previousPosition).magnitude;
+        _previousPosition = position;
+
+        if (_calculatedDistance >= _range)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
