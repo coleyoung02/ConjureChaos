@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8092729141397369473}
   - component: {fileID: 4657599158838961215}
   - component: {fileID: 2495883686228081858}
+  - component: {fileID: 4611678377388438076}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -240,6 +241,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeManager: {fileID: 0}
+--- !u!114 &4611678377388438076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213064085987646136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1579afad4c5ef204083ac333e191509d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!1 &3291408471451780808
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,20 +637,8 @@ PrefabInstance:
       value: ProjectileConjurer
       objectReference: {fileID: 0}
     - target: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.48590153
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
       propertyPath: m_LocalPosition.y
