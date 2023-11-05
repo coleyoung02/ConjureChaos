@@ -52,9 +52,24 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnDestroy()
+    {
+        FindObjectOfType<ProgressManager>().checkCompletion();
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        playerHealth.PlayerTakeDamage(contactDamage);
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            playerHealth.PlayerTakeDamage(contactDamage);
+            Debug.Log("damaged");
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log(collider.gameObject.layer + " , " + LayerMask.NameToLayer("Player"));
+        }
     }
 
 }

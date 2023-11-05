@@ -54,7 +54,8 @@ MonoBehaviour:
   description: +1 Damage
   statsList: 00000000
   valuesList:
-  - 1
+  - 1.5
+  modeList: 00
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0
