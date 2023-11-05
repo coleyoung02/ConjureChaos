@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour
         
         // Initializes everything needed for projectile
         InitializeStats();
+        InitializeSize();
         InitializeDirection();
         
         // Moves projectile
@@ -44,6 +45,12 @@ public class Projectile : MonoBehaviour
         _speed = stats[Stats.Speed];
         _size = stats[Stats.Size];
         _range = stats[Stats.Range];
+    }
+
+    private void InitializeSize()
+    {
+        // We could just take the base size and multiply it by the size amount but for now just decided to make it the actual scale factor.
+        transform.localScale = new Vector3(_size, _size, _size);
     }
 
     private void InitializeDirection()
