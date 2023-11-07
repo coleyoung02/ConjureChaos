@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823e558258e9c904b9c109ab82da318b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 8027373307570980584}
+  rightFirePosition: 0.5
+  leftFirePosition: -0.5
   projectilePrefab: {fileID: 9131568365663451046, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
-  timeBetweenFiring: 0.3

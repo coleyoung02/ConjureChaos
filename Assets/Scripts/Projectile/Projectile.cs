@@ -11,34 +11,76 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     
-    [SerializeField]
-    private float speed = 20f;
-
-    [SerializeField]
-    private float damage = 10f;
+    // The Projectile Conjurer class
+    private ProjectileConjurer _conjurer;
+    
+    // Stats that the projectile will grab from conjuerer
+    private float _damage;
+    private float _speed;
+    private float _size;
+    private float _range;
+    
+    // Direction for the projectile to travel
+    private Vector3 _direction;
+    
+    // For keeping track of distance projectile traveled
+    private Vector3 _previousPosition;
+    private float _calculatedDistance = 0f;
 
     private void Start()
     {
+        // Saves the conjurer so we only have to get it once
+        _conjurer = FindObjectOfType<ProjectileConjurer>();
+        
+        // Sets position
+        _previousPosition = transform.position;
+        
+        // Initializes everything needed for projectile
+        InitializeStats();
+        InitializeSize();
+        InitializeDirection();
+        
+        // Moves projectile
         ProjectileMove();
+
+        Destroy(gameObject, _range / _speed);
+    }
+
+    private void InitializeStats()
+    {
+        Dictionary<Stats, float> stats = _conjurer.GetStats();
+
+        _damage = stats[Stats.Damage];
+        _speed = stats[Stats.Speed];
+        _size = stats[Stats.Size];
+        _range = stats[Stats.Range];
+    }
+
+    private void InitializeSize()
+    {
+        // We could just take the base size and multiply it by the size amount but for now just decided to make it the actual scale factor.
+        transform.localScale = new Vector3(_size, _size, _size);
+    }
+
+    private void InitializeDirection()
+    {
+        _direction = _conjurer.GetProjectileDirection();
     }
     
     private void ProjectileMove()
     {
-        Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
+        rb.velocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
     }
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
+        print(myCollider.gameObject.name);
         if (myCollider.CompareTag("Enemy"))
         {
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
-            script.DamageEnemy(damage);
+            script.DamageEnemy(_damage);
         }
         Destroy(gameObject);
     }
-
 }

@@ -12,6 +12,7 @@ public class UpgradeManager : MonoBehaviour
 
     void OnEnable()
     {
+        Time.timeScale = 0;
         get3();
     }
 
@@ -22,6 +23,7 @@ public class UpgradeManager : MonoBehaviour
         {
             Destroy(row.transform.GetChild(i).gameObject);
         }
+        Time.timeScale = 1;
         gameObject.SetActive(false);
     }
 

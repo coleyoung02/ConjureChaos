@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &43800585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019834886609811915, guid: a987f4280616c404f82adecf4ede1731, type: 3}
+  m_PrefabInstance: {fileID: 1577520285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188196992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1569,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1272423300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1778175261 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3368454346411627028, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+  m_PrefabInstance: {fileID: 2106127201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1846702032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,10 +2100,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 213064085987646136, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2295093850878497540, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2134,42 +2140,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3291408471451780808, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691353373046364203, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962027873839164530, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082799291375751968, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 7416355924763800333, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7416355924763800333, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7416355924763800333, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.925
-      objectReference: {fileID: 0}
-    - target: {fileID: 7538817425684297924, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092729141397369473, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
-      propertyPath: moveSpeed
-      value: 7.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 2495883686228081858, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: upgradeManager
+      value: 
+      objectReference: {fileID: 43800585}
+    - target: {fileID: 4611678377388438076, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1778175261}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

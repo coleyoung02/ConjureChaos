@@ -54,7 +54,8 @@ MonoBehaviour:
   description: +1 Fire Rate
   statsList: 03000000
   valuesList:
-  - 1
+  - 0.7
+  modeList: 00
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0
