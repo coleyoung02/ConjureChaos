@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    public static UnityEvent deathEvent;
+    static bool deathListenerAdded = false;
     public float maxHealth;
     public float health;
     public int contactDamage;
     public GameObject player;
     PlayerHealth playerHealth;
+    ProgressManager progressManager;
 
     // Start is called before the first frame update
     void Start()
@@ -16,13 +20,26 @@ public class Enemy : MonoBehaviour
         if(!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
+        progressManager = player.GetComponent<ProgressManager>();
+
+        if (deathEvent == null)
+            deathEvent = new UnityEvent();
+        if(!deathListenerAdded)
+        {
+            deathEvent.AddListener(progressManager.incrementDeathCounter);
+            deathListenerAdded = true;
+        }
+            
     }
 
     // Update is called once per frame
     void Update()
     {
         if (health <= 0)
+        {   
             die();
+        }
+            
     }
     
     void HealEnemy(float heal)
@@ -48,13 +65,14 @@ public class Enemy : MonoBehaviour
     }
 
     public void die()
-    { 
+    {
+        deathEvent.Invoke();
         Destroy(gameObject);
     }
 
     void OnDestroy()
     {
-        FindObjectOfType<ProgressManager>().checkCompletion();
+        progressManager.checkCompletion();
     }
 
 
@@ -63,7 +81,7 @@ public class Enemy : MonoBehaviour
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerHealth.PlayerTakeDamage(contactDamage);
-            Destroy(gameObject);
+            die();
         }
     }
 
