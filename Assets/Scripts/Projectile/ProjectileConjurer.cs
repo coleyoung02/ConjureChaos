@@ -24,6 +24,12 @@ public class ProjectileConjurer : MonoBehaviour
     
     // Main Camera
     private Camera _mainCamera;
+    
+    public enum StatusEffects
+    {
+        Slow,
+        Fire,
+    }
 
     // The float listed for fire rate is the cooldown time between shots.
     // Lowering it will give it a higher fire rate. Increasing it will give a lower fire rate.
@@ -35,13 +41,22 @@ public class ProjectileConjurer : MonoBehaviour
         { Stats.Range, 10f},
         { Stats.Rate, 0.3f}
     };
-    
+
+    // Keeps track of status effects that it will apply to enemy
+    private Dictionary<StatusEffects, float> _statusEffects = new();
+
     // Method so other classes can grab the stats
     public Dictionary<Stats, float> GetStats()
     {
         return _statsList;
     }
     
+    // Method so other classes can grab status effects
+    public Dictionary<StatusEffects, float> GetStatusEffects()
+    {
+        return _statusEffects;
+    }
+
     // Method so other classes can grab direction of projectile
     public Vector3 GetProjectileDirection()
     {
@@ -61,6 +76,12 @@ public class ProjectileConjurer : MonoBehaviour
         {
             _statsList[stat] *= value;
         }
+    }
+    
+    // Method that takes in a status effect and duration and adds it to status effects
+    public void UpdateStatusEffect(StatusEffects statusEffects, float duration)
+    {
+        _statusEffects[statusEffects] = duration;
     }
 
     public void FlipFirePoint(bool flipRight)
