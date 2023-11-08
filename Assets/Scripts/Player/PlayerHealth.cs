@@ -6,24 +6,26 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int maxHealth = 100;
+    [SerializeField] int maxHealth = 1;
     [SerializeField] TextMeshProUGUI healthText;
-    [SerializeField] Image healthIcon;
+    [SerializeField] Image[] hearts;
+    [SerializeField] Sprite fullHeartImage;
+    [SerializeField] Sprite emptyHeartImage;
 
-    int health = 100;
+    int currentHealth = 1;
     
     void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
         UpdateHealthUI();
     }
 
     public void PlayerTakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            health = 0;
+            currentHealth = 0;
             Debug.Log("Player is Dead.");
         }
         UpdateHealthUI();
@@ -31,13 +33,56 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerAddHealth(int healValue)
     {
-        health += healValue;
+        currentHealth += healValue;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        UpdateHealthUI();
+    }
+
+    public void AddMaxHealth(int value)
+    {
+        maxHealth += value;
+        if (maxHealth > hearts.Length)
+        {
+            maxHealth = hearts.Length;
+        }
+        UpdateHealthUI();
+    }
+
+    public void SubtractMaxHealth(int value)
+    {
+        maxHealth -= value;
+        if (maxHealth < 1)
+        {
+            maxHealth = 1;
+        }
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
         UpdateHealthUI();
     }
 
     void UpdateHealthUI()
     {
-        healthText.text = $"{health} HP";
-        healthIcon.fillAmount = (health * 1.0f) / maxHealth;
+        healthText.text = $"{currentHealth} / {maxHealth} HP";
+        RefreshHeartDisplay();
+    }
+
+    // use this when you first start the game or when you update 
+    // maxHealth so that the UI can display the accurate max health.
+    void RefreshHeartDisplay()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < maxHealth){
+                hearts[i].enabled = true;
+                hearts[i].sprite = (i < currentHealth)? fullHeartImage : emptyHeartImage;
+            } else {
+                hearts[i].enabled = false;
+            }
+        }
     }
 }
