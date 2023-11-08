@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Flying_AI : Parent_AI
 {
-    public float speed = 1.0f;
 
     // Start is called before the first frame update
-    void Start()
+     new void Start()
     {
-        if (!player)
-            player = FindAnyObjectByType<PlayerMovement>().gameObject;
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
         float dist_move = speed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position,player.transform.position,dist_move);
+        Vector2 direction = (Vector2)player.transform.position - (Vector2)transform.position;
+        direction.Normalize();
+        rb.velocity = direction * speed;
     }
 }
