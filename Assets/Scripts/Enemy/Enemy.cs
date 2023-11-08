@@ -63,12 +63,7 @@ public class Enemy : MonoBehaviour
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerHealth.PlayerTakeDamage(contactDamage);
-            Debug.Log("damaged");
             Destroy(gameObject);
-        }
-        else
-        {
-            Debug.Log(collider.gameObject.layer + " , " + LayerMask.NameToLayer("Player"));
         }
     }
 
