@@ -11,8 +11,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Image[] hearts;
     [SerializeField] Sprite fullHeartImage;
     [SerializeField] Sprite emptyHeartImage;
+    [SerializeField] float invincibilityDuration = 2f;
 
     int currentHealth = 1;
+    bool isInvincible = false;
     
     void Start()
     {
@@ -22,12 +24,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerTakeDamage(int damage)
     {
+        if (isInvincible) {
+            Debug.Log("Player is invincible.");
+            return;
+        }
+
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             Debug.Log("Player is Dead.");
         }
+        isInvincible = true;
+        StartCoroutine(InvincibilityTimer(invincibilityDuration));
         UpdateHealthUI();
     }
 
@@ -75,14 +84,36 @@ public class PlayerHealth : MonoBehaviour
     // maxHealth so that the UI can display the accurate max health.
     void RefreshHeartDisplay()
     {
+        if(fullHeartImage == null || emptyHeartImage == null)
+        {
+            Debug.Log($"heart sprites are not set");
+            return;
+        }
+
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < maxHealth){
+            if (hearts[i] == null)
+            {
+                Debug.Log($"No hearts in index {i}.");
+                continue;
+            }
+
+            if (i < maxHealth)
+            {
                 hearts[i].enabled = true;
                 hearts[i].sprite = (i < currentHealth)? fullHeartImage : emptyHeartImage;
-            } else {
+            } 
+            else 
+            {
                 hearts[i].enabled = false;
             }
         }
+    }
+
+    IEnumerator InvincibilityTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+        Debug.Log("Player is not invincible anymore.");
     }
 }
