@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  rb: {fileID: 0}
   speed: 10
 --- !u!212 &6124179481244460053
 SpriteRenderer:
@@ -238,7 +239,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 648
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!player)
+            player = FindAnyObjectByType<PlayerMovement>().gameObject;
         active = true;
         time_until_next_spawn = 0;
     }
