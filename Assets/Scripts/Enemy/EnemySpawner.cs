@@ -9,16 +9,19 @@ public class EnemySpawner : MonoBehaviour
     public float duration;
     public float time_elapsed;
     public float spawn_delay;
+    public float offset;
     bool active;
     float time_until_next_spawn;
+    public int spawnLocation;
 
     // Start is called before the first frame update
     void Start()
     {
+        time_elapsed = -offset;
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         active = true;
-        time_until_next_spawn = 0;
+        time_until_next_spawn = offset;
     }
 
     // Update is called once per frame

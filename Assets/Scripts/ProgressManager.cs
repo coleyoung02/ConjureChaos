@@ -8,6 +8,7 @@ public class ProgressManager : MonoBehaviour
     private int enemiesDefeated;
     public TextMeshProUGUI deathCountText;
     private int waveNo;
+    public WaveManager waveMan;
     [SerializeField] GameObject upgradeManager;
     void Start()
     {
@@ -19,8 +20,9 @@ public class ProgressManager : MonoBehaviour
     public void checkCompletion()
     {
         // will also have to check that there are no more to be spawned
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        if (enemiesDefeated >= waveMan.killQuota)
         {
+            waveMan.nextWave();
             upgradeManager.SetActive(true);
         }
     }
