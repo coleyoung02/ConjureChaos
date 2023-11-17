@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  duration: 0
+  player: {fileID: 0}
+  duration: 100
   time_elapsed: 0
-  spawn_delay: 0
+  spawn_delay: 10

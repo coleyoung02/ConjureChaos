@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ProgressManager : MonoBehaviour
 {
+    private int enemiesDefeated;
+    public TextMeshProUGUI deathCountText;
     private int waveNo;
     [SerializeField] GameObject upgradeManager;
     void Start()
     {
+        enemiesDefeated = 0;
+        UpdateDeathCountUI();
         waveNo = 0;
     }
 
@@ -18,5 +23,16 @@ public class ProgressManager : MonoBehaviour
         {
             upgradeManager.SetActive(true);
         }
+    }
+
+    public void incrementDeathCounter()
+    {
+        enemiesDefeated++;
+        UpdateDeathCountUI();
+    }
+
+    void UpdateDeathCountUI()
+    {
+        deathCountText.text = $"{enemiesDefeated} Enemies Defeated";
     }
 }
