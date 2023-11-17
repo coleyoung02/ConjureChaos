@@ -18,8 +18,14 @@ public class Enemy : MonoBehaviour
     // Status effect variables
     private float _statusEffectStart;
     private ProjectileConjurer _conjurer;
+    
     // To avoid weird errors with modifying the dictionary by adding and removing. -1 stands for not active effect.
-    private Dictionary<ProjectileConjurer.StatusEffects, float> _effectStartTimes = new();
+    private Dictionary<ProjectileConjurer.StatusEffects, float> _effectStartTimes = new ()
+    {
+        { ProjectileConjurer.StatusEffects.Fire, -1f },
+        { ProjectileConjurer.StatusEffects.Slow, -1f }
+    };
+    
     private Dictionary<ProjectileConjurer.StatusEffects, int> _conjurerEffects = new();
 
     // Start is called before the first frame update
@@ -30,12 +36,8 @@ public class Enemy : MonoBehaviour
         
         // Gets the conjurers Status Effects
         _conjurerEffects = _conjurer.GetStatusEffects();
-        
-        // Populates Effect Start Times Dict so that we don't have to do it manually when adding new status effects
-        foreach (ProjectileConjurer.StatusEffects effects in Enum.GetValues(typeof(ProjectileConjurer.StatusEffects)))
-        {
-            _effectStartTimes[effects] = -1f;
-        }
+
+        PrintEffectStartTimes();
         
         if(!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
@@ -55,8 +57,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // Checks to see if the current status effects have expired
-        CheckStatusEffectExpire();
-        
+
         if (health <= 0)
         {   
             die();
@@ -82,8 +83,7 @@ public class Enemy : MonoBehaviour
         else
         {
             // Applies status effects if it doesn't have any
-            StatusEffectManager();
-            
+
             health -= dmg;
             return false;
         }
@@ -120,19 +120,36 @@ public class Enemy : MonoBehaviour
                 Debug.Log($"Adding active status effect: {kvp.Key}");
                 // Keeps track of when the status effect was applied
                 _effectStartTimes[kvp.Key] = Time.time;
+                PrintEffectStartTimes();
             }
         }
     }
     private void CheckStatusEffectExpire()
     {
-        foreach (KeyValuePair<ProjectileConjurer.StatusEffects, float> kvp in _effectStartTimes)
+        Dictionary<ProjectileConjurer.StatusEffects, float> effectStartCopy = _effectStartTimes;
+        foreach (KeyValuePair<ProjectileConjurer.StatusEffects, float> kvp in effectStartCopy)
         {
+            if (kvp.Value == -1)
+                continue;
+            
             if (Time.time - kvp.Value >= _conjurerEffects[kvp.Key])
             {
                 _effectStartTimes[kvp.Key] = -1f;
                 Debug.Log($"Removing active status effect: {kvp.Key}");
+                PrintEffectStartTimes();
             }
         }
+    }
+
+    private void PrintEffectStartTimes()
+    {
+        string message = "Current Effect Start Times Dict:\n";
+        foreach (KeyValuePair<ProjectileConjurer.StatusEffects, float> kvp in _effectStartTimes)
+        {
+            message += $"Key: {kvp.Key} Value: {kvp.Value}\n";
+        }
+        
+        Debug.Log(message);
     }
 
 }
