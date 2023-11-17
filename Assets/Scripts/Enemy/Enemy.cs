@@ -16,13 +16,12 @@ public class Enemy : MonoBehaviour
     ProgressManager progressManager;
     
     // Status effect variables
-    private float _statusEffectStart;
     private ProjectileConjurer _conjurer;
-    
-    // To avoid weird errors with modifying the dictionary by adding and removing. -1 stands for not active effect.
-    private Dictionary<ProjectileConjurer.StatusEffects, float> _effectStartTimes = new();
-
+    private Parent_AI _parentAI;
     private Dictionary<ProjectileConjurer.StatusEffects, int> _conjurerEffects = new();
+
+    private bool _fireCoroutineRunning = false;
+    private bool _slowCoroutineRunning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +29,11 @@ public class Enemy : MonoBehaviour
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
         
+        // Saves the parent ai so we only have to get it once
+        _parentAI = FindObjectOfType<Parent_AI>();
+        
         // Gets the conjurers Status Effects
         _conjurerEffects = _conjurer.GetStatusEffects();
-        
-        // Populates Effect Start Times Dict so that we don't have to do it manually when adding new status effects
-        foreach (ProjectileConjurer.StatusEffects effects in Enum.GetValues(typeof(ProjectileConjurer.StatusEffects)))
-        {
-            _effectStartTimes[effects] = -1f;
-        }
 
         if(!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
@@ -56,9 +52,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Checks to see if the current status effects have expired
-        CheckStatusEffectExpire();
-        
         if (health <= 0)
         {   
             die();
@@ -116,27 +109,44 @@ public class Enemy : MonoBehaviour
     {
         foreach (KeyValuePair<ProjectileConjurer.StatusEffects, int> kvp in _conjurerEffects)
         {
-            // If we currently dont have this effect
-            if (_effectStartTimes.ContainsKey(kvp.Key) && _effectStartTimes[kvp.Key] == -1)
+            if (kvp.Key == ProjectileConjurer.StatusEffects.Fire && !_fireCoroutineRunning)
             {
-                // Keeps track of when the status effect was applied
-                _effectStartTimes[kvp.Key] = Time.time;
+                StartCoroutine(FireStatus(kvp.Value));
+            }
+            
+            if (kvp.Key == ProjectileConjurer.StatusEffects.Slow && !_slowCoroutineRunning)
+            {
+                StartCoroutine(SlowStatus(kvp.Value));
             }
         }
     }
-    private void CheckStatusEffectExpire()
+    
+    private IEnumerator FireStatus(int duration)
     {
-        Dictionary<ProjectileConjurer.StatusEffects, float> effectStartCopy = _effectStartTimes;
-        foreach (KeyValuePair<ProjectileConjurer.StatusEffects, float> kvp in effectStartCopy)
+        _fireCoroutineRunning = true;
+        for (int i = 0; i < duration; i++)
         {
-            if (kvp.Value == -1)
-                continue;
+            yield return new WaitForSeconds(1f);
             
-            if (Time.time - kvp.Value >= _conjurerEffects[kvp.Key])
-            {
-                _effectStartTimes[kvp.Key] = -1f;
-            }
+            // Cant use damage enemy method because slow would consider this damage
+            if (health < 5)
+                health = 0;
+            else
+                health -= 5;
         }
+        _fireCoroutineRunning = false;
+    }
+    
+    private IEnumerator SlowStatus(int duration)
+    {
+        _slowCoroutineRunning = true;
+        float originalSpeed = _parentAI.speed;
+        _parentAI.speed *= 0.5f;
+        
+        yield return new WaitForSeconds(duration);
+        
+        _parentAI.speed = originalSpeed;
+        _slowCoroutineRunning = false;
     }
 
 }
