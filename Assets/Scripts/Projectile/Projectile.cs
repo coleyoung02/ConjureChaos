@@ -83,7 +83,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
-        print(myCollider.gameObject.name);
         if (myCollider.CompareTag("Enemy"))
         {
             // Is this the best way to do this?
@@ -100,6 +99,9 @@ public class Projectile : MonoBehaviour
     private void DestroyingProjectileManager(Collider2D myCollider)
     {
         if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+            return;
+        
+        if (myCollider.CompareTag("OneWayPlatform") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.PlatformPiercing))
             return;
         
         Destroy(gameObject);

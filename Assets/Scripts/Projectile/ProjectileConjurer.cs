@@ -117,7 +117,7 @@ public class ProjectileConjurer : MonoBehaviour
 
     private void Start()
     {
-        UpdateProjectileEffect(ProjectileEffects.EnemyPiercing);
+        UpdateProjectileEffect(ProjectileEffects.PlatformPiercing);
         _mainCamera = Camera.main;
     }
 
