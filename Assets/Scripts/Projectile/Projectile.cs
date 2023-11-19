@@ -20,23 +20,23 @@ public class Projectile : MonoBehaviour
     private float _size;
     private float _range;
     
+    // Projectile effects
+    private List<ProjectileConjurer.ProjectileEffects> _projectileEffects = new();
+
     // Direction for the projectile to travel
     private Vector3 _direction;
     
-    // For keeping track of distance projectile traveled
-    private Vector3 _previousPosition;
-    private float _calculatedDistance = 0f;
+    // KnockBack
+    private float _knockBackAmount = 5f;
 
     private void Start()
     {
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
-        
-        // Sets position
-        _previousPosition = transform.position;
-        
+
         // Initializes everything needed for projectile
         InitializeStats();
+        InitializeEffects();
         InitializeSize();
         InitializeDirection();
         
@@ -54,6 +54,11 @@ public class Projectile : MonoBehaviour
         _speed = stats[Stats.Speed];
         _size = stats[Stats.Size];
         _range = stats[Stats.Range];
+    }
+
+    private void InitializeEffects()
+    {
+        _projectileEffects = _conjurer.GetProjectileEffects();
     }
 
     private void InitializeSize()
@@ -74,13 +79,50 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
-        print(myCollider.gameObject.name);
+        // Logic for when projectile hurts enemy
+        HurtEnemy(myCollider);
+        
+        // Whether or not the projectile is destroyed
+        DestroyingProjectileManager(myCollider);
+    }
+
+    private void HurtEnemy(Collider2D myCollider)
+    {
         if (myCollider.CompareTag("Enemy"))
         {
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
             script.DamageEnemy(_damage);
+            
+            // Call status effect here instead of in damage enemy function to avoid bugs
+            script.StatusEffectManager();
+            
+            KnockBack(myCollider);
         }
+    }
+
+    private void DestroyingProjectileManager(Collider2D myCollider)
+    {
+        if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+            return;
+        
+        if (myCollider.CompareTag("OneWayPlatform") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.PlatformPiercing))
+            return;
+
         Destroy(gameObject);
+    }
+
+    private void KnockBack(Collider2D myCollider)
+    {
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.KnockBack))
+        {
+            GameObject enemy = myCollider.gameObject;
+            Vector3 enemyPos = enemy.transform.position;
+
+            if (_direction.x < 0)
+                _knockBackAmount *= -1f;
+                
+            enemy.transform.position = new Vector3(enemyPos.x + _knockBackAmount, enemyPos.y, enemyPos.z);
+        }
     }
 }

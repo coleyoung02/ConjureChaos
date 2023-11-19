@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,27 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     PlayerHealth playerHealth;
     ProgressManager progressManager;
+    
+    // Status effect variables
+    private ProjectileConjurer _conjurer;
+    private Parent_AI _parentAI;
+    private Dictionary<ProjectileConjurer.StatusEffects, int> _conjurerEffects = new();
+
+    private bool _fireCoroutineRunning = false;
+    private bool _slowCoroutineRunning = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Saves the conjurer so we only have to get it once
+        _conjurer = FindObjectOfType<ProjectileConjurer>();
+        
+        // Saves the parent ai so we only have to get it once
+        _parentAI = FindObjectOfType<Parent_AI>();
+        
+        // Gets the conjurers Status Effects
+        _conjurerEffects = _conjurer.GetStatusEffects();
+
         if(!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
@@ -30,7 +48,6 @@ public class Enemy : MonoBehaviour
             deathEvent.AddListener(progressManager.checkCompletion);
             deathListenerAdded = true;
         }
-            
     }
 
     // Update is called once per frame
@@ -84,6 +101,45 @@ public class Enemy : MonoBehaviour
             playerHealth.PlayerTakeDamage(contactDamage);
             die();
         }
+    }
+    
+    public void StatusEffectManager()
+    {
+        foreach (KeyValuePair<ProjectileConjurer.StatusEffects, int> kvp in _conjurerEffects)
+        {
+            if (kvp.Key == ProjectileConjurer.StatusEffects.Fire && !_fireCoroutineRunning)
+            {
+                StartCoroutine(FireStatus(kvp.Value));
+            }
+            
+            if (kvp.Key == ProjectileConjurer.StatusEffects.Slow && !_slowCoroutineRunning)
+            {
+                StartCoroutine(SlowStatus(kvp.Value));
+            }
+        }
+    }
+    
+    private IEnumerator FireStatus(int duration)
+    {
+        _fireCoroutineRunning = true;
+        for (int i = 0; i < duration; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            DamageEnemy(5);
+        }
+        _fireCoroutineRunning = false;
+    }
+    
+    private IEnumerator SlowStatus(int duration)
+    {
+        _slowCoroutineRunning = true;
+        float originalSpeed = _parentAI.speed;
+        _parentAI.speed *= 0.5f;
+        
+        yield return new WaitForSeconds(duration);
+        
+        _parentAI.speed = originalSpeed;
+        _slowCoroutineRunning = false;
     }
 
 }

@@ -31,6 +31,13 @@ public class ProjectileConjurer : MonoBehaviour
         Fire,
     }
 
+    public enum ProjectileEffects
+    {
+        EnemyPiercing,
+        PlatformPiercing,
+        KnockBack,
+    }
+
     // The float listed for fire rate is the cooldown time between shots.
     // Lowering it will give it a higher fire rate. Increasing it will give a lower fire rate.
     private Dictionary<Stats, float> _statsList = new ()
@@ -43,7 +50,10 @@ public class ProjectileConjurer : MonoBehaviour
     };
 
     // Keeps track of status effects that it will apply to enemy
-    private Dictionary<StatusEffects, float> _statusEffects = new();
+    private Dictionary<StatusEffects, int> _statusEffects = new();
+    
+    // Projectile effects
+    private List<ProjectileEffects> _projectileEffects = new();
 
     // Method so other classes can grab the stats
     public Dictionary<Stats, float> GetStats()
@@ -52,9 +62,15 @@ public class ProjectileConjurer : MonoBehaviour
     }
     
     // Method so other classes can grab status effects
-    public Dictionary<StatusEffects, float> GetStatusEffects()
+    public Dictionary<StatusEffects, int> GetStatusEffects()
     {
         return _statusEffects;
+    }
+    
+    // Method so other classes can grab projectile effects
+    public List<ProjectileEffects> GetProjectileEffects()
+    {
+        return _projectileEffects;
     }
 
     // Method so other classes can grab direction of projectile
@@ -79,9 +95,15 @@ public class ProjectileConjurer : MonoBehaviour
     }
     
     // Method that takes in a status effect and duration and adds it to status effects
-    public void UpdateStatusEffect(StatusEffects statusEffects, float duration)
+    public void UpdateStatusEffect(StatusEffects statusEffects, int duration)
     {
         _statusEffects[statusEffects] = duration;
+    }
+    
+    // Method that takes in a projectile effect and adds it to projectile effect list
+    public void UpdateProjectileEffect(ProjectileEffects projectileEffects)
+    {
+        _projectileEffects.Add(projectileEffects);
     }
 
     public void FlipFirePoint(bool flipRight)
