@@ -26,18 +26,14 @@ public class Projectile : MonoBehaviour
     // Direction for the projectile to travel
     private Vector3 _direction;
     
-    // For keeping track of distance projectile traveled
-    private Vector3 _previousPosition;
-    private float _calculatedDistance = 0f;
+    // KnockBack
+    private float _knockBackAmount = 5f;
 
     private void Start()
     {
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
-        
-        // Sets position
-        _previousPosition = transform.position;
-        
+
         // Initializes everything needed for projectile
         InitializeStats();
         InitializeEffects();
@@ -91,6 +87,8 @@ public class Projectile : MonoBehaviour
             
             // Call status effect here instead of in damage enemy function to avoid bugs
             script.StatusEffectManager();
+            
+            KnockBack(myCollider);
         }
         
         DestroyingProjectileManager(myCollider);
@@ -105,5 +103,19 @@ public class Projectile : MonoBehaviour
             return;
         
         Destroy(gameObject);
+    }
+
+    private void KnockBack(Collider2D myCollider)
+    {
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.KnockBack))
+        {
+            GameObject enemy = myCollider.gameObject;
+            Vector3 enemyPos = enemy.transform.position;
+
+            if (_direction.x < 0)
+                _knockBackAmount *= -1f;
+                
+            enemy.transform.position = new Vector3(enemyPos.x + _knockBackAmount, enemyPos.y, enemyPos.z);
+        }
     }
 }
