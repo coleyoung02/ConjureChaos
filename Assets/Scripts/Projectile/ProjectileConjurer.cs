@@ -31,6 +31,14 @@ public class ProjectileConjurer : MonoBehaviour
         Fire,
     }
 
+    public enum ProjectileEffects
+    {
+        EnemyPiercing,
+        PlatformPiercing,
+        Bounce,
+        KnockBack,
+    }
+
     // The float listed for fire rate is the cooldown time between shots.
     // Lowering it will give it a higher fire rate. Increasing it will give a lower fire rate.
     private Dictionary<Stats, float> _statsList = new ()
@@ -44,6 +52,9 @@ public class ProjectileConjurer : MonoBehaviour
 
     // Keeps track of status effects that it will apply to enemy
     private Dictionary<StatusEffects, int> _statusEffects = new();
+    
+    // Projectile effects
+    private List<ProjectileEffects> _projectileEffects = new();
 
     // Method so other classes can grab the stats
     public Dictionary<Stats, float> GetStats()
@@ -55,6 +66,12 @@ public class ProjectileConjurer : MonoBehaviour
     public Dictionary<StatusEffects, int> GetStatusEffects()
     {
         return _statusEffects;
+    }
+    
+    // Method so other classes can grab projectile effects
+    public List<ProjectileEffects> GetProjectileEffects()
+    {
+        return _projectileEffects;
     }
 
     // Method so other classes can grab direction of projectile
@@ -83,6 +100,12 @@ public class ProjectileConjurer : MonoBehaviour
     {
         _statusEffects[statusEffects] = duration;
     }
+    
+    // Method that takes in a projectile effect and adds it to projectile effect list
+    public void UpdateProjectileEffect(ProjectileEffects projectileEffects)
+    {
+        _projectileEffects.Add(projectileEffects);
+    }
 
     public void FlipFirePoint(bool flipRight)
     {
@@ -94,8 +117,7 @@ public class ProjectileConjurer : MonoBehaviour
 
     private void Start()
     {
-        UpdateStatusEffect(StatusEffects.Fire, 10);
-        UpdateStatusEffect(StatusEffects.Slow, 5);
+        UpdateProjectileEffect(ProjectileEffects.EnemyPiercing);
         _mainCamera = Camera.main;
     }
 

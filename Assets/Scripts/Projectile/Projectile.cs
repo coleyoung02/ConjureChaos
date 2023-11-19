@@ -20,6 +20,9 @@ public class Projectile : MonoBehaviour
     private float _size;
     private float _range;
     
+    // Projectile effects
+    private List<ProjectileConjurer.ProjectileEffects> _projectileEffects = new();
+
     // Direction for the projectile to travel
     private Vector3 _direction;
     
@@ -37,6 +40,7 @@ public class Projectile : MonoBehaviour
         
         // Initializes everything needed for projectile
         InitializeStats();
+        InitializeEffects();
         InitializeSize();
         InitializeDirection();
         
@@ -54,6 +58,11 @@ public class Projectile : MonoBehaviour
         _speed = stats[Stats.Speed];
         _size = stats[Stats.Size];
         _range = stats[Stats.Range];
+    }
+
+    private void InitializeEffects()
+    {
+        _projectileEffects = _conjurer.GetProjectileEffects();
     }
 
     private void InitializeSize()
@@ -80,9 +89,19 @@ public class Projectile : MonoBehaviour
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
             script.DamageEnemy(_damage);
+            
             // Call status effect here instead of in damage enemy function to avoid bugs
             script.StatusEffectManager();
         }
+        
+        DestroyingProjectileManager(myCollider);
+    }
+
+    private void DestroyingProjectileManager(Collider2D myCollider)
+    {
+        if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+            return;
+        
         Destroy(gameObject);
     }
 }
