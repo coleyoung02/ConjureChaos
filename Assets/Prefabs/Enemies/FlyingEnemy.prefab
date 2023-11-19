@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
+  maxHealth: 30
+  health: 30
   contactDamage: 1
   player: {fileID: 0}
 --- !u!114 &2586097237445304443
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rb: {fileID: 0}
-  speed: 10
+  speed: 6
 --- !u!212 &6124179481244460053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3853318864948723879}
   - component: {fileID: 4719653037026988860}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Physical Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,8 +219,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4.4, y: 4.4, z: 4.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7810913572183534023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,7 +239,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 648
+    m_Bits: 904
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

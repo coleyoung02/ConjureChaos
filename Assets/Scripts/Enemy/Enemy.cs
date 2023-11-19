@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
         if(!deathListenerAdded)
         {
             deathEvent.AddListener(progressManager.incrementDeathCounter);
+            deathEvent.AddListener(progressManager.checkCompletion);
             deathListenerAdded = true;
         }
     }
@@ -89,7 +90,7 @@ public class Enemy : MonoBehaviour
 
     void OnDestroy()
     {
-        progressManager.checkCompletion();
+        //progressManager.checkCompletion();
     }
 
 
