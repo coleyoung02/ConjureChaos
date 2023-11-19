@@ -80,6 +80,8 @@ public class Projectile : MonoBehaviour
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
             script.DamageEnemy(_damage);
+            // Call status effect here instead of in damage enemy function to avoid bugs
+            script.StatusEffectManager();
         }
         Destroy(gameObject);
     }

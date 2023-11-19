@@ -76,9 +76,6 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            // Applies status effects if it doesn't have any
-            StatusEffectManager();
-            
             health -= dmg;
             return false;
         }
@@ -105,7 +102,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    private void StatusEffectManager()
+    public void StatusEffectManager()
     {
         foreach (KeyValuePair<ProjectileConjurer.StatusEffects, int> kvp in _conjurerEffects)
         {
@@ -127,12 +124,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < duration; i++)
         {
             yield return new WaitForSeconds(1f);
-            
-            // Cant use damage enemy method because slow would consider this damage
-            if (health < 5)
-                health = 0;
-            else
-                health -= 5;
+            DamageEnemy(5);
         }
         _fireCoroutineRunning = false;
     }
