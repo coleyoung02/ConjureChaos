@@ -35,7 +35,6 @@ public class ProjectileConjurer : MonoBehaviour
     {
         EnemyPiercing,
         PlatformPiercing,
-        Bounce,
         KnockBack,
     }
 
@@ -117,7 +116,6 @@ public class ProjectileConjurer : MonoBehaviour
 
     private void Start()
     {
-        UpdateProjectileEffect(ProjectileEffects.KnockBack);
         _mainCamera = Camera.main;
     }
 

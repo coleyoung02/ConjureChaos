@@ -79,6 +79,15 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
+        // Logic for when projectile hurts enemy
+        HurtEnemy(myCollider);
+        
+        // Whether or not the projectile is destroyed
+        DestroyingProjectileManager(myCollider);
+    }
+
+    private void HurtEnemy(Collider2D myCollider)
+    {
         if (myCollider.CompareTag("Enemy"))
         {
             // Is this the best way to do this?
@@ -90,8 +99,6 @@ public class Projectile : MonoBehaviour
             
             KnockBack(myCollider);
         }
-        
-        DestroyingProjectileManager(myCollider);
     }
 
     private void DestroyingProjectileManager(Collider2D myCollider)
@@ -101,7 +108,7 @@ public class Projectile : MonoBehaviour
         
         if (myCollider.CompareTag("OneWayPlatform") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.PlatformPiercing))
             return;
-        
+
         Destroy(gameObject);
     }
 
