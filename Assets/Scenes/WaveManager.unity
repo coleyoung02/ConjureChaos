@@ -350,6 +350,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f6805ad26551843ad5833a49172532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 1033563199}
+  - {fileID: 1269269875}
+  - {fileID: 1684152382}
+  - {fileID: 1207279697}
+  waves:
+  - {fileID: 7998463365839113022, guid: d7e489fbfc5a67546be25bb00344e69a, type: 3}
+  - {fileID: 7998463365839113022, guid: d7e489fbfc5a67546be25bb00344e69a, type: 3}
+  - {fileID: 7998463365839113022, guid: d7e489fbfc5a67546be25bb00344e69a, type: 3}
   killQuota: 0
 --- !u!1001 &733361519
 PrefabInstance:
@@ -1163,7 +1172,7 @@ GameObject:
   - component: {fileID: 1033563200}
   m_Layer: 0
   m_Name: left_floor
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1419,8 +1428,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1207279698}
   m_Layer: 0
-  m_Name: right top
-  m_TagString: Untagged
+  m_Name: right_top
+  m_TagString: EnemySpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1451,7 +1460,7 @@ GameObject:
   - component: {fileID: 1269269876}
   m_Layer: 0
   m_Name: right_floor
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1776,7 +1785,7 @@ GameObject:
   - component: {fileID: 1684152383}
   m_Layer: 0
   m_Name: left_top
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

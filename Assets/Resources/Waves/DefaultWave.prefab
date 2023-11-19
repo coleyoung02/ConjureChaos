@@ -45,16 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerPrefab: {fileID: 8213047621107761781, guid: adb18b080517e524894fae83ed447629, type: 3}
-  killQuota: 5
-  loc1: {x: -10, y: 5}
-  loc2: {x: 0, y: 5}
-  loc3: {x: 10, y: 5}
-  loc4: {x: -10, y: -5}
-  loc5: {x: 0, y: -5}
-  loc6: {x: 10, y: -5}
-  spawnType1: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
-  spawnType2: {fileID: 0}
-  spawnType3: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
-  spawnType4: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
-  spawnType5: {fileID: 0}
-  spawnType6: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+  leftFloorType: {fileID: 257578625451431830, guid: b85e324a0b63ebc4090f525cc21c0ff6, type: 3}
+  leftFloorDuration: 100
+  leftFloorDelay: 10
+  leftFloorOffset: 0
+  rightFloorType: {fileID: 0}
+  rightFloorDuration: 200
+  rightFloorDelay: 20
+  rightFloorOffset: 0
+  leftTopType: {fileID: 0}
+  leftTopDuration: 100
+  leftTopDelay: 10
+  leftTopOffset: 5
+  rightTopType: {fileID: 0}
+  rightTopDuration: 100
+  rightTopDelay: 10
+  rightTopOffset: 5

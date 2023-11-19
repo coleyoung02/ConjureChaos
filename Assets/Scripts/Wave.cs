@@ -6,75 +6,88 @@ public class Wave : MonoBehaviour
 {
     public GameObject spawnerPrefab;
 
-    public int killQuota;
+    int killQuota;
 
-    public Vector2 loc1;
-    public Vector2 loc2;
-    public Vector2 loc3;
-    public Vector2 loc4;
-    public Vector2 loc5;
-    public Vector2 loc6;
-
-    public GameObject spawnType1;
-    public GameObject spawnType2;
-    public GameObject spawnType3;
-    public GameObject spawnType4;
-    public GameObject spawnType5;
-    public GameObject spawnType6;
+    List<GameObject> spawnPoints;
 
     private List<GameObject> spawners;
+
+    public GameObject leftFloorType;
+    public float leftFloorDuration;
+    public float leftFloorDelay;
+    public float leftFloorOffset;
+
+    public GameObject rightFloorType;
+    public float rightFloorDuration;
+    public float rightFloorDelay;
+    public float rightFloorOffset;
+
+    public GameObject leftTopType;
+    public float leftTopDuration;
+    public float leftTopDelay;
+    public float leftTopOffset;
+
+    public GameObject rightTopType;
+    public float rightTopDuration;
+    public float rightTopDelay;
+    public float rightTopOffset;
 
     // Start is called before the first frame update
     void Start()
     {
+        killQuota = 0;
         spawners = new List<GameObject>();
+        spawnPoints = gameObject.transform.parent.gameObject.GetComponent<WaveManager>().spawnPoints;
         instantiateSpawners();
     }
 
     private void instantiateSpawners()
     {
-        GameObject newSpawner;
-        if(spawnType1)
+        GameObject tempSpawner;
+        EnemySpawner tempSpawnerScript;
+        if(leftFloorType)
         {
-            newSpawner = Instantiate(spawnerPrefab);
-            newSpawner.GetComponent<EnemySpawner>().enemy = spawnType1;
-            newSpawner.transform.position = new Vector3(loc1.x, loc1.y, 0);
-            spawners.Add(newSpawner);
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[0].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = leftFloorType;
+            tempSpawnerScript.duration = leftFloorDuration;
+            tempSpawnerScript.spawn_delay = leftFloorDelay;
+            tempSpawnerScript.offset = leftFloorOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
         }
-        if(spawnType2)
+        if(rightFloorType)
         {
-            newSpawner = Instantiate(spawnerPrefab);
-            newSpawner.GetComponent<EnemySpawner>().enemy = spawnType2;
-            newSpawner.transform.position = new Vector3(loc2.x, loc2.y, 0);
-            spawners.Add(newSpawner);
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[1].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = rightFloorType;
+            tempSpawnerScript.duration = rightFloorDuration;
+            tempSpawnerScript.spawn_delay = rightFloorDelay;
+            tempSpawnerScript.offset = rightFloorOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
         }
-        if (spawnType3)
+        if (leftTopType)
         {
-            newSpawner = Instantiate(spawnerPrefab);
-            newSpawner.GetComponent<EnemySpawner>().enemy = spawnType3;
-            newSpawner.transform.position = new Vector3(loc3.x, loc3.y, 0);
-            spawners.Add(newSpawner);
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[2].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = leftTopType;
+            tempSpawnerScript.duration = leftTopDuration;
+            tempSpawnerScript.spawn_delay = leftTopDelay;
+            tempSpawnerScript.offset = leftTopOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
         }
-        if (spawnType4)
+        if (rightTopType)
         {
-            newSpawner = Instantiate(spawnerPrefab);
-            newSpawner.GetComponent<EnemySpawner>().enemy = spawnType4;
-            newSpawner.transform.position = new Vector3(loc4.x, loc4.y, 0);
-            spawners.Add(newSpawner);
-        }
-        if (spawnType5)
-        {
-            newSpawner = Instantiate(spawnerPrefab);
-            newSpawner.GetComponent<EnemySpawner>().enemy = spawnType5;
-            newSpawner.transform.position = new Vector3(loc5.x, loc5.y, 0);
-            spawners.Add(newSpawner);
-        }
-        if (spawnType6)
-        {
-            newSpawner = Instantiate(spawnerPrefab);
-            newSpawner.GetComponent<EnemySpawner>().enemy = spawnType6;
-            newSpawner.transform.position = new Vector3(loc6.x, loc6.y, 0);
-            spawners.Add(newSpawner);
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[3].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = rightTopType;
+            tempSpawnerScript.duration = rightTopDuration;
+            tempSpawnerScript.spawn_delay = rightTopDelay;
+            tempSpawnerScript.offset = rightTopOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
         }
     }
 

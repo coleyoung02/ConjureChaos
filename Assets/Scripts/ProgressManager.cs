@@ -7,22 +7,33 @@ public class ProgressManager : MonoBehaviour
 {
     private int enemiesDefeated;
     public TextMeshProUGUI deathCountText;
-    private int waveNo;
     public WaveManager waveMan;
+    public int currKillQuota;
     [SerializeField] GameObject upgradeManager;
     void Start()
     {
         enemiesDefeated = 0;
+        currKillQuota = waveMan.killQuota;
         UpdateDeathCountUI();
-        waveNo = 0;
+    }
+
+    void Update()
+    {
+        if(currKillQuota <= 0)
+        {
+            currKillQuota = waveMan.killQuota;
+            UpdateDeathCountUI();
+        }
     }
 
     public void checkCompletion()
     {
         // will also have to check that there are no more to be spawned
-        if (enemiesDefeated >= waveMan.killQuota)
+        if (enemiesDefeated >= currKillQuota)
         {
             waveMan.nextWave();
+            enemiesDefeated = 0;
+            currKillQuota = waveMan.killQuota;
             upgradeManager.SetActive(true);
         }
     }
@@ -35,6 +46,6 @@ public class ProgressManager : MonoBehaviour
 
     void UpdateDeathCountUI()
     {
-        deathCountText.text = $"{enemiesDefeated} Enemies Defeated";
+        deathCountText.text = $"{enemiesDefeated} Enemies Defeated of {currKillQuota}";
     }
 }
