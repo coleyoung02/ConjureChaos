@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b5ef29a3cc26a0747be11c33573015ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34c5ce7d36f1a8d44987b7983b7681d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.61333334, y: 1.6}
+    oldSize: {x: 17.69, y: 16.95}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -227,7 +227,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   healthText: {fileID: 2561969534914343783}
-  healthIcon: {fileID: 336643207011902217}
+  hearts: []
+  fullHeartImage: {fileID: 0}
+  emptyHeartImage: {fileID: 0}
+  invincibilityDuration: 2
 --- !u!114 &2495883686228081858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c5f4f2b4d98e94787f02029bd8a6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathCountText: {fileID: 0}
+  waveMan: {fileID: 0}
+  currKillQuota: 0
   upgradeManager: {fileID: 0}
 --- !u!114 &4611678377388438076
 MonoBehaviour:
@@ -597,17 +603,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
---- !u!114 &336643207011902217 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4664739253161771435, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
-  m_PrefabInstance: {fileID: 4906536091768152738}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2561969534914343783 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7465408127895622085, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
