@@ -9,5 +9,6 @@ public class AddEffect : Upgrade
     public override void DoUpgrade()
     { 
         FindObjectOfType<ProjectileConjurer>().UpdateProjectileEffect(effect);
+        base.DoUpgrade();
     }
 }

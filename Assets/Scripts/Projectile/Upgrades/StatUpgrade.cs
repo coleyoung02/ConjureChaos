@@ -17,5 +17,6 @@ public class StatUpgrade : Upgrade
             conjurer.UpdateStats(statsList[i], valuesList[i], modeList[i]);
         }
         Debug.Log("upgraded");
+        base.DoUpgrade();
     }
 }

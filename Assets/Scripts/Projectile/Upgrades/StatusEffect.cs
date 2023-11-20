@@ -17,5 +17,6 @@ public class StatusEffect : Upgrade
             conjurer.UpdateStatusEffect(statusEffectsList[i], valuesList[i]);
         }
         Debug.Log("upgraded");
+        base.DoUpgrade();
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -16,8 +17,10 @@ public class UpgradeManager : MonoBehaviour
         get3();
     }
 
-    public void OnSelected()
+    public void OnSelected(Upgrade u)
     {
+        Debug.Log("REMOVING " + u + " i " + u.GetIndex());
+        upgrades.RemoveAt(u.GetIndex());
         int children = row.transform.childCount;
         for (int i = children - 1; i >= 0; --i)
         {
@@ -29,12 +32,11 @@ public class UpgradeManager : MonoBehaviour
 
     public void get3()
     {
-        int index;
+        upgrades = upgrades.OrderBy(x => Random.value).ToList();
         for (int i = 0; i < 3; ++i)
         {
-            index = UnityEngine.Random.Range(0, upgrades.Count);
-            Instantiate(upgrades[index], row.transform);
-            upgrades.RemoveAt(index);
+            GameObject g = Instantiate(upgrades[i], row.transform);
+            g.GetComponent<Upgrade>().SetIndex(i);
         }
     }
 
