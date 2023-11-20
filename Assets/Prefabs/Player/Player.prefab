@@ -442,7 +442,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
+  m_BackGroundColor: {r: 0.23529412, g: 0.16862746, b: 0.13725491, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -467,7 +467,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.25
+  orthographic size: 6.1645308
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -502,6 +502,10 @@ PrefabInstance:
     - target: {fileID: 5642673226698154794, guid: d1de22ed5f250b7478c9e05ce5badd37, type: 3}
       propertyPath: m_Name
       value: ShieldParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642673226698154794, guid: d1de22ed5f250b7478c9e05ce5badd37, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9108048887679690203, guid: d1de22ed5f250b7478c9e05ce5badd37, type: 3}
       propertyPath: m_LocalPosition.x

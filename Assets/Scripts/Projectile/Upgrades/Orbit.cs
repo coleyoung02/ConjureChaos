@@ -6,7 +6,7 @@ using UnityEngine;
 public class Orbit : Upgrade
 {
     public override void DoUpgrade()
-    {
-        GameObject g = FindObjectOfType<PlayerMovement>().gameObject;
+    { 
+        FindObjectOfType<ShieldParent>().Activate();
     }
 }
