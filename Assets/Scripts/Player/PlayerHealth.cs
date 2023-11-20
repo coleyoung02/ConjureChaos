@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Debug.Log("Player is Dead.");
+            SceneManager.LoadScene("LoseScreen");
         }
         isInvincible = true;
         StartCoroutine(InvincibilityTimer(invincibilityDuration));

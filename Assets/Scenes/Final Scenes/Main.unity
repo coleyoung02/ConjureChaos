@@ -2683,6 +2683,14 @@ PrefabInstance:
       propertyPath: upgradeManager
       value: 
       objectReference: {fileID: 43800585}
+    - target: {fileID: 2509391590759940893, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: orthographic size
+      value: 6.5916157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486932683987804553, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5198729671441760065, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2720,7 +2728,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6393316485926304726, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+    - {fileID: 2624575744731066502, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
