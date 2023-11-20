@@ -27,5 +27,10 @@ public class Shooter_Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (collider.gameObject.layer == LayerMask.NameToLayer("Shield"))
+        {
+            FindObjectOfType<ShieldParent>().OnHit();
+            Destroy(gameObject);
+        }
     }
 }

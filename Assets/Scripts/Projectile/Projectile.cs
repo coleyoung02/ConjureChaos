@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
     private Vector3 _direction;
     
     // KnockBack
-    private float _knockBackAmount = 5f;
+    private float _knockBackAmount = 25f;
 
     private void Start()
     {
@@ -75,6 +75,9 @@ public class Projectile : MonoBehaviour
     private void ProjectileMove()
     {
         rb.velocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
 
     private void OnTriggerEnter2D(Collider2D myCollider)
@@ -120,10 +123,8 @@ public class Projectile : MonoBehaviour
             GameObject enemy = myCollider.gameObject;
             Vector3 enemyPos = enemy.transform.position;
 
-            if (_direction.x < 0)
-                _knockBackAmount *= -1f;
-                
-            enemy.transform.position = new Vector3(enemyPos.x + _knockBackAmount, enemyPos.y, enemyPos.z);
+            enemy.GetComponent<Parent_AI>().Stun();
+            enemy.GetComponent<Rigidbody2D>().AddForce(_direction.normalized * _knockBackAmount, ForceMode2D.Impulse);
         }
     }
 }

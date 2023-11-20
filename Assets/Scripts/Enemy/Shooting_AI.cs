@@ -12,14 +12,14 @@ public class Shooting_AI : Parent_AI
     public float projectile_speed;
 
     // Start is called before the first frame update
-    new void Start()
+    public override void Start()
     {
         base.Start();
         cooldown = 0f;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void OnUpdate()
     {
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) > desired_distance)
         {

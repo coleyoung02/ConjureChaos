@@ -25,9 +25,6 @@ public class Enemy : MonoBehaviour
     private static List<ProjectileConjurer.StatusEffects> tickable = new List<ProjectileConjurer.StatusEffects> { ProjectileConjurer.StatusEffects.Fire };
     private Dictionary<ProjectileConjurer.StatusEffects, Action<bool>> statusActions;
 
-    private bool _fireCoroutineRunning = false;
-    private bool _slowCoroutineRunning = false;
-
     public void SetPlayer(GameObject player)
     {
         this.player = player;

@@ -503,10 +503,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldParent
       objectReference: {fileID: 0}
-    - target: {fileID: 5642673226698154794, guid: d1de22ed5f250b7478c9e05ce5badd37, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9108048887679690203, guid: d1de22ed5f250b7478c9e05ce5badd37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
