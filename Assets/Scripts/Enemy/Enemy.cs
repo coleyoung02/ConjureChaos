@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    protected static UnityEvent deathEvent;
-    static bool deathListenerAdded = false;
+    public  static UnityEvent deathEvent;
+    public static bool deathListenerAdded = false;
     [SerializeField] public float maxHealth;
     protected float health;
     private float baseSpeed;

@@ -12,9 +12,11 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] GameObject upgradeManager;
     void Start()
     {
+        Enemy.deathListenerAdded = false;
         enemiesDefeated = 0;
         currKillQuota = waveMan.killQuota;
         UpdateDeathCountUI();
+
     }
 
     void Update()
