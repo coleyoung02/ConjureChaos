@@ -80,7 +80,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.4, y: 4.4}
   m_EdgeRadius: 0
 --- !u!114 &484491059873573216
 MonoBehaviour:
@@ -117,7 +117,7 @@ MonoBehaviour:
   shooting_distance: 7
   projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
   cooldown_time: 3
-  projectile_speed: 5
+  projectile_speed: 11
 --- !u!212 &6608821723061493608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21543101148391975}
   - component: {fileID: 3280729571342648210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PhysicalCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

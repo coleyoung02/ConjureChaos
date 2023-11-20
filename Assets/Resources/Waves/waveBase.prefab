@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5894873007709164099}
   - component: {fileID: 1416054660428696088}
   m_Layer: 0
-  m_Name: DefaultWave
+  m_Name: waveBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,19 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerPrefab: {fileID: 8213047621107761781, guid: adb18b080517e524894fae83ed447629, type: 3}
-  leftFloorType: {fileID: 257578625451431830, guid: b85e324a0b63ebc4090f525cc21c0ff6, type: 3}
-  leftFloorDuration: 30
-  leftFloorDelay: 7
+  leftFloorType: {fileID: 0}
+  leftFloorDuration: 0
+  leftFloorDelay: 0
   leftFloorOffset: 0
   rightFloorType: {fileID: 0}
-  rightFloorDuration: 30
-  rightFloorDelay: 1000
-  rightFloorOffset: 1000
-  leftTopType: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
-  leftTopDuration: 30
-  leftTopDelay: 1000
-  leftTopOffset: 1000
-  rightTopType: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
-  rightTopDuration: 30
-  rightTopDelay: 1000
-  rightTopOffset: 1000
+  rightFloorDuration: 0
+  rightFloorDelay: 0
+  rightFloorOffset: 0
+  leftTopType: {fileID: 0}
+  leftTopDuration: 0
+  leftTopDelay: 0
+  leftTopOffset: 0
+  rightTopType: {fileID: 0}
+  rightTopDuration: 0
+  rightTopDelay: 0
+  rightTopOffset: 0

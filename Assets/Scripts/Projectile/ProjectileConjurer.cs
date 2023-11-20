@@ -9,6 +9,8 @@ public class ProjectileConjurer : MonoBehaviour
     [SerializeField]
     private float rightFirePosition;
 
+    [SerializeField] private AudioSource source;
+
     [SerializeField]
     private float leftFirePosition;
     
@@ -44,7 +46,7 @@ public class ProjectileConjurer : MonoBehaviour
     {
         { Stats.Damage, 10f },
         { Stats.Speed, 20f},
-        { Stats.Size, 0.1f},
+        { Stats.Size, 0.2f},
         { Stats.Range, 10f},
         { Stats.Rate, 0.3f}
     };
@@ -65,6 +67,11 @@ public class ProjectileConjurer : MonoBehaviour
     public Dictionary<StatusEffects, int> GetStatusEffects()
     {
         return _statusEffects;
+    }
+
+    public void PlayHitSound()
+    {
+        source.Play();
     }
     
     // Method so other classes can grab projectile effects

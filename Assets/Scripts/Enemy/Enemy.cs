@@ -99,7 +99,6 @@ public class Enemy : MonoBehaviour
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerHealth.PlayerTakeDamage(contactDamage);
-            die();
         }
     }
     

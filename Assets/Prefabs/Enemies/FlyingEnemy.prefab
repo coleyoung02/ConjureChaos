@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2586097237445304443}
   - component: {fileID: 6124179481244460053}
   - component: {fileID: 8839806228955375631}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3853318864948723879}
   m_Father: {fileID: 0}
@@ -80,7 +80,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.5, y: 4.2}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &6945313711109720573
 MonoBehaviour:
@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3853318864948723879}
   - component: {fileID: 4719653037026988860}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Physical Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.4, y: 4.4, z: 4.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7810913572183534023}
@@ -267,5 +267,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0

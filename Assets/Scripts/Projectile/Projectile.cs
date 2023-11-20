@@ -79,6 +79,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
+        Debug.Log(myCollider.isTrigger);
         // Logic for when projectile hurts enemy
         HurtEnemy(myCollider);
         
@@ -93,7 +94,8 @@ public class Projectile : MonoBehaviour
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
             script.DamageEnemy(_damage);
-            
+
+            _conjurer.PlayHitSound();
             // Call status effect here instead of in damage enemy function to avoid bugs
             script.StatusEffectManager();
             
