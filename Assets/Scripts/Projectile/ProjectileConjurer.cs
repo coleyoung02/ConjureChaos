@@ -52,7 +52,7 @@ public class ProjectileConjurer : MonoBehaviour
     };
 
     // Keeps track of status effects that it will apply to enemy
-    private Dictionary<StatusEffects, int> _statusEffects = new();
+    private Dictionary<StatusEffects, float> _statusEffects = new();
     
     // Projectile effects
     private List<ProjectileEffects> _projectileEffects = new();
@@ -64,7 +64,7 @@ public class ProjectileConjurer : MonoBehaviour
     }
     
     // Method so other classes can grab status effects
-    public Dictionary<StatusEffects, int> GetStatusEffects()
+    public Dictionary<StatusEffects, float> GetStatusEffects()
     {
         return _statusEffects;
     }
@@ -102,9 +102,16 @@ public class ProjectileConjurer : MonoBehaviour
     }
     
     // Method that takes in a status effect and duration and adds it to status effects
-    public void UpdateStatusEffect(StatusEffects statusEffects, int duration)
+    public void UpdateStatusEffect(StatusEffects statusEffects, float duration)
     {
-        _statusEffects[statusEffects] = duration;
+        if (_statusEffects.ContainsKey(statusEffects))
+        {
+            _statusEffects[statusEffects] += duration;
+        }
+        else
+        {
+            _statusEffects[statusEffects] = duration;
+        }
     }
     
     // Method that takes in a projectile effect and adds it to projectile effect list

@@ -43,8 +43,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         GameObject enemy_instantiated = Instantiate(enemy, transform.position, Quaternion.identity);
-        enemy_instantiated.GetComponent<Parent_AI>().player = player;
-        enemy_instantiated.GetComponent<Enemy>().player = player;
+        enemy_instantiated.GetComponent<Parent_AI>().SetPlayer(player);
+        enemy_instantiated.GetComponent<Enemy>().SetPlayer(player);
         time_until_next_spawn = spawn_delay + Time.deltaTime;
     }
 

@@ -79,7 +79,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
-        Debug.Log(myCollider.isTrigger);
         // Logic for when projectile hurts enemy
         HurtEnemy(myCollider);
         

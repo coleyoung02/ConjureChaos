@@ -94,10 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  health: 30
+  maxHealth: 25
   contactDamage: 1
-  player: {fileID: 0}
 --- !u!114 &2586097237445304443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ea319e96851cf244a792cf280b3e108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   rb: {fileID: 0}
   speed: 6
 --- !u!212 &6124179481244460053

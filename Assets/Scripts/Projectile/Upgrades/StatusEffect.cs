@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatUpgrade : Upgrade
+
+public class StatusEffect : Upgrade
 {
-    [SerializeField] List<Stats> statsList;
+    [SerializeField] List<ProjectileConjurer.StatusEffects> statusEffectsList;
     [SerializeField] List<float> valuesList;
-    [SerializeField] List<bool> modeList;
     public override void DoUpgrade()
     {
         Debug.Log("clicked");
         ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
-        for (int i = 0; i < statsList.Count; ++i)
+        for (int i = 0; i < statusEffectsList.Count; ++i)
         {
-            conjurer.UpdateStats(statsList[i], valuesList[i], modeList[i]);
+            conjurer.UpdateStatusEffect(statusEffectsList[i], valuesList[i]);
         }
         Debug.Log("upgraded");
     }

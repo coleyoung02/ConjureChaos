@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Parent_AI : MonoBehaviour
 {
-    public GameObject player;
-    public Rigidbody2D rb;
-    public float speed = 1.0f;
+    protected GameObject player;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected float speed = 1.0f;
 
     // Start is called before the first frame update
     public void Start()
@@ -14,6 +14,26 @@ public class Parent_AI : MonoBehaviour
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+
+    public void SetPlayer(GameObject player)
+    {
+        this.player = player;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
     // Update is called once per frame
