@@ -63,7 +63,11 @@ public class Enemy : MonoBehaviour
         progressManager = player.GetComponent<ProgressManager>();
 
         if (deathEvent == null)
+        {
             deathEvent = new UnityEvent();
+            deathListenerAdded = false;
+        }
+            
         if(!deathListenerAdded)
         {
             deathEvent.AddListener(progressManager.incrementDeathCounter);

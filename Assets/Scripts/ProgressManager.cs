@@ -5,7 +5,7 @@ using TMPro;
 
 public class ProgressManager : MonoBehaviour
 {
-    private int enemiesDefeated;
+    public int enemiesDefeated;
     public TextMeshProUGUI deathCountText;
     public WaveManager waveMan;
     public int currKillQuota;
