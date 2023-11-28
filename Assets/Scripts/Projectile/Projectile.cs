@@ -168,7 +168,7 @@ public class Projectile : MonoBehaviour
 
     private void Splinter(Collider2D myCollider)
     {
-        if ((true || _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Splinter)) && IsMain)
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Splinter) && IsMain)
         {
             GameObject enemy = myCollider.gameObject;
             Vector3 enemyPos = enemy.transform.position;
