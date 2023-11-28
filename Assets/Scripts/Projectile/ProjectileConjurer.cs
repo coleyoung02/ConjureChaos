@@ -39,6 +39,7 @@ public class ProjectileConjurer : MonoBehaviour
         PlatformPiercing,
         KnockBack,
         Splinter,
+        Drugs,
     }
 
     // The float listed for fire rate is the cooldown time between shots.

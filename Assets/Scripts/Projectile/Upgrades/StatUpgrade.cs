@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class StatUpgrade : Upgrade
 {
-    [SerializeField] List<Stats> statsList;
-    [SerializeField] List<float> valuesList;
-    [SerializeField] List<bool> modeList;
+    [SerializeField] protected List<Stats> statsList;
+    [SerializeField] protected List<float> valuesList;
+    [SerializeField] protected List<bool> modeList;
+    [SerializeField] private int healthChange;
+    [SerializeField] private bool setHealthAbsolute;
     public override void DoUpgrade()
     {
         Debug.Log("clicked");
@@ -16,6 +18,11 @@ public class StatUpgrade : Upgrade
         {
             conjurer.UpdateStats(statsList[i], valuesList[i], modeList[i]);
         }
+        if (healthChange != 0)
+        {
+            FindAnyObjectByType<PlayerHealth>().ChangeMaxHealth(healthChange, setHealthAbsolute);
+        }
+
         Debug.Log("upgraded");
         base.DoUpgrade();
     }

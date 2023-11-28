@@ -51,6 +51,23 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
+    public void ChangeMaxHealth(int value, bool absolute)
+    {
+        int change = value;
+        if (absolute)
+        {
+            change = value - maxHealth;
+        }
+        if (change > 0)
+        {
+            AddMaxHealth(change);
+        }
+        else
+        {
+            SubtractMaxHealth(change);
+        }
+    }
+
     public void AddMaxHealth(int value)
     {
         maxHealth += value;
@@ -58,6 +75,8 @@ public class PlayerHealth : MonoBehaviour
         {
             maxHealth = hearts.Length;
         }
+        currentHealth += value;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
         UpdateHealthUI();
     }
 

@@ -15,7 +15,7 @@ public enum Stats
 
 public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private string description;
+    [SerializeField] protected string description;
     private Button button;
     private int index;
 

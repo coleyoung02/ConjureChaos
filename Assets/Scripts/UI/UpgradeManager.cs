@@ -7,9 +7,10 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] List<GameObject> upgrades;
-    [SerializeField] GameObject row;
-    [SerializeField] TextMeshProUGUI description;
+    [SerializeField] private List<GameObject> upgrades;
+    [SerializeField] private GameObject row;
+    [SerializeField] private GameObject drug;
+    [SerializeField] private TextMeshProUGUI description;
 
     void OnEnable()
     {
@@ -20,7 +21,8 @@ public class UpgradeManager : MonoBehaviour
     public void OnSelected(Upgrade u)
     {
         Debug.Log("REMOVING " + u + " i " + u.GetIndex());
-        upgrades.RemoveAt(u.GetIndex());
+        if (upgrades.Count > u.GetIndex())
+            upgrades.RemoveAt(u.GetIndex());
         int children = row.transform.childCount;
         for (int i = children - 1; i >= 0; --i)
         {
@@ -28,6 +30,15 @@ public class UpgradeManager : MonoBehaviour
         }
         Time.timeScale = 1;
         gameObject.SetActive(false);
+    }
+
+    public void Drugs()
+    {
+        upgrades = new List<GameObject>();
+        for (int i = 0; i < 100; ++i)
+        {
+            upgrades.Add(drug);
+        }
     }
 
     public void get3()
