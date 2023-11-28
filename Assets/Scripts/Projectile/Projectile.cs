@@ -9,6 +9,12 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
+
+    [SerializeField]
+    private GameObject nonMainProjectilePrefab;
+
+    [SerializeField]
+    private bool IsMain;
     
     // The Projectile Conjurer class
     private ProjectileConjurer _conjurer;
@@ -28,6 +34,9 @@ public class Projectile : MonoBehaviour
     // KnockBack
     private float _knockBackAmount = 25f;
 
+    //change back to private
+    public Collider2D ignore;
+
     private void Start()
     {
         // Saves the conjurer so we only have to get it once
@@ -41,8 +50,15 @@ public class Projectile : MonoBehaviour
         
         // Moves projectile
         ProjectileMove();
-
-        Destroy(gameObject, _range / _speed);
+        if (IsMain)
+        {
+            Destroy(gameObject, _range / _speed);
+        }
+        else
+        {
+            Destroy(gameObject, (_range / _speed) / 2);
+        }
+        
     }
 
     private void InitializeStats()
@@ -73,24 +89,35 @@ public class Projectile : MonoBehaviour
     
     private void ProjectileMove()
     {
-        rb.velocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (IsMain)
+        {
+            rb.velocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        else if (ignore != null)
+        {
+            rb.velocity = transform.rotation * (new Vector3(_speed, 0, 0));
+        }
+        
 
     }
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
-        // Logic for when projectile hurts enemy
-        HurtEnemy(myCollider);
-        
-        // Whether or not the projectile is destroyed
-        DestroyingProjectileManager(myCollider);
+        if (myCollider != ignore || IsMain)
+        {
+            // Logic for when projectile hurts enemy
+            HurtEnemy(myCollider);
+
+            // Whether or not the projectile is destroyed
+            DestroyingProjectileManager(myCollider);
+        }
     }
 
     private void HurtEnemy(Collider2D myCollider)
     {
-        if (myCollider.CompareTag("Enemy"))
+        if (myCollider.CompareTag("Enemy") && myCollider != ignore)
         {
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
@@ -101,15 +128,22 @@ public class Projectile : MonoBehaviour
             script.StatusEffectManager();
             
             KnockBack(myCollider);
+            Splinter(myCollider);
         }
     }
 
     private void DestroyingProjectileManager(Collider2D myCollider)
     {
+        if (!IsMain && myCollider == ignore)
+            return;
+            
         if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
             return;
         
         if (myCollider.CompareTag("OneWayPlatform") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.PlatformPiercing))
+            return;
+
+        if (myCollider.CompareTag("Projectile"))
             return;
 
         Destroy(gameObject);
@@ -124,6 +158,30 @@ public class Projectile : MonoBehaviour
 
             enemy.GetComponent<Parent_AI>().Stun();
             enemy.GetComponent<Rigidbody2D>().AddForce(_direction.normalized * _knockBackAmount, ForceMode2D.Impulse);
+        }
+    }
+
+    private void SetIgnore(Collider2D ignoreCollider)
+    {
+        ignore = ignoreCollider;
+    }
+
+    private void Splinter(Collider2D myCollider)
+    {
+        if ((true || _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Splinter)) && IsMain)
+        {
+            GameObject enemy = myCollider.gameObject;
+            Vector3 enemyPos = enemy.transform.position;
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            int numDivisions = 6;
+            for (int i = 180 / numDivisions; i < 360; i += 360/numDivisions)
+            {
+                Transform myTransform = transform;
+                GameObject g = Instantiate(nonMainProjectilePrefab, myCollider.gameObject.transform.position, Quaternion.AngleAxis(angle + i, Vector3.forward));
+                Projectile p = g.GetComponent<Projectile>();
+                p.SetIgnore(myCollider);
+                p.ProjectileMove();
+            }
         }
     }
 }

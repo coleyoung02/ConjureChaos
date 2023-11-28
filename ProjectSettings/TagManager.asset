@@ -8,6 +8,7 @@ TagManager:
   - OneWayPlatform
   - EnemySpawnPoint
   - Shield
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -38,6 +38,7 @@ public class ProjectileConjurer : MonoBehaviour
         EnemyPiercing,
         PlatformPiercing,
         KnockBack,
+        Splinter,
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -126,6 +127,11 @@ public class ProjectileConjurer : MonoBehaviour
         Transform myTransform = transform;
         Vector3 currentPos = myTransform.localPosition;
         myTransform.localPosition = new Vector3(xPos, currentPos.y, currentPos.z);
+    }
+
+    public GameObject GetProjectilePrefab()
+    {
+        return projectilePrefab;
     }
 
     private void Start()

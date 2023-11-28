@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c5f4f2b4d98e94787f02029bd8a6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesDefeated: 0
   deathCountText: {fileID: 7602932160990531153}
   waveMan: {fileID: 0}
   currKillQuota: 0
@@ -280,7 +281,7 @@ GameObject:
   - component: {fileID: 7416355924763800333}
   - component: {fileID: 4717472911591765118}
   - component: {fileID: 7718183375553169430}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
