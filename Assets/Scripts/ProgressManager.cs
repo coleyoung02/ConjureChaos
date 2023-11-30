@@ -37,6 +37,7 @@ public class ProgressManager : MonoBehaviour
             enemiesDefeated = 0;
             currKillQuota = waveMan.killQuota;
             upgradeManager.SetActive(true);
+            upgradeManager.GetComponent<UpgradeManager>().GetUpgrades();
         }
     }
 

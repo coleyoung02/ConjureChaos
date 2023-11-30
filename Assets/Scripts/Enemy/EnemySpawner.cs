@@ -24,14 +24,13 @@ public class EnemySpawner : MonoBehaviour
         time_until_next_spawn = offset;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(active)
         {
             if (time_elapsed >= duration)
                 active = false;
-            else if (time_until_next_spawn <= 0)            
+            if (time_until_next_spawn <= 0)            
                 SpawnEnemy();
 
             
@@ -50,6 +49,6 @@ public class EnemySpawner : MonoBehaviour
 
     public int NumEnemiesToSpawn()
     {
-        return (int)(duration / spawn_delay);
+        return (int)((duration - .0001) / spawn_delay) + 1;
     }
 }

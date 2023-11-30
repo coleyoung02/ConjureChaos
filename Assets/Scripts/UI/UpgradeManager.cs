@@ -12,8 +12,9 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject drug;
     [SerializeField] private TextMeshProUGUI description;
 
-    void OnEnable()
+    public void GetUpgrades()
     {
+        description.text = "";
         Time.timeScale = 0;
         get3();
     }
