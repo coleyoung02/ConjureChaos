@@ -94,6 +94,12 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
+    public void HealToFull()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
+
     void UpdateHealthUI()
     {
         healthText.text = $"{currentHealth} / {maxHealth} HP";
