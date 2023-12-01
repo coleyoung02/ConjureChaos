@@ -456,6 +456,60 @@ MonoBehaviour:
   - {fileID: 3753670908189031756, guid: abeba36d7c4bba24b9456b95e9bbc89f, type: 3}
   - {fileID: 3753670908189031756, guid: a7f39392a0c1e264c8495aecd4ffb102, type: 3}
   killQuota: 0
+--- !u!1 &587621373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587621375}
+  - component: {fileID: 587621374}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &587621374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587621373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498747d56f390864f93ff61603140c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ProjectileHitEnemy
+    clip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
+    volume: 1
+  - name: UpgradeSelected
+    clip: {fileID: 8300000, guid: f428b6f61027dac4d9a9894f69f542b6, type: 3}
+    volume: 1
+  - name: UpgradeSelected
+    clip: {fileID: 8300000, guid: f428b6f61027dac4d9a9894f69f542b6, type: 3}
+    volume: 0
+--- !u!4 &587621375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587621373}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &772658075
 GameObject:
   m_ObjectHideFlags: 0
@@ -3740,3 +3794,4 @@ SceneRoots:
   - {fileID: 779821082}
   - {fileID: 441989168}
   - {fileID: 361514585}
+  - {fileID: 587621375}

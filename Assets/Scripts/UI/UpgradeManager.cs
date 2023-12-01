@@ -30,6 +30,7 @@ public class UpgradeManager : MonoBehaviour
             Destroy(row.transform.GetChild(i).gameObject);
         }
         Time.timeScale = 1;
+        FindObjectOfType<AudioManager>().Play("UpgradeSelected");
         gameObject.SetActive(false);
     }
 
