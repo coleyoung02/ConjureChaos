@@ -9,7 +9,8 @@ public class ProjectileConjurer : MonoBehaviour
     [SerializeField]
     private float rightFirePosition;
 
-    [SerializeField] private AudioSource source;
+    [SerializeField]
+    AudioSource hitSFX;
 
     [SerializeField]
     private float leftFirePosition;
@@ -73,7 +74,7 @@ public class ProjectileConjurer : MonoBehaviour
 
     public void PlayHitSound()
     {
-        source.Play();
+        hitSFX.Play();
     }
     
     // Method so other classes can grab projectile effects
