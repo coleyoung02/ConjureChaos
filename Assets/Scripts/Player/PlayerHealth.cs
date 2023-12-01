@@ -10,6 +10,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int maxHealth = 1;
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] Image[] hearts;
+    [SerializeField] Image hurtOverlay;
+    private float hurtTime;
+    private static float overlayDuration = 1.2f;
+    private static float maxOpacity = .7f;
     [SerializeField] Sprite fullHeartImage;
     [SerializeField] Sprite emptyHeartImage;
     [SerializeField] float invincibilityDuration = 2f;
@@ -19,8 +23,33 @@ public class PlayerHealth : MonoBehaviour
     
     void Start()
     {
+        hurtTime = 0f;
         currentHealth = maxHealth;
         UpdateHealthUI();
+    }
+
+    private void Update()
+    {
+        
+        if (hurtTime > 0f)
+        {
+            float buildDuration = overlayDuration * .05f;
+            float steadyDuration = overlayDuration * .3f;
+            float dropDuration = overlayDuration - buildDuration - steadyDuration;
+            if (hurtTime > overlayDuration - buildDuration)
+            {
+                Color c = hurtOverlay.color;
+                c.a = Mathf.Lerp(0, maxOpacity, (overlayDuration - hurtTime) / buildDuration);
+                hurtOverlay.color = c;
+            }
+            else if (hurtTime <= dropDuration)
+            {
+                Color c = hurtOverlay.color;
+                c.a = Mathf.Lerp(0, maxOpacity, hurtTime / dropDuration);
+                hurtOverlay.color = c;
+            }
+            hurtTime -= Time.deltaTime;
+        }
     }
 
     public void PlayerTakeDamage(int damage)
@@ -29,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player is invincible.");
             return;
         }
-
+        hurtTime = overlayDuration;
         currentHealth -= damage;
         if (currentHealth <= 0)
         {

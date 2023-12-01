@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
     private GameObject player;
     private PlayerHealth playerHealth;
     private ProgressManager progressManager;
+
+    private SpriteRenderer sprite;
+    private float hurtTime;
+    private static float flashDuration = .3f;
+    private static float redness = .5f;
     
     // Status effect variables
     private ProjectileConjurer _conjurer;
@@ -33,6 +38,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hurtTime = 0f;
+        sprite = gameObject.GetComponent<SpriteRenderer>();
         health = maxHealth;
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
@@ -84,6 +91,28 @@ public class Enemy : MonoBehaviour
             die();
         }
         StatusUpdate();
+
+        if (hurtTime > 0f)
+        {
+            float buildDuration = flashDuration * .05f;
+            float steadyDuration = flashDuration * .3f;
+            float dropDuration = flashDuration - buildDuration - steadyDuration;
+            if (hurtTime > flashDuration - buildDuration)
+            {
+                Color c = sprite.color;
+                c.g = Mathf.Lerp(1, 1-redness, (flashDuration - hurtTime) / buildDuration);
+                c.b = Mathf.Lerp(1, 1 - redness, (flashDuration - hurtTime) / buildDuration);
+                sprite.color = c;
+            }
+            else if (hurtTime <= dropDuration)
+            {
+                Color c = sprite.color;
+                c.g = Mathf.Lerp(1, 1 - redness, hurtTime / dropDuration);
+                c.b = Mathf.Lerp(1, 1 - redness, hurtTime / dropDuration);
+                sprite.color = c;
+            }
+            hurtTime -= Time.deltaTime;
+        }
     }
     
     void HealEnemy(float heal)
@@ -95,6 +124,7 @@ public class Enemy : MonoBehaviour
 
     public bool DamageEnemy(float dmg)
     {
+        hurtTime = flashDuration;
         //setup to allow a return of boolean before destruction, in case damager has to know if the attack killed the enemy. If multiplayer allows for kill counts per player
         if (health < dmg)
         {
