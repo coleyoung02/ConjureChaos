@@ -11,6 +11,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject row;
     [SerializeField] private GameObject drug;
     [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private AudioSource upgradeSFX; 
 
     public void GetUpgrades()
     {
@@ -30,7 +31,7 @@ public class UpgradeManager : MonoBehaviour
             Destroy(row.transform.GetChild(i).gameObject);
         }
         Time.timeScale = 1;
-        FindObjectOfType<AudioManager>().Play("UpgradeSelected");
+        upgradeSFX.Play();
         gameObject.SetActive(false);
     }
 

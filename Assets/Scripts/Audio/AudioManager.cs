@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    public static AudioManager instance;
+
+    [SerializeField] AudioMixer mixer;
+
+    public const string MUSIC_KEY = "musicVolume";
+    public const string SFX_KEY = "SFXVolume";
 
     void Awake()
     {
-        foreach (Sound s in sounds)
+        if (instance == null)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        LoadVolume();
     }
 
-    public void Play(string name)
+    void LoadVolume() //Volume saved in VolumeSettings.cs
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
-    }
+        float musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
+        float SFXVolume = PlayerPrefs.GetFloat(SFX_KEY, 1f);
 
-    public void AdjustVolume(float level)
-    {
-        foreach (Sound s in sounds)
-        {
-            s.source.volume = level;
-        }
+        mixer.SetFloat(VolumeSettings.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
+        mixer.SetFloat(VolumeSettings.MIXER_SFX, Mathf.Log10(SFXVolume) * 20);
     }
 }

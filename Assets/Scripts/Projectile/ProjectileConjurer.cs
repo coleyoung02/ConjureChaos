@@ -9,7 +9,8 @@ public class ProjectileConjurer : MonoBehaviour
     [SerializeField]
     private float rightFirePosition;
 
-    AudioManager audioManager;
+    [SerializeField]
+    AudioSource hitSFX;
 
     [SerializeField]
     private float leftFirePosition;
@@ -73,7 +74,7 @@ public class ProjectileConjurer : MonoBehaviour
 
     public void PlayHitSound()
     {
-        audioManager.Play("ProjectileHitEnemy");
+        hitSFX.Play();
     }
     
     // Method so other classes can grab projectile effects
@@ -138,7 +139,6 @@ public class ProjectileConjurer : MonoBehaviour
     private void Start()
     {
         _mainCamera = Camera.main;
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()

@@ -1041,10 +1041,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2295093850878497540}
     m_Modifications:
+    - target: {fileID: 644623504593314431, guid: 81e477f046488d9498338038c22b3a92, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 644623504593314431, guid: 81e477f046488d9498338038c22b3a92, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 072502a2567679c49aac835ac7613d29, type: 2}
     - target: {fileID: 1521077307003530136, guid: 81e477f046488d9498338038c22b3a92, type: 3}
       propertyPath: m_Name
       value: ProjectileConjurer
       objectReference: {fileID: 0}
+    - target: {fileID: 5185879015043224753, guid: 81e477f046488d9498338038c22b3a92, type: 3}
+      propertyPath: hitSFX
+      value: 
+      objectReference: {fileID: 6697648006847451596}
     - target: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -1093,5 +1105,10 @@ PrefabInstance:
 --- !u!4 &4280125774895297883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8027373307570980584, guid: 81e477f046488d9498338038c22b3a92, type: 3}
+  m_PrefabInstance: {fileID: 6053113640844276659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6697648006847451596 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 644623504593314431, guid: 81e477f046488d9498338038c22b3a92, type: 3}
   m_PrefabInstance: {fileID: 6053113640844276659}
   m_PrefabAsset: {fileID: 0}

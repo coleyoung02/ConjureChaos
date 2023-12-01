@@ -6,6 +6,7 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject upgradeMenu;
+    [SerializeField] private GameObject settingsMenu;
     private bool upgrading;
 
     private void Start()
@@ -26,9 +27,10 @@ public class PauseManager : MonoBehaviour
 
     public void togglePause()
     {
-        if (pauseMenu.activeSelf)
+        if (pauseMenu.activeSelf || settingsMenu.activeSelf)
         {
             pauseMenu.SetActive(false);
+            settingsMenu.SetActive(false);
             if (upgrading)
             {
                 upgradeMenu.SetActive(true);
