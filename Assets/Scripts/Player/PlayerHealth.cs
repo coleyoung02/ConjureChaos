@@ -60,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
         }
         hurtTime = overlayDuration;
         currentHealth -= damage;
+        GetComponent<AudioSource>().Play();
         if (currentHealth <= 0)
         {
             currentHealth = 0;
