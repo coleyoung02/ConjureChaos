@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ProgressManager : MonoBehaviour
 {
     public int enemiesDefeated;
-    public TextMeshProUGUI deathCountText;
+    [SerializeField] private Slider deathCountBar;
     public WaveManager waveMan;
     public int currKillQuota;
     [SerializeField] GameObject upgradeManager;
+
+    public float target;
     void Start()
     {
         Enemy.deathListenerAdded = false;
@@ -25,6 +28,10 @@ public class ProgressManager : MonoBehaviour
         {
             currKillQuota = waveMan.killQuota;
             UpdateDeathCountUI();
+        }
+        if (deathCountBar.value < target)
+        {
+            deathCountBar.value = Mathf.Min(target, deathCountBar.value + Time.deltaTime * .5f);
         }
     }
 
@@ -49,6 +56,18 @@ public class ProgressManager : MonoBehaviour
 
     void UpdateDeathCountUI()
     {
-        deathCountText.text = $"{enemiesDefeated} Enemies Defeated of {currKillQuota}";
+        Debug.Log(enemiesDefeated / (float)currKillQuota);
+        if (currKillQuota <= 0)
+        {
+            deathCountBar.value = 0f;
+        }
+        else
+        {
+            target = enemiesDefeated / (float)currKillQuota;
+            if (target < deathCountBar.value)
+            {
+                deathCountBar.value = 0f;
+            }
+        }
     }
 }

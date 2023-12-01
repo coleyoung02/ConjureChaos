@@ -8,6 +8,9 @@ public class Shooter_Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     // Update is called once per frame
