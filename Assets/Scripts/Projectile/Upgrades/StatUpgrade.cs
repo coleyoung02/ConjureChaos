@@ -10,6 +10,7 @@ public class StatUpgrade : Upgrade
     [SerializeField] protected List<bool> modeList;
     [SerializeField] private int healthChange;
     [SerializeField] private bool setHealthAbsolute;
+    [SerializeField] private float speedMult;
     public override void DoUpgrade()
     {
         Debug.Log("clicked");
@@ -21,6 +22,10 @@ public class StatUpgrade : Upgrade
         if (healthChange != 0)
         {
             FindAnyObjectByType<PlayerHealth>().ChangeMaxHealth(healthChange, setHealthAbsolute);
+        }
+        if (speedMult != 0)
+        {
+            FindAnyObjectByType<PlayerMovement>().UpdateMoveSpeed(speedMult);
         }
 
         Debug.Log("upgraded");

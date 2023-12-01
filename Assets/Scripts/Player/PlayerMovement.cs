@@ -59,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void UpdateMoveSpeed(float mult)
+    {
+        moveSpeed *= mult;
+    }
+
     //Handles the player's movement. Also handles other restrictions such as whether or not the player
     //is paused (for future implementations).
     void Move() {
