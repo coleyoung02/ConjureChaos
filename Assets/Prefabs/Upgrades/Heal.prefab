@@ -88,12 +88,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5968214206793501979, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b5eefc9e0045b848aa438ddea61f017, type: 3}
     - target: {fileID: 8602828216180783186, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
       propertyPath: m_Name
-      value: Base
+      value: Heal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8602828216180783186, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4919960874358723127}
   m_SourcePrefab: {fileID: 100100000, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+--- !u!1 &456439034025510686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8602828216180783186, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+  m_PrefabInstance: {fileID: 8157982982668238668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4919960874358723127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456439034025510686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9628b8b00d7e73f48bda97e43bb7383d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Restore all health
