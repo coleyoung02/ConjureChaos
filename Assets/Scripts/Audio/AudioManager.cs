@@ -21,4 +21,12 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
     }
+
+    public void AdjustVolume(float level)
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.volume = level;
+        }
+    }
 }

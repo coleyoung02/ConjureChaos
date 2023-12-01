@@ -489,12 +489,11 @@ MonoBehaviour:
   - name: ProjectileHitEnemy
     clip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
     volume: 1
+    source: {fileID: 0}
   - name: UpgradeSelected
     clip: {fileID: 8300000, guid: f428b6f61027dac4d9a9894f69f542b6, type: 3}
     volume: 1
-  - name: UpgradeSelected
-    clip: {fileID: 8300000, guid: f428b6f61027dac4d9a9894f69f542b6, type: 3}
-    volume: 0
+    source: {fileID: 0}
 --- !u!4 &587621375
 Transform:
   m_ObjectHideFlags: 0
@@ -3627,7 +3626,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6697648006847451596, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6393316485926304726, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
     - {fileID: 2624575744731066502, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
@@ -3650,6 +3650,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1073152199}
     m_Modifications:
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 587621374}
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdjustVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203915312687221137, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5892689783304325760, guid: 0abaa9c855b850740a164c0a7bb6aa04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
