@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class BeamLight : MonoBehaviour
 {
-    [SerializeField] private float startAngle;
-    [SerializeField] private float speed;
-    [SerializeField] private float angleRange;
-    [SerializeField] private float currentAngle;
-    [SerializeField] private int direction;
+    private float startAngle;
+    private float speed;
+    private float angleRange;
+    private float currentAngle;
+    private int direction;
+
 
     void Awake()
     {

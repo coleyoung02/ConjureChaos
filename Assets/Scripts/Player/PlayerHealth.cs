@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Image hurtOverlay;
     private float hurtTime;
     private static float overlayDuration = 1.2f;
-    private static float maxOpacity = .7f;
+    private static float maxOpacity = .4f;
     [SerializeField] Sprite fullHeartImage;
     [SerializeField] Sprite emptyHeartImage;
     [SerializeField] float invincibilityDuration = 2f;
