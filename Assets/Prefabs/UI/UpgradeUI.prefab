@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
+  - {fileID: 7264222182458581052, guid: ab856a9934f1c6442a3b6d0af7d62903, type: 3}
   - {fileID: 8602828216180783186, guid: 76213112874fa0b46bffca098540f482, type: 3}
   - {fileID: 8602828216180783186, guid: b4ebe448d63a63347a1b1875ae9b1773, type: 3}
   - {fileID: 8602828216180783186, guid: 36395ce6356b41447a249e99b6be174e, type: 3}
@@ -336,6 +337,7 @@ MonoBehaviour:
   row: {fileID: 3614364562178131276}
   drug: {fileID: 2362197121279423480, guid: 891eff655eb041e44b5c4594058559d4, type: 3}
   description: {fileID: 5647892566638810277}
+  upgradeSFX: {fileID: 0}
 --- !u!1 &8474657240338631238
 GameObject:
   m_ObjectHideFlags: 0
