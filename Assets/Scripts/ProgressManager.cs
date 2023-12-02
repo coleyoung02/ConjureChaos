@@ -56,7 +56,6 @@ public class ProgressManager : MonoBehaviour
 
     void UpdateDeathCountUI()
     {
-        Debug.Log(enemiesDefeated / (float)currKillQuota);
         if (currKillQuota <= 0)
         {
             deathCountBar.value = 0f;

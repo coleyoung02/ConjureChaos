@@ -45,8 +45,14 @@ public class Enemy : MonoBehaviour
         _conjurer = FindObjectOfType<ProjectileConjurer>();
         
         // Saves the parent ai so we only have to get it once
-        _parentAI = FindObjectOfType<Parent_AI>();
+        _parentAI = gameObject.GetComponent<Parent_AI>();
         baseSpeed = _parentAI.GetSpeed();
+        if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
+        {
+            Debug.Log(gameObject.name + " " + _parentAI.ToString());
+            baseSpeed *= 1.85f;
+            _parentAI.SetSpeed(baseSpeed);
+        }
 
         // Gets the conjurers Status Effects
         _conjurerEffects = _conjurer.GetStatusEffects();
@@ -199,14 +205,12 @@ public class Enemy : MonoBehaviour
     
     private void FireStatus(bool activation)
     {
-        Debug.Log("fire " + activation);
         if (activation)
             DamageEnemy(5);
     }
     
     private void SlowStatus(bool activation)
     {
-        Debug.Log("slow " + activation);
         if (activation) 
         {
             _parentAI.SetSpeed(baseSpeed * .5f);

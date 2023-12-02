@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d4353decd70b7648bd03afde6cd3dfd, type: 3}
     - target: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Name
       value: Boomerang

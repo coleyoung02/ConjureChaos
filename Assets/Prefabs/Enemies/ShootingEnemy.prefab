@@ -115,7 +115,7 @@ MonoBehaviour:
   shooting_distance: 7
   projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
   cooldown_time: 3
-  projectile_speed: 11
+  projectile_speed: 13
 --- !u!50 &5906325846805613152
 Rigidbody2D:
   serializedVersion: 4

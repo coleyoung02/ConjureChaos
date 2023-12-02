@@ -13,7 +13,6 @@ public class StatUpgrade : Upgrade
     [SerializeField] private float speedMult;
     public override void DoUpgrade()
     {
-        Debug.Log("clicked");
         ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
         for (int i = 0; i < statsList.Count; ++i)
         {
@@ -27,8 +26,6 @@ public class StatUpgrade : Upgrade
         {
             FindAnyObjectByType<PlayerMovement>().UpdateMoveSpeed(speedMult);
         }
-
-        Debug.Log("upgraded");
         base.DoUpgrade();
     }
 }

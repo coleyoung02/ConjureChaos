@@ -22,9 +22,7 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void SetIndex(int index)
     {
-        Debug.Log(index + ", " + this.GetType().Name);
         this.index = index;
-        Debug.Log("VALIDATING  " + this.index);
     }
 
     public int GetIndex()
@@ -52,7 +50,6 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private void destruction()
     {
         UpgradeManager uMan = FindObjectOfType<UpgradeManager>();
-        Debug.Log(index + ", destroyed");
         uMan.OnSelected(this);
     }
 

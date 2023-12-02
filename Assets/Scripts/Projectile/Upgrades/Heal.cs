@@ -7,9 +7,7 @@ public class Heal : Upgrade
 {
     public override void DoUpgrade()
     {
-        Debug.Log("clicked");
         FindAnyObjectByType<PlayerHealth>().HealToFull();
-        Debug.Log("upgraded");
         base.DoUpgrade();
     }
 }

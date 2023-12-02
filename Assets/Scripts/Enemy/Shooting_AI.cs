@@ -8,8 +8,8 @@ public class Shooting_AI : Parent_AI
     public float shooting_distance;
     public GameObject projectilePrefab;
     public float cooldown_time;
-    float cooldown;
-    public float projectile_speed;
+    private float cooldown;
+    [SerializeField] private float projectile_speed;
 
     // Start is called before the first frame update
     public override void Start()
@@ -48,6 +48,8 @@ public class Shooting_AI : Parent_AI
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
         direction *= projectile_speed;
+        if (FindObjectOfType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
+            direction *= 1.85f;
         Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody2D>().velocity = direction;
         cooldown = cooldown_time;
     }

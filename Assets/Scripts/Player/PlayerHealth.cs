@@ -55,7 +55,6 @@ public class PlayerHealth : MonoBehaviour
     public void PlayerTakeDamage(int damage)
     {
         if (isInvincible) {
-            Debug.Log("Player is invincible.");
             return;
         }
         hurtTime = overlayDuration;
@@ -94,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            SubtractMaxHealth(change);
+            SubtractMaxHealth(-change);
         }
     }
 
@@ -142,7 +141,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if(fullHeartImage == null || emptyHeartImage == null)
         {
-            Debug.Log($"heart sprites are not set");
             return;
         }
 
@@ -150,7 +148,6 @@ public class PlayerHealth : MonoBehaviour
         {
             if (hearts[i] == null)
             {
-                Debug.Log($"No hearts in index {i}.");
                 continue;
             }
 
@@ -170,6 +167,5 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isInvincible = false;
-        Debug.Log("Player is not invincible anymore.");
     }
 }

@@ -145,7 +145,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
-        Debug.Log("flipped " + flipped + " main " + IsMain);
         if (myCollider != ignore || IsMain || flipped)
         {
             // Logic for when projectile hurts enemy

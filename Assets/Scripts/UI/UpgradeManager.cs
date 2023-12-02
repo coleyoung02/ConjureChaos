@@ -21,7 +21,6 @@ public class UpgradeManager : MonoBehaviour
 
     public void OnSelected(Upgrade u)
     {
-        Debug.Log("REMOVING " + u + " i " + u.GetIndex());
         if (upgrades.Count > u.GetIndex())
             upgrades.RemoveAt(u.GetIndex());
         int children = row.transform.childCount;
