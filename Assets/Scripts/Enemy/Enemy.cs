@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour
         baseSpeed = _parentAI.GetSpeed();
         if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
         {
-            Debug.Log(gameObject.name + " " + _parentAI.ToString());
             baseSpeed *= 1.85f;
             _parentAI.SetSpeed(baseSpeed);
         }
