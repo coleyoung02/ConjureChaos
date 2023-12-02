@@ -60,8 +60,8 @@ public class Projectile : MonoBehaviour
         flipped = false;
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
-            multiplier = 3f;
-            splinterMult = 4f;
+            multiplier = 3.25f;
+            splinterMult = 3.65f;
         }
         if (IsMain)
         {
@@ -77,20 +77,23 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        accumulatedTime += Time.deltaTime;
-        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang) && (accumulatedTime > .2f || !IsMain))
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
-            if (IsMain)
+            accumulatedTime += Time.deltaTime;
+            if (accumulatedTime > 1f / _speed || !IsMain)
             {
-                rb.velocity -= initialVelocity * Time.deltaTime * 2f;
-            }
-            else
-            {
-                rb.velocity -= initialVelocity * Time.deltaTime * 2.5f;
-            }
-            if (rb.velocity.magnitude <= .2f)
-            {
-                flipped = true;
+                if (IsMain)
+                {
+                    rb.velocity -= initialVelocity * Time.deltaTime * 10 * _speed / 14 / _range;
+                }
+                else
+                {
+                    rb.velocity -= initialVelocity * Time.deltaTime * 10 * _speed / 11 / _range;
+                }
+                if (!flipped && Vector2.Dot(rb.velocity, initialVelocity) < 0)
+                {
+                    flipped = true;
+                }
             }
         }
     }
