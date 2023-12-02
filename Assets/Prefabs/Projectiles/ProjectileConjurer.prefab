@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightFirePosition: 0.5
-  source: {fileID: 644623504593314431}
+  hitSFX: {fileID: 644623504593314431}
   leftFirePosition: -0.5
   projectilePrefab: {fileID: 9131568365663451046, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
 --- !u!82 &644623504593314431

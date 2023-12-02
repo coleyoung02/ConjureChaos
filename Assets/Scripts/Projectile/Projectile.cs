@@ -37,6 +37,11 @@ public class Projectile : MonoBehaviour
     //change back to private
     public Collider2D ignore;
 
+    private Vector2 initialVelocity;
+
+    private float accumulatedTime;
+    private bool flipped;
+
     private void Start()
     {
         // Saves the conjurer so we only have to get it once
@@ -50,15 +55,44 @@ public class Projectile : MonoBehaviour
         
         // Moves projectile
         ProjectileMove();
+        float multiplier = 1f;
+        float splinterMult = 1f;
+        flipped = false;
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
+        {
+            multiplier = 3f;
+            splinterMult = 4f;
+        }
         if (IsMain)
         {
-            Destroy(gameObject, _range / _speed);
+            Destroy(gameObject, multiplier * _range / _speed);
         }
         else
         {
-            Destroy(gameObject, (_range / _speed) / 2);
+            Destroy(gameObject, splinterMult * (_range / _speed) / 2);
         }
+        accumulatedTime = 0f;
         
+    }
+
+    private void Update()
+    {
+        accumulatedTime += Time.deltaTime;
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang) && (accumulatedTime > .2f || !IsMain))
+        {
+            if (IsMain)
+            {
+                rb.velocity -= initialVelocity * Time.deltaTime * 2f;
+            }
+            else
+            {
+                rb.velocity -= initialVelocity * Time.deltaTime * 2.5f;
+            }
+            if (rb.velocity.magnitude <= .2f)
+            {
+                flipped = true;
+            }
+        }
     }
 
     private void InitializeStats()
@@ -99,13 +133,17 @@ public class Projectile : MonoBehaviour
         {
             rb.velocity = transform.rotation * (new Vector3(_speed, 0, 0));
         }
-        
+        if (rb.velocity.magnitude >= .2f)
+        {
+            initialVelocity = rb.velocity;
+        }
 
     }
 
     private void OnTriggerEnter2D(Collider2D myCollider)
     {
-        if (myCollider != ignore || IsMain)
+        Debug.Log("flipped " + flipped + " main " + IsMain);
+        if (myCollider != ignore || IsMain || flipped)
         {
             // Logic for when projectile hurts enemy
             HurtEnemy(myCollider);
@@ -117,7 +155,7 @@ public class Projectile : MonoBehaviour
 
     private void HurtEnemy(Collider2D myCollider)
     {
-        if (myCollider.CompareTag("Enemy") && myCollider != ignore)
+        if (myCollider.CompareTag("Enemy") && (myCollider != ignore || flipped))
         {
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
