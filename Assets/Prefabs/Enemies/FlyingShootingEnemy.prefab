@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5906325846805613152}
   - component: {fileID: 6172005507532752889}
   - component: {fileID: -7813487001400513791}
+  - component: {fileID: -4453753513238114521}
   m_Layer: 10
   m_Name: FlyingShootingEnemy
   m_TagString: Enemy
@@ -195,6 +196,27 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
   cooldown_time: 2.5
   projectile_speed: 13
+--- !u!95 &-4453753513238114521
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257578625451431830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5aee7f80e5cd01249937b5fd01045375, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6739134088999841435
 GameObject:
   m_ObjectHideFlags: 0
