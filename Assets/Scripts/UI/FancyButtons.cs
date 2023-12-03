@@ -33,7 +33,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void ButtonSound()
     {
-        FindObjectOfType<PersistantAudioManager>().PlayUISound(clip);
+        AudioManager.instance.PlayUISound(clip);
     }
 
     private void Update()

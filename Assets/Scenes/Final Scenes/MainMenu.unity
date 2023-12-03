@@ -2191,7 +2191,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1001 &7017021206205714932
+--- !u!1001 &2075584862
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2199,55 +2199,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1118.527
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1291.3427
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.477594
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918856440401193298, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 6791500543044403609, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9117400799867317813, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+    - target: {fileID: 7530044893433088707, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
       propertyPath: m_Name
-      value: PersistantAudioManager
+      value: AudioManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c039d070f9d8f804da714c011b2bf7e3, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: cb6b6af07f9876647b4be8598bd46f5a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2255,4 +2255,4 @@ SceneRoots:
   - {fileID: 2041693773}
   - {fileID: 762322022}
   - {fileID: 273993793}
-  - {fileID: 7017021206205714932}
+  - {fileID: 2075584862}

@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
         }
         hurtTime = overlayDuration;
         currentHealth -= damage;
-        FindObjectOfType<PersistantAudioManager>().PlayHurtNoise();
+        AudioManager.instance.PlayHurtNoise();
         if (currentHealth <= 0)
         {
             currentHealth = 0;

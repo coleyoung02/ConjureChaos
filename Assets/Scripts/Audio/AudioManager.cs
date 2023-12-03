@@ -7,6 +7,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [SerializeField] AudioMixer mixer;
+    [SerializeField] private AudioSource hurtSource;
+    [SerializeField] private AudioSource UISource;
+    
 
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "SFXVolume";
@@ -33,5 +36,16 @@ public class AudioManager : MonoBehaviour
 
         mixer.SetFloat(VolumeSettings.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
         mixer.SetFloat(VolumeSettings.MIXER_SFX, Mathf.Log10(SFXVolume) * 20);
+    }
+
+    public void PlayHurtNoise()
+    {
+        hurtSource.Play();
+    }
+
+    public void PlayUISound(AudioClip clip)
+    {
+        UISource.clip = clip;
+        UISource.Play();
     }
 }
