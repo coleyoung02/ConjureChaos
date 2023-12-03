@@ -708,6 +708,7 @@ MonoBehaviour:
   - {fileID: 1684152382}
   - {fileID: 1207279697}
   waves:
+  - {fileID: 7777662331874007740, guid: ba58da915c25428469b9606f69d2f41e, type: 3}
   - {fileID: 824680632364162694, guid: 48f8d06d958899843b85e441276e3df3, type: 3}
   - {fileID: 8734799220462253292, guid: c2a6a9b3c9979fc4b9779880b234162e, type: 3}
   - {fileID: 1991919234592659355, guid: a01cf0aa52be949409991aa0499e2386, type: 3}
@@ -1381,6 +1382,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892385723}
   m_CullTransparentMesh: 1
+--- !u!1 &936489084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 213064085987646136, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+  m_PrefabInstance: {fileID: 2106127201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &936489085
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936489084}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c8cb073590e832b43b5aa18e70b71abe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &939832669
 GameObject:
   m_ObjectHideFlags: 0
@@ -5179,6 +5206,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8092729141397369473, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 936489085}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6393316485926304726, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
@@ -5187,7 +5218,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6615279824533164017, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1073152199}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 213064085987646136, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 936489085}
   m_SourcePrefab: {fileID: 100100000, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
 --- !u!224 &2106127202 stripped
 RectTransform:

@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float fallPower = 2f;
     [SerializeField] BoxCollider2D foot;
 
+    [SerializeField] Animator playerAnimator;
+
     Rigidbody2D myRigidbody;
     Vector2 moveInput;
     Collider2D myCollider;
@@ -68,6 +70,15 @@ public class PlayerMovement : MonoBehaviour
     //is paused (for future implementations).
     void Move() {
         myRigidbody.velocity = new Vector2(moveInput.x * moveSpeed, myRigidbody.velocity.y);
+        if(Mathf.Abs(moveInput.x) < Mathf.Epsilon)
+        {
+            playerAnimator.SetBool("isWalking", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("isWalking", true);
+        }
+        
     }
 
     //Receives the move inputs from the input system.
