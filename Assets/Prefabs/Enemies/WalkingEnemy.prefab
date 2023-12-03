@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 5
+  height_thresh: 2
 --- !u!212 &2628791402611056220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -199,6 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2465370298245345416}
   - component: {fileID: 505372310319169130}
+  - component: {fileID: 255867473529364923}
   m_Layer: 9
   m_Name: Physical Collider
   m_TagString: Untagged
@@ -266,3 +268,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &255867473529364923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955157563315690089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10366bf6af854c54f91845291a5e31fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  script: {fileID: 722467843673638417}
