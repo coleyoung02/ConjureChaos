@@ -10,6 +10,9 @@ public class ProjectileConjurer : MonoBehaviour
     private float rightFirePosition;
 
     [SerializeField]
+    AudioSource hitSFX;
+
+    [SerializeField]
     private float leftFirePosition;
     
     // Prefab of our projectile
@@ -31,19 +34,34 @@ public class ProjectileConjurer : MonoBehaviour
         Fire,
     }
 
+    public enum ProjectileEffects
+    {
+        EnemyPiercing,
+        PlatformPiercing,
+        KnockBack,
+        Splinter,
+        Drugs,
+        Boomerang,
+        IAMSPEED,
+        LifeSteal,
+    }
+
     // The float listed for fire rate is the cooldown time between shots.
     // Lowering it will give it a higher fire rate. Increasing it will give a lower fire rate.
     private Dictionary<Stats, float> _statsList = new ()
     {
         { Stats.Damage, 10f },
         { Stats.Speed, 20f},
-        { Stats.Size, 0.1f},
+        { Stats.Size, 0.2f},
         { Stats.Range, 10f},
         { Stats.Rate, 0.3f}
     };
 
     // Keeps track of status effects that it will apply to enemy
     private Dictionary<StatusEffects, float> _statusEffects = new();
+    
+    // Projectile effects
+    private List<ProjectileEffects> _projectileEffects = new();
 
     // Method so other classes can grab the stats
     public Dictionary<Stats, float> GetStats()
@@ -55,6 +73,17 @@ public class ProjectileConjurer : MonoBehaviour
     public Dictionary<StatusEffects, float> GetStatusEffects()
     {
         return _statusEffects;
+    }
+
+    public void PlayHitSound()
+    {
+        hitSFX.Play();
+    }
+    
+    // Method so other classes can grab projectile effects
+    public List<ProjectileEffects> GetProjectileEffects()
+    {
+        return _projectileEffects;
     }
 
     // Method so other classes can grab direction of projectile
@@ -81,7 +110,20 @@ public class ProjectileConjurer : MonoBehaviour
     // Method that takes in a status effect and duration and adds it to status effects
     public void UpdateStatusEffect(StatusEffects statusEffects, float duration)
     {
-        _statusEffects[statusEffects] = duration;
+        if (_statusEffects.ContainsKey(statusEffects))
+        {
+            _statusEffects[statusEffects] += duration;
+        }
+        else
+        {
+            _statusEffects[statusEffects] = duration;
+        }
+    }
+    
+    // Method that takes in a projectile effect and adds it to projectile effect list
+    public void UpdateProjectileEffect(ProjectileEffects projectileEffects)
+    {
+        _projectileEffects.Add(projectileEffects);
     }
 
     public void FlipFirePoint(bool flipRight)
@@ -90,6 +132,11 @@ public class ProjectileConjurer : MonoBehaviour
         Transform myTransform = transform;
         Vector3 currentPos = myTransform.localPosition;
         myTransform.localPosition = new Vector3(xPos, currentPos.y, currentPos.z);
+    }
+
+    public GameObject GetProjectilePrefab()
+    {
+        return projectilePrefab;
     }
 
     private void Start()

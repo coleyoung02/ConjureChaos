@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - OneWayPlatform
+  - EnemySpawnPoint
+  - Shield
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -17,8 +20,8 @@ TagManager:
   - 
   - Projectile
   - Enemy
-  - 
-  - 
+  - FlyingEnemy
+  - Shield
   - 
   - 
   - 
@@ -42,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 3240249983
     locked: 0

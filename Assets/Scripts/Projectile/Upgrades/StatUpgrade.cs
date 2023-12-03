@@ -3,24 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct upgrade
-{
-    public Stats stat;
-    public float value;
-}
 public class StatUpgrade : Upgrade
 {
-    [SerializeField] List<Stats> statsList;
-    [SerializeField] List<float> valuesList;
-    [SerializeField] List<bool> modeList;
+    [SerializeField] protected List<Stats> statsList;
+    [SerializeField] protected List<float> valuesList;
+    [SerializeField] protected List<bool> modeList;
+    [SerializeField] private int healthChange;
+    [SerializeField] private bool setHealthAbsolute;
+    [SerializeField] private float speedMult;
     public override void DoUpgrade()
     {
-        Debug.Log("clicked");
         ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
         for (int i = 0; i < statsList.Count; ++i)
         {
             conjurer.UpdateStats(statsList[i], valuesList[i], modeList[i]);
         }
-        Debug.Log("upgraded");
+        if (healthChange != 0)
+        {
+            FindAnyObjectByType<PlayerHealth>().ChangeMaxHealth(healthChange, setHealthAbsolute);
+        }
+        if (speedMult != 0)
+        {
+            FindAnyObjectByType<PlayerMovement>().UpdateMoveSpeed(speedMult);
+        }
+        base.DoUpgrade();
     }
 }

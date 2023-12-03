@@ -15,14 +15,25 @@ public enum Stats
 
 public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private string description;
+    [SerializeField] protected string description;
     private Button button;
+    private int index;
+
+
+    public void SetIndex(int index)
+    {
+        this.index = index;
+    }
+
+    public int GetIndex()
+    {
+        return this.index;
+    }
 
     protected void Start()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(DoUpgrade);
-        button.onClick.AddListener(destruction);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -39,8 +50,11 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private void destruction()
     {
         UpgradeManager uMan = FindObjectOfType<UpgradeManager>();
-        uMan.OnSelected();
+        uMan.OnSelected(this);
     }
 
-    public abstract void DoUpgrade();
+    public virtual void DoUpgrade()
+    {
+        destruction();
+    }
 }

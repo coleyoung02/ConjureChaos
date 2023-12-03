@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Final Scenes/MainMenu.unity
+    guid: 00df7430515795b409fd5cd6c37fd912
+  - enabled: 1
+    path: Assets/Scenes/Final Scenes/Main.unity
+    guid: 637d8130b97d7514d8f4f311ba99bf85
+  - enabled: 1
+    path: Assets/Scenes/Final Scenes/LoseScreen.unity
+    guid: 337029ed33bb7794b95fc99e57e8b2d9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a256090232998f94391cbbb20a02ba21, type: 2}

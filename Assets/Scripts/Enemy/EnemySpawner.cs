@@ -9,26 +9,27 @@ public class EnemySpawner : MonoBehaviour
     public float duration;
     public float time_elapsed;
     public float spawn_delay;
+    public float offset;
     bool active;
     float time_until_next_spawn;
+    public int spawnLocation;
 
     // Start is called before the first frame update
     void Start()
     {
+        time_elapsed = -offset;
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         active = true;
-        time_until_next_spawn = 0;
+        time_until_next_spawn = offset;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(active)
         {
-            if (time_elapsed > duration)
+            if (time_elapsed >= duration)
                 active = false;
-
             if (time_until_next_spawn <= 0)            
                 SpawnEnemy();
 
@@ -41,8 +42,13 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         GameObject enemy_instantiated = Instantiate(enemy, transform.position, Quaternion.identity);
-        enemy_instantiated.GetComponent<Parent_AI>().player = player;
-        enemy_instantiated.GetComponent<Enemy>().player = player;
+        enemy_instantiated.GetComponent<Parent_AI>().SetPlayer(player);
+        enemy_instantiated.GetComponent<Enemy>().SetPlayer(player);
         time_until_next_spawn = spawn_delay + Time.deltaTime;
+    }
+
+    public int NumEnemiesToSpawn()
+    {
+        return (int)((duration - .0001) / spawn_delay) + 1;
     }
 }
