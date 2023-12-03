@@ -9,6 +9,7 @@ TagManager:
   - EnemySpawnPoint
   - Shield
   - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX
