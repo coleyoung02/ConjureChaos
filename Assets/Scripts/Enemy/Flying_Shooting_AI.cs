@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Flying_Shooting_AI : Shooting_AI
@@ -9,11 +10,14 @@ public class Flying_Shooting_AI : Shooting_AI
     {
         Vector2 new_dir = new Vector2();
         //x velocity;
-        if (System.Math.Abs(transform.position.x - player.transform.position.x) > desired_distance)
+        if (System.Math.Abs(transform.position.x - player.transform.position.x) > desired_distance + .1f)
         {
-            new_dir.x = player.transform.position.x - transform.position.x;
+            if (player.transform.position.x > transform.position.x)
+                new_dir.x = player.transform.position.x - desired_distance - transform.position.x;
+            else
+                new_dir.x = player.transform.position.x + desired_distance - transform.position.x;
         }
-        else if (System.Math.Abs(gameObject.transform.position.x - player.transform.position.x) < desired_distance)
+        else if (System.Math.Abs(gameObject.transform.position.x - player.transform.position.x) < desired_distance - .1f)
         {
             if (transform.position.x - player.transform.position.x > 0)
                 new_dir.x = desired_distance - (transform.position.x - player.transform.position.x);
@@ -22,8 +26,15 @@ public class Flying_Shooting_AI : Shooting_AI
         }
         //y velocity
         new_dir.y = player.transform.position.y - transform.position.y;
-
-        new_dir.Normalize();
+        if (Mathf.Abs(new_dir.y) > .15f || Mathf.Abs(new_dir.x) > .1f)
+        {
+            new_dir.Normalize();
+        }
+        else
+        {
+            new_dir = Vector2.zero;
+        }
+        Debug.Log(new_dir);
         rb.velocity = new_dir * speed;
 
 

@@ -15,6 +15,9 @@ public class Shooting_AI : Parent_AI
     public override void Start()
     {
         base.Start();
+        float offset = UnityEngine.Random.Range(-.5f, .5f);
+        desired_distance += offset;
+        shooting_distance += offset / 2;
         cooldown = 0f;
     }
 

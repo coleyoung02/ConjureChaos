@@ -154,7 +154,6 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealthUI()
     {
-        healthText.text = $"{currentHealth} / {maxHealth} HP";
         RefreshHeartDisplay();
     }
 
