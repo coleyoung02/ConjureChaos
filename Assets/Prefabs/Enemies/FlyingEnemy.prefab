@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2586097237445304443}
   - component: {fileID: 8839806228955375631}
   - component: {fileID: 3974095728624141124}
+  - component: {fileID: 7906834818809735299}
   m_Layer: 10
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -190,6 +191,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7906834818809735299
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949422371381433468}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3786eaf63fe7fe7449835ed340b2eeb7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7809872917911029353
 GameObject:
   m_ObjectHideFlags: 0
