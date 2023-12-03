@@ -191,9 +191,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   speed: 3
   desired_distance: 5
-  shooting_distance: 7
+  shooting_distance: 8
   projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
-  cooldown_time: 2
+  cooldown_time: 2.5
   projectile_speed: 13
 --- !u!1 &6739134088999841435
 GameObject:
