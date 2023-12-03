@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8405115418149723301
+--- !u!1001 &1601167729351606226
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,52 +9,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftTopType
+      propertyPath: rightTopType
       value: 
-      objectReference: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftTopDelay
-      value: 5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorType
       value: 
-      objectReference: {fileID: 257578625451431830, guid: b85e324a0b63ebc4090f525cc21c0ff6, type: 3}
+      objectReference: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftTopOffset
-      value: 10
+      propertyPath: rightTopDelay
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDelay
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: rightFloorType
-      value: 
-      objectReference: {fileID: 257578625451431830, guid: b85e324a0b63ebc4090f525cc21c0ff6, type: 3}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftFloorOffset
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftTopDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: rightFloorDelay
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: rightFloorOffset
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftFloorDuration
-      value: 35
+      propertyPath: rightTopOffset
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: rightFloorDuration
-      value: 35
+      propertyPath: leftFloorOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: rightTopDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftFloorDuration
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5894873007709164099, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_LocalPosition.x
