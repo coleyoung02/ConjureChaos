@@ -10,13 +10,17 @@ public abstract class Parent_AI : MonoBehaviour
     protected bool stunned;
     private Coroutine stunRoutine;
 
+    public virtual void Awake()
+    {
+        stunned = false;
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     // Start is called before the first frame update
     public virtual void Start()
     {
-        stunned = false;
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
-        rb = GetComponent<Rigidbody2D>();
     }
 
     public GameObject GetPlayer()

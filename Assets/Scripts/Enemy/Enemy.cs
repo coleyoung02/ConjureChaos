@@ -164,7 +164,15 @@ public class Enemy : MonoBehaviour
             playerHealth.PlayerTakeDamage(contactDamage);
         }
     }
-    
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            playerHealth.PlayerTakeDamage(contactDamage);
+        }
+    }
+
     public void StatusEffectManager()
     {
         foreach (KeyValuePair<ProjectileConjurer.StatusEffects, float> kvp in _conjurerEffects)
