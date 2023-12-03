@@ -40,7 +40,10 @@ public class Flying_Shooting_AI : Shooting_AI
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
         {
             if (cooldown == 0f)
+            {
+                gameObject.GetComponent<Animator>().SetTrigger("Shoot");
                 Shoot();
+            }
         }
         if (cooldown > 0f)
             cooldown -= Time.deltaTime;
