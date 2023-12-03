@@ -145,6 +145,8 @@ public class Enemy : MonoBehaviour
 
     public void die()
     {
+        if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.LifeSteal))
+            playerHealth.EnemyKilled();
         deathEvent.Invoke();
         Destroy(gameObject);
     }

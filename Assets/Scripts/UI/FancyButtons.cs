@@ -11,9 +11,11 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] Animator animator;
     [SerializeField] Image border;
     [SerializeField] TextMeshProUGUI text;
-    [SerializeField] private float r;
-    [SerializeField] private float g;
-    [SerializeField] private float b;
+    [SerializeField] AudioClip clip;
+    private float r;
+    private float g;
+    private float b;
+    private Button button;
     private int change;
     private static float changeRate = 100f;
     private static float bottomVal = 130f;
@@ -25,6 +27,13 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         g = 255f;
         b = bottomVal;
         change = 0;
+        button = GetComponent<Button>();
+        button.onClick.AddListener(ButtonSound);
+    }
+
+    private void ButtonSound()
+    {
+        FindObjectOfType<PersistantAudioManager>().PlayUISound(clip);
     }
 
     private void Update()

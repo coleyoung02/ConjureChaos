@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     int currentHealth = 1;
     bool isInvincible = false;
+    private int enemiesKilled = 0;
     
     void Start()
     {
@@ -52,6 +53,19 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void EnemyKilled()
+    {
+        if (currentHealth != maxHealth)
+        {
+            enemiesKilled++;
+        }
+        if (enemiesKilled >= 10 && currentHealth < maxHealth)
+        {
+            PlayerAddHealth(1);
+            enemiesKilled = 0;
+        }
+    }
+
     public void PlayerTakeDamage(int damage)
     {
         if (isInvincible) {
@@ -59,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
         }
         hurtTime = overlayDuration;
         currentHealth -= damage;
-        GetComponent<AudioSource>().Play();
+        FindObjectOfType<PersistantAudioManager>().PlayHurtNoise();
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -76,6 +90,10 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
+        }
+        if (currentHealth == maxHealth)
+        {
+            enemiesKilled = 0;
         }
         UpdateHealthUI();
     }
@@ -94,6 +112,10 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             SubtractMaxHealth(-change);
+        }
+        if (currentHealth == maxHealth)
+        {
+            enemiesKilled = 0;
         }
     }
 
@@ -126,6 +148,7 @@ public class PlayerHealth : MonoBehaviour
     public void HealToFull()
     {
         currentHealth = maxHealth;
+        enemiesKilled = 0;
         UpdateHealthUI();
     }
 

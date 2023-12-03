@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
+  - {fileID: 5221516622347913150, guid: b4b21a74317cbd64c83e61dbfc5ccdb7, type: 3}
   - {fileID: 2993281237934175336, guid: 45448b034d8341f498a206083924c0f8, type: 3}
   - {fileID: 5909413881650301925, guid: baaac0fd0367aaa4ea30dd2512982bfc, type: 3}
   - {fileID: 5438301884126781889, guid: 045f0d7642a328d42b6382438123b0a4, type: 3}

@@ -43,6 +43,7 @@ public class ProjectileConjurer : MonoBehaviour
         Drugs,
         Boomerang,
         IAMSPEED,
+        LifeSteal,
     }
 
     // The float listed for fire rate is the cooldown time between shots.

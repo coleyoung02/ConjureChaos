@@ -139,9 +139,7 @@ MonoBehaviour:
   animator: {fileID: 8850706549294776830}
   border: {fileID: 2413198215189788087}
   text: {fileID: 5070429543114068397}
-  r: 0
-  g: 0
-  b: 0
+  clip: {fileID: 8300000, guid: a6fa23e4c72a5c74999099f6071faa7c, type: 3}
 --- !u!1 &2022886682079540103
 GameObject:
   m_ObjectHideFlags: 0
