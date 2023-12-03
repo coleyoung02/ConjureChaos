@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5954912960885864476}
   - component: {fileID: 1627197827078006906}
   m_Layer: 0
-  m_Name: Pink Bat
+  m_Name: PinkBat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
