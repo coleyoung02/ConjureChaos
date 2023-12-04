@@ -135,6 +135,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueWoman
       objectReference: {fileID: 0}
+    - target: {fileID: 6239197770544597929, guid: b0c1545411f283844ad89d7afde59d31, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239197770544597929, guid: b0c1545411f283844ad89d7afde59d31, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239197770544597929, guid: b0c1545411f283844ad89d7afde59d31, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     - target: {fileID: 7472150827701048479, guid: b0c1545411f283844ad89d7afde59d31, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6666667
@@ -343,6 +355,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenBat
       objectReference: {fileID: 0}
+    - target: {fileID: 4850553202342187897, guid: 126e0ae7d6f7717488e446f26c702349, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850553202342187897, guid: 126e0ae7d6f7717488e446f26c702349, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850553202342187897, guid: 126e0ae7d6f7717488e446f26c702349, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -397,6 +421,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1179279616}
     m_Modifications:
+    - target: {fileID: 2231505120005653935, guid: 620d39fe8b56b4744877f62ae5a3254a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231505120005653935, guid: 620d39fe8b56b4744877f62ae5a3254a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231505120005653935, guid: 620d39fe8b56b4744877f62ae5a3254a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     - target: {fileID: 2544874730382493426, guid: 620d39fe8b56b4744877f62ae5a3254a, type: 3}
       propertyPath: m_Name
       value: OrangeBat
@@ -1194,6 +1230,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1179279616}
     m_Modifications:
+    - target: {fileID: 2496868312293491650, guid: 71866a5d85279754ea1c73c6d6675e35, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496868312293491650, guid: 71866a5d85279754ea1c73c6d6675e35, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496868312293491650, guid: 71866a5d85279754ea1c73c6d6675e35, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     - target: {fileID: 5636208475757233097, guid: 71866a5d85279754ea1c73c6d6675e35, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6666667
@@ -1448,6 +1496,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueBat
       objectReference: {fileID: 0}
+    - target: {fileID: 5723400918814250697, guid: 95038a73a476929409fe45380baf4901, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723400918814250697, guid: 95038a73a476929409fe45380baf4901, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723400918814250697, guid: 95038a73a476929409fe45380baf4901, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1466,6 +1526,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1179279616}
     m_Modifications:
+    - target: {fileID: 174789321300773202, guid: 4acf467e39877b040b1ca31c312f557c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 174789321300773202, guid: 4acf467e39877b040b1ca31c312f557c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 174789321300773202, guid: 4acf467e39877b040b1ca31c312f557c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     - target: {fileID: 666606086560266731, guid: 4acf467e39877b040b1ca31c312f557c, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6666667
@@ -1836,6 +1908,18 @@ PrefabInstance:
     - target: {fileID: 6361392433942114601, guid: f7235b8bf2201cb42819bbcb83574b42, type: 3}
       propertyPath: m_Name
       value: YellowBat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396425970916244175, guid: f7235b8bf2201cb42819bbcb83574b42, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396425970916244175, guid: f7235b8bf2201cb42819bbcb83574b42, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396425970916244175, guid: f7235b8bf2201cb42819bbcb83574b42, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 7330720990884846227, guid: f7235b8bf2201cb42819bbcb83574b42, type: 3}
       propertyPath: m_LocalScale.x
@@ -2233,6 +2317,18 @@ PrefabInstance:
     - target: {fileID: 5294353942120856721, guid: a1b7026e926caae46872e239c9315e51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954912960885864476, guid: a1b7026e926caae46872e239c9315e51, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954912960885864476, guid: a1b7026e926caae46872e239c9315e51, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954912960885864476, guid: a1b7026e926caae46872e239c9315e51, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 6688900421917517857, guid: a1b7026e926caae46872e239c9315e51, type: 3}
       propertyPath: m_Name
@@ -3125,6 +3221,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1179279616}
     m_Modifications:
+    - target: {fileID: 4156761995935048897, guid: e912ca2439feeed4893e7548eadbcdd8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156761995935048897, guid: e912ca2439feeed4893e7548eadbcdd8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156761995935048897, guid: e912ca2439feeed4893e7548eadbcdd8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     - target: {fileID: 4370500231208021713, guid: e912ca2439feeed4893e7548eadbcdd8, type: 3}
       propertyPath: m_Name
       value: Fairy
@@ -3452,6 +3560,18 @@ PrefabInstance:
     - target: {fileID: 5980570389162042887, guid: 15c5e497b2aeff448ad67328649aae0f, type: 3}
       propertyPath: m_Name
       value: DemonBoy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457616145770746753, guid: 15c5e497b2aeff448ad67328649aae0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457616145770746753, guid: 15c5e497b2aeff448ad67328649aae0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457616145770746753, guid: 15c5e497b2aeff448ad67328649aae0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 7010170975899688831, guid: 15c5e497b2aeff448ad67328649aae0f, type: 3}
       propertyPath: m_LocalScale.x
