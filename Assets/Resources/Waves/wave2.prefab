@@ -9,12 +9,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatType
+      value: 
+      objectReference: {fileID: 4058234263559248216, guid: 9405b892883920b4fb02876f94a5815c, type: 3}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorType
       value: 
       objectReference: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatDelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDelay
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatOffset
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorType
@@ -26,7 +38,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorDelay
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatDuration
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorOffset
@@ -34,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDuration
-      value: 13
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorDuration
-      value: 13
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5894873007709164099, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_LocalPosition.x
