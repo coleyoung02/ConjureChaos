@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Projectile
   - Wall
+  - ShimmerBorder
   layers:
   - Default
   - TransparentFX

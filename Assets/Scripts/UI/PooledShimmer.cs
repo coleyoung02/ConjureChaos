@@ -6,42 +6,40 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class PooledShimmer : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private Image border;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private AudioClip clip;
-    [SerializeField] private bool pool;
     private float r;
     private float g;
     private float b;
-    private Button button;
     private int change;
     private static float changeRate = 100f;
     private static float bottomVal = 130f;
+    private List<Image> borders;
+    private TextMeshProUGUI[] texts;
 
     private void Awake()
     {
-        animator.speed = 0f;
         r = 255f;
         g = 255f;
         b = bottomVal;
         change = 0;
-        button = GetComponent<Button>();
-        button.onClick.AddListener(ButtonSound);
+        ReFetch();
     }
 
-    private void ButtonSound()
+    public void ReFetch()
     {
-        animator.speed = 0;
-        AudioManager.instance.PlayUISound(clip);
+        texts = FindObjectsByType<TextMeshProUGUI>(FindObjectsSortMode.None);
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("ShimmerBorder");
+        borders = new List<Image>();
+        foreach (GameObject go in gos)
+        {
+            borders.Add(go.GetComponent<Image>());
+        }
+
     }
 
     private void Update()
     {
-        if (pool)
-            return;
         if (change == 0) { 
             r = Mathf.Max(r - Time.unscaledDeltaTime * changeRate, bottomVal);
             if (r <= bottomVal + .01f)
@@ -89,17 +87,13 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 change = 0;
             }
         }
-        text.color = new Color(r / 255f, g / 255f, b / 255f);
-        border.color = new Color(r / 255f, g / 255f, b / 255f);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        animator.speed = 1f;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        animator.speed = 0f;
+        foreach (Image i in borders)
+        {
+            i.color = new Color(r / 255f, g / 255f, b / 255f);
+        }
+        foreach (TextMeshProUGUI t in texts)
+        {
+            t.color = new Color(r / 255f, g / 255f, b / 255f);
+        }
     }
 }
