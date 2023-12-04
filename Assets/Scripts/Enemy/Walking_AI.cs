@@ -16,7 +16,8 @@ public class Walking_AI : Parent_AI
             rb.velocity = new Vector2(speed, 0);
         else
             rb.velocity = new Vector2(-speed, 0);
-        castDistance = gameObject.GetComponent<BoxCollider2D>().size.y * transform.localScale.y / 2 + .15f;
+        BoxCollider2D bc = gameObject.GetComponent<BoxCollider2D>();
+        castDistance = bc.size.y * transform.localScale.y / 2 + .05f - bc.offset.y;
     }
 
     // Update is called once per frame
