@@ -17,6 +17,10 @@ public class Jumping_AI : Walking_AI
     // Update is called once per frame
     protected override void OnUpdate()
     {
+        if (rb.velocity.x > 0)
+        {
+            sprite.flipX = false;
+        }
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < .1f &&
             Mathf.Abs(player.transform.position.y - transform.position.y) < .5f)
         {

@@ -6,6 +6,7 @@ public class Walking_AI : Parent_AI
 {
     public float height_thresh;
     protected float castDistance;
+    [SerializeField] protected SpriteRenderer sprite;
 
     // Start is called before the first frame update
     public override void Start()
@@ -15,12 +16,20 @@ public class Walking_AI : Parent_AI
             rb.velocity = new Vector2(speed, 0);
         else
             rb.velocity = new Vector2(-speed, 0);
-        castDistance = gameObject.GetComponent<BoxCollider2D>().size.y * transform.localScale.y / 2 + .05f;
+        castDistance = gameObject.GetComponent<BoxCollider2D>().size.y * transform.localScale.y / 2 + .15f;
     }
 
     // Update is called once per frame
     protected override void OnUpdate()
     {
+        if (rb.velocity.x > 0)
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < .1f &&
             Mathf.Abs(player.transform.position.y - transform.position.y) < .5f)
         {

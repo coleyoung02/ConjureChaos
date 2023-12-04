@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9001370447503038021}
   - component: {fileID: 2628791402611056220}
   - component: {fileID: -5307749225616823857}
+  - component: {fileID: 1202961406778665598}
   m_Layer: 9
   m_Name: JumpingEnemy
   m_TagString: Enemy
@@ -96,18 +97,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.795, y: 3.5375}
+    oldSize: {x: 3.2, y: 2.332}
     newSize: {x: 2.7, y: 2.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 3.55}
+  m_Size: {x: 2.714932, y: 2.016522}
   m_EdgeRadius: 0
 --- !u!114 &9001370447503038021
 MonoBehaviour:
@@ -164,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06c957d03e3a5344581ab6ecc4b6dae1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b2ccace70956d74ea07cb7003909805, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -190,6 +191,28 @@ MonoBehaviour:
   rb: {fileID: 0}
   speed: 6.5
   height_thresh: 3
+  sprite: {fileID: 2628791402611056220}
+--- !u!95 &1202961406778665598
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058234263559248216}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35701c5d3113e194298e53245f2fc1e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5955157563315690089
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +278,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -266,7 +289,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 3.55}
+  m_Size: {x: 2.714932, y: 2.016522}
   m_EdgeRadius: 0
 --- !u!114 &255867473529364923
 MonoBehaviour:
