@@ -8,6 +8,7 @@ public class Flying_Shooting_AI : Shooting_AI
     // Update is called once per frame
     protected override void OnUpdate()
     {
+        FlipSprite();
         Vector2 new_dir = new Vector2();
         //x velocity;
         if (System.Math.Abs(transform.position.x - player.transform.position.x) > desired_distance + .1f)

@@ -23,10 +23,9 @@ public class Shooting_AI : Parent_AI
         cooldown = 0f;
     }
 
-    // Update is called once per frame
-    protected override void OnUpdate()
+    protected void FlipSprite()
     {
-        if (rb.velocity.x > 0)
+        if (transform.position.x < player.transform.position.x)
         {
             sprite.flipX = false;
         }
@@ -34,6 +33,12 @@ public class Shooting_AI : Parent_AI
         {
             sprite.flipX = true;
         }
+    }
+
+    // Update is called once per frame
+    protected override void OnUpdate()
+    {
+        FlipSprite();
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) > desired_distance)
         {
             float dist_move = speed * Time.deltaTime;

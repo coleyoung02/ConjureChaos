@@ -13,7 +13,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource hurtSource;
     [SerializeField] private AudioSource UISource;
     [SerializeField] private AudioSource MusicSource;
-    [SerializeField] private List<AudioClip> songs;
     private int songIndex;
 
 
@@ -33,24 +32,7 @@ public class AudioManager : MonoBehaviour
         }
 
         LoadVolume();
-        songs = songs.OrderBy(x => UnityEngine.Random.value).ToList();
-        songIndex = 0;
-        PlayNextSong();
 
-    }
-
-    private void PlayNextSong()
-    {
-        songIndex = (songIndex + 1) % songs.Count;
-        MusicSource.clip = songs[songIndex];
-        MusicSource.Play();
-        StartCoroutine(SwitchSong());
-    }
-
-    private IEnumerator SwitchSong()
-    {
-        yield return new WaitForSeconds(MusicSource.clip.length);
-        PlayNextSong();
     }
 
     void LoadVolume() //Volume saved in VolumeSettings.cs
