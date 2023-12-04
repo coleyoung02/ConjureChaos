@@ -48,6 +48,7 @@ public class Shooting_AI : Parent_AI
 
     protected void Shoot()
     {
+        gameObject.GetComponent<Animator>().SetTrigger("Shoot");
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
         direction *= projectile_speed;

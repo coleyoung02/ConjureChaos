@@ -41,7 +41,6 @@ public class Flying_Shooting_AI : Shooting_AI
         {
             if (cooldown == 0f)
             {
-                gameObject.GetComponent<Animator>().SetTrigger("Shoot");
                 Shoot();
             }
         }
