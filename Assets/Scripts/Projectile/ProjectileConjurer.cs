@@ -52,9 +52,9 @@ public class ProjectileConjurer : MonoBehaviour
     {
         { Stats.Damage, 10f },
         { Stats.Speed, 20f},
-        { Stats.Size, 0.2f},
+        { Stats.Size, 0.225f},
         { Stats.Range, 10f},
-        { Stats.Rate, 0.3f},
+        { Stats.Rate, 0.275f},
         { Stats.Accuracy, 0f }
     };
 

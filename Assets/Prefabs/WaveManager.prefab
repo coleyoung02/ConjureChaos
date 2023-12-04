@@ -49,6 +49,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   waves:
   - {fileID: 824680632364162694, guid: 48f8d06d958899843b85e441276e3df3, type: 3}
   - {fileID: 824680632364162694, guid: 82d4048d903518748a674d2502fc2c50, type: 3}

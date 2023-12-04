@@ -19,6 +19,16 @@ public class AudioManager : MonoBehaviour
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "SFXVolume";
 
+    public void PauseMusic()
+    {
+        MusicSource.Pause();
+    }
+
+    public void PlayMusic()
+    {
+        MusicSource.Play();
+    }
+
     void Awake()
     {
         if (instance == null)

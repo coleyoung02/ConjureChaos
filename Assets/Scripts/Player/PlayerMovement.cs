@@ -78,6 +78,14 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetBool("isWalking", true);
         }
+        if (myRigidbody.velocity.y <= 0.05f)
+        {
+            playerAnimator.SetBool("isFalling", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("isFalling", true);
+        }
         
     }
 

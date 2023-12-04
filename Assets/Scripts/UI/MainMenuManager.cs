@@ -10,8 +10,18 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Main");
     }
 
+    public void Start()
+    {
+        FindObjectOfType<AudioManager>().PlayMusic();
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void LoadWin()
+    {
+        SceneManager.LoadSceneAsync("WinScreen");
     }
 }

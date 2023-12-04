@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class WaveManager : MonoBehaviour
             currWave.end(); //delete spawners for this wave
         waveNum++;
         if (waveNum > waves.Count)
-            waveNum = 1; // temporary, for actual game this should trigger winning.
+            SceneManager.LoadScene("WinScreen");
         currWave = Instantiate(waves[waveNum-1], gameObject.transform).GetComponent<Wave>();
         killQuota = currWave.getQuota();
     }
