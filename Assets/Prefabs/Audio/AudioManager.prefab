@@ -50,6 +50,13 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   hurtSource: {fileID: 1487077082800694906}
   UISource: {fileID: 1188385316337319672}
+  MusicSource: {fileID: 1258865123146780939}
+  songs:
+  - {fileID: 8300000, guid: 141224fe2e5fe4241a679ad99a3712c1, type: 3}
+  - {fileID: 8300000, guid: 2b79a3d2abae6654fafd13ae77485010, type: 3}
+  - {fileID: 8300000, guid: 087bf92832819da4c822136f4e2c81e5, type: 3}
+  - {fileID: 8300000, guid: 87eccf58a6212124995d338ea0b97758, type: 3}
+  - {fileID: 8300000, guid: 0ac2a24983adaac4da23504e7cc28821, type: 3}
 --- !u!82 &1487077082800694906
 AudioSource:
   m_ObjectHideFlags: 0
@@ -253,7 +260,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 823708618298323711, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: 16dd5c7d84cf8de4b9732d99fc3dec69, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.125
   m_Pitch: 1
   Loop: 0

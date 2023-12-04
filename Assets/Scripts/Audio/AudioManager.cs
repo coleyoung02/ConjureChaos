@@ -1,6 +1,9 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,7 +12,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixer mixer;
     [SerializeField] private AudioSource hurtSource;
     [SerializeField] private AudioSource UISource;
-    
+    [SerializeField] private AudioSource MusicSource;
+    [SerializeField] private List<AudioClip> songs;
+    private int songIndex;
+
 
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "SFXVolume";
@@ -27,6 +33,24 @@ public class AudioManager : MonoBehaviour
         }
 
         LoadVolume();
+        songs = songs.OrderBy(x => UnityEngine.Random.value).ToList();
+        songIndex = 0;
+        PlayNextSong();
+
+    }
+
+    private void PlayNextSong()
+    {
+        songIndex = (songIndex + 1) % songs.Count;
+        MusicSource.clip = songs[songIndex];
+        MusicSource.Play();
+        StartCoroutine(SwitchSong());
+    }
+
+    private IEnumerator SwitchSong()
+    {
+        yield return new WaitForSeconds(MusicSource.clip.length);
+        PlayNextSong();
     }
 
     void LoadVolume() //Volume saved in VolumeSettings.cs
