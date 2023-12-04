@@ -3188,7 +3188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3201,11 +3201,11 @@ PrefabInstance:
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 762322024}
+      objectReference: {fileID: 237533540}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 762322023}
+      objectReference: {fileID: 762322024}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -3224,11 +3224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReFetch
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadWin
+      value: ReFetch
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -3236,11 +3236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PooledShimmer, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MainMenuManager, Assembly-CSharp
+      value: PooledShimmer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2531985647058122925, guid: d0540e52bfb0f6d4abe4685a3d530941, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
