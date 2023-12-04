@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Shooting_AI : Parent_AI
 {
@@ -10,6 +11,7 @@ public class Shooting_AI : Parent_AI
     public float cooldown_time;
     protected float cooldown;
     [SerializeField] private float projectile_speed;
+    [SerializeField] protected SpriteRenderer sprite;
 
     // Start is called before the first frame update
     public override void Start()
@@ -24,6 +26,14 @@ public class Shooting_AI : Parent_AI
     // Update is called once per frame
     protected override void OnUpdate()
     {
+        if (rb.velocity.x > 0)
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) > desired_distance)
         {
             float dist_move = speed * Time.deltaTime;

@@ -71,11 +71,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.795, y: 3.5375}
+    oldSize: {x: 3.7894738, y: 3.7894738}
     newSize: {x: 9.27, y: 8.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
   cooldown_time: 1.5
   projectile_speed: 15
+  sprite: {fileID: 6172005507532752889}
 --- !u!50 &5906325846805613152
 Rigidbody2D:
   serializedVersion: 4
@@ -185,8 +186,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a535f4cae8a974847b4dc9d724baef3f, type: 3}
-  m_Color: {r: 0.47580075, g: 0, b: 0.5754717, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1bc6b16618580924a804f31f5899de67, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -265,7 +266,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8962264, g: 0.48168948, b: 0.09676236, a: 1}
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -363,7 +364,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

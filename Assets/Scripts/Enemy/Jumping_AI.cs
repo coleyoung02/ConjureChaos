@@ -44,9 +44,10 @@ public class Jumping_AI : Walking_AI
             if (Mathf.Abs(transform.position.x - player.transform.position.x) < 3 &&
                 Mathf.Abs(transform.position.x - player.transform.position.x) > 2 &&
                 transform.position.y < player.transform.position.y &&
-                player.transform.position.y - transform.position.y < 5f
-                ) {
+                player.transform.position.y - transform.position.y < 5f) 
+            {
                 Stun();
+                gameObject.GetComponent<Animator>().SetTrigger("Jump");
                 rb.AddForce(new Vector2(Mathf.Sign(transform.position.x - player.transform.position.x) * 2.5f, 
                     8f * Mathf.Pow(player.transform.position.y - transform.position.y, .25f)), ForceMode2D.Impulse);
             }
