@@ -11,6 +11,7 @@ public class Shooter_Projectile : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Destroy(gameObject, 14f / rb.velocity.magnitude);
     }
 
     // Update is called once per frame

@@ -36,6 +36,13 @@ public class Enemy : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    public virtual void Awake()
+    {
+        if (!player)
+            player = FindAnyObjectByType<PlayerMovement>().gameObject;
+        playerHealth = player.GetComponent<PlayerHealth>();
+    }
+
     void Start()
     {
         hurtTime = 0f;
@@ -69,9 +76,7 @@ public class Enemy : MonoBehaviour
         };
 
 
-        if (!player)
-            player = FindAnyObjectByType<PlayerMovement>().gameObject;
-        playerHealth = player.GetComponent<PlayerHealth>();
+        
         progressManager = player.GetComponent<ProgressManager>();
 
         if (deathEvent == null)

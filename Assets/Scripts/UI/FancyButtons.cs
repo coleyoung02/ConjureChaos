@@ -33,13 +33,14 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void ButtonSound()
     {
+        animator.speed = 0;
         AudioManager.instance.PlayUISound(clip);
     }
 
     private void Update()
     {
         if (change == 0) { 
-            r = Mathf.Max(r - Time.deltaTime * changeRate, bottomVal);
+            r = Mathf.Max(r - Time.unscaledDeltaTime * changeRate, bottomVal);
             if (r <= bottomVal + .01f)
             {
                 change = 1;
@@ -47,7 +48,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if (change == 1)
         {
-            b = Mathf.Min(b + Time.deltaTime * changeRate, 255f);
+            b = Mathf.Min(b + Time.unscaledDeltaTime * changeRate, 255f);
             if (b >= 254.99f)
             {
                 change = 2;
@@ -55,7 +56,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if (change == 2)
         {
-            g = Mathf.Max(g - Time.deltaTime * changeRate, bottomVal);
+            g = Mathf.Max(g - Time.unscaledDeltaTime * changeRate, bottomVal);
             if (g <= bottomVal + .01f)
             {
                 change = 3;
@@ -63,7 +64,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if(change == 3)
         {
-            r = Mathf.Min(r + Time.deltaTime * changeRate, 255f);
+            r = Mathf.Min(r + Time.unscaledDeltaTime * changeRate, 255f);
             if (r >= 254.99f)
             {
                 change = 4;
@@ -71,7 +72,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if(change == 4)
         {
-            b = Mathf.Max(b - Time.deltaTime * changeRate, bottomVal);
+            b = Mathf.Max(b - Time.unscaledDeltaTime * changeRate, bottomVal);
             if (b <= bottomVal + .01f)
             {
                 change = 5;
@@ -79,7 +80,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if(change == 5)
         {
-            g = Mathf.Min(g + Time.deltaTime * changeRate, 255f);
+            g = Mathf.Min(g + Time.unscaledDeltaTime * changeRate, 255f);
             if (g >= 254.99f)
             {
                 change = 0;

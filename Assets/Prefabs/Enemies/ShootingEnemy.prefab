@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 4
-  desired_distance: 5
-  shooting_distance: 7
+  desired_distance: 10
+  shooting_distance: 11
   projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
   cooldown_time: 3
   projectile_speed: 13

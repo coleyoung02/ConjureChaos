@@ -54,6 +54,10 @@ MonoBehaviour:
   description: STAT UPGRADE
   statsList: 
   valuesList: []
+  modeList: 
+  healthChange: 0
+  setHealthAbsolute: 0
+  speedMult: 0
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0

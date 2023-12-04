@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 4.5
+  speed: 6.5
   height_thresh: 3
 --- !u!1 &5955157563315690089
 GameObject:

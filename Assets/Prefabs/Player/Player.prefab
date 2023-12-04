@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4611678377388438076}
   - component: {fileID: 82302258263125662}
   - component: {fileID: 6814063215388601154}
+  - component: {fileID: 5214843737809448080}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -164,7 +165,7 @@ MonoBehaviour:
   jumpPower: 20
   fallPower: 10
   foot: {fileID: 7718183375553169430}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 5214843737809448080}
 --- !u!114 &4657599158838961215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ MonoBehaviour:
   deathCountBar: {fileID: 1785120984198062988}
   waveMan: {fileID: 0}
   currKillQuota: 0
-  upgradeManager: {fileID: 1982116455114854267}
+  upgradeManager: {fileID: 5897252639750005427}
   target: 0
 --- !u!114 &4611678377388438076
 MonoBehaviour:
@@ -372,6 +373,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5214843737809448080
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213064085987646136}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c8cb073590e832b43b5aa18e70b71abe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3291408471451780808
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +552,7 @@ Transform:
   m_GameObject: {fileID: 7538817425684297924}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.75, z: -10}
+  m_LocalPosition: {x: 0, y: 2.12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -571,7 +593,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.897066
+  orthographic size: 7.396779
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -830,9 +852,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2295093850878497540}
     m_Modifications:
+    - target: {fileID: 185036009926612798, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 185036009926612798, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 817690254730771335, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
       propertyPath: m_Name
       value: HealthDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 889755534902687947, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889755534902687947, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889755534902687947, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356673608027541419, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356673608027541419, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356673608027541419, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149857503009867894, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149857503009867894, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295064939718700371, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
       propertyPath: m_Pivot.x
@@ -930,11 +992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1982116455114854267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6887799325522046425, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
-  m_PrefabInstance: {fileID: 4906536091768152738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2030804755986007204 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6357212121700312582, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
@@ -979,6 +1036,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5897252639750005427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1567468809125740561, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+  m_PrefabInstance: {fileID: 4906536091768152738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6615279824533164017 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2295064939718700371, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}

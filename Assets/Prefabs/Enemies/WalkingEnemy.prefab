@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 5
+  speed: 5.5
   height_thresh: 3
 --- !u!212 &2628791402611056220
 SpriteRenderer:
