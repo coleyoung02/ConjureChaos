@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             //regular schmegular jump where the wizard is bound to gravity.
             if(foot.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
                 myRigidbody.velocity += new Vector2 (0, jumpPower);
+                playerAnimator.SetTrigger("Jump");
             }
         }
     }
