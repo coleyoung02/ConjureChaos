@@ -34,7 +34,7 @@ public class Shooting_AI : Parent_AI
             rb.velocity = direction;
         }
         else
-            rb.velocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(0, rb.velocity.y);
         if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
         {
             if (cooldown == 0f)

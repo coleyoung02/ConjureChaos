@@ -54,7 +54,8 @@ public class ProjectileConjurer : MonoBehaviour
         { Stats.Speed, 20f},
         { Stats.Size, 0.2f},
         { Stats.Range, 10f},
-        { Stats.Rate, 0.3f}
+        { Stats.Rate, 0.3f},
+        { Stats.Accuracy, 0f }
     };
 
     // Keeps track of status effects that it will apply to enemy
@@ -91,6 +92,8 @@ public class ProjectileConjurer : MonoBehaviour
     {
         Vector3 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
+        direction = Quaternion.AngleAxis(UnityEngine.Random.Range(-_statsList[Stats.Accuracy] / 2, _statsList[Stats.Accuracy]) / 2,
+            new Vector3(0, 0, 1)) * direction;
         return direction;
     }
 

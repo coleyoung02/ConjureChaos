@@ -32,6 +32,31 @@ public class Wave : MonoBehaviour
     public float rightTopDelay;
     public float rightTopOffset;
 
+    public GameObject leftPlatType;
+    public float leftPlatDuration;
+    public float leftPlatDelay;
+    public float leftPlatOffset;
+
+    public GameObject rightPlatType;
+    public float rightPlatDuration;
+    public float rightPlatDelay;
+    public float rightPlatOffset;
+
+    public GameObject upperLeftPlatType;
+    public float upperLeftPlatDuration;
+    public float upperLeftPlatDelay;
+    public float upperLeftPlatOffset;
+
+    public GameObject upperRightPlatType;
+    public float upperRightPlatDuration;
+    public float upperRightPlatDelay;
+    public float upperRightPlatOffset;
+
+    public GameObject topType;
+    public float topDuration;
+    public float topDelay;
+    public float topOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +111,61 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.duration = rightTopDuration;
             tempSpawnerScript.spawn_delay = rightTopDelay;
             tempSpawnerScript.offset = rightTopOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
+        }
+        if (topType)
+        {
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[4].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = topType;
+            tempSpawnerScript.duration = topDuration;
+            tempSpawnerScript.spawn_delay = topDelay;
+            tempSpawnerScript.offset = topOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
+        }
+        if (leftPlatType)
+        {
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[5].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = leftPlatType;
+            tempSpawnerScript.duration = leftPlatDuration;
+            tempSpawnerScript.spawn_delay = leftPlatDelay;
+            tempSpawnerScript.offset = leftPlatOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
+        }
+        if (rightPlatType)
+        {
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[6].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = rightPlatType;
+            tempSpawnerScript.duration = rightPlatDuration;
+            tempSpawnerScript.spawn_delay = rightPlatDelay;
+            tempSpawnerScript.offset = rightPlatOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
+        }
+        if (upperLeftPlatType)
+        {
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[7].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = upperLeftPlatType;
+            tempSpawnerScript.duration = upperLeftPlatDuration;
+            tempSpawnerScript.spawn_delay = upperLeftPlatDelay;
+            tempSpawnerScript.offset = upperLeftPlatOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
+        }
+        if (upperRightPlatType)
+        {
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[8].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = upperRightPlatType;
+            tempSpawnerScript.duration = upperRightPlatDuration;
+            tempSpawnerScript.spawn_delay = upperRightPlatDelay;
+            tempSpawnerScript.offset = upperRightPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
         }

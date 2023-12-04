@@ -127,9 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: An alluring concoction...
-  statsList: 00000000
+  statsList: 0000000005000000
   valuesList:
   - 3
-  modeList: 00
+  - 5
+  modeList: 0001
   healthChange: 0
   setHealthAbsolute: 0
+  speedMult: 0

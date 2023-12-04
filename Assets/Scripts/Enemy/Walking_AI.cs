@@ -26,7 +26,10 @@ public class Walking_AI : Parent_AI
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if (Mathf.Abs(player.transform.position.y - transform.position.y) < height_thresh)
+        else if (Mathf.Abs(player.transform.position.y - transform.position.y) < height_thresh ||
+            (player.transform.position.y < transform.position.y - 2 
+                && Mathf.Abs(player.transform.position.x) < 11f && Mathf.Abs(transform.position.x) > 10f) ||
+            !Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground")))
         {
             float dist_move = speed * Time.deltaTime;
             Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, 0);
@@ -36,8 +39,7 @@ public class Walking_AI : Parent_AI
             direction.y = rb.velocity.y;
             rb.velocity = direction;
         }
-        else if (rb.velocity.y < .05f && 
-            Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground")))
+        else if (rb.velocity.y < .05f)
         {
             Vector2 direction = rb.velocity;
             float closest = 9999f;
