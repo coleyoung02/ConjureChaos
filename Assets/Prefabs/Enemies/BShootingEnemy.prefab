@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 3333163639112042544}
   - component: {fileID: 4742211076530919274}
   - component: {fileID: 484491059873573216}
+  - component: {fileID: 9005310554175371192}
   - component: {fileID: 5906325846805613152}
   - component: {fileID: 6172005507532752889}
-  - component: {fileID: -7813487001400513791}
-  - component: {fileID: -4453753513238114521}
-  m_Layer: 10
-  m_Name: FlyingShootingEnemy
+  - component: {fileID: -7421240257059809350}
+  m_Layer: 9
+  m_Name: BShootingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.75}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 21543101148391975}
@@ -75,14 +75,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.27, y: 8.99}
+    oldSize: {x: 1.795, y: 3.5375}
     newSize: {x: 9.27, y: 8.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.4, y: 4.4}
+  m_Size: {x: 2, y: 3.55}
   m_EdgeRadius: 0
 --- !u!114 &484491059873573216
 MonoBehaviour:
@@ -96,8 +96,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 50
   contactDamage: 1
+--- !u!114 &9005310554175371192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257578625451431830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba1a1c61db262c42ba4707a8519cfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  speed: 5
+  desired_distance: 10
+  shooting_distance: 11
+  projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
+  cooldown_time: 1.5
+  projectile_speed: 15
 --- !u!50 &5906325846805613152
 Rigidbody2D:
   serializedVersion: 4
@@ -113,7 +132,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -166,8 +185,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bed1fa4ade8421445bca5446073d4951, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a535f4cae8a974847b4dc9d724baef3f, type: 3}
+  m_Color: {r: 0.47580075, g: 0, b: 0.5754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -177,26 +196,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7813487001400513791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257578625451431830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc7711bfc7834514e835e969be12e242, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 3
-  desired_distance: 5
-  shooting_distance: 8
-  projectilePrefab: {fileID: 7232488084303066669, guid: 43a89fb9a932cfb499e98ce45333745b, type: 3}
-  cooldown_time: 3
-  projectile_speed: 11
---- !u!95 &-4453753513238114521
+--- !u!95 &-7421240257059809350
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ Animator:
   m_GameObject: {fileID: 257578625451431830}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5aee7f80e5cd01249937b5fd01045375, type: 2}
+  m_Controller: {fileID: 9100000, guid: d372acd3d1683204db9a984a56a2ed48, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569504287709234586}
   - component: {fileID: 3649995099401484429}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21543101148391975}
   - component: {fileID: 3280729571342648210}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: PhysicalCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.4, y: 4.4, z: 4.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3333163639112042544}
@@ -374,5 +374,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 3.55}
   m_EdgeRadius: 0

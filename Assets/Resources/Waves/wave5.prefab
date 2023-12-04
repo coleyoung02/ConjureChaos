@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: topType
       value: 
-      objectReference: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
+      objectReference: {fileID: 257578625451431830, guid: 052a25eadc971754aa8c9cd9df2631b2, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: topDelay
       value: 4
@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorType
       value: 
-      objectReference: {fileID: 4058234263559248216, guid: 9405b892883920b4fb02876f94a5815c, type: 3}
+      objectReference: {fileID: 4058234263559248216, guid: b4f4cddd647edde428a3997e66c7d479, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftTopOffset
       value: 1

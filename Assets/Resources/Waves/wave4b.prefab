@@ -73,8 +73,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: upperLeftPlatType
+      value: 
+      objectReference: {fileID: 4058234263559248216, guid: 9405b892883920b4fb02876f94a5815c, type: 3}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorDuration
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: upperLeftPlatDelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: upperLeftPlatOffset
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: upperLeftPlatDuration
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5894873007709164099, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7998463365839113022, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_Name
-      value: wave4
+      value: wave4b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
