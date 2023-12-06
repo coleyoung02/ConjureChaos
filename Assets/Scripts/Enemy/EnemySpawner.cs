@@ -72,6 +72,22 @@ public class EnemySpawner : MonoBehaviour
             time_until_next_spawn -= Time.deltaTime;
             time_elapsed += Time.deltaTime;
         }
+        else if (timeSince <= .3f)
+        {
+            spawnerSprite.transform.localScale =
+                new Vector3(spawnerSprite.transform.localScale.x - Time.deltaTime * 3,
+                spawnerSprite.transform.localScale.y - Time.deltaTime * 3,
+                spawnerSprite.transform.localScale.z - Time.deltaTime * 3
+                );
+            spawnerLight.intensity -= Time.deltaTime * 6;
+            spawnerSprite.transform.Rotate(0, 0, -Time.deltaTime * 180f);
+            timeSince += Time.deltaTime;
+            if (timeSince > .3f)
+            {
+                spawnerSprite.transform.localScale = Vector3.zero;
+                spawnerLight.intensity = 0;
+            }
+        }
     }
 
     void SpawnEnemy()

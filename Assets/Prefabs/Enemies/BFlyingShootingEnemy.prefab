@@ -194,7 +194,7 @@ MonoBehaviour:
   speed: 4.5
   desired_distance: 6
   shooting_distance: 9
-  projectilePrefab: {fileID: 7232488084303066669, guid: 6c9f56866c5f8074490d62866bd7457d, type: 3}
+  projectilePrefab: {fileID: 7232488084303066669, guid: 43a89fb9a932cfb499e98ce45333745b, type: 3}
   cooldown_time: 2
   projectile_speed: 15
   sprite: {fileID: 6172005507532752889}

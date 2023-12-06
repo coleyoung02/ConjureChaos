@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: upperRightPlatType
       value: 
-      objectReference: {fileID: 4058234263559248216, guid: 9405b892883920b4fb02876f94a5815c, type: 3}
+      objectReference: {fileID: 4058234263559248216, guid: 5b1831e3349ce5649ab6527db5083ad9, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: upperRightPlatDelay
       value: 3

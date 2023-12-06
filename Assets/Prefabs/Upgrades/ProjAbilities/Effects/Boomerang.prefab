@@ -104,8 +104,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boomerang
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1689304596664188632}
   m_SourcePrefab: {fileID: 100100000, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+--- !u!1 &8858921991702924855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+  m_PrefabInstance: {fileID: 977936650224072293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1689304596664188632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858921991702924855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb10e9c247693cb4080639b4f997f500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Projectiles fly in a boomerang path
+  effect: 5
+  statsList: 01000000
+  valuesList:
+  - 1.35
+  modeList: 00
+  healthChange: 0
+  setHealthAbsolute: 0
+  speedMult: 0

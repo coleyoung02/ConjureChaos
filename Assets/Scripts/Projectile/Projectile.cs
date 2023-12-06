@@ -197,7 +197,7 @@ public class Projectile : MonoBehaviour
             Vector3 enemyPos = enemy.transform.position;
 
             enemy.GetComponent<Parent_AI>().Stun();
-            enemy.GetComponent<Rigidbody2D>().AddForce(_direction.normalized * _knockBackAmount, ForceMode2D.Impulse);
+            enemy.GetComponent<Rigidbody2D>().AddForce(rb.velocity.normalized * _knockBackAmount, ForceMode2D.Impulse);
         }
     }
 
