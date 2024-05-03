@@ -30,6 +30,11 @@ public class Flying_AI : Parent_AI
         FlipSprite();
         float dist_move = speed * Time.deltaTime;
         Vector2 direction = (Vector2)player.transform.position - (Vector2)transform.position;
+        if (direction.magnitude < .35f)
+        {
+            rb.velocity = rb.velocity - rb.velocity * Time.deltaTime * 10f;
+            return;
+        }
         direction.Normalize();
         rb.velocity = direction * speed;
     }

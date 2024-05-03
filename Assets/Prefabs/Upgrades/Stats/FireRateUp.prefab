@@ -54,8 +54,11 @@ MonoBehaviour:
   description: +1 Fire Rate
   statsList: 03000000
   valuesList:
-  - 0.7
+  - 0.75
   modeList: 00
+  healthChange: 0
+  setHealthAbsolute: 0
+  speedMult: 0
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0

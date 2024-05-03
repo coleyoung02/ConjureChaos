@@ -17,14 +17,17 @@ public class ProgressManager : MonoBehaviour
     {
         Enemy.deathListenerAdded = false;
         enemiesDefeated = 0;
-        currKillQuota = waveMan.killQuota;
+        if (waveMan != null)
+        {
+            currKillQuota = waveMan.killQuota;
+        }
         UpdateDeathCountUI();
 
     }
 
     void Update()
     {
-        if(currKillQuota <= 0)
+        if(waveMan != null && currKillQuota <= 0)
         {
             currKillQuota = waveMan.killQuota;
             UpdateDeathCountUI();

@@ -96,12 +96,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 70170d4e2ca8a004597d5da18e2fe7bd, type: 3}
     - target: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Name
       value: Homing
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 867252993094116379}
   m_SourcePrefab: {fileID: 100100000, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+--- !u!1 &441669225039557483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+  m_PrefabInstance: {fileID: 8161223459760622393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &867252993094116379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441669225039557483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb10e9c247693cb4080639b4f997f500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Projectiles home in on enemies, but do slightly less damage.
+  statsList: 00000000
+  valuesList:
+  - 0.8
+  modeList: 00
+  healthChange: 0
+  setHealthAbsolute: 0
+  speedMult: 0
+  effect: 8

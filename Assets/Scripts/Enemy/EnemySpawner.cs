@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public int spawnLocation;
     [SerializeField] private GameObject spawnerSprite;
     [SerializeField] private Light2D spawnerLight;
+    [SerializeField] private float appearTime = .9f;
     private float timeSince;
 
     // Start is called before the first frame update
@@ -41,24 +42,24 @@ public class EnemySpawner : MonoBehaviour
                 SpawnEnemy();
                 timeSince = 0f;
             }
-            else if (time_until_next_spawn <= .9f && time_until_next_spawn < duration - time_elapsed)
+            else if (time_until_next_spawn <= appearTime && time_until_next_spawn < duration - time_elapsed)
             {
                 spawnerSprite.transform.localScale =
-                    new Vector3(spawnerSprite.transform.localScale.x + Time.deltaTime,
-                    spawnerSprite.transform.localScale.y + Time.deltaTime,
-                    spawnerSprite.transform.localScale.z + Time.deltaTime
+                    new Vector3(spawnerSprite.transform.localScale.x + Time.deltaTime * .9f / appearTime,
+                    spawnerSprite.transform.localScale.y + Time.deltaTime * .9f / appearTime,
+                    spawnerSprite.transform.localScale.z + Time.deltaTime * .9f / appearTime
                     );
-                spawnerLight.intensity += Time.deltaTime * 2;
+                spawnerLight.intensity += Time.deltaTime * 2 * .9f / appearTime;
                 spawnerSprite.transform.Rotate(0, 0, Time.deltaTime * 60f);
             }
             else if (timeSince <= .3f)
             {
                 spawnerSprite.transform.localScale =
-                    new Vector3(spawnerSprite.transform.localScale.x - Time.deltaTime * 3,
-                    spawnerSprite.transform.localScale.y - Time.deltaTime * 3,
-                    spawnerSprite.transform.localScale.z - Time.deltaTime * 3
+                    new Vector3(spawnerSprite.transform.localScale.x - Time.deltaTime * 3 * .9f / appearTime,
+                    spawnerSprite.transform.localScale.y - Time.deltaTime * 3 * .9f / appearTime,
+                    spawnerSprite.transform.localScale.z - Time.deltaTime * 3 * .9f / appearTime
                     );
-                spawnerLight.intensity -= Time.deltaTime * 6;
+                spawnerLight.intensity -= Time.deltaTime * 6 * .9f / appearTime;
                 spawnerSprite.transform.Rotate(0, 0, -Time.deltaTime * 180f);
             }
             else if (timeSince > .3f)

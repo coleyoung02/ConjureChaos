@@ -57,6 +57,12 @@ public class Wave : MonoBehaviour
     public float topDelay;
     public float topOffset;
 
+
+    public GameObject centerPlatType;
+    public float centerPlatDuration;
+    public float centerPlatDelay;
+    public float centerPlatOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -166,6 +172,17 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.duration = upperRightPlatDuration;
             tempSpawnerScript.spawn_delay = upperRightPlatDelay;
             tempSpawnerScript.offset = upperRightPlatOffset;
+            killQuota += tempSpawnerScript.NumEnemiesToSpawn();
+            spawners.Add(tempSpawner);
+        }
+        if (centerPlatType)
+        {
+            tempSpawner = Instantiate(spawnerPrefab, spawnPoints[9].transform);
+            tempSpawnerScript = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawnerScript.enemy = centerPlatType;
+            tempSpawnerScript.duration = centerPlatDuration;
+            tempSpawnerScript.spawn_delay = centerPlatDelay;
+            tempSpawnerScript.offset = centerPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
         }

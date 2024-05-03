@@ -18,6 +18,9 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     private GameObject hitSplat;
+    [SerializeField]
+    private float boomerangReverseTime = .15f;
+    private float boomerangReverseClock;
 
     // The Projectile Conjurer class
     private ProjectileConjurer _conjurer;
@@ -28,6 +31,7 @@ public class Projectile : MonoBehaviour
     private float _size;
     private float _range;
     private float _shotCount;
+    private float lifetime;
 
     // Projectile effects
     private List<ProjectileConjurer.ProjectileEffects> _projectileEffects = new();
@@ -49,6 +53,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
+        boomerangReverseClock = 0f;
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
 
@@ -65,7 +70,7 @@ public class Projectile : MonoBehaviour
         flipped = false;
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
-            multiplier = 3.25f;
+            multiplier = 2.5f;
             splinterMult = 3.65f;
             if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
             {
@@ -75,13 +80,17 @@ public class Projectile : MonoBehaviour
         }
         if (IsMain)
         {
-            Destroy(gameObject, multiplier * _range / _speed);
+            lifetime = multiplier * _range / _speed;
+            Destroy(gameObject, lifetime);
         }
         else
         {
-            Destroy(gameObject, splinterMult * (_range / _speed) / 2);
+            lifetime = splinterMult * (_range / _speed) / 2;
+            Destroy(gameObject, lifetime);
         }
         accumulatedTime = 0f;
+        Debug.Log(lifetime);
+        boomerangReverseTime *= lifetime;
     }
 
     private GameObject GetClosestEnemy()
@@ -104,34 +113,20 @@ public class Projectile : MonoBehaviour
         accumulatedTime += Time.deltaTime;
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
-            if (accumulatedTime > 1f / _speed || !IsMain)
+            if (accumulatedTime > .3f * lifetime || !IsMain)
             {
-                int flippedMult;
-                if (flipped)
+                boomerangReverseClock += Time.deltaTime;
+
+                if (boomerangReverseClock > boomerangReverseTime && !flipped)
                 {
-                    flippedMult = -1;
-                }
-                else
-                {
-                    flippedMult = 1;
-                }
-                if (IsMain)
-                {
-                    rb.velocity -= flippedMult * rb.velocity.normalized * initialVelocity.magnitude * Time.deltaTime * 10 * _speed / 14 / _range;
-                }
-                else
-                {
-                    rb.velocity -= flippedMult * rb.velocity.normalized * initialVelocity.magnitude * Time.deltaTime * 10 * _speed / 11 / _range;
-                }
-                if (!flipped && rb.velocity.magnitude < 0.05f)
-                {
-                    flipped = true;
                     gameObject.transform.Rotate(new Vector3(0, 0, 180f));
+                    rb.velocity = -rb.velocity;
                     closestEnemy = GetClosestEnemy();
+                    flipped = true;
                 }
+                rb.velocity = rb.velocity.normalized * Mathf.Abs(Mathf.Lerp(1, -1, Mathf.Clamp(boomerangReverseClock, 0, 2 * boomerangReverseTime) / (2 * boomerangReverseTime))) * _speed;
             }
         }
-
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
         {
             if (accumulatedTime > .08f)

@@ -54,6 +54,7 @@ MonoBehaviour:
   spawnLocation: 0
   spawnerSprite: {fileID: 8757646726733074847}
   spawnerLight: {fileID: 8318502892142951917}
+  appearTime: 1.4
 --- !u!1 &8757646726733074847
 GameObject:
   m_ObjectHideFlags: 0

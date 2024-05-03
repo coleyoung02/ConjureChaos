@@ -126,8 +126,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: valuesList.Array.data[1]
-      value: 1.2
+      value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 5968214206793501979, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04cf8d8b0b9a90e4db9bf277bcd96ce8, type: 3}
     - target: {fileID: 8602828216180783186, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Name
       value: Forking
