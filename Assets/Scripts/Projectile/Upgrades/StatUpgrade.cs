@@ -8,9 +8,9 @@ public class StatUpgrade : Upgrade
     [SerializeField] protected List<Stats> statsList;
     [SerializeField] protected List<float> valuesList;
     [SerializeField] protected List<bool> modeList;
-    [SerializeField] private int healthChange;
-    [SerializeField] private bool setHealthAbsolute;
-    [SerializeField] private float speedMult;
+    [SerializeField] protected int healthChange;
+    [SerializeField] protected bool setHealthAbsolute;
+    [SerializeField] protected float speedMult;
     public override void DoUpgrade()
     {
         ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();

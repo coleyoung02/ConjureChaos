@@ -27,6 +27,10 @@ public class ProjectileConjurer : MonoBehaviour
     
     // Main Camera
     private Camera _mainCamera;
+
+    [SerializeField]
+    private float forkingAngle;
+    private int forkingCount = 0;
     
     public enum StatusEffects
     {
@@ -44,6 +48,7 @@ public class ProjectileConjurer : MonoBehaviour
         Boomerang,
         IAMSPEED,
         LifeSteal,
+        Homing,
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -55,7 +60,8 @@ public class ProjectileConjurer : MonoBehaviour
         { Stats.Size, 0.225f},
         { Stats.Range, 10f},
         { Stats.Rate, 0.275f},
-        { Stats.Accuracy, 0f }
+        { Stats.Accuracy, 0f },
+        { Stats.ShotCount, 1f },
     };
 
     // Keeps track of status effects that it will apply to enemy
@@ -78,6 +84,7 @@ public class ProjectileConjurer : MonoBehaviour
 
     public void PlayHitSound()
     {
+        hitSFX.pitch = UnityEngine.Random.Range(.925f, 1.075f);
         hitSFX.Play();
     }
     
@@ -92,6 +99,26 @@ public class ProjectileConjurer : MonoBehaviour
     {
         Vector3 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
+        int shots = Mathf.RoundToInt(_statsList[Stats.ShotCount]);
+        if (forkingCount > 0)
+        {
+            if (shots % 2 == 0 && forkingCount == shots - 1)
+            {
+                if (UnityEngine.Random.Range(0f, 1f) > .5f)
+                {
+                    direction = Quaternion.AngleAxis(forkingAngle * ((forkingCount - 1) / 2 + 1), new Vector3(0, 0, 1)) * direction;
+                }
+                else
+                {
+                    direction = Quaternion.AngleAxis(-forkingAngle * ((forkingCount - 1) / 2 + 1), new Vector3(0, 0, 1)) * direction;
+                }
+            }
+            else
+            {
+                direction = Quaternion.AngleAxis(((forkingCount % 2) * 2 - 1) * forkingAngle * ((forkingCount - 1) / 2 + 1), new Vector3(0, 0, 1)) * direction;
+            }
+        }
+        forkingCount = (++forkingCount) % shots;
         direction = Quaternion.AngleAxis(UnityEngine.Random.Range(-_statsList[Stats.Accuracy] / 2, _statsList[Stats.Accuracy]) / 2,
             new Vector3(0, 0, 1)) * direction;
         return direction;
@@ -159,7 +186,10 @@ public class ProjectileConjurer : MonoBehaviour
         if (Input.GetMouseButton(0) && _canFire)
         {
             Transform myTransform = transform;
-            Instantiate(projectilePrefab, myTransform.position, myTransform.rotation);
+            for (int i = 0; i < Mathf.RoundToInt(_statsList[Stats.ShotCount]); i++)
+            {
+                Instantiate(projectilePrefab, myTransform.position, myTransform.rotation);
+            }
             _canFire = false;
         }
     }

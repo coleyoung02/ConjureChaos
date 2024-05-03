@@ -15,7 +15,10 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     private bool IsMain;
-    
+
+    [SerializeField]
+    private GameObject hitSplat;
+
     // The Projectile Conjurer class
     private ProjectileConjurer _conjurer;
     
@@ -24,7 +27,8 @@ public class Projectile : MonoBehaviour
     private float _speed;
     private float _size;
     private float _range;
-    
+    private float _shotCount;
+
     // Projectile effects
     private List<ProjectileConjurer.ProjectileEffects> _projectileEffects = new();
 
@@ -41,6 +45,7 @@ public class Projectile : MonoBehaviour
 
     private float accumulatedTime;
     private bool flipped;
+    private GameObject closestEnemy;
 
     private void Start()
     {
@@ -62,6 +67,11 @@ public class Projectile : MonoBehaviour
         {
             multiplier = 3.25f;
             splinterMult = 3.65f;
+            if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
+            {
+                multiplier *= 1.25f;
+                splinterMult *= 2f;
+            }
         }
         if (IsMain)
         {
@@ -72,27 +82,76 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject, splinterMult * (_range / _speed) / 2);
         }
         accumulatedTime = 0f;
-        
+    }
+
+    private GameObject GetClosestEnemy()
+    {
+        GameObject g = null;
+        float closest = float.MaxValue;
+        foreach (Enemy e in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+        {
+            if ((e.transform.position - (transform.position + transform.right * 5f)).magnitude < closest)
+            {
+                closest = (e.transform.position - transform.position).magnitude;
+                g = e.gameObject;
+            }
+        }
+        return g;
     }
 
     private void Update()
     {
+        accumulatedTime += Time.deltaTime;
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
-            accumulatedTime += Time.deltaTime;
             if (accumulatedTime > 1f / _speed || !IsMain)
             {
-                if (IsMain)
+                int flippedMult;
+                if (flipped)
                 {
-                    rb.velocity -= initialVelocity * Time.deltaTime * 10 * _speed / 14 / _range;
+                    flippedMult = -1;
                 }
                 else
                 {
-                    rb.velocity -= initialVelocity * Time.deltaTime * 10 * _speed / 11 / _range;
+                    flippedMult = 1;
                 }
-                if (!flipped && Vector2.Dot(rb.velocity, initialVelocity) < 0)
+                if (IsMain)
+                {
+                    rb.velocity -= flippedMult * rb.velocity.normalized * initialVelocity.magnitude * Time.deltaTime * 10 * _speed / 14 / _range;
+                }
+                else
+                {
+                    rb.velocity -= flippedMult * rb.velocity.normalized * initialVelocity.magnitude * Time.deltaTime * 10 * _speed / 11 / _range;
+                }
+                if (!flipped && rb.velocity.magnitude < 0.05f)
                 {
                     flipped = true;
+                    gameObject.transform.Rotate(new Vector3(0, 0, 180f));
+                    closestEnemy = GetClosestEnemy();
+                }
+            }
+        }
+
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
+        {
+            if (accumulatedTime > .08f)
+            {
+                if (closestEnemy == null)
+                {
+                    closestEnemy = GetClosestEnemy();
+                }
+                else
+                {
+                    if (Vector2.Dot(closestEnemy.transform.position - transform.position, transform.up) > 0)
+                    {
+                        gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 120f * MathF.Min(_speed, 20f) / 20f));
+                        rb.velocity = rb.velocity.magnitude * transform.right;
+                    }
+                    else
+                    {
+                        gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 120f * MathF.Min(_speed, 20f) / 20f));
+                        rb.velocity = rb.velocity.magnitude * transform.right;
+                    }
                 }
             }
         }
@@ -106,6 +165,7 @@ public class Projectile : MonoBehaviour
         _speed = stats[Stats.Speed];
         _size = stats[Stats.Size];
         _range = stats[Stats.Range];
+        _shotCount = stats[Stats.ShotCount];
     }
 
     private void InitializeEffects()
@@ -159,6 +219,7 @@ public class Projectile : MonoBehaviour
     {
         if (myCollider.CompareTag("Enemy") && (myCollider != ignore || flipped))
         {
+            Instantiate(hitSplat, transform.position + new Vector3(rb.velocity.normalized.x, rb.velocity.normalized.y) * .25f, transform.rotation, null);
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
             script.DamageEnemy(_damage);
@@ -214,6 +275,7 @@ public class Projectile : MonoBehaviour
             Vector3 enemyPos = enemy.transform.position;
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             int numDivisions = 6;
+            numDivisions += Mathf.RoundToInt(_shotCount);
             for (int i = 180 / numDivisions; i < 360; i += 360/numDivisions)
             {
                 Transform myTransform = transform;

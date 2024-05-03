@@ -12,6 +12,7 @@ public enum Stats
     Rate = 3,
     Size = 4,
     Accuracy = 5,
+    ShotCount = 6,
 }
 
 public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
