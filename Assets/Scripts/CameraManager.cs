@@ -45,7 +45,7 @@ public class CameraManager : MonoBehaviour
         for (float f = 0f; f < .35f; f += Time.unscaledDeltaTime)
         {
             cam.orthographicSize = Mathf.Lerp(baseSize, shakeTargetSize, f / .35f);
-            transform.position = Vector3.Lerp(lastPos, (playerPos + lastPos) / 2, f / .35f);
+            transform.position = Vector3.Lerp(lastPos, (playerPos + lastPos * 2) / 3, f / .35f);
             if (f > .15f)
             {
                 Shake();
@@ -62,7 +62,7 @@ public class CameraManager : MonoBehaviour
         for (float f = 0f; f < .3f; f += Time.unscaledDeltaTime)
         {
             cam.orthographicSize = Mathf.Lerp(shakeTargetSize, baseSize, f / .3f);
-            transform.position = Vector3.Lerp((playerPos + lastPos) / 2, lastPos, f / .3f);
+            transform.position = Vector3.Lerp((playerPos + lastPos * 2) / 3, lastPos, f / .3f);
             if (f < .15f)
             {
                 Shake();
@@ -76,15 +76,20 @@ public class CameraManager : MonoBehaviour
 
     private void Shake()
     {
-        Vector3 v = ((playerPos + lastPos) / 2);
-        v.x += UnityEngine.Random.Range(-.3f, .3f);
-        v.y += UnityEngine.Random.Range(-.3f, .3f);
+        Vector3 v = (playerPos + lastPos * 2) / 3f;
+        v.x += UnityEngine.Random.Range(-.25f, .25f);
+        v.y += UnityEngine.Random.Range(-.25f, .25f);
         transform.position = v;
     }
 
     private void OnDisable()
     {
         Time.timeScale = 1;
+    }
+
+    public void ForceStop()
+    {
+        StopAllCoroutines();
     }
 
     private void SetPos(Vector3 playerPos)

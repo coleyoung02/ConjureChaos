@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 35
   contactDamage: 1
 --- !u!50 &5906325846805613152
 Rigidbody2D:
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 4.5
+  speed: 5.5
   desired_distance: 6
   shooting_distance: 9
   projectilePrefab: {fileID: 7232488084303066669, guid: 43a89fb9a932cfb499e98ce45333745b, type: 3}

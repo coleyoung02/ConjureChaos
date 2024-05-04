@@ -5,11 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int maxHealth = 1;
-    [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] private GameObject invulIndicator;
+    [SerializeField] private GameObject invulIndicator2;
     [SerializeField] Image[] hearts;
     [SerializeField] Image hurtOverlay;
     private float hurtTime;
@@ -32,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         hurtTime = 0f;
-        currentHealth = maxHealth;
+        SetHealth(maxHealth);
         UpdateHealthUI();
         camMan = FindAnyObjectByType<CameraManager>();
     }
@@ -42,6 +44,10 @@ public class PlayerHealth : MonoBehaviour
         if (lifeStealSlider.value < lifeStealSliderTarget)
         {
             lifeStealSlider.value = Mathf.Min(lifeStealSliderTarget, lifeStealSlider.value + Time.deltaTime * .6f);
+        }
+        else if (lifeStealSlider.value > lifeStealSliderTarget)
+        {
+            lifeStealSlider.value = lifeStealSliderTarget;
         }
         if (hurtTime > 0f)
         {
@@ -86,36 +92,50 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void SetHealth(int health)
+    {
+        currentHealth = health;
+        lifeStealFullnessIndicator.SetActive(currentHealth == maxHealth);
+        if (currentHealth != maxHealth)
+        {
+
+        }
+        UpdateHealthUI();
+    }
+
     public void PlayerTakeDamage(int damage)
     {
         if (isInvincible) {
             return;
         }
         hurtTime = overlayDuration;
-        currentHealth -= damage;
+        SetHealth(currentHealth - damage);
         AudioManager.instance.PlayHurtNoise();
         if (currentHealth <= 0)
         {
-            currentHealth = 0;
+            SetHealth(0);
             SceneManager.LoadScene("LoseScreen");
         }
         else if (currentHealth == maxHealth - 1)
         {
             enemiesKilled = 0;
+            lifeStealSliderTarget = 0;
         }
         isInvincible = true;
         lifeStealFullnessIndicator.SetActive(false);
+        StopAllCoroutines();
         StartCoroutine(InvincibilityTimer(invincibilityDuration));
+        StartCoroutine(InvincibilityIndicator(invincibilityDuration - .1f));
         UpdateHealthUI();
         camMan.TakeDamage();
     }
 
     public void PlayerAddHealth(int healValue)
     {
-        currentHealth += healValue;
+        SetHealth(currentHealth + healValue);
         if (currentHealth > maxHealth)
         {
-            currentHealth = maxHealth;
+            SetHealth(maxHealth);
         }
         if (currentHealth == maxHealth)
         {
@@ -164,7 +184,7 @@ public class PlayerHealth : MonoBehaviour
             maxHealth = hearts.Length;
         }
         currentHealth += value;
-        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        SetHealth(Mathf.Min(currentHealth, maxHealth));
         UpdateHealthUI();
     }
 
@@ -177,7 +197,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (currentHealth > maxHealth)
         {
-            currentHealth = maxHealth;
+            SetHealth(maxHealth);
         }
         if (currentHealth == maxHealth)
         {
@@ -190,7 +210,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void HealToFull()
     {
-        currentHealth = maxHealth;
+        SetHealth(maxHealth);
         enemiesKilled = 0;
         lifeStealSlider.value = 0;
         lifeStealFullnessIndicator.SetActive(true);
@@ -233,6 +253,39 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator InvincibilityTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
+        isInvincible = false;
+    }
+
+    IEnumerator InvincibilityIndicator(float duration)
+    {
+        yield return new WaitForSeconds(.1f);
+        invulIndicator.SetActive(true);
+        invulIndicator2.SetActive(true);
+        float multiplier = 1f;
+        for (float f = .1f; f < duration; f += Time.deltaTime)
+        {
+            invulIndicator.transform.Rotate(new Vector3(0, 0, -100f * Time.deltaTime));
+            invulIndicator.transform.localScale = new Vector3(Mathf.Cos(Time.time * 12f) * .125f  + 1.125f * multiplier, Mathf.Sin(Time.time * 12f) * .125f + 1.125f * multiplier, 1);
+            invulIndicator2.transform.Rotate(new Vector3(0, 0, 100f * Time.deltaTime));
+            invulIndicator2.transform.localScale = new Vector3(Mathf.Sin(Time.time * 12f) * .125f + 1.125f * multiplier, Mathf.Cos(Time.time * 12f) * .125f + 1.125f * multiplier, 1);
+            if (f > duration - .5f)
+            {
+                multiplier = Mathf.Lerp(1, .65f, (f - (duration - .5f)) / .5f);
+                if (f % .1f > .05f)
+                {
+                    invulIndicator.SetActive(true);
+                    invulIndicator2.SetActive(true);
+                }
+                else
+                {
+                    invulIndicator.SetActive(false);
+                    invulIndicator2.SetActive(false);
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        invulIndicator.SetActive(false);
+        invulIndicator2.SetActive(false);
         isInvincible = false;
     }
 }
