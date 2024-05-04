@@ -96,9 +96,9 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = health;
         lifeStealFullnessIndicator.SetActive(currentHealth == maxHealth);
-        if (currentHealth != maxHealth)
+        if (currentHealth == maxHealth)
         {
-
+            enemiesKilled = 0;
         }
         UpdateHealthUI();
     }
@@ -174,6 +174,7 @@ public class PlayerHealth : MonoBehaviour
         {
             lifeStealFullnessIndicator.SetActive(false);
         }
+        UpdateHealthUI();
     }
 
     public void AddMaxHealth(int value)
