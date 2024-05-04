@@ -154,6 +154,10 @@ public class ProjectileConjurer : MonoBehaviour
     public void UpdateProjectileEffect(ProjectileEffects projectileEffects)
     {
         _projectileEffects.Add(projectileEffects);
+        if (projectileEffects == ProjectileEffects.LifeSteal)
+        {
+            FindAnyObjectByType<PlayerHealth>().ActivateLifeSteal();
+        }
     }
 
     public void FlipFirePoint(bool flipRight)

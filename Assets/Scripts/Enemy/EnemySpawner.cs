@@ -18,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Light2D spawnerLight;
     [SerializeField] private float appearTime = .9f;
     private float timeSince;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -93,7 +92,6 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-
         GameObject enemy_instantiated = Instantiate(enemy, transform.position, Quaternion.identity);
         enemy_instantiated.GetComponent<Parent_AI>().SetPlayer(player);
         enemy_instantiated.GetComponent<Enemy>().SetPlayer(player);

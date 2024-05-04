@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,7 +17,12 @@ public class PlayerHealth : MonoBehaviour
     private static float maxOpacity = .4f;
     [SerializeField] Sprite fullHeartImage;
     [SerializeField] Sprite emptyHeartImage;
+    [SerializeField] private Slider lifeStealSlider;
+    private float lifeStealSliderTarget;
+    [SerializeField] private GameObject lifeStealFullnessIndicator;
     [SerializeField] float invincibilityDuration = 2f;
+
+    private static int lifeStealKills = 10;
 
     int currentHealth = 1;
     bool isInvincible = false;
@@ -31,7 +37,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        
+        if (lifeStealSlider.value < lifeStealSliderTarget)
+        {
+            lifeStealSlider.value = Mathf.Min(lifeStealSliderTarget, lifeStealSlider.value + Time.deltaTime * .6f);
+        }
         if (hurtTime > 0f)
         {
             float buildDuration = overlayDuration * .05f;
@@ -53,16 +62,25 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void ActivateLifeSteal()
+    {
+        lifeStealSlider.gameObject.SetActive(true);
+        lifeStealFullnessIndicator.gameObject.SetActive(currentHealth == maxHealth);
+    }
+
     public void EnemyKilled()
     {
         if (currentHealth != maxHealth)
         {
             enemiesKilled++;
+            lifeStealSliderTarget = enemiesKilled / (float)lifeStealKills;
         }
-        if (enemiesKilled >= 10 && currentHealth < maxHealth)
+        if (enemiesKilled >= lifeStealKills && currentHealth < maxHealth)
         {
             PlayerAddHealth(1);
             enemiesKilled = 0;
+            lifeStealSlider.value = 0;
+            lifeStealFullnessIndicator.SetActive(true);
         }
     }
 
@@ -79,7 +97,12 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             SceneManager.LoadScene("LoseScreen");
         }
+        else if (currentHealth == maxHealth - 1)
+        {
+            enemiesKilled = 0;
+        }
         isInvincible = true;
+        lifeStealFullnessIndicator.SetActive(false);
         StartCoroutine(InvincibilityTimer(invincibilityDuration));
         UpdateHealthUI();
     }
@@ -94,6 +117,11 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth == maxHealth)
         {
             enemiesKilled = 0;
+            lifeStealSlider.value = 0;
+            lifeStealFullnessIndicator.SetActive(true);
+        }
+        if (currentHealth == maxHealth)
+        {
         }
         UpdateHealthUI();
     }
@@ -116,6 +144,12 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth == maxHealth)
         {
             enemiesKilled = 0;
+            lifeStealSlider.value = 0;
+            lifeStealFullnessIndicator.SetActive(true);
+        }
+        else
+        {
+            lifeStealFullnessIndicator.SetActive(false);
         }
     }
 
@@ -142,6 +176,12 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        if (currentHealth == maxHealth)
+        {
+            enemiesKilled = 0;
+            lifeStealSlider.value = 0;
+            lifeStealFullnessIndicator.SetActive(true);
+        }
         UpdateHealthUI();
     }
 
@@ -149,6 +189,8 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         enemiesKilled = 0;
+        lifeStealSlider.value = 0;
+        lifeStealFullnessIndicator.SetActive(true);
         UpdateHealthUI();
     }
 

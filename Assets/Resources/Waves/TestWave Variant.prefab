@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDelay
-      value: 2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDuration
-      value: 10
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5894873007709164099, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7237736121514661304
+--- !u!1001 &355659728188707202
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,52 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: topType
-      value: 
-      objectReference: {fileID: 257578625451431830, guid: 62ba95d8f30d7f84f97651e4c804d36f, type: 3}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: topDelay
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: topOffset
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: topDuration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftPlatType
-      value: 
-      objectReference: {fileID: 4058234263559248216, guid: 9405b892883920b4fb02876f94a5815c, type: 3}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorType
+      value: 
+      objectReference: {fileID: 257578625451431830, guid: 8e1484b3f998f8545af5edbf4133fd63, type: 3}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftFloorDelay
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: rightFloorType
       value: 
       objectReference: {fileID: 257578625451431830, guid: b85e324a0b63ebc4090f525cc21c0ff6, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftPlatDelay
+      propertyPath: rightFloorDelay
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftFloorDelay
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftPlatOffset
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftFloorOffset
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
-      propertyPath: leftPlatDuration
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDuration
-      value: 19
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: rightFloorDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5894873007709164099, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7998463365839113022, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_Name
-      value: wave2 a
+      value: shooterTest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -7,7 +7,10 @@ public class Orbit : Upgrade
 {
     public override void DoUpgrade()
     { 
-        FindObjectOfType<ShieldParent>().Activate();
+        foreach (ShieldParent sp in FindObjectsOfType<ShieldParent>())
+        {
+            sp.Activate();
+        }
         base.DoUpgrade();
     }
 }

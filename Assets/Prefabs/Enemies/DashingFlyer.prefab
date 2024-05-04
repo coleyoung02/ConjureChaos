@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7810913572183534023}
   - component: {fileID: 7670101080026379522}
   - component: {fileID: 6945313711109720573}
-  - component: {fileID: 2586097237445304443}
   - component: {fileID: 8839806228955375631}
   - component: {fileID: 3974095728624141124}
   - component: {fileID: 7906834818809735299}
+  - component: {fileID: 5751222633471858402}
   m_Layer: 10
   m_Name: DashingFlyer
   m_TagString: Enemy
@@ -98,21 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 25
   contactDamage: 1
---- !u!114 &2586097237445304443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4949422371381433468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea319e96851cf244a792cf280b3e108, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 5
-  sprite: {fileID: 3974095728624141124}
 --- !u!50 &8839806228955375631
 Rigidbody2D:
   serializedVersion: 4
@@ -213,6 +198,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5751222633471858402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949422371381433468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217b181628f578043bb5aaad2c2eef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  speed: 8
+  xGap: 7
+  dashVelocity: 20
+  yOffsetRange: 5
+  sprite: {fileID: 3974095728624141124}
+  dashLerpInTime: 0.25
+  dashLerpOutTime: 0.5
+  spinDegsPerSec: 155
+  waitTime: 2.5
 --- !u!1 &7809872917911029353
 GameObject:
   m_ObjectHideFlags: 0

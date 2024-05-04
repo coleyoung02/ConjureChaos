@@ -37,6 +37,12 @@ public class Dashing_AI : Parent_AI
         {
             player = FindFirstObjectByType<PlayerMovement>().gameObject;
         }
+        if (FindObjectOfType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
+        {
+            dashVelocity *= 1.35f;
+            spinDegsPerSec *= 1.4f;
+            waitTime /= 1.5f;
+        }
         base.Start();
     }
     protected void FlipSprite()
@@ -72,16 +78,21 @@ public class Dashing_AI : Parent_AI
         }
     }
 
-    // Update is called once per frame
-    protected override void OnUpdate()
+    private void Moving()
     {
         FlipSprite();
-        if (state == DashState.moving)
+        if (lerpClock > 8.5f)
+        {
+            state = DashState.spinning;
+            lerpClock = 0f;
+        }
+        else
         {
             Vector2 direction = new Vector2(player.transform.position.x + xOffset, player.transform.position.y + yOffset) - (Vector2)transform.position;
-            if (direction.magnitude < .15f)
+            if (direction.magnitude < .75f)
             {
                 state = DashState.spinning;
+                lerpClock = 0f;
                 rb.velocity = Vector2.zero;
             }
             else
@@ -90,90 +101,115 @@ public class Dashing_AI : Parent_AI
                 rb.velocity = direction * speed;
             }
         }
-        else if (state == DashState.spinning)
+    }
+
+    private void Spinning()
+    {
+        Vector3 targ = player.transform.position;
+
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+
+        float angle = (transform.rotation.eulerAngles.z + 90f) - Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+        if (player.transform.position.x > transform.position.x)
         {
-            Vector3 targ = player.transform.position;
+            transform.Rotate(new Vector3(0, 0, -Mathf.Clamp(angle, Time.deltaTime * spinDegsPerSec, Time.deltaTime * spinDegsPerSec)));
+        }
+        else
+        {
+            transform.Rotate(new Vector3(0, 0, Mathf.Clamp(angle, Time.deltaTime * spinDegsPerSec, Time.deltaTime * spinDegsPerSec)));
+        }
+        if (Mathf.Abs(angle) % 360 < 2.5f)
+        {
+            target = player.transform.position;
+            diff = target - (Vector2)transform.position;
+            lerpClock = 0f;
+            state = DashState.dashing;
+        }
+    }
 
-            Vector3 objectPos = transform.position;
-            targ.x = targ.x - objectPos.x;
-            targ.y = targ.y - objectPos.y;
-
-            float angle = (transform.rotation.eulerAngles.z + 90f) - Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
-            if (Mathf.Abs(angle) % 360 < 5f)
+    private void Dashing()
+    {
+        if (!lerpedIn)
+        {
+            lerpClock += Time.deltaTime;
+            rb.velocity = Mathf.Lerp(0, dashVelocity, Mathf.Min(lerpClock / dashLerpInTime, 1)) * diff.normalized;
+            if (lerpClock >= dashLerpInTime || Vector2.Dot((Vector2)transform.position, diff) >= 0)
             {
-                target = player.transform.position;
-                diff = target - (Vector2)transform.position;
+                endRot = transform.rotation;
+                lerpedIn = true;
                 lerpClock = 0f;
-                state = DashState.dashing;
-            }
-            if (player.transform.position.x > transform.position.x)
-            {
-                transform.Rotate(new Vector3(0, 0, -Mathf.Clamp(angle, Time.deltaTime * spinDegsPerSec, Time.deltaTime * spinDegsPerSec)));
-            }
-            else
-            {
-                transform.Rotate(new Vector3(0, 0, Mathf.Clamp(angle, Time.deltaTime * spinDegsPerSec, Time.deltaTime * spinDegsPerSec)));
             }
         }
-        else if (state == DashState.dashing)
+        else
         {
-            if (!lerpedIn)
+            if (Vector2.Dot((Vector2)transform.position, diff) >= 0)
             {
                 lerpClock += Time.deltaTime;
-                rb.velocity = Mathf.Lerp(0, dashVelocity, Mathf.Min(lerpClock / dashLerpInTime, 1)) * diff.normalized;
-                if (lerpClock >= dashLerpInTime || Vector2.Dot((Vector2)transform.position, diff) >= 0)
+                rb.velocity = diff.normalized * Mathf.Lerp(dashVelocity, 0f, Mathf.Min(lerpClock / dashLerpOutTime, 1));
+                transform.rotation = Quaternion.Lerp(endRot, Quaternion.identity, Mathf.Min(lerpClock / dashLerpOutTime, 1));
+                if (lerpClock >= dashLerpOutTime)
                 {
-                    endRot = transform.rotation;
-                    lerpedIn = true;
+                    state = DashState.wait;
                     lerpClock = 0f;
-                }
-            }
-            else
-            {
-                if (Vector2.Dot((Vector2)transform.position, diff) >= 0)
-                {
-                    lerpClock += Time.deltaTime;
-                    rb.velocity = diff.normalized * Mathf.Lerp(dashVelocity, 0f, Mathf.Min(lerpClock / dashLerpOutTime, 1));
-                    transform.rotation = Quaternion.Lerp(endRot, Quaternion.identity, Mathf.Min(lerpClock / dashLerpOutTime, 1));
-                    if (lerpClock >= dashLerpOutTime)
+                    xOffset = UnityEngine.Random.Range(xGap + .5f, xGap + 3.5f);
+                    yOffset = UnityEngine.Random.Range(0, yOffsetRange) + yOffsetRange / 2;
+                    if (player.transform.position.x > transform.position.x)
                     {
-                        state = DashState.wait;
-                        lerpClock = 0f;
-                        xOffset = UnityEngine.Random.Range(xGap + .5f, xGap + 3.5f);
-                        yOffset = UnityEngine.Random.Range(0, yOffsetRange) + yOffsetRange / 2;
-                        if (player.transform.position.x > transform.position.x)
-                        {
-                            xOffset *= -1;
-                        }
-                        lerpedIn = false;
+                        xOffset *= -1;
                     }
+                    lerpedIn = false;
                 }
             }
         }
-        else if (state == DashState.wait)
+    }
+
+    private void Waiting()
+    {
+        FlipSprite();
+        if (lerpClock > waitTime)
         {
-            if (lerpClock > waitTime)
+            lerpClock = 0f;
+            SetOffsets();
+            state = DashState.moving;
+        }
+        else
+        {
+            lerpClock += Time.deltaTime;
+            Vector2 direction = new Vector2(player.transform.position.x + xOffset, player.transform.position.y + 6) - (Vector2)transform.position;
+            if (direction.magnitude < .15f)
             {
-                lerpClock = 0f;
-                SetOffsets();
                 state = DashState.moving;
             }
             else
             {
-                lerpClock += Time.deltaTime;
-                Vector2 direction = new Vector2(player.transform.position.x + xOffset, player.transform.position.y + 6) - (Vector2)transform.position;
-                if (direction.magnitude < .15f)
-                {
-                    state = DashState.moving;
-                }
-                else
-                {
-                    direction.Normalize();
-                }
+                direction.Normalize();
+                rb.velocity = direction * speed;
             }
-
         }
-        Debug.Log(xOffset);
+    }
+
+    // Update is called once per frame
+    protected override void OnUpdate()
+    {
+        
+        if (state == DashState.moving)
+        {
+            Moving();
+        }
+        else if (state == DashState.spinning)
+        {
+            Spinning();
+        }
+        else if (state == DashState.dashing)
+        {
+            Dashing();
+        }
+        else if (state == DashState.wait)
+        {
+            Waiting();
+        }
 
     }
 }

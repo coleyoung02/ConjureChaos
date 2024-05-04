@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,9 +9,10 @@ public class WaveManager : MonoBehaviour
     public List<GameObject> spawnPoints;
 
     public List<GameObject> waves;
+    [SerializeField] private TextMeshProUGUI tm;
     Wave currWave;
     int waveNum;
-    public int killQuota;
+    private int killQuota;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +31,38 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public int GetKillQuota()
+    {
+        return killQuota;
+    }
+
+    private void SetWaveUI()
+    {
+        if (waveNum <= 15)
+        {
+            tm.text = "Wave " + waveNum.ToString() + "/15";
+        }
+        else
+        {
+            tm.text = "BOSS!";
+        }
+    }
 
     public void nextWave()
     {
         if(currWave != null)
             currWave.end(); //delete spawners for this wave
         waveNum++;
+        SetWaveUI();
+        foreach (Shooter_Projectile sp in FindObjectsByType<Shooter_Projectile>(FindObjectsSortMode.None)) {
+            Destroy(sp.gameObject);
+        }
         if (waveNum > waves.Count)
+        {
+            Debug.Log("I WIN!");
             SceneManager.LoadScene("WinScreen");
+            return;
+        }
         currWave = Instantiate(waves[waveNum-1], gameObject.transform).GetComponent<Wave>();
         killQuota = currWave.getQuota();
     }

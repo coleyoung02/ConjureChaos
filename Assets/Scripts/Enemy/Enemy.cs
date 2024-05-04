@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     private static float redness = .5f;
     
     // Status effect variables
-    private ProjectileConjurer _conjurer;
+    protected ProjectileConjurer _conjurer;
     private Parent_AI _parentAI;
     private Dictionary<ProjectileConjurer.StatusEffects, float> _conjurerEffects = new();
     private Dictionary<ProjectileConjurer.StatusEffects, float> durations;

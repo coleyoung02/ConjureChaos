@@ -89,7 +89,6 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject, lifetime);
         }
         accumulatedTime = 0f;
-        Debug.Log(lifetime);
         boomerangReverseTime *= lifetime;
     }
 
@@ -129,7 +128,7 @@ public class Projectile : MonoBehaviour
         }
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
         {
-            if (accumulatedTime > .08f)
+            if (accumulatedTime > .1f || !IsMain)
             {
                 if (closestEnemy == null)
                 {
@@ -225,6 +224,7 @@ public class Projectile : MonoBehaviour
             
             KnockBack(myCollider);
             Splinter(myCollider);
+            closestEnemy = GetClosestEnemy();
         }
     }
 
@@ -270,7 +270,7 @@ public class Projectile : MonoBehaviour
             Vector3 enemyPos = enemy.transform.position;
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             int numDivisions = 6;
-            numDivisions += Mathf.RoundToInt(_shotCount);
+            numDivisions += Mathf.RoundToInt(_shotCount) - 1;
             for (int i = 180 / numDivisions; i < 360; i += 360/numDivisions)
             {
                 Transform myTransform = transform;

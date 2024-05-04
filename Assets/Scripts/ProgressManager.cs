@@ -19,7 +19,7 @@ public class ProgressManager : MonoBehaviour
         enemiesDefeated = 0;
         if (waveMan != null)
         {
-            currKillQuota = waveMan.killQuota;
+            currKillQuota = waveMan.GetKillQuota();
         }
         UpdateDeathCountUI();
 
@@ -29,26 +29,41 @@ public class ProgressManager : MonoBehaviour
     {
         if(waveMan != null && currKillQuota <= 0)
         {
-            currKillQuota = waveMan.killQuota;
+            currKillQuota = waveMan.GetKillQuota();
             UpdateDeathCountUI();
         }
         if (deathCountBar.value < target)
         {
-            deathCountBar.value = Mathf.Min(target, deathCountBar.value + Time.deltaTime * .5f);
+            deathCountBar.value = Mathf.Min(target, deathCountBar.value + Time.deltaTime * .6f);
         }
     }
 
     public void checkCompletion()
     {
-        // will also have to check that there are no more to be spawned
-        if (enemiesDefeated >= currKillQuota)
+        checkCompletion(false);
+    }
+
+    public void checkCompletion(bool force)
+    {
+        StopAllCoroutines();
+        if (enemiesDefeated >= currKillQuota || force)
         {
             waveMan.nextWave();
             enemiesDefeated = 0;
-            currKillQuota = waveMan.killQuota;
+            currKillQuota = waveMan.GetKillQuota();
             upgradeManager.SetActive(true);
             upgradeManager.GetComponent<UpgradeManager>().GetUpgrades();
         }
+        else if (FindAnyObjectByType<Enemy>() == null)
+        {
+            StartCoroutine(Backup());
+        }
+    }
+
+    private IEnumerator Backup()
+    {
+        yield return new WaitForSeconds(15f);
+        checkCompletion(true);
     }
 
     public void incrementDeathCounter()
