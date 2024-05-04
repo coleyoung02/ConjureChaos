@@ -18,7 +18,7 @@ public class Parallax : MonoBehaviour
 
     private Vector3 getNewPos()
     {
-        Vector3 playerPos = FindAnyObjectByType<PlayerMovement>().gameObject.transform.position;
+        Vector3 playerPos = FindAnyObjectByType<CameraManager>().gameObject.transform.position;
         return new Vector3(playerPos.x / 6, playerPos.y / 10, transform.position.z);
     }
 }

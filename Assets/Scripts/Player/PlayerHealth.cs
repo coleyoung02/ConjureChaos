@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     private float lifeStealSliderTarget;
     [SerializeField] private GameObject lifeStealFullnessIndicator;
     [SerializeField] float invincibilityDuration = 2f;
+    private CameraManager camMan;
 
     private static int lifeStealKills = 10;
 
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         hurtTime = 0f;
         currentHealth = maxHealth;
         UpdateHealthUI();
+        camMan = FindAnyObjectByType<CameraManager>();
     }
 
     private void Update()
@@ -58,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
                 c.a = Mathf.Lerp(0, maxOpacity, hurtTime / dropDuration);
                 hurtOverlay.color = c;
             }
-            hurtTime -= Time.deltaTime;
+            hurtTime -= Time.unscaledDeltaTime;
         }
     }
 
@@ -105,6 +107,7 @@ public class PlayerHealth : MonoBehaviour
         lifeStealFullnessIndicator.SetActive(false);
         StartCoroutine(InvincibilityTimer(invincibilityDuration));
         UpdateHealthUI();
+        camMan.TakeDamage();
     }
 
     public void PlayerAddHealth(int healValue)

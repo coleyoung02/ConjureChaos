@@ -25,7 +25,7 @@ public class Shooter_Projectile : MonoBehaviour
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             FindObjectOfType<PlayerHealth>().PlayerTakeDamage(damage);
-            Destroy(gameObject);
+            Destroy(gameObject, .05f);
         }
         else if (collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {

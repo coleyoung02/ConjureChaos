@@ -24,6 +24,31 @@ public class AudioManager : MonoBehaviour
         MusicSource.Pause();
     }
 
+    public void PitchDown(float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(DownPitch(duration));
+    }
+
+    private IEnumerator DownPitch(float duration)
+    {
+        for (float f = 0; f < duration / 7f; f += Time.unscaledDeltaTime)
+        {
+            MusicSource.pitch = Mathf.Lerp(1, .5f, f / (duration / 5));
+            yield return new WaitForEndOfFrame();
+        }
+        MusicSource.pitch = .5f;
+        yield return new WaitForSecondsRealtime(duration * 4f / 5);
+        for (float f = 0; f < duration / 5f; f += Time.unscaledDeltaTime)
+        {
+            MusicSource.pitch = Mathf.Lerp(.5f, 1f, f / (duration * 2f / 7));
+            yield return new WaitForEndOfFrame();
+        }
+        MusicSource.pitch = 1f;
+
+    }
+
+
     public void PlayMusic()
     {
         MusicSource.Play();
