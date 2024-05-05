@@ -22,10 +22,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider lifeStealSlider;
     private float lifeStealSliderTarget;
     [SerializeField] private GameObject lifeStealFullnessIndicator;
-    [SerializeField] float invincibilityDuration = 2f;
+    [SerializeField] float invincibilityDuration;
     private CameraManager camMan;
 
-    private static int lifeStealKills = 10;
+    private static int lifeStealKills = 12;
 
     int currentHealth = 1;
     bool isInvincible = false;
@@ -39,15 +39,36 @@ public class PlayerHealth : MonoBehaviour
         camMan = FindAnyObjectByType<CameraManager>();
     }
 
+    public void SetInvul(float invul)
+    {
+        invincibilityDuration = invul;
+    }
+
+    public float GetInvul()
+    {
+        return invincibilityDuration;
+    }
+
     private void Update()
     {
+        if (lifeStealSlider.value > 1f)
+        {
+            lifeStealSliderTarget = 0f;
+        }
         if (lifeStealSlider.value < lifeStealSliderTarget)
         {
-            lifeStealSlider.value = Mathf.Min(lifeStealSliderTarget, lifeStealSlider.value + Time.deltaTime * .6f);
+            if (lifeStealSliderTarget >= 1f)
+            {
+                lifeStealSlider.value = Mathf.Min(lifeStealSliderTarget, lifeStealSlider.value + Time.deltaTime * .75f);
+            }
+            else
+            {
+                lifeStealSlider.value = Mathf.Min(lifeStealSliderTarget, lifeStealSlider.value + Time.deltaTime * .5f);
+            }
         }
         else if (lifeStealSlider.value > lifeStealSliderTarget)
         {
-            lifeStealSlider.value = lifeStealSliderTarget;
+            lifeStealSlider.value = Mathf.Max(lifeStealSliderTarget, lifeStealSlider.value - Time.deltaTime * .85f);
         }
         if (hurtTime > 0f)
         {
@@ -87,8 +108,12 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerAddHealth(1);
             enemiesKilled = 0;
-            lifeStealSlider.value = 0;
-            lifeStealFullnessIndicator.SetActive(true);
+            lifeStealSliderTarget = 1.01f;
+            if (currentHealth == maxHealth)
+            {
+                lifeStealFullnessIndicator.SetActive(true);
+
+            }
         }
     }
 

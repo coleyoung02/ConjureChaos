@@ -51,6 +51,10 @@ public class ProgressManager : MonoBehaviour
             waveMan.nextWave();
             enemiesDefeated = 0;
             currKillQuota = waveMan.GetKillQuota();
+            if (FindAnyObjectByType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Regen))
+            {
+                FindAnyObjectByType<PlayerHealth>().PlayerAddHealth(2);
+            }
             upgradeManager.SetActive(true);
             upgradeManager.GetComponent<UpgradeManager>().GetUpgrades();
         }

@@ -11,6 +11,7 @@ public class StatUpgrade : Upgrade
     [SerializeField] protected int healthChange;
     [SerializeField] protected bool setHealthAbsolute;
     [SerializeField] protected float speedMult;
+    [SerializeField] protected float invulMult;
     public override void DoUpgrade()
     {
         ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
@@ -25,6 +26,11 @@ public class StatUpgrade : Upgrade
         if (speedMult != 0)
         {
             FindAnyObjectByType<PlayerMovement>().UpdateMoveSpeed(speedMult);
+        }
+        if (invulMult != 0)
+        {
+            PlayerHealth ph = FindAnyObjectByType<PlayerHealth>();
+            ph.SetInvul(ph.GetInvul() * invulMult);
         }
         base.DoUpgrade();
     }

@@ -49,6 +49,7 @@ public class ProjectileConjurer : MonoBehaviour
         IAMSPEED,
         LifeSteal,
         Homing,
+        Regen,
     }
 
     // The float listed for fire rate is the cooldown time between shots.

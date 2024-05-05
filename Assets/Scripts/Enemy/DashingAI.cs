@@ -63,7 +63,7 @@ public class Dashing_AI : Parent_AI
 
     private void SetOffsets()
     {
-        yOffset = UnityEngine.Random.Range(-yOffsetRange / 3f, yOffsetRange * (2f/3f));
+        yOffset = UnityEngine.Random.Range(0, yOffsetRange * (2f/3f));
         if (player == null)
         {
             player = FindFirstObjectByType<PlayerMovement>().gameObject;
@@ -107,7 +107,7 @@ public class Dashing_AI : Parent_AI
     {
         Vector3 targ = player.transform.position;
 
-        Vector3 objectPos = transform.position;
+        Vector3 objectPos = transform.position + Vector3.up * .1f;
         targ.x = targ.x - objectPos.x;
         targ.y = targ.y - objectPos.y;
 
@@ -122,7 +122,7 @@ public class Dashing_AI : Parent_AI
         }
         if (Mathf.Abs(angle) % 360 < 2.5f)
         {
-            target = player.transform.position;
+            target = player.transform.position + Vector3.up * .1f;
             diff = target - (Vector2)transform.position;
             lerpClock = 0f;
             state = DashState.dashing;
