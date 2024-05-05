@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMoveSpeed: 6
-  maxYMoveSpeed: 4
+  maxYMoveSpeed: 3.5
   minY: 0.5
   yOffset: 1.5
   maxY: 5

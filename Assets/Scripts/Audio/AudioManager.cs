@@ -34,14 +34,14 @@ public class AudioManager : MonoBehaviour
     {
         for (float f = 0; f < duration / 7f; f += Time.unscaledDeltaTime)
         {
-            MusicSource.pitch = Mathf.Lerp(1, .5f, f / (duration / 5));
+            MusicSource.pitch = Mathf.Lerp(1, .5f, f / (duration / 7));
             yield return new WaitForEndOfFrame();
         }
         MusicSource.pitch = .5f;
         yield return new WaitForSecondsRealtime(duration * 4f / 5);
-        for (float f = 0; f < duration / 5f; f += Time.unscaledDeltaTime)
+        for (float f = 0; f < (duration * 3f / 7); f += Time.unscaledDeltaTime)
         {
-            MusicSource.pitch = Mathf.Lerp(.5f, 1f, f / (duration * 2f / 7));
+            MusicSource.pitch = Mathf.Lerp(.5f, 1f, f / (duration * 3f / 7));
             yield return new WaitForEndOfFrame();
         }
         MusicSource.pitch = 1f;

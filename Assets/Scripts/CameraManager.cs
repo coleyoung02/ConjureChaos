@@ -101,7 +101,7 @@ public class CameraManager : MonoBehaviour
 
         x += aimDist.x * aimWeight;
         y += aimDist.y * aimWeight;
-        y = Mathf.Clamp(y, transform.position.y - maxYMoveSpeed * Time.deltaTime, transform.position.y + maxYMoveSpeed * Time.deltaTime);
+        y = Mathf.Clamp(y, transform.position.y - maxYMoveSpeed * Time.deltaTime * 2.5f, transform.position.y + maxYMoveSpeed * Time.deltaTime);
         x = Mathf.Clamp(x, -maxXSize, maxXSize);
         y = Mathf.Clamp(y, minY, maxY);
         transform.position = new Vector3(x, y, zOffset);
