@@ -9,6 +9,7 @@ public class StatUpgrade : Upgrade
     [SerializeField] protected List<float> valuesList;
     [SerializeField] protected List<bool> modeList;
     [SerializeField] protected int healthChange;
+    [SerializeField] protected bool dontHeal;
     [SerializeField] protected bool setHealthAbsolute;
     [SerializeField] protected float speedMult;
     [SerializeField] protected float invulMult;
@@ -21,7 +22,9 @@ public class StatUpgrade : Upgrade
         }
         if (healthChange != 0)
         {
-            FindAnyObjectByType<PlayerHealth>().ChangeMaxHealth(healthChange, setHealthAbsolute);
+            // need to do !dontHeal because serialized bools always default to false
+            // and all of the existing ones need to be true
+            FindAnyObjectByType<PlayerHealth>().ChangeMaxHealth(healthChange, setHealthAbsolute, !dontHeal);
         }
         if (speedMult != 0)
         {

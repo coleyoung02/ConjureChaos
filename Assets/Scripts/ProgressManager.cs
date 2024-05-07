@@ -46,7 +46,13 @@ public class ProgressManager : MonoBehaviour
     public void checkCompletion(bool force)
     {
         StopAllCoroutines();
-        if (enemiesDefeated >= currKillQuota || force)
+        if (FindAnyObjectByType<PlayerHealth>().GetHealth() <= 0)
+        {
+            return;
+        }
+        // second check is if nobody has been killed in 15 seconds, 
+        // and, there are no enemies remaining
+        if (enemiesDefeated >= currKillQuota || (force && FindAnyObjectByType<Enemy>() == null))
         {
             waveMan.nextWave();
             enemiesDefeated = 0;
@@ -60,6 +66,7 @@ public class ProgressManager : MonoBehaviour
         }
         else if (FindAnyObjectByType<Enemy>() == null)
         {
+            //if there are no remaining enemies, start a 15 second countdown
             StartCoroutine(Backup());
         }
     }

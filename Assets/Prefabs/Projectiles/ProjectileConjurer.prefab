@@ -49,6 +49,7 @@ MonoBehaviour:
   hitSFX: {fileID: 644623504593314431}
   leftFirePosition: -0.5
   projectilePrefab: {fileID: 9131568365663451046, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+  forkingAngle: 12.5
 --- !u!82 &644623504593314431
 AudioSource:
   m_ObjectHideFlags: 0

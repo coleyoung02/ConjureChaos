@@ -30,6 +30,10 @@ public class PlayerHealth : MonoBehaviour
     int currentHealth = 1;
     bool isInvincible = false;
     private int enemiesKilled = 0;
+
+    public int GetHealth() {
+        return currentHealth;
+    }
     
     void Start()
     {
@@ -139,7 +143,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             SetHealth(0);
-            SceneManager.LoadScene("LoseScreen");
+            StartCoroutine(LoseAfterTime());
         }
         else if (currentHealth == maxHealth - 1)
         {
@@ -148,11 +152,21 @@ public class PlayerHealth : MonoBehaviour
         }
         isInvincible = true;
         lifeStealFullnessIndicator.SetActive(false);
-        StopAllCoroutines();
-        StartCoroutine(InvincibilityTimer(invincibilityDuration));
-        StartCoroutine(InvincibilityIndicator(invincibilityDuration - .1f));
+        if (currentHealth > 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(InvincibilityTimer(invincibilityDuration));
+            StartCoroutine(InvincibilityIndicator(invincibilityDuration - .1f));
+        }
         UpdateHealthUI();
         camMan.TakeDamage();
+    }
+
+    private IEnumerator LoseAfterTime()
+    {
+        yield return new WaitForSecondsRealtime(.75f);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LoseScreen");
     }
 
     public void PlayerAddHealth(int healValue)
@@ -174,7 +188,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-    public void ChangeMaxHealth(int value, bool absolute)
+    public void ChangeMaxHealth(int value, bool absolute, bool heal=true)
     {
         int change = value;
         if (absolute)
@@ -183,7 +197,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (change > 0)
         {
-            AddMaxHealth(change);
+            AddMaxHealth(change, heal);
         }
         else
         {
@@ -193,6 +207,7 @@ public class PlayerHealth : MonoBehaviour
         {
             enemiesKilled = 0;
             lifeStealSlider.value = 0;
+            lifeStealSliderTarget = 0;
             lifeStealFullnessIndicator.SetActive(true);
         }
         else
@@ -202,14 +217,17 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-    public void AddMaxHealth(int value)
+    public void AddMaxHealth(int value, bool heal=true)
     {
         maxHealth += value;
         if (maxHealth > hearts.Length)
         {
             maxHealth = hearts.Length;
         }
-        currentHealth += value;
+        if (heal)
+        {
+            currentHealth += value;
+        }
         SetHealth(Mathf.Min(currentHealth, maxHealth));
         UpdateHealthUI();
     }

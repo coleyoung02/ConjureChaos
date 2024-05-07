@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   waves:
   - {fileID: 824680632364162694, guid: 48f8d06d958899843b85e441276e3df3, type: 3}
   - {fileID: 824680632364162694, guid: 82d4048d903518748a674d2502fc2c50, type: 3}
@@ -71,4 +72,3 @@ MonoBehaviour:
   - {fileID: 3753670908189031756, guid: 4926ef6599c2e0f4184beb5aa6ce399e, type: 3}
   - {fileID: 3753670908189031756, guid: 2bbadfac67fb91c44a0bed7fa3026b20, type: 3}
   tm: {fileID: 0}
-  killQuota: 0

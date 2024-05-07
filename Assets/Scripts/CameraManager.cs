@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float maxY;
     [SerializeField] private float maxXSize;
     [SerializeField] private float aimWeight;
+    [SerializeField] private float maxAimDist;
     [SerializeField] private float maxXGap;
     [SerializeField] private float shakeTargetSize;
     private GameObject player;
@@ -98,6 +99,8 @@ public class CameraManager : MonoBehaviour
         float x = playerPos.x;
         float y = playerPos.y + yOffset;
         Vector2 aimDist = aimPoint - new Vector2(x, y);
+        aimDist = aimDist.normalized * Mathf.Clamp(aimDist.magnitude, 0f, maxAimDist);
+        aimDist.y *= 2f;
 
         x += aimDist.x * aimWeight;
         y += aimDist.y * aimWeight;
