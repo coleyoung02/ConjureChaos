@@ -112,7 +112,7 @@ public class Projectile : MonoBehaviour
         accumulatedTime += Time.deltaTime;
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
-            if (accumulatedTime > .3f * lifetime || !IsMain)
+            if (accumulatedTime > .3f * lifetime || (!IsMain && accumulatedTime > .15f * lifetime))
             {
                 boomerangReverseClock += Time.deltaTime;
 

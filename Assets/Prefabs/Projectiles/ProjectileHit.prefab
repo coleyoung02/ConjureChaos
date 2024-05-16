@@ -188,9 +188,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0.2
-      minScalar: 5
+      minMaxState: 3
+      scalar: 0.25
+      minScalar: 0.15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -241,9 +241,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 30
-      minScalar: 5
+      minMaxState: 3
+      scalar: 32
+      minScalar: 25
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -359,7 +359,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1.25
       minScalar: 1
       maxCurve:
@@ -412,7 +412,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -465,7 +465,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -2758,11 +2758,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2919,12 +2919,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 1
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
     octaveScale: 2
-    quality: 1
+    quality: 0
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0

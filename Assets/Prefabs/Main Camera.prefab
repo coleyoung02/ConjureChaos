@@ -156,6 +156,7 @@ MonoBehaviour:
   yOffset: 1.5
   maxY: 5
   maxXSize: 3.4
-  aimWeight: 0.125
+  aimWeight: 0.075
+  maxAimDist: 7
   maxXGap: 3
   shakeTargetSize: 6.5

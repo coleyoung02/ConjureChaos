@@ -9,6 +9,8 @@ public class ShieldParent : MonoBehaviour
     [SerializeField] GameObject child;
     [SerializeField] float downDuration;
     [SerializeField] private Light2D sLight;
+    [SerializeField] private ParticleSystem particles;
+    [SerializeField] private AudioSource buzz;
 
     private float r;
     private float g;
@@ -79,6 +81,9 @@ public class ShieldParent : MonoBehaviour
     public void OnHit()
     {
         StartCoroutine(disableShiled(downDuration));
+        buzz.pitch = UnityEngine.Random.Range(.95f, 1.05f);
+        buzz.Play();
+        particles.Play();
     }
 
     private IEnumerator disableShiled(float duration)

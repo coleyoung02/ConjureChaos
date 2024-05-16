@@ -3944,14 +3944,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3999122609236556124, guid: 137a06897502cb945a1176877291a56c, type: 3}
-      propertyPath: aimWeight
-      value: 0.075
-      objectReference: {fileID: 0}
-    - target: {fileID: 3999122609236556124, guid: 137a06897502cb945a1176877291a56c, type: 3}
-      propertyPath: maxAimDist
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
