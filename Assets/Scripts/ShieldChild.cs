@@ -20,6 +20,11 @@ public class ShieldChild : MonoBehaviour
         source.panStereo = Mathf.Cos(angle) * .8f;
     }
 
+    public void OnHit()
+    {
+        parent.OnHit();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
