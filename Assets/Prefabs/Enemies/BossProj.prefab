@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: -1985230946088918552}
   m_Layer: 0
   m_Name: BossProj
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 3961729459120715937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.462, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4180,9 +4180,9 @@ ParticleSystem:
     attachRibbonsToTransform: 0
     colorOverLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 0, g: 1, b: 0.0775466, a: 1}
-      maxColor: {r: 0.9593928, g: 1, b: 0, a: 1}
+      minMaxState: 2
+      minColor: {r: 1, g: 0.7858338, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.989954, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.9788349, g: 0, b: 0.9843137, a: 1}
@@ -4322,7 +4322,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+        key1: {r: 0.41162336, g: 0.4716981, b: 0.46921888, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

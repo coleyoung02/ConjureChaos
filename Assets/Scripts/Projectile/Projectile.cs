@@ -138,12 +138,12 @@ public class Projectile : MonoBehaviour
                 {
                     if (Vector2.Dot(closestEnemy.transform.position - transform.position, transform.up) > 0)
                     {
-                        gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 120f * MathF.Min(_speed, 20f) / 20f));
+                        gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 120f * MathF.Max(Mathf.Pow(_speed, 1.3f), 20f) / 20f));
                         rb.velocity = rb.velocity.magnitude * transform.right;
                     }
                     else
                     {
-                        gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 120f * MathF.Min(_speed, 20f) / 20f));
+                        gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 120f * MathF.Max(Mathf.Pow(_speed, 1.3f), 20f) / 20f));
                         rb.velocity = rb.velocity.magnitude * transform.right;
                     }
                 }
@@ -240,6 +240,9 @@ public class Projectile : MonoBehaviour
             return;
 
         if (myCollider.CompareTag("Projectile"))
+            return;
+
+        if (myCollider.CompareTag("Laser"))
             return;
 
         Destroy(gameObject);

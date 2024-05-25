@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BossProjectile : MonoBehaviour
@@ -19,6 +20,8 @@ public class BossProjectile : MonoBehaviour
     {
         player = FindAnyObjectByType<PlayerMovement>().gameObject.transform;
         currentSpeed = initialSpeed;
+        rb.velocity = (player.position - transform.position).normalized * currentSpeed;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2((player.position - transform.position).y, (player.position - transform.position).x) - 90);
     }
 
     // Update is called once per frame
