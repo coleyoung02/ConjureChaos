@@ -44,7 +44,7 @@ public class BossAI : Parent_AI
 
     private void SetAttack()
     {
-        int attackIndex = UnityEngine.Random.Range(0,6);
+        int attackIndex = UnityEngine.Random.Range(0,7);
         if (attackIndex > 4)
         {
             attackIndex -= 2;
@@ -111,9 +111,9 @@ public class BossAI : Parent_AI
             FindAnyObjectByType<BossLasers>().DoRoutine(1);
             state = BossState.waiting;
         }
-        else if (nextAttack == Attack.VerticalLasers)
+        else if (nextAttack == Attack.HorizontalLasersVar2)
         {
-            FindAnyObjectByType<BossLasers>().VertLasers();
+            FindAnyObjectByType<BossLasers>().DoRoutine(1);
             state = BossState.waiting;
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 484491059873573216}
   - component: {fileID: 5906325846805613152}
   - component: {fileID: 6172005507532752889}
-  - component: {fileID: -7813487001400513791}
+  - component: {fileID: 1499567096200883181}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Enemy
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7813487001400513791
+--- !u!114 &1499567096200883181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,17 +185,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 257578625451431830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc7711bfc7834514e835e969be12e242, type: 3}
+  m_Script: {fileID: 11500000, guid: dbbc08687883b5748a2043a9caf5b67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 3
-  desired_distance: 5
-  shooting_distance: 8
-  projectilePrefab: {fileID: 7232488084303066669, guid: 43a89fb9a932cfb499e98ce45333745b, type: 3}
-  cooldown_time: 3
-  projectile_speed: 11
+  rb: {fileID: 5906325846805613152}
+  speed: 1
   sprite: {fileID: 6172005507532752889}
+  homingProjectilesCount: 5
+  homingProjectilesRate: 2
+  laserBarrageCount: 15
+  laserBarrageRate: 0.2
 --- !u!1 &6739134088999841435
 GameObject:
   m_ObjectHideFlags: 0

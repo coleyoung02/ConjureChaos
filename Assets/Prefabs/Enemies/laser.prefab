@@ -119,8 +119,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0020999908, y: -0.006099999, z: 0}
-    m_Extent: {x: 5.7059, y: 0.9537, z: 0}
+    m_Center: {x: -0.002049923, y: -0.0032999814, z: 0}
+    m_Extent: {x: 5.70495, y: 0.94949996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -186,8 +186,8 @@ MonoBehaviour:
   index: -1
   speed: 12
   maxDegs: 60
-  warningTime: 2
-  fadeOutTime: 0.75
+  warningTime: 1.35
+  fadeOutTime: 0.35
   lightIntensity: 3
   l: {fileID: 1266845396392923883}
   beam: {fileID: 6006436866534830108}

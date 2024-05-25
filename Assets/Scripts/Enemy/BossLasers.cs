@@ -6,12 +6,14 @@ public class BossLasers : MonoBehaviour
 {
     [SerializeField] private List<Laser> lasers;
     [SerializeField] private GameObject laserPrefab;
+    private float horizontalDuration = 1.5f;
     private int routine = 0;
+    private int order = 1;
 
     private void Start()
     {
         //lasers[0].Activate(2f);
-        VertLasers();
+        DoRoutine(1);
     }
 
     public void VertLasers()
@@ -38,13 +40,43 @@ public class BossLasers : MonoBehaviour
 
     private void StartLasers()
     {
+        if (routine == 0)
+        {
 
+            if (order > 0)
+            {
+                lasers[0].Activate(horizontalDuration);
+            }
+            else
+            {
+                lasers[lasers.Count - 1].Activate(horizontalDuration);
+            }
+        }
+        else if (routine == 1)
+        {
+            lasers[0 + order].Activate(horizontalDuration);
+            lasers[2 + order].Activate(horizontalDuration);
+            StartCoroutine(WaitAndLaser(1  + order, horizontalDuration + 2.5f, horizontalDuration));
+            StartCoroutine(WaitAndLaser((3 + order) % lasers.Count, horizontalDuration + 2.5f, horizontalDuration));
+        }
+    }
+
+    private IEnumerator WaitAndLaser(int laserIndex, float delay, float duration)
+    {
+        yield return new WaitForSeconds(delay);
+        lasers[laserIndex].Activate(horizontalDuration);
     }
 
 
     public void DoRoutine(int i)
     {
         routine = i;
+        order = UnityEngine.Random.Range(0, 2);
+        if (routine != 1)
+        {
+            order = order * 2 - 1;
+        }
+        StartLasers();
     }
 
 
@@ -57,9 +89,9 @@ public class BossLasers : MonoBehaviour
     {
         if (routine == 0)
         {
-            if (index + 1 < lasers.Count)
+            if (index + order < lasers.Count && index + order >= 0)
             {
-                lasers[index + 1].Activate(2f);
+                StartCoroutine(WaitAndLaser(index + order, .1f, horizontalDuration * .4f));
             }
         }
     }

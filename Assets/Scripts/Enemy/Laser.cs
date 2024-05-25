@@ -16,11 +16,13 @@ public class Laser : MonoBehaviour
     [SerializeField] private Collider2D playerHurter;
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private GameObject graphics;
+    private PlayerHealth playerHealth;
     private Vector3 baseScale;
 
     private void Start()
     {
         baseScale = transform.localScale;
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
         if (index < 0)
         {
             Activate(2f);
@@ -52,14 +54,31 @@ public class Laser : MonoBehaviour
         StartCoroutine(FadeOut());
     }
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            playerHealth.PlayerTakeDamage(1);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            playerHealth.PlayerTakeDamage(1);
+        }
+    }
+
 
     private IEnumerator FadeIn()
     {
         for (float t = 0; t < warningTime; t += Time.deltaTime)
         {
-            beam.color = new Color(1f, 1f, 1f, t / warningTime);
-            l.intensity = lightIntensity * t / warningTime;
-            graphics.transform.localScale = new Vector3(baseScale.x, baseScale.y * t/warningTime, 1);
+            float val = t * t / warningTime / warningTime;
+            beam.color = new Color(1f, 1f, 1f, val);
+            l.intensity = lightIntensity * val;
+            graphics.transform.localScale = new Vector3(baseScale.x, baseScale.y * val, 1);
             if (!particles.isPlaying && t > warningTime * .8f)
             {
                 particles.Play();
@@ -81,10 +100,11 @@ public class Laser : MonoBehaviour
         }
         for (float t = fadeOutTime; t > 0; t -= Time.deltaTime)
         {
-            beam.color = new Color(1f, 1f, 1f, t / fadeOutTime);
-            l.intensity = lightIntensity * t / fadeOutTime;
-            graphics.transform.localScale = new Vector3(baseScale.x, baseScale.y * t / fadeOutTime, 1);
-            if (t < fadeOutTime / 2)
+            float val = t * t / fadeOutTime / fadeOutTime;
+            beam.color = new Color(1f, 1f, 1f, val);
+            l.intensity = lightIntensity * val;
+            graphics.transform.localScale = new Vector3(baseScale.x, baseScale.y * val, 1);
+            if (t < 3 * fadeOutTime / 4)
             {
                 particles.Stop();
                 playerHurter.enabled = false;
