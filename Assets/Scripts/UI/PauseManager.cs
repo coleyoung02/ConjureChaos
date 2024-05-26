@@ -31,6 +31,7 @@ public class PauseManager : MonoBehaviour
         if (pauseMenu.activeSelf || settingsMenu.activeSelf)
         {
             pauseMenu.SetActive(false);
+            FindAnyObjectByType<AudioManager>().SetFilter(false);
             settingsMenu.SetActive(false);
             if (upgrading)
             {
@@ -44,6 +45,7 @@ public class PauseManager : MonoBehaviour
         else
         {
             pauseMenu.SetActive(true);
+            FindAnyObjectByType<AudioManager>().SetFilter(true);
             if (upgradeMenu.activeSelf)
             {
                 upgradeMenu.SetActive(false);

@@ -178,10 +178,10 @@ AudioSource:
   m_GameObject: {fileID: 2019644103338137049}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3440647997885041583, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9964b25413d17d143adefe1a4cf4c0c1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -320,7 +320,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 2b31321a03b5dd14a919514a2aed2122, type: 2}
+  - {fileID: -876546973899608171, guid: ddb00a17928ed214d86e26c24b0e4ee6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -386,7 +386,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -4466,8 +4466,8 @@ ParticleSystem:
       maxColor: {r: 0.9440234, g: 1, b: 0.013626814, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 1, b: 0.95053744, a: 1}
-        key1: {r: 0.66759443, g: 1, b: 0, a: 1}
+        key0: {r: 0, g: 1, b: 0.18552995, a: 1}
+        key1: {r: 0, g: 1, b: 0.88305783, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4496,17 +4496,17 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.9400482, b: 1, a: 1}
+        key0: {r: 0, g: 1, b: 0.049153566, a: 1}
         key1: {r: 1, g: 0, b: 0.8830166, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 1, g: 0, b: 0.8830166, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 0
+        ctime0: 20239
         ctime1: 65535
-        ctime2: 0
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0

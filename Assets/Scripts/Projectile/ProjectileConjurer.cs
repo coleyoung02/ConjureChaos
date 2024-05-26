@@ -9,8 +9,9 @@ public class ProjectileConjurer : MonoBehaviour
     [SerializeField]
     private float rightFirePosition;
 
-    [SerializeField]
-    AudioSource hitSFX;
+    [SerializeField] private AudioSource hitSFX;
+    [SerializeField] private List<AudioSource> sfxPool;
+    private int sfxIndex;
 
     [SerializeField]
     private float leftFirePosition;
@@ -85,8 +86,14 @@ public class ProjectileConjurer : MonoBehaviour
 
     public void PlayHitSound()
     {
-        hitSFX.pitch = UnityEngine.Random.Range(.925f, 1.075f);
-        hitSFX.Play();
+        getNextHitSource().pitch = UnityEngine.Random.Range(.9f, 1.1f);
+        getNextHitSource().Play();
+    }
+
+    private AudioSource getNextHitSource()
+    {
+        sfxIndex = (sfxIndex + 1) % sfxPool.Count;
+        return sfxPool[sfxIndex];
     }
     
     // Method so other classes can grab projectile effects
@@ -177,6 +184,7 @@ public class ProjectileConjurer : MonoBehaviour
     private void Start()
     {
         _mainCamera = Camera.main;
+        sfxIndex = 0;
     }
 
     private void Update()

@@ -107,7 +107,6 @@ public class BossAI : Parent_AI
         }
         else if (state == BossState.waiting)
         {
-            Debug.Log("waiting " + waitClock + " seconds");
             if (waitClock <= 0)
             {
                 SetAttack();
@@ -176,7 +175,6 @@ public class BossAI : Parent_AI
     {
         if (nextAttack == Attack.HorizontalLasers)
         {
-            Debug.Log("HORIZONTAL");
             FindAnyObjectByType<BossLasers>().DoRoutine(0);
             state = BossState.waiting;
             waitClock = waitTime + 8f;
@@ -184,7 +182,6 @@ public class BossAI : Parent_AI
         }
         else if (nextAttack == Attack.VerticalLasers)
         {
-            Debug.Log("Veritcal");
             FindAnyObjectByType<BossLasers>().VertLasers();
             state = BossState.waiting;
             waitClock = waitTime + 2.5f;
@@ -192,7 +189,6 @@ public class BossAI : Parent_AI
         }
         else if (nextAttack == Attack.HorizontalLasersVar2)
         {
-            Debug.Log("HORIZONTAL 2");
             FindAnyObjectByType<BossLasers>().DoRoutine(1);
             state = BossState.waiting;
             waitClock = waitTime + 5f;

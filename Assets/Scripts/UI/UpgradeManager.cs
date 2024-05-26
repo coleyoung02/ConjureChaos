@@ -16,6 +16,7 @@ public class UpgradeManager : MonoBehaviour
     {
         description.text = "";
         Time.timeScale = 0;
+        FindAnyObjectByType<AudioManager>().SetFilter(true);
         get3();
     }
 
@@ -30,6 +31,7 @@ public class UpgradeManager : MonoBehaviour
         }
         Time.timeScale = 1;
         upgradeSFX.Play();
+        FindAnyObjectByType<AudioManager>().SetFilter(false);
         gameObject.SetActive(false);
     }
 

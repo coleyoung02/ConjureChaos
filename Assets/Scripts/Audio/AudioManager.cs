@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource hurtSource;
     [SerializeField] private AudioSource UISource;
     [SerializeField] private AudioSource MusicSource;
-    private int songIndex;
+    [SerializeField] private AudioLowPassFilter filter;
 
 
     public const string MUSIC_KEY = "musicVolume";
@@ -22,6 +22,20 @@ public class AudioManager : MonoBehaviour
     public void PauseMusic()
     {
         MusicSource.Pause();
+    }
+
+    public void SetFilter(bool f)
+    {
+        filter.enabled = f;
+        StopAllCoroutines();
+        if (f)
+        {
+            MusicSource.pitch = .7f;
+        }
+        else
+        {
+            MusicSource.pitch = 1f;
+        }
     }
 
     public void PitchDown(float duration)
@@ -51,6 +65,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic()
     {
+        MusicSource.pitch = 1f;
         MusicSource.Play();
     }
 
@@ -61,11 +76,11 @@ public class AudioManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
-
+        filter.enabled = false;
         LoadVolume();
 
     }
