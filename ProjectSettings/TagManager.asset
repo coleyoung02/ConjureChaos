@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - ShimmerBorder
   - Laser
+  - LaserWaitPoint
   layers:
   - Default
   - TransparentFX

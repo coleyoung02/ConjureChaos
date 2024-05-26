@@ -21,7 +21,8 @@ public class BossProjectile : MonoBehaviour
         player = FindAnyObjectByType<PlayerMovement>().gameObject.transform;
         currentSpeed = initialSpeed;
         rb.velocity = (player.position - transform.position).normalized * currentSpeed;
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2((player.position - transform.position).y, (player.position - transform.position).x) - 90);
+        Vector2 diff = player.position - transform.position;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg);
     }
 
     // Update is called once per frame
@@ -31,12 +32,12 @@ public class BossProjectile : MonoBehaviour
         {
             if (Vector2.Dot(player.transform.position - transform.position, transform.up) > 0)
             {
-                gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 60f * turningRate * Mathf.Clamp(Mathf.Sqrt(currentSpeed), 1, Mathf.Sqrt(maxSpeed) - 2)));
+                gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 60f * turningRate * Mathf.Clamp(Mathf.Sqrt(currentSpeed) - 1, .75f, Mathf.Sqrt(maxSpeed - 8.5f) - 1)));
                 rb.velocity = currentSpeed * transform.right;
             }
             else
             {
-                gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 60f * turningRate * Mathf.Clamp(Mathf.Sqrt(currentSpeed), 1, Mathf.Sqrt(maxSpeed) - 2)));
+                gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 60f * turningRate * Mathf.Clamp(Mathf.Sqrt(currentSpeed) - 1, .75f, Mathf.Sqrt(maxSpeed - 8.5f) - 1)));
                 rb.velocity = currentSpeed * transform.right;
             }
             currentSpeed = Mathf.Min(currentSpeed + Time.deltaTime * acceleration, maxSpeed);
@@ -55,6 +56,10 @@ public class BossProjectile : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            if (collision.gameObject.tag == "OneWayPlatform")
+            {
+                return;
+            }
             Instantiate(poof, (Vector2)transform.position + rb.velocity.normalized * .45f, Quaternion.identity);
             StopAllCoroutines();
             Destroy(rb);
@@ -70,10 +75,6 @@ public class BossProjectile : MonoBehaviour
             Destroy(rb);
             Destroy(gameObject.GetComponent<Collider2D>());
             StartCoroutine(DestroyWait());
-        }
-        else
-        {
-            Debug.Log("SOMETHING ELSE");
         }
     }
 

@@ -57,8 +57,16 @@ public class WaveManager : MonoBehaviour
         foreach (Shooter_Projectile sp in FindObjectsByType<Shooter_Projectile>(FindObjectsSortMode.None)) {
             Destroy(sp.gameObject);
         }
+        foreach (BossProjectile bp in FindObjectsByType<BossProjectile>(FindObjectsSortMode.None))
+        {
+            Destroy(bp.gameObject);
+        }
         if (waveNum > waves.Count)
         {
+            foreach (Laser l in FindObjectsByType<Laser>(FindObjectsSortMode.None))
+            {
+                Destroy(l.gameObject);
+            }
             Debug.Log("I WIN!");
             SceneManager.LoadScene("WinScreen");
             return;

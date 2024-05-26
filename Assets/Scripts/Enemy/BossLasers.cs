@@ -13,7 +13,6 @@ public class BossLasers : MonoBehaviour
     private void Start()
     {
         //lasers[0].Activate(2f);
-        DoRoutine(1);
     }
 
     public void VertLasers()
@@ -56,8 +55,8 @@ public class BossLasers : MonoBehaviour
         {
             lasers[0 + order].Activate(horizontalDuration);
             lasers[2 + order].Activate(horizontalDuration);
-            StartCoroutine(WaitAndLaser(1  + order, horizontalDuration + 2.5f, horizontalDuration));
-            StartCoroutine(WaitAndLaser((3 + order) % lasers.Count, horizontalDuration + 2.5f, horizontalDuration));
+            StartCoroutine(WaitAndLaser(1  + order, horizontalDuration + 2f, horizontalDuration));
+            StartCoroutine(WaitAndLaser((3 + order) % lasers.Count, horizontalDuration + 2f, horizontalDuration));
         }
     }
 

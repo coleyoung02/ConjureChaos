@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: topOffset
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: topDuration

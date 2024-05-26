@@ -5096,9 +5096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2588fde261f56e14eb751d5156db2cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 7.5
+  acceleration: 6
   initialSpeed: 1
-  maxSpeed: 15
-  turningRate: 1
+  maxSpeed: 17.5
+  turningRate: 0.85
   poof: {fileID: 3961729459120715937, guid: c75418ce2b9eea743931b5b69f16e136, type: 3}
   rb: {fileID: 5015030945372774764}
