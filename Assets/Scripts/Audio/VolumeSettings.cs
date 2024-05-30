@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
+using static UnityEngine.Rendering.DebugUI;
 
 public class VolumeSettings : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class VolumeSettings : MonoBehaviour
         int usedIndex = -1;
         fullscreen = PlayerPrefs.GetInt("Fullscreen", -1) != 0;
 
-        if (PlayerPrefs.GetInt("Res", -1) == -1)
+        if (PlayerPrefs.GetInt("Res", -1) <= -1)
         {
             for (int i = 0; i < validResolutions.GetLength(0); ++i)
             {
@@ -55,13 +56,26 @@ public class VolumeSettings : MonoBehaviour
 
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         SFXSlider.onValueChanged.AddListener(SetSFXVolume);
+        mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f)) * 20);
+        mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f)) * 20);
         musicSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f);
         SFXSlider.value = PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f);
+        Debug.Log("music at " + musicSlider.value);
+        Debug.Log("mixer set to " + Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f)) * 20);
 
+    }
+
+    private void Start()
+    {
+
+        mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f)) * 20);
+        mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f)) * 20);
     }
 
     public void BumpResolution(bool up)
     {
+        Debug.Log(currentRes + 1);
+        Debug.Log(validResolutions.GetLength(0));
         if (up && currentRes + 1 < validResolutions.GetLength(0) &&
             validResolutions[currentRes + 1, 0] <= maxWidth && validResolutions[currentRes + 1, 1] <= maxHeight)
         {
@@ -121,13 +135,16 @@ public class VolumeSettings : MonoBehaviour
         PlayerPrefs.SetFloat(AudioManager.SFX_KEY, SFXSlider.value);
     }
 
-    void SetMusicVolume(float value)
+    public void SetMusicVolume(float value)
     {
         mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat(AudioManager.MUSIC_KEY, musicSlider.value);
+        Debug.Log("mixer set to " + Mathf.Log10(musicSlider.value) * 20);
     }
 
-    void SetSFXVolume(float value)
+    public void SetSFXVolume(float value)
     {
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat(AudioManager.SFX_KEY, SFXSlider.value);
     }
 }

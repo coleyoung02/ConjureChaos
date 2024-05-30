@@ -81,7 +81,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         filter.enabled = false;
-        LoadVolume();
 
     }
 
