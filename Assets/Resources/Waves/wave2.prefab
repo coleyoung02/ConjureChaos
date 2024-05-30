@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 4058234263559248216, guid: 53748a8b5d632c748b94691abc3566a7, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftPlatDelay
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDelay

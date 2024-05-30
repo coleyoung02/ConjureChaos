@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4000
+  maxHealth: 30000
   contactDamage: 1
 --- !u!50 &5906325846805613152
 Rigidbody2D:
@@ -193,6 +193,14 @@ MonoBehaviour:
   sprite: {fileID: 6172005507532752889}
   homingProj: {fileID: 3961729459120715937, guid: 594917c825bca6640863d00335e1ba3c, type: 3}
   bulletProj: {fileID: 7232488084303066669, guid: 5b15d2f5922c3a74c8927dc653ba33bd, type: 3}
+  spawnerPrefab: {fileID: 8213047621107761781, guid: adb18b080517e524894fae83ed447629, type: 3}
+  validEnemies:
+  - {fileID: 257578625451431830, guid: 8e1484b3f998f8545af5edbf4133fd63, type: 3}
+  - {fileID: 4058234263559248216, guid: b4f4cddd647edde428a3997e66c7d479, type: 3}
+  - {fileID: 4058234263559248216, guid: 5b1831e3349ce5649ab6527db5083ad9, type: 3}
+  - {fileID: 257578625451431830, guid: 052a25eadc971754aa8c9cd9df2631b2, type: 3}
+  - {fileID: 4949422371381433468, guid: 6ca6b94e6a201cc488bdbdcee36199e1, type: 3}
+  - {fileID: 4949422371381433468, guid: 5f07a7af7d508724992caf3785e6938b, type: 3}
   homingProjectilesCount: 5
   homingProjectilesRate: 2
   laserBarrageCountPerWave: 12
@@ -201,6 +209,7 @@ MonoBehaviour:
   laserBarrageRate: 0.05
   laserBarrageWaveDelay: 0.4
   waitTime: 3
+  enemiesToSpawn: 5
 --- !u!1 &6739134088999841435
 GameObject:
   m_ObjectHideFlags: 0

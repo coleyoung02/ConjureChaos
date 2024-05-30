@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
-      value: Add 2 max health, but do not heal for those 2 new hearts.
+      value: Add 2 empty hearts.
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: healthChange

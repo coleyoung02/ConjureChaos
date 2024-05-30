@@ -20,11 +20,14 @@ public class BossAI : Parent_AI
         VerticalLasers = 2,
         HomingProjectiles = 3,
         BulletHell = 4,
+        EnemySpawns = 5,
     }
 
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] private GameObject homingProj;
     [SerializeField] private GameObject bulletProj;
+    [SerializeField] private GameObject spawnerPrefab;
+    [SerializeField] private List<GameObject> validEnemies;
     [SerializeField] private int homingProjectilesCount;
     [SerializeField] private float homingProjectilesRate;
     [SerializeField] private int laserBarrageCountPerWave;
@@ -33,6 +36,7 @@ public class BossAI : Parent_AI
     [SerializeField] private float laserBarrageRate;
     [SerializeField] private float laserBarrageWaveDelay;
     [SerializeField] private float waitTime;
+    [SerializeField] private int enemiesToSpawn;
     private List<GameObject> laserWaitPoints;
 
 
@@ -44,6 +48,7 @@ public class BossAI : Parent_AI
     private float projectileClock;
     private float waitClock;
     private int waitIndex;
+    private List<Vector2> spawnLocations;
 
     // Start is called before the first frame update
     public override void Start()
@@ -53,30 +58,38 @@ public class BossAI : Parent_AI
         projectileCount = 0;
         SetAttack();
         laserWaitPoints = GameObject.FindGameObjectsWithTag("LaserWaitPoint").ToList<GameObject>();
+        FindAnyObjectByType<ProgressManager>().ResetForBoss();
+        GameObject[] locs = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
+        spawnLocations = new List<Vector2>();
+        foreach (GameObject go in locs)
+        {
+            spawnLocations.Add(go.transform.position);
+        }
     }
 
     private void SetAttack()
     {
-        int attackIndex = UnityEngine.Random.Range(0,7);
-        if (attackIndex > 4)
+        int attackIndex = UnityEngine.Random.Range(0,9);
+        if (attackIndex > 5)
         {
-            attackIndex -= 2;
+            attackIndex -= 3;
         }
         nextAttack = (Attack)attackIndex;
+        //nextAttack = Attack.EnemySpawns;
         if (nextAttack == Attack.BulletHell)
         {
-            yOffset = UnityEngine.Random.Range(4.5f, 5.8f);
-            xOffset = UnityEngine.Random.Range(3f, 9f);
+            yOffset = UnityEngine.Random.Range(5.45f, 6.2f);
+            xOffset = UnityEngine.Random.Range(3f, 7f);
         }
         else if (nextAttack == Attack.HomingProjectiles)
         {
-            yOffset = UnityEngine.Random.Range(1.5f, 3.5f);
+            yOffset = UnityEngine.Random.Range(1.25f, 3.25f);
             xOffset = UnityEngine.Random.Range(6f, 9f);
         }
         else
         {
             yOffset = UnityEngine.Random.Range(4f, 6f);
-            xOffset = UnityEngine.Random.Range(3f, 5f);
+            xOffset = UnityEngine.Random.Range(4f, 7f);
         }
         xOffset *= UnityEngine.Random.Range(0, 2) * 2 - 1;
     }
@@ -114,7 +127,18 @@ public class BossAI : Parent_AI
             }
             else
             {
-                waitClock -= Time.deltaTime;
+                if (waitClock > 2.25f)
+                {
+                    waitClock -= Time.deltaTime;
+                    if (!(waitClock > 2.25f))
+                    {
+                        waitIndex = UnityEngine.Random.Range(0, laserWaitPoints.Count);
+                    }
+                }
+                else
+                {
+                    waitClock -= Time.deltaTime;
+                }
                 Move();
             }
         }
@@ -145,7 +169,10 @@ public class BossAI : Parent_AI
     {
         float dist_move = speed * Time.deltaTime;
         Vector2 direction;
-        if (state == BossState.waiting && (nextAttack == Attack.VerticalLasers || nextAttack == Attack.HorizontalLasers || nextAttack == Attack.HorizontalLasersVar2))
+        if (state == BossState.waiting && (nextAttack == Attack.VerticalLasers || 
+            nextAttack == Attack.HorizontalLasers || 
+            nextAttack == Attack.HorizontalLasersVar2 || 
+            nextAttack == Attack.EnemySpawns))
         {
             direction = (Vector2)laserWaitPoints[waitIndex].transform.position - (Vector2)transform.position;
         }
@@ -227,11 +254,34 @@ public class BossAI : Parent_AI
                 projectileClock -= Time.deltaTime;
             }
         }
+        else if (nextAttack == Attack.EnemySpawns)
+        {
+            spawnLocations = spawnLocations.OrderBy(x => Random.value).ToList();
+            StartCoroutine(Spawns());
+            state = BossState.waiting;
+            waitClock = waitTime / 2 + enemiesToSpawn * .2f + 1.45f;
+            waitIndex = UnityEngine.Random.Range(0, laserWaitPoints.Count);
+        }
         else
         {
             StartCoroutine(sprayRoutine());
             state = BossState.waiting;
             waitClock = waitTime + laserBarrageWaveDelay * laserBarrageWaves + laserBarrageRate * laserBarrageCountPerWave;
+        }
+    }
+
+    private IEnumerator Spawns()
+    {
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            EnemySpawner tempSpawner;
+            tempSpawner = Instantiate(spawnerPrefab, new Vector3(spawnLocations[i].x, spawnLocations[i].y, -4.4f), Quaternion.identity).GetComponent<EnemySpawner>();
+            tempSpawner = tempSpawner.GetComponent<EnemySpawner>();
+            tempSpawner.enemy = validEnemies[UnityEngine.Random.Range(0, validEnemies.Count)];
+            tempSpawner.duration = .5f;
+            tempSpawner.spawn_delay = 2f;
+            tempSpawner.offset = 1.45f;
+            yield return new WaitForSeconds(.2f);
         }
     }
 }

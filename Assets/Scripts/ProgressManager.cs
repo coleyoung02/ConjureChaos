@@ -10,7 +10,8 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private Slider deathCountBar;
     public WaveManager waveMan;
     public int currKillQuota;
-    [SerializeField] GameObject upgradeManager;
+    [SerializeField] private GameObject upgradeManager;
+    private bool boss = false;
 
     public float target;
     void Start()
@@ -43,8 +44,14 @@ public class ProgressManager : MonoBehaviour
         checkCompletion(false);
     }
 
-    public void checkCompletion(bool force)
+    public void checkCompletion(bool force, bool bossForce=false)
     {
+        if (bossForce)
+        {
+            StopAllCoroutines();
+            waveMan.nextWave();
+            return;
+        }
         StopAllCoroutines();
         if (FindAnyObjectByType<PlayerHealth>().GetHealth() <= 0)
         {
@@ -52,7 +59,7 @@ public class ProgressManager : MonoBehaviour
         }
         // second check is if nobody has been killed in 15 seconds, 
         // and, there are no enemies remaining
-        if (enemiesDefeated >= currKillQuota || (force && FindAnyObjectByType<Enemy>() == null))
+        if ((!boss && enemiesDefeated >= currKillQuota) || (force && FindAnyObjectByType<Enemy>() == null))
         {
             waveMan.nextWave();
             enemiesDefeated = 0;
@@ -83,18 +90,33 @@ public class ProgressManager : MonoBehaviour
         UpdateDeathCountUI();
     }
 
+    public void SetBossProgress(float target)
+    {
+        boss = true;
+        this.target = target;
+    }
+
+    public void ResetForBoss()
+    {
+        deathCountBar.value = 0;
+        target = 0f;
+    }
+
     void UpdateDeathCountUI()
     {
-        if (currKillQuota <= 0)
+        if (!boss)
         {
-            deathCountBar.value = 0f;
-        }
-        else
-        {
-            target = enemiesDefeated / (float)currKillQuota;
-            if (target < deathCountBar.value)
+            if (currKillQuota <= 0)
             {
                 deathCountBar.value = 0f;
+            }
+            else
+            {
+                target = enemiesDefeated / (float)currKillQuota;
+                if (target < deathCountBar.value)
+                {
+                    deathCountBar.value = 0f;
+                }
             }
         }
     }

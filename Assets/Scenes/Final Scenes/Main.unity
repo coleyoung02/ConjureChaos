@@ -2594,7 +2594,7 @@ GameObject:
   - component: {fileID: 1499929049}
   m_Layer: 0
   m_Name: center_plat
-  m_TagString: EnemySpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4052,10 +4052,6 @@ PrefabInstance:
     - target: {fileID: 4872150695071968585, guid: 920f61b5764ae0342ba538e61a0bdbf0, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4872150695071968585, guid: 920f61b5764ae0342ba538e61a0bdbf0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.11682127
       objectReference: {fileID: 0}
     - target: {fileID: 4872150695071968585, guid: 920f61b5764ae0342ba538e61a0bdbf0, type: 3}
       propertyPath: m_LocalRotation.w

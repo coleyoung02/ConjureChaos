@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float boomerangReverseTime = .15f;
     private float boomerangReverseClock;
+    [SerializeField] private GameObject damageText;
 
     // The Projectile Conjurer class
     private ProjectileConjurer _conjurer;
@@ -213,10 +214,17 @@ public class Projectile : MonoBehaviour
     {
         if (myCollider.CompareTag("Enemy") && (myCollider != ignore || flipped))
         {
-            Instantiate(hitSplat, transform.position + new Vector3(rb.velocity.normalized.x, rb.velocity.normalized.y) * .25f, transform.rotation, null);
+            Vector3 hitLoc = transform.position + new Vector3(rb.velocity.normalized.x, rb.velocity.normalized.y) * .25f;
+            Instantiate(hitSplat, hitLoc, transform.rotation, null);
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
             script.DamageEnemy(_damage);
+            hitLoc.z = -9.5f;
+            hitLoc.x += UnityEngine.Random.Range(-.3f, .3f);
+            hitLoc.y += UnityEngine.Random.Range(-.3f, .3f);
+            Instantiate(damageText, hitLoc, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
+                .GetComponent<DamageNumbers>()
+                .SetNumber(_damage);
 
             _conjurer.PlayHitSound();
             // Call status effect here instead of in damage enemy function to avoid bugs

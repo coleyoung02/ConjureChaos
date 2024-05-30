@@ -51,11 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53aabd2ae2c0c12429c2d612af5d91b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: +1 Damage
+  description: Damage up 50%
   statsList: 00000000
   valuesList:
   - 1.5
   modeList: 00
+  healthChange: 0
+  dontHeal: 0
+  setHealthAbsolute: 0
+  speedMult: 0
+  invulMult: 0
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0

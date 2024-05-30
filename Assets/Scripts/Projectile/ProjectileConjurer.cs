@@ -96,6 +96,17 @@ public class ProjectileConjurer : MonoBehaviour
         return sfxPool[sfxIndex];
     }
     
+    public float GetDamageScale()
+    {
+        Debug.Log("reporting damage scale of " + _statsList[Stats.Damage] / 10f);
+        return _statsList[Stats.Damage] / 10f;
+    }
+
+    public float GetRateScale()
+    {
+        return _statsList[Stats.Rate] / 0.275f;
+    }
+
     // Method so other classes can grab projectile effects
     public List<ProjectileEffects> GetProjectileEffects()
     {

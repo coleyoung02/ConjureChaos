@@ -134,18 +134,26 @@ public class Enemy : MonoBehaviour
 
     public bool DamageEnemy(float dmg)
     {
+        float damageToUse = dmg;
+        damageToUse = Mathf.Clamp(damageToUse, 0, 750f);
         hurtTime = flashDuration;
+        if (maxHealth > 1000)
+        {
+            Debug.Log("health " + health);
+            Debug.Log("max health " + maxHealth);
+            FindAnyObjectByType<ProgressManager>().SetBossProgress(1f - (float)health / (float)maxHealth);
+        }
         //setup to allow a return of boolean before destruction, in case damager has to know if the attack killed the enemy. If multiplayer allows for kill counts per player
-        if (health < dmg)
+        if (health < damageToUse)
         {
             health = 0;
             return true;
         }
         else
         {
-            health -= dmg;
+            health -= damageToUse;
             return false;
-        }
+        }  
     }
 
     public void die()
@@ -153,6 +161,10 @@ public class Enemy : MonoBehaviour
         if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.LifeSteal))
             playerHealth.EnemyKilled();
         deathEvent.Invoke();
+        if (maxHealth > 1000)
+        {
+            FindAnyObjectByType<ProgressManager>().checkCompletion(true, true);
+        }
         Destroy(gameObject);
     }
 
@@ -205,7 +217,7 @@ public class Enemy : MonoBehaviour
         if (tickable.Contains(status))
         {
             ticks[status] += Time.deltaTime;
-            if (ticks[status] >= 1f)
+            if (ticks[status] >= 1f * _conjurer.GetRateScale())
             {
                 statusActions[status].Invoke(true);
                 ticks[status] = 0;
@@ -220,7 +232,18 @@ public class Enemy : MonoBehaviour
     private void FireStatus(bool activation)
     {
         if (activation)
-            DamageEnemy(5);
+        {
+            float damage = Mathf.Max(7f * _conjurer.GetDamageScale(), 7f);
+            Debug.Log("dealt " + damage + " damage");
+            DamageEnemy(damage);
+            Instantiate(Resources.Load("UI/DamageText") as GameObject, new Vector3(
+                    transform.position.x + UnityEngine.Random.Range(-.5f, .5f),
+                    transform.position.y + UnityEngine.Random.Range(-.5f, .5f),
+                    -9.5f
+                    ), Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
+                    .GetComponent<DamageNumbers>()
+                    .SetNumber(damage);
+        }  
     }
     
     private void SlowStatus(bool activation)

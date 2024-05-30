@@ -28,6 +28,8 @@ public class Dashing_AI : Parent_AI
     private Vector2 target;
     private Vector2 diff;
     private Quaternion endRot;
+    private Coroutine force;
+    private bool forced = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -88,6 +90,11 @@ public class Dashing_AI : Parent_AI
         }
         else
         {
+            if (player.transform.position.y <= -3.5f)
+            {
+                yOffset = Mathf.Min(yOffsetRange / 3f, yOffset);
+                yOffset = Mathf.Max(yOffset - Time.deltaTime, .5f);
+            }
             Vector2 direction = new Vector2(player.transform.position.x + xOffset, player.transform.position.y + yOffset) - (Vector2)transform.position;
             if (direction.magnitude < .75f)
             {
@@ -120,7 +127,7 @@ public class Dashing_AI : Parent_AI
         {
             transform.Rotate(new Vector3(0, 0, Mathf.Clamp(angle, Time.deltaTime * spinDegsPerSec, Time.deltaTime * spinDegsPerSec)));
         }
-        if (Mathf.Abs(angle) % 360 < 2.5f)
+        if (Mathf.Abs(angle) % 360 < 2.5f || Mathf.Abs(angle) % 360 > 357.5f)
         {
             target = player.transform.position + Vector3.up * .1f;
             diff = target - (Vector2)transform.position;
@@ -144,7 +151,7 @@ public class Dashing_AI : Parent_AI
         }
         else
         {
-            if (Vector2.Dot((Vector2)transform.position, diff) >= 0)
+            if (Vector2.Dot((Vector2)transform.position, diff) >= 0 || forced)
             {
                 lerpClock += Time.deltaTime;
                 rb.velocity = diff.normalized * Mathf.Lerp(dashVelocity, 0f, Mathf.Min(lerpClock / dashLerpOutTime, 1));
@@ -162,7 +169,28 @@ public class Dashing_AI : Parent_AI
                     lerpedIn = false;
                 }
             }
+            if (transform.position.y <= -4.7f)
+            {
+                if (rb.velocity.y > 4f)
+                {
+                    rb.velocity += Vector2.up * .25f * Time.deltaTime;
+                    transform.position += Vector3.up * .15f * Time.deltaTime;
+                    rb.velocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.velocity.x);
+                }
+                else
+                {
+                    rb.velocity += Vector2.up * .25f * Time.deltaTime * rb.velocity.y / 4f;
+                    transform.position += Vector3.up * .15f * Time.deltaTime;
+                    rb.velocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.velocity.x);
+                }
+            }
         }
+    }
+
+    private IEnumerator Force()
+    {
+        yield return new WaitForSeconds(.35f);
+        forced = true;
     }
 
     private void Waiting()

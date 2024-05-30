@@ -51,11 +51,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53aabd2ae2c0c12429c2d612af5d91b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: +1 Projectile Size
-  statsList: 04000000
+  description: +1 projectile size, slight damage boost
+  statsList: 0400000000000000
   valuesList:
   - 3
-  modeList: 00
+  - 1.2
+  modeList: 0000
+  healthChange: 0
+  dontHeal: 0
+  setHealthAbsolute: 0
+  speedMult: 0
+  invulMult: 0
 --- !u!114 &5968214206793501979
 MonoBehaviour:
   m_ObjectHideFlags: 0

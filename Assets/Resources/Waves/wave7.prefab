@@ -29,6 +29,10 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatType
+      value: 
+      objectReference: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftTopDelay
       value: 5
       objectReference: {fileID: 0}
@@ -37,12 +41,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 257578625451431830, guid: b85e324a0b63ebc4090f525cc21c0ff6, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatDelay
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftTopOffset
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDelay
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatOffset
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorType
@@ -61,16 +73,20 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: leftPlatDuration
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorOffset
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftFloorDuration
-      value: 34
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: rightFloorDuration
-      value: 34
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: upperRightPlatType
@@ -130,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7998463365839113022, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: m_Name
-      value: wave4a
+      value: wave7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

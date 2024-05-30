@@ -23,16 +23,16 @@ public class BossLasers : MonoBehaviour
     private IEnumerator Verticals()
     {
         float xOff = 0;
-        xOff += UnityEngine.Random.Range(-3f, 3f);
+        xOff += UnityEngine.Random.Range(-2f, 2f);
         float negxOff = xOff;
         Instantiate(laserPrefab, new Vector3(xOff, 3, -2), Quaternion.Euler(0, 0, 90f));
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 3; ++i)
         {
-            yield return new WaitForSeconds(.3f);
-            xOff += UnityEngine.Random.Range(6f, 9f);
+            yield return new WaitForSeconds(.4f);
+            xOff += UnityEngine.Random.Range(3.625f, 7.25f);
             Instantiate(laserPrefab, new Vector3(xOff, 3, -2), Quaternion.Euler(0, 0, 90f));
-            yield return new WaitForSeconds(.3f);
-            negxOff -= UnityEngine.Random.Range(4f, 8f);
+            yield return new WaitForSeconds(.4f);
+            negxOff -= UnityEngine.Random.Range(3.625f, 7.25f);
             Instantiate(laserPrefab, new Vector3(negxOff, 3, -2), Quaternion.Euler(0, 0, 90f));
         }
     }

@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 35
   contactDamage: 1
 --- !u!50 &8839806228955375631
 Rigidbody2D:
@@ -214,7 +214,7 @@ MonoBehaviour:
   speed: 11
   xGap: 9.5
   dashVelocity: 30
-  yOffsetRange: 8
+  yOffsetRange: 4
   sprite: {fileID: 3974095728624141124}
   dashLerpInTime: 0.1
   dashLerpOutTime: 0.6

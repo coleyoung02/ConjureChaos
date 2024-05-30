@@ -45,6 +45,11 @@ public abstract class Parent_AI : MonoBehaviour
 
     public void Stun()
     {
+        //boss should be unstunnable
+        if (this is BossAI)
+        {
+            return;
+        }
         stunned = true;
         if (stunRoutine != null)
         {
@@ -60,12 +65,12 @@ public abstract class Parent_AI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (!stunned)
         {
             OnUpdate();
-        }   
+        }  
     }
 
     protected abstract void OnUpdate();

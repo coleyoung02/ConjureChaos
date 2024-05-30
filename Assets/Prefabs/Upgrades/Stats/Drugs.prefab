@@ -134,8 +134,10 @@ MonoBehaviour:
   - 0.85
   - 1.2
   - 1.2
-  - 1.4
+  - 1.3
   modeList: 000100000000
   healthChange: 0
+  dontHeal: 0
   setHealthAbsolute: 0
   speedMult: 0
+  invulMult: 0

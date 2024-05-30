@@ -15,6 +15,7 @@ public class UpgradeManager : MonoBehaviour
     public void GetUpgrades()
     {
         description.text = "";
+        FindAnyObjectByType<CameraManager>().ForceStop();
         Time.timeScale = 0;
         FindAnyObjectByType<AudioManager>().SetFilter(true);
         get3();

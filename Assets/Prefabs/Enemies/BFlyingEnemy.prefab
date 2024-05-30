@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 45
   contactDamage: 1
+  damageText: {fileID: 516186836923948736, guid: 32a60133b06ddd243a07309db45327b5, type: 3}
 --- !u!114 &2586097237445304443
 MonoBehaviour:
   m_ObjectHideFlags: 0
