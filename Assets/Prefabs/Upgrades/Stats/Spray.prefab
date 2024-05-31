@@ -88,9 +88,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4423642886130215301, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c55536aa308d4647b6c95997e0e75a2, type: 3}
+    - target: {fileID: 4559808438618177372, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 2411706040342790242}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
-      value: Fire rate up substantially, accuracy down
+      value: 80% faster fire rate, accuracy down
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: modeList.Array.size
@@ -127,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 5968214206793501979, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: eaa6b03d48fa5b84a8f7fc62f1a84e95, type: 3}
+      objectReference: {fileID: 21300000, guid: 4c55536aa308d4647b6c95997e0e75a2, type: 3}
     - target: {fileID: 8602828216180783186, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Name
       value: Spray
@@ -137,3 +145,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+--- !u!114 &2411706040342790242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6169591481711062032, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+  m_PrefabInstance: {fileID: 8423652280622001266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

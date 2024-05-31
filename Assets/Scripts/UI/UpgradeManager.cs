@@ -47,7 +47,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void get3()
     {
-        upgrades = upgrades.OrderBy(x => Random.value).ToList();
+        //upgrades = upgrades.OrderBy(x => Random.value).ToList();
         for (int i = 0; i < 3; ++i)
         {
             GameObject g = Instantiate(upgrades[i], row.transform);

@@ -88,10 +88,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1761273593528536502, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c152c5b0406755459a1c89dc760d69a, type: 3}
+    - target: {fileID: 4559808438618177372, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 2158262730769349042}
     - target: {fileID: 5968214206793501979, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6b5eefc9e0045b848aa438ddea61f017, type: 3}
+      objectReference: {fileID: 21300000, guid: 2c152c5b0406755459a1c89dc760d69a, type: 3}
     - target: {fileID: 8602828216180783186, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
       propertyPath: m_Name
       value: Heal
@@ -122,3 +130,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Restore all health
+--- !u!114 &2158262730769349042 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7837752949410858750, guid: 6ff26a8dc5cb522498091857e2254dbd, type: 3}
+  m_PrefabInstance: {fileID: 8157982982668238668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456439034025510686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

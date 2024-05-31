@@ -88,6 +88,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4423642886130215301, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c7955b87cb1691c45a95f8bb4c5bffd4, type: 3}
+    - target: {fileID: 4559808438618177372, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 5842394332631889558}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: dontHeal
       value: 1
@@ -113,3 +121,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+--- !u!114 &5842394332631889558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6169591481711062032, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+  m_PrefabInstance: {fileID: 327232747455027846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -60,8 +60,6 @@ public class VolumeSettings : MonoBehaviour
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f)) * 20);
         musicSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f);
         SFXSlider.value = PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f);
-        Debug.Log("music at " + musicSlider.value);
-        Debug.Log("mixer set to " + Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f)) * 20);
 
     }
 

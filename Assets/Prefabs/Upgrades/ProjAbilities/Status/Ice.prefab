@@ -96,10 +96,10 @@ PrefabInstance:
       propertyPath: valuesList.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5968214206793501979, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
+    - target: {fileID: 3587286022515817106, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 449891acf86627d4eb2a42b790025583, type: 3}
+      objectReference: {fileID: 21300000, guid: 04111d863ca210a4184b6ec3200e8c4b, type: 3}
     - target: {fileID: 8602828216180783186, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
       propertyPath: m_Name
       value: Ice
