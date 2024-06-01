@@ -102,6 +102,11 @@ public class ProjectileConjurer : MonoBehaviour
         return _statsList[Stats.Damage] / 10f;
     }
 
+    public int GetNumber()
+    {
+        return Mathf.RoundToInt(_statsList[Stats.ShotCount]);
+    }
+
     public float GetRateScale()
     {
         return _statsList[Stats.Rate] / 0.275f;

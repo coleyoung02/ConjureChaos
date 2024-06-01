@@ -99,7 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 35
   contactDamage: 1
-  damageText: {fileID: 516186836923948736, guid: 32a60133b06ddd243a07309db45327b5, type: 3}
 --- !u!50 &5906325846805613152
 Rigidbody2D:
   serializedVersion: 4
@@ -197,7 +196,7 @@ MonoBehaviour:
   shooting_distance: 9
   projectilePrefab: {fileID: 7232488084303066669, guid: 43a89fb9a932cfb499e98ce45333745b, type: 3}
   cooldown_time: 2
-  projectile_speed: 15
+  projectile_speed: 13
   sprite: {fileID: 6172005507532752889}
 --- !u!95 &-4453753513238114521
 Animator:

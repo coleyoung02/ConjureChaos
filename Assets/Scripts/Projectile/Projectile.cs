@@ -72,11 +72,11 @@ public class Projectile : MonoBehaviour
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang))
         {
             multiplier = 2.5f;
-            splinterMult = 3.65f;
+            splinterMult = 2.75f;
             if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
             {
                 multiplier *= 1.25f;
-                splinterMult *= 2f;
+                splinterMult *= 1.25f;
             }
         }
         if (IsMain)
@@ -99,7 +99,7 @@ public class Projectile : MonoBehaviour
         float closest = float.MaxValue;
         foreach (Enemy e in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
         {
-            if ((e.transform.position - (transform.position + transform.right * 5f)).magnitude < closest)
+            if ((e.transform.position - (transform.position + transform.right * 5.5f)).magnitude < closest)
             {
                 closest = (e.transform.position - transform.position).magnitude;
                 g = e.gameObject;
@@ -139,12 +139,12 @@ public class Projectile : MonoBehaviour
                 {
                     if (Vector2.Dot(closestEnemy.transform.position - transform.position, transform.up) > 0)
                     {
-                        gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 120f * MathF.Max(Mathf.Pow(_speed, 1.3f), 20f) / 20f));
+                        gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 110f * MathF.Max(Mathf.Pow(_speed, 1.15f), 20f) / 20f));
                         rb.velocity = rb.velocity.magnitude * transform.right;
                     }
                     else
                     {
-                        gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 120f * MathF.Max(Mathf.Pow(_speed, 1.3f), 20f) / 20f));
+                        gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 110f * MathF.Max(Mathf.Pow(_speed, 1.15f), 20f) / 20f));
                         rb.velocity = rb.velocity.magnitude * transform.right;
                     }
                 }
@@ -280,7 +280,7 @@ public class Projectile : MonoBehaviour
             GameObject enemy = myCollider.gameObject;
             Vector3 enemyPos = enemy.transform.position;
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-            int numDivisions = 6;
+            int numDivisions = 5;
             numDivisions += Mathf.RoundToInt(_shotCount) - 1;
             for (int i = 180 / numDivisions; i < 360; i += 360/numDivisions)
             {

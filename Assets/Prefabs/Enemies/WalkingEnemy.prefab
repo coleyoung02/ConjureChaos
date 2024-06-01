@@ -125,7 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 35
   contactDamage: 1
-  damageText: {fileID: 516186836923948736, guid: 32a60133b06ddd243a07309db45327b5, type: 3}
 --- !u!114 &722467843673638417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 5.5
+  speed: 5
   height_thresh: 3
   sprite: {fileID: 2628791402611056220}
 --- !u!212 &2628791402611056220

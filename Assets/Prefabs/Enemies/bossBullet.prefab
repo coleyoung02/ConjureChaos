@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  dodgePlatoforms: 1
 --- !u!50 &2536558293954282002
 Rigidbody2D:
   serializedVersion: 4

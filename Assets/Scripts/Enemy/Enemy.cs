@@ -47,9 +47,34 @@ public class Enemy : MonoBehaviour
     {
         hurtTime = 0f;
         sprite = gameObject.GetComponent<SpriteRenderer>();
-        health = maxHealth;
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
+        if (maxHealth > 500)
+        {
+            if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Boomerang) &&
+                _conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Splinter))
+            {
+                maxHealth *= 1.5f;
+                if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Homing))
+                {
+                    maxHealth *= 1.2f;
+                }
+            }
+            maxHealth *= Mathf.Pow(Mathf.Clamp(_conjurer.GetDamageScale(), 1f, 8f), .25f);
+            maxHealth *= Mathf.Pow(Mathf.Clamp(1 / _conjurer.GetRateScale(), 1f, 4f), .25f);
+            if (_conjurer.GetNumber() > 1)
+            {
+                maxHealth *= 1.2f;
+                if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Homing))
+                {
+                    maxHealth *= 1.1f;
+                }
+            }
+            Debug.Log("max health = " + maxHealth);
+        }
+        
+        health = maxHealth;
+        
         
         // Saves the parent ai so we only have to get it once
         _parentAI = gameObject.GetComponent<Parent_AI>();
@@ -217,10 +242,10 @@ public class Enemy : MonoBehaviour
         if (tickable.Contains(status))
         {
             ticks[status] += Time.deltaTime;
-            if (ticks[status] >= 1f * _conjurer.GetRateScale())
+            if (ticks[status] >= .65f * _conjurer.GetRateScale())
             {
                 statusActions[status].Invoke(true);
-                ticks[status] = 0;
+                ticks[status] = ticks[status] - .75f * _conjurer.GetRateScale();
             }
         }
         if (durations[status] <= 0) 
@@ -233,7 +258,7 @@ public class Enemy : MonoBehaviour
     {
         if (activation)
         {
-            float damage = Mathf.Max(7f * _conjurer.GetDamageScale(), 7f);
+            float damage = Mathf.Max(10f * _conjurer.GetDamageScale(), 10f);
             Debug.Log("dealt " + damage + " damage");
             DamageEnemy(damage);
             Instantiate(Resources.Load("UI/DamageText") as GameObject, new Vector3(

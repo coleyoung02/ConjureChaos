@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shooter_Projectile : MonoBehaviour
 {
     public int damage;
+    [SerializeField] private bool dodgePlatoforms;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,12 @@ public class Shooter_Projectile : MonoBehaviour
         }
         else if (collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            Destroy(gameObject);
+            if (collider.gameObject.CompareTag("OneWayPlatform") && dodgePlatoforms)
+                return;
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else if (collider.gameObject.layer == LayerMask.NameToLayer("Shield"))
         {

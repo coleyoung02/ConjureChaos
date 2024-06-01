@@ -98,7 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   contactDamage: 1
-  damageText: {fileID: 516186836923948736, guid: 32a60133b06ddd243a07309db45327b5, type: 3}
 --- !u!50 &5906325846805613152
 Rigidbody2D:
   serializedVersion: 4
@@ -191,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 3
+  speed: 3.5
   desired_distance: 5
   shooting_distance: 8
   projectilePrefab: {fileID: 7232488084303066669, guid: 43a89fb9a932cfb499e98ce45333745b, type: 3}

@@ -48,8 +48,8 @@ public class Jumping_AI : Walking_AI
             {
                 Stun();
                 gameObject.GetComponent<Animator>().SetTrigger("Jump");
-                rb.AddForce(new Vector2(Mathf.Sign(transform.position.x - player.transform.position.x) * 2.5f, 
-                    8f * Mathf.Pow(player.transform.position.y - transform.position.y, .25f)), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(Mathf.Sign(transform.position.x - player.transform.position.x) * 2.4f, 
+                    7.5f * Mathf.Pow(player.transform.position.y - transform.position.y, .25f)), ForceMode2D.Impulse);
             }
         }
     }

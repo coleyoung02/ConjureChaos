@@ -95,7 +95,9 @@ public class Dashing_AI : Parent_AI
                 yOffset = Mathf.Min(yOffsetRange / 3f, yOffset);
                 yOffset = Mathf.Max(yOffset - Time.deltaTime, .5f);
             }
-            Vector2 direction = new Vector2(player.transform.position.x + xOffset, player.transform.position.y + yOffset) - (Vector2)transform.position;
+            Vector2 clampedDestination = (Vector2)player.transform.position + new Vector2(xOffset, yOffset);
+            clampedDestination.x = Mathf.Clamp(clampedDestination.x, -13.75f, 13.75f);
+            Vector2 direction = clampedDestination - (Vector2)transform.position;
             if (direction.magnitude < .75f)
             {
                 state = DashState.spinning;

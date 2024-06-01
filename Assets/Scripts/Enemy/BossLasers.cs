@@ -90,7 +90,7 @@ public class BossLasers : MonoBehaviour
         {
             if (index + order < lasers.Count && index + order >= 0)
             {
-                StartCoroutine(WaitAndLaser(index + order, .1f, horizontalDuration * .4f));
+                StartCoroutine(WaitAndLaser(index + order, .1f, horizontalDuration * .3f));
             }
         }
     }

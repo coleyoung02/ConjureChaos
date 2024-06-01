@@ -49,6 +49,8 @@ public class BossAI : Parent_AI
     private float waitClock;
     private int waitIndex;
     private List<Vector2> spawnLocations;
+    private List<Attack> laserAttacks = new List<Attack> { Attack.HorizontalLasers, Attack.HorizontalLasersVar2, Attack.VerticalLasers };
+    private List<Attack> projectileAttacks = new List<Attack> { Attack.HomingProjectiles, Attack.BulletHell };
 
     // Start is called before the first frame update
     public override void Start()
@@ -67,19 +69,55 @@ public class BossAI : Parent_AI
         }
     }
 
-    private void SetAttack()
+    private Attack GetRandomAttack()
     {
-        int attackIndex = UnityEngine.Random.Range(0,9);
+        int attackIndex = UnityEngine.Random.Range(0, 9);
         if (attackIndex > 5)
         {
             attackIndex -= 3;
         }
-        nextAttack = (Attack)attackIndex;
+        return (Attack)attackIndex;
+    }
+
+    private void SetAttack()
+    {
+        
+        Attack potentialNext = GetRandomAttack();
+        //decreasse likelyhood of repeat attack types
+        //significantly reduce likelyhood of exact repeats
+        if (projectileAttacks.Contains(potentialNext) && projectileAttacks.Contains(nextAttack))
+        {
+            potentialNext = GetRandomAttack();
+            if (potentialNext == nextAttack)
+            {
+                potentialNext = GetRandomAttack();
+            }
+        }
+        else if (laserAttacks.Contains(potentialNext) && laserAttacks.Contains(nextAttack))
+        {
+            potentialNext = GetRandomAttack();
+            if (potentialNext == nextAttack)
+            {
+                potentialNext = GetRandomAttack();
+            }
+        }
+        else
+        {
+            if (potentialNext == nextAttack)
+            {
+                potentialNext = GetRandomAttack();
+                if (potentialNext == nextAttack)
+                {
+                    potentialNext = GetRandomAttack();
+                }
+            }
+        }
+        nextAttack = potentialNext;
         //nextAttack = Attack.EnemySpawns;
         if (nextAttack == Attack.BulletHell)
         {
-            yOffset = UnityEngine.Random.Range(5.45f, 6.2f);
-            xOffset = UnityEngine.Random.Range(3f, 7f);
+            yOffset = UnityEngine.Random.Range(6.5f, 8f);
+            xOffset = UnityEngine.Random.Range(0.5f, 3f);
         }
         else if (nextAttack == Attack.HomingProjectiles)
         {
@@ -155,9 +193,9 @@ public class BossAI : Parent_AI
                 sign = 1;
             else
                 sign = -1;
-            for (float i = -laserBarrageConeSize / 2; i <= laserBarrageConeSize / 2 + .01f; i += laserBarrageConeSize / laserBarrageCountPerWave)
+            for (float i = -laserBarrageConeSize / 2; i <= laserBarrageConeSize / 2 + .01f; i += laserBarrageConeSize / (laserBarrageCountPerWave - 1))
             {
-                Instantiate(bulletProj, transform.position + (Vector3)targetDir * 1.5f, Quaternion.Euler(0, 0, i * sign + 180f)).GetComponent<Rigidbody2D>().velocity = Quaternion.Euler(0, 0, i * sign) * targetDir * 12f;
+                Instantiate(bulletProj, transform.position + (Vector3)targetDir * 2.75f, Quaternion.Euler(0, 0, i * sign + 180f)).GetComponent<Rigidbody2D>().velocity = Quaternion.Euler(0, 0, i * sign) * targetDir * 12f;
                 yield return new WaitForSeconds(laserBarrageRate);
             }
             yield return new WaitForSeconds(laserBarrageWaveDelay);
@@ -178,7 +216,9 @@ public class BossAI : Parent_AI
         }
         else
         {
-            direction = (Vector2)player.transform.position - (Vector2)transform.position + new Vector2(xOffset, yOffset);
+            Vector2 clampedDestination = (Vector2)player.transform.position + new Vector2(xOffset, yOffset);
+            clampedDestination.x = Mathf.Clamp(clampedDestination.x, -13.75f, 13.75f);
+            direction = clampedDestination - (Vector2)transform.position;
         }
         if (Mathf.Abs(direction.y) < 2f)
         {
@@ -195,6 +235,14 @@ public class BossAI : Parent_AI
             return;
         }
         direction.Normalize();
+        if (state == BossState.attacking && nextAttack == Attack.HomingProjectiles)
+        {
+            direction *= .7f;
+        }
+        if (state == BossState.waiting && nextAttack == Attack.BulletHell)
+        {
+            direction *= .35f;
+        }
         rb.velocity = direction * speed;
     }
 
@@ -259,7 +307,7 @@ public class BossAI : Parent_AI
             spawnLocations = spawnLocations.OrderBy(x => Random.value).ToList();
             StartCoroutine(Spawns());
             state = BossState.waiting;
-            waitClock = waitTime / 2 + enemiesToSpawn * .2f + 1.45f;
+            waitClock = enemiesToSpawn * .2f + 1.45f;
             waitIndex = UnityEngine.Random.Range(0, laserWaitPoints.Count);
         }
         else
