@@ -97,6 +97,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5429892513076704474}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: name
+      value: Forking Formula
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
       value: Adds +1 projectile to each shot. Slightly decreased fire rate.
       objectReference: {fileID: 0}

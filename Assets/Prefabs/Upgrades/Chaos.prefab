@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: All speeds up...
+  name: Temporal Transcendence
   statsList: 0300000001000000
   valuesList:
   - 0.7

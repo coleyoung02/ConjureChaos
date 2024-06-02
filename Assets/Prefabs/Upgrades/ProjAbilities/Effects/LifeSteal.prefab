@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      propertyPath: name
+      value: Vampiric Power
+      objectReference: {fileID: 0}
+    - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: effect
       value: 7
       objectReference: {fileID: 0}

@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Projectiles fly in a boomerang path
+  name: Boomerang Beverage
   statsList: 01000000
   valuesList:
   - 1.35

@@ -97,6 +97,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8142469577797214119}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: name
+      value: Brittle Boom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
       value: Max health drops to one, deal triple damage
       objectReference: {fileID: 0}

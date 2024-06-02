@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: An alluring concoction... with consequences...
+  name: Mysterious Brew
   statsList: 000000000500000003000000010000000200000004000000
   valuesList:
   - 2

@@ -97,6 +97,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1807443187264374728}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: name
+      value: Thick Robes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: invulMult
       value: 2.25
       objectReference: {fileID: 0}

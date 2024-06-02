@@ -9,12 +9,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      propertyPath: name
+      value: Shielding Spells
+      objectReference: {fileID: 0}
+    - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: effect
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: description
-      value: Projectiles split into 5 more bolts after hitting an enemy
+      value: Your projectiles destroy enemy projectiles on contact
       objectReference: {fileID: 0}
     - target: {fileID: 1120162115619069829, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Pivot.x
@@ -103,14 +107,14 @@ PrefabInstance:
     - target: {fileID: 5428410717039930625, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: eade6dc7c9885fb43818d96be235df68, type: 3}
+      objectReference: {fileID: 21300000, guid: 69edd6eb28d9ade4484f7cb78c4f50d4, type: 3}
     - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: eade6dc7c9885fb43818d96be235df68, type: 3}
     - target: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Name
-      value: Splinter
+      value: Destruction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

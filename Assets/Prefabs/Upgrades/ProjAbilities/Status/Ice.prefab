@@ -89,6 +89,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2643624706395810131, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
+      propertyPath: name
+      value: Frigid Fate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643624706395810131, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
       propertyPath: description
       value: Projectiles slow enemy movement.
       objectReference: {fileID: 0}

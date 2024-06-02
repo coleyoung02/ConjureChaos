@@ -210,3 +210,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Adds small shield orbiting the player that kills enemies on contact
+  name: Presence of Protection

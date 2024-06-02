@@ -97,6 +97,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3424218109835452234}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: name
+      value: Tortoise Tonic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: speedMult
       value: 0.75
       objectReference: {fileID: 0}

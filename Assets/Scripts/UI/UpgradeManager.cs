@@ -10,6 +10,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject row;
     [SerializeField] private GameObject drug;
     [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private AudioSource upgradeSFX; 
 
     public void GetUpgrades()
@@ -33,6 +34,7 @@ public class UpgradeManager : MonoBehaviour
         Time.timeScale = 1;
         upgradeSFX.Play();
         FindAnyObjectByType<AudioManager>().SetFilter(false);
+        Clear();
         gameObject.SetActive(false);
     }
 
@@ -55,15 +57,19 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    public void SetDescription(string desc)
+    public void SetDescription(string desc, string name)
     {
         description.text = desc;
         description.gameObject.SetActive(true);
+        this.name.text = name;
+        this.name.gameObject.SetActive(true);
     }
 
     public void Clear()
     {
         description.gameObject.SetActive(false);
         description.text = "";
+        name.gameObject.SetActive(false);
+        name.text = "";
     }
 }

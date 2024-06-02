@@ -97,6 +97,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3298021349492150421}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: name
+      value: Hastier Hexes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
       value: 33% faster fire rate
       objectReference: {fileID: 0}
