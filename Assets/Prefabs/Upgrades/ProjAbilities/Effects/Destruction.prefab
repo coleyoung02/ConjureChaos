@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8161223459760622393
+--- !u!1001 &4331293436853311891
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: effect
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: description
-      value: Projectiles home in on enemies
+      value: Projectiles split into 5 more bolts after hitting an enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1120162115619069829, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Pivot.x
@@ -99,62 +99,30 @@ PrefabInstance:
     - target: {fileID: 4559808438618177372, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_TargetGraphic
       value: 
-      objectReference: {fileID: 6138637488074411959}
+      objectReference: {fileID: 1759068333796285725}
     - target: {fileID: 5428410717039930625, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4bc8e8bbfbd8c094ab6f0c8ec21d22a9, type: 3}
+      objectReference: {fileID: 21300000, guid: eade6dc7c9885fb43818d96be235df68, type: 3}
     - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 70170d4e2ca8a004597d5da18e2fe7bd, type: 3}
+      objectReference: {fileID: 21300000, guid: eade6dc7c9885fb43818d96be235df68, type: 3}
     - target: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Name
-      value: Homing
+      value: Splinter
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 867252993094116379}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e1e466738c847346851da793dc37d57, type: 3}
---- !u!1 &441669225039557483 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
-  m_PrefabInstance: {fileID: 8161223459760622393}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &867252993094116379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441669225039557483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb10e9c247693cb4080639b4f997f500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Projectiles home in on enemies, but do slightly less damage.
-  statsList: 00000000
-  valuesList:
-  - 0.8
-  modeList: 00
-  healthChange: 0
-  dontHeal: 0
-  setHealthAbsolute: 0
-  speedMult: 0
-  invulMult: 0
-  effect: 8
---- !u!114 &6138637488074411959 stripped
+--- !u!114 &1759068333796285725 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2626354199072310414, guid: 9e1e466738c847346851da793dc37d57, type: 3}
-  m_PrefabInstance: {fileID: 8161223459760622393}
+  m_PrefabInstance: {fileID: 4331293436853311891}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441669225039557483}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

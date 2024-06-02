@@ -98,6 +98,11 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         animator.speed = 1f;
     }
 
+    private void OnDisable()
+    {
+        animator.speed = 0f;
+    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         animator.speed = 0f;
