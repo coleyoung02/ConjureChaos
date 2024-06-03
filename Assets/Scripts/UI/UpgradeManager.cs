@@ -7,11 +7,25 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> upgrades;
-    [SerializeField] private GameObject row;
+    private List<GameObject> row;
+    [SerializeField] private GameObject left;
+    [SerializeField] private GameObject center;
+    [SerializeField] private GameObject right;
     [SerializeField] private GameObject drug;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI name;
-    [SerializeField] private AudioSource upgradeSFX; 
+    [SerializeField] private AudioClip hovered;
+    [SerializeField] private AudioClip selected;
+
+    private void Awake()
+    {
+        row = new List<GameObject> { left, center, right };
+    }
+
+    public void PlayButtonHovered()
+    {
+        FindAnyObjectByType<AudioManager>().PlayUIClip(hovered, true);
+    }
 
     public void GetUpgrades()
     {
@@ -26,13 +40,14 @@ public class UpgradeManager : MonoBehaviour
     {
         if (upgrades.Count > u.GetIndex())
             upgrades.RemoveAt(u.GetIndex());
-        int children = row.transform.childCount;
+        int children = row.Count;
+
         for (int i = children - 1; i >= 0; --i)
         {
-            Destroy(row.transform.GetChild(i).gameObject);
+            Destroy(row[i].transform.GetChild(0).gameObject);
         }
         Time.timeScale = 1;
-        upgradeSFX.Play();
+        FindAnyObjectByType<AudioManager>().PlayUIClip(selected);
         FindAnyObjectByType<AudioManager>().SetFilter(false);
         Clear();
         gameObject.SetActive(false);
@@ -47,12 +62,35 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    private bool CheckRepeats(List<GameObject> u)
+    {
+        return (string.Equals(upgrades[0].name, upgrades[1].name) ||
+                string.Equals(upgrades[0].name, upgrades[2].name) ||
+                string.Equals(upgrades[1].name, upgrades[2].name));
+    }
+
+    private bool CheckForHeals(List<GameObject> u)
+    {
+        return (upgrades[0].GetComponent<Heal>() != null) ||
+                    (upgrades[1].GetComponent<Heal>() != null) ||
+                    (upgrades[2].GetComponent<Heal>() != null);
+    }
+
     public void get3()
     {
+
+        bool isMaxHealth = FindAnyObjectByType<PlayerHealth>();
         upgrades = upgrades.OrderBy(x => Random.value).ToList();
+        int iters = 0;
+        // do not give duplicates, and do not give healing while at full health
+        while (iters < 50 && (CheckRepeats(upgrades) || (isMaxHealth && CheckForHeals(upgrades))) )
+        {
+            ++iters;
+            upgrades = upgrades.OrderBy(x => Random.value).ToList();
+        }
         for (int i = 0; i < 3; ++i)
         {
-            GameObject g = Instantiate(upgrades[i], row.transform);
+            GameObject g = Instantiate(upgrades[i], row[i].transform);
             g.GetComponent<Upgrade>().SetIndex(i);
         }
     }

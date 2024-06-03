@@ -23,9 +23,9 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private int index;
 
     private bool hovered = false;
-    private float scale = 1f;
-    private float maxScale = 1.05f;
-    private float changeRate = .4f;
+    private float lerpClock = 0f;
+    private float maxScale = 1.15f;
+    private float changeRate = 7.5f;
     private RectTransform rt;
 
     public void SetIndex(int index)
@@ -49,13 +49,13 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (hovered)
         {
-            scale = Mathf.Clamp(scale + changeRate * Time.deltaTime, 1, maxScale);
+            lerpClock = Mathf.Clamp(lerpClock + changeRate * Time.unscaledDeltaTime, 0, 1);
         }
         else
         {
-            scale = Mathf.Clamp(scale - changeRate * Time.deltaTime, 1, maxScale);
+            lerpClock = Mathf.Clamp(lerpClock - changeRate * Time.unscaledDeltaTime * 1.5f, 0, 1);
         }
-        rt.localScale = new Vector3(scale, scale, scale);
+        rt.localScale = Vector3.Slerp(new Vector3(1, 1, 1), new Vector3(maxScale, maxScale, maxScale), lerpClock);
     }
 
     private void OnEnable()
@@ -66,6 +66,7 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         UpgradeManager uMan = FindObjectOfType<UpgradeManager>();
+        uMan.PlayButtonHovered();
         uMan.SetDescription(description, name);
         hovered = true;
     }

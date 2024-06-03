@@ -68,7 +68,6 @@ public class BossProjectile : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Shield"))
         {
-            Debug.Log("SHIELD HIT");
             collision.gameObject.GetComponent<ShieldChild>().OnHit();
             Instantiate(poof, (Vector2)transform.position + rb.velocity.normalized * .45f, Quaternion.identity);
             StopAllCoroutines();

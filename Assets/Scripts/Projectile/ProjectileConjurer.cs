@@ -51,6 +51,7 @@ public class ProjectileConjurer : MonoBehaviour
         LifeSteal,
         Homing,
         Regen,
+        Blocking,
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -98,7 +99,6 @@ public class ProjectileConjurer : MonoBehaviour
     
     public float GetDamageScale()
     {
-        Debug.Log("reporting damage scale of " + _statsList[Stats.Damage] / 10f);
         return _statsList[Stats.Damage] / 10f;
     }
 

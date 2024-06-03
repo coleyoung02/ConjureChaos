@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource UISource;
     [SerializeField] private AudioSource MusicSource;
     [SerializeField] private AudioLowPassFilter filter;
+    [SerializeField] private List<AudioSource> uiSources;
+    private int uiIndex = 0;
 
 
     public const string MUSIC_KEY = "musicVolume";
@@ -22,6 +24,27 @@ public class AudioManager : MonoBehaviour
     public void PauseMusic()
     {
         MusicSource.Pause();
+    }
+
+    public void PlayUIClip(AudioClip clip, bool withPitch=false)
+    {
+        AudioSource a = getNextUISource();
+        if (withPitch)
+        {
+            a.pitch = UnityEngine.Random.Range(.95f, 1.05f);
+        }
+        else
+        {
+            a.pitch = 1f;
+        }
+        a.clip = clip;
+        a.Play();
+    }
+
+    private AudioSource getNextUISource()
+    {
+        uiIndex = (uiIndex + 1) % uiSources.Count;
+        return uiSources[uiIndex];
     }
 
     public void SetFilter(bool f)

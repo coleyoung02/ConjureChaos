@@ -35,6 +35,7 @@ public class BossAI : Parent_AI
     [SerializeField] private float laserBarrageConeSize;
     [SerializeField] private float laserBarrageRate;
     [SerializeField] private float laserBarrageWaveDelay;
+    [SerializeField] private float laserBarrageVelocity;
     [SerializeField] private float waitTime;
     [SerializeField] private int enemiesToSpawn;
     private List<GameObject> laserWaitPoints;
@@ -51,6 +52,7 @@ public class BossAI : Parent_AI
     private List<Vector2> spawnLocations;
     private List<Attack> laserAttacks = new List<Attack> { Attack.HorizontalLasers, Attack.HorizontalLasersVar2, Attack.VerticalLasers };
     private List<Attack> projectileAttacks = new List<Attack> { Attack.HomingProjectiles, Attack.BulletHell };
+    private bool isDead = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -113,7 +115,7 @@ public class BossAI : Parent_AI
             }
         }
         nextAttack = potentialNext;
-        //nextAttack = Attack.EnemySpawns;
+        //nextAttack = Attack.BulletHell;
         if (nextAttack == Attack.BulletHell)
         {
             yOffset = UnityEngine.Random.Range(6.5f, 8f);
@@ -134,7 +136,7 @@ public class BossAI : Parent_AI
 
     protected void FlipSprite()
     {
-        if (transform.position.x < player.transform.position.x)
+        if (transform.position.x > player.transform.position.x)
         {
             sprite.flipX = false;
         }
@@ -144,58 +146,92 @@ public class BossAI : Parent_AI
         }
     }
 
+    public void Kill()
+    {
+        isDead = true;
+        GetComponent<Animator>().SetTrigger("Die");
+        rb.velocity = Vector3.zero;
+        StartCoroutine(WaitAndFlip());
+        
+    }
+
+    private IEnumerator WaitAndFlip()
+    {
+        yield return new WaitForSeconds(.6f);
+        rb.freezeRotation = false;
+        if (sprite.flipX)
+        {
+            rb.AddTorque(2f, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddTorque(-2f, ForceMode2D.Impulse);
+        }
+        rb.gravityScale = 1f;
+    }
+
     // Update is called once per frame
     protected override void OnUpdate()
     {
-        FlipSprite();
-        if (state == BossState.moving)
+        if (!isDead)
         {
-            Move();
-        }
-        else if (state == BossState.attacking)
-        {
-            DoAttack();
-        }
-        else if (state == BossState.waiting)
-        {
-            if (waitClock <= 0)
+            FlipSprite();
+            if (state == BossState.moving)
             {
-                SetAttack();
-                state = BossState.moving;
+                Move();
             }
-            else
+            else if (state == BossState.attacking)
             {
-                if (waitClock > 2.25f)
+                DoAttack();
+            }
+            else if (state == BossState.waiting)
+            {
+                if (waitClock <= 0)
                 {
-                    waitClock -= Time.deltaTime;
-                    if (!(waitClock > 2.25f))
-                    {
-                        waitIndex = UnityEngine.Random.Range(0, laserWaitPoints.Count);
-                    }
+                    SetAttack();
+                    state = BossState.moving;
                 }
                 else
                 {
-                    waitClock -= Time.deltaTime;
+                    if (waitClock > 2.25f)
+                    {
+                        waitClock -= Time.deltaTime;
+                        if (!(waitClock > 2.25f))
+                        {
+                            waitIndex = UnityEngine.Random.Range(0, laserWaitPoints.Count);
+                        }
+                    }
+                    else
+                    {
+                        waitClock -= Time.deltaTime;
+                    }
+                    Move();
                 }
-                Move();
             }
         }
     }
+
     private IEnumerator sprayRoutine()
     {
         yield return new WaitForSeconds(.2f);
         int sign = 1;
-        Vector2 targetDir;
+        Vector2 targetDir = new Vector2();
         for (int j = 0; j < laserBarrageWaves; j++)
         {
-            targetDir = (Vector2)(player.transform.position - transform.position).normalized;
+            if (j < 2)
+                targetDir = (Vector2)(player.transform.position - transform.position).normalized;
             if (j % 2 == 0)
                 sign = 1;
             else
                 sign = -1;
-            for (float i = -laserBarrageConeSize / 2; i <= laserBarrageConeSize / 2 + .01f; i += laserBarrageConeSize / (laserBarrageCountPerWave - 1))
+            int numPerWave = laserBarrageCountPerWave;
+            if (j % 2 == 1)
             {
-                Instantiate(bulletProj, transform.position + (Vector3)targetDir * 2.75f, Quaternion.Euler(0, 0, i * sign + 180f)).GetComponent<Rigidbody2D>().velocity = Quaternion.Euler(0, 0, i * sign) * targetDir * 12f;
+                --numPerWave;
+            }
+            for (float i = -laserBarrageConeSize / 2; i <= laserBarrageConeSize / 2 + .01f; i += laserBarrageConeSize / (numPerWave - 1))
+            {
+                Instantiate(bulletProj, transform.position + Quaternion.Euler(0, 0, i * sign) * ((Vector3)targetDir * 1f), Quaternion.Euler(0, 0, i * sign + 180f)).GetComponent<Rigidbody2D>().velocity = Quaternion.Euler(0, 0, i * sign) * targetDir * laserBarrageVelocity;
                 yield return new WaitForSeconds(laserBarrageRate);
             }
             yield return new WaitForSeconds(laserBarrageWaveDelay);
@@ -218,6 +254,7 @@ public class BossAI : Parent_AI
         {
             Vector2 clampedDestination = (Vector2)player.transform.position + new Vector2(xOffset, yOffset);
             clampedDestination.x = Mathf.Clamp(clampedDestination.x, -13.75f, 13.75f);
+            clampedDestination.y = Mathf.Clamp(clampedDestination.y, -4.25f, 10.25f);
             direction = clampedDestination - (Vector2)transform.position;
         }
         if (Mathf.Abs(direction.y) < 2f)

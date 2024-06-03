@@ -6,9 +6,10 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    public  static UnityEvent deathEvent;
+    public static UnityEvent deathEvent;
     public static bool deathListenerAdded = false;
     [SerializeField] public float maxHealth;
+    [SerializeField] public bool isBoss;
     protected float health;
     private float baseSpeed;
     [SerializeField] protected int contactDamage;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
     private Dictionary<ProjectileConjurer.StatusEffects, float> ticks;
     private static List<ProjectileConjurer.StatusEffects> tickable = new List<ProjectileConjurer.StatusEffects> { ProjectileConjurer.StatusEffects.Fire };
     private Dictionary<ProjectileConjurer.StatusEffects, Action<bool>> statusActions;
+    private bool isDead = false;
 
     public void SetPlayer(GameObject player)
     {
@@ -49,7 +51,7 @@ public class Enemy : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         // Saves the conjurer so we only have to get it once
         _conjurer = FindObjectOfType<ProjectileConjurer>();
-        if (maxHealth > 500)
+        if (IsBoss())
         {
             if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Boomerang) &&
                 _conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Splinter))
@@ -60,8 +62,8 @@ public class Enemy : MonoBehaviour
                     maxHealth *= 1.2f;
                 }
             }
-            maxHealth *= Mathf.Pow(Mathf.Clamp(_conjurer.GetDamageScale(), 1f, 8f), .25f);
-            maxHealth *= Mathf.Pow(Mathf.Clamp(1 / _conjurer.GetRateScale(), 1f, 4f), .25f);
+            maxHealth *= Mathf.Pow(Mathf.Clamp(_conjurer.GetDamageScale(), 1f, 10f), .3f);
+            maxHealth *= Mathf.Pow(Mathf.Clamp(1 / _conjurer.GetRateScale(), 1f, 5f), .25f);
             if (_conjurer.GetNumber() > 1)
             {
                 maxHealth *= 1.2f;
@@ -70,7 +72,6 @@ public class Enemy : MonoBehaviour
                     maxHealth *= 1.1f;
                 }
             }
-            Debug.Log("max health = " + maxHealth);
         }
         
         health = maxHealth;
@@ -162,10 +163,8 @@ public class Enemy : MonoBehaviour
         float damageToUse = dmg;
         damageToUse = Mathf.Clamp(damageToUse, 0, 750f);
         hurtTime = flashDuration;
-        if (maxHealth > 1000)
+        if (IsBoss())
         {
-            Debug.Log("health " + health);
-            Debug.Log("max health " + maxHealth);
             FindAnyObjectByType<ProgressManager>().SetBossProgress(1f - (float)health / (float)maxHealth);
         }
         //setup to allow a return of boolean before destruction, in case damager has to know if the attack killed the enemy. If multiplayer allows for kill counts per player
@@ -181,16 +180,36 @@ public class Enemy : MonoBehaviour
         }  
     }
 
+    public bool IsBoss()
+    {
+        return isBoss;
+    }
+
     public void die()
     {
+        if (isDead)
+            return;
         if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.LifeSteal))
             playerHealth.EnemyKilled();
         deathEvent.Invoke();
-        if (maxHealth > 1000)
+        if (IsBoss())
         {
             FindAnyObjectByType<ProgressManager>().checkCompletion(true, true);
         }
-        Destroy(gameObject);
+        if (!IsBoss())
+        {
+            Debug.Log("regular kill of " + gameObject.name);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Boss kill");
+            if (_parentAI is BossAI)
+            {
+                isDead = true;
+                ((BossAI)_parentAI).Kill();
+            }
+        }
     }
 
     void OnDestroy()
@@ -201,7 +220,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player") && !isDead)
         {
             playerHealth.PlayerTakeDamage(contactDamage);
         }
@@ -209,7 +228,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player") && !isDead)
         {
             playerHealth.PlayerTakeDamage(contactDamage);
         }
@@ -259,7 +278,6 @@ public class Enemy : MonoBehaviour
         if (activation)
         {
             float damage = Mathf.Max(10f * _conjurer.GetDamageScale(), 10f);
-            Debug.Log("dealt " + damage + " damage");
             DamageEnemy(damage);
             Instantiate(Resources.Load("UI/DamageText") as GameObject, new Vector3(
                     transform.position.x + UnityEngine.Random.Range(-.5f, .5f),

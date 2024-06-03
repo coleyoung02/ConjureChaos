@@ -12,6 +12,30 @@ PrefabInstance:
       propertyPath: IsMain
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 423575857615850628, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: nonMainProjectilePrefab
+      value: 
+      objectReference: {fileID: 3697868449342105524}
+    - target: {fileID: 3342725250956619067, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342725250956619067, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011823800718256113, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011823800718256113, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011823800718256113, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 7011823800718256113, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -61,3 +85,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+--- !u!1 &3697868449342105524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9131568365663451046, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+  m_PrefabInstance: {fileID: 5613929139879366674}
+  m_PrefabAsset: {fileID: 0}

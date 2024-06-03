@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  isBoss: 0
   contactDamage: 1
 --- !u!50 &8839806228955375631
 Rigidbody2D:
@@ -167,7 +168,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dbcf88eb3fcaa5a45a6eedde03be305d, type: 3}
-  m_Color: {r: 0.4571581, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

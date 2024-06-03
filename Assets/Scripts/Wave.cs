@@ -194,7 +194,14 @@ public class Wave : MonoBehaviour
             Destroy(spawner);
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            Destroy(enemy);
+            if (!enemy.GetComponent<Enemy>().IsBoss())
+            {
+                Destroy(enemy);
+            }
+        }
+        foreach (EnemySpawner es in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
+        {
+            Destroy(es.gameObject);
         }
         Destroy(gameObject);
     }

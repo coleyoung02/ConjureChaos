@@ -71,11 +71,16 @@ public class WaveManager : MonoBehaviour
             {
                 Destroy(l.gameObject);
             }
-            Debug.Log("I WIN!");
-            SceneManager.LoadScene("WinScreen");
+            StartCoroutine(WaitAndWin());
             return;
         }
         currWave = Instantiate(waves[waveNum-1], gameObject.transform).GetComponent<Wave>();
         killQuota = currWave.getQuota();
+    }
+
+    private IEnumerator WaitAndWin()
+    {
+        yield return new WaitForSeconds(3.75f);
+        SceneManager.LoadScene("WinScreen");
     }
 }

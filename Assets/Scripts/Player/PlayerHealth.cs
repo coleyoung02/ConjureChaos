@@ -48,6 +48,11 @@ public class PlayerHealth : MonoBehaviour
         invincibilityDuration = invul;
     }
 
+    public bool IsAtMax()
+    {
+        return currentHealth == maxHealth;
+    }
+
     public float GetInvul()
     {
         return invincibilityDuration;

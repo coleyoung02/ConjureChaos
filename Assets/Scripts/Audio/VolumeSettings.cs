@@ -72,8 +72,6 @@ public class VolumeSettings : MonoBehaviour
 
     public void BumpResolution(bool up)
     {
-        Debug.Log(currentRes + 1);
-        Debug.Log(validResolutions.GetLength(0));
         if (up && currentRes + 1 < validResolutions.GetLength(0) &&
             validResolutions[currentRes + 1, 0] <= maxWidth && validResolutions[currentRes + 1, 1] <= maxHeight)
         {
@@ -137,7 +135,6 @@ public class VolumeSettings : MonoBehaviour
     {
         mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value) * 20);
         PlayerPrefs.SetFloat(AudioManager.MUSIC_KEY, musicSlider.value);
-        Debug.Log("mixer set to " + Mathf.Log10(musicSlider.value) * 20);
     }
 
     public void SetSFXVolume(float value)

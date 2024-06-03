@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Collider2D myCollider;
     GameObject currentOneWayPlatform;
+    private bool usedFall = false;
 
     void Awake() {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -34,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
         {
             currentOneWayPlatform = other.gameObject;
         }
+        if (foot.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            usedFall = false;
+        }
     }
 
     void OnCollisionExit2D(Collision2D other) 
@@ -48,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(myCollider, platformCollider);
-        myRigidbody.velocity += new Vector2(myRigidbody.velocity.x, -fallPower); //add some force to the fall
+        myRigidbody.velocity += new Vector2(0, -fallPower); //add some force to the fall
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(myCollider, platformCollider, false);
     }
@@ -58,6 +64,12 @@ public class PlayerMovement : MonoBehaviour
         if(value.isPressed && currentOneWayPlatform != null)
         {
             StartCoroutine(DisableCollision());
+            usedFall = true;
+        }
+        else if (!usedFall)
+        {
+            myRigidbody.velocity += new Vector2(0, -fallPower);
+            usedFall = true;
         }
     }
 

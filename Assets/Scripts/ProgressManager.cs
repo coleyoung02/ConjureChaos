@@ -98,6 +98,7 @@ public class ProgressManager : MonoBehaviour
 
     public void ResetForBoss()
     {
+        boss = true;
         deathCountBar.value = 0;
         target = 0f;
     }

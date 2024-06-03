@@ -17,7 +17,9 @@ public class Projectile : MonoBehaviour
     private bool IsMain;
 
     [SerializeField]
-    private GameObject hitSplat;
+    private GameObject hitSplat; 
+    [SerializeField]
+    private GameObject shieldGraphic;
     [SerializeField]
     private float boomerangReverseTime = .15f;
     private float boomerangReverseClock;
@@ -88,6 +90,10 @@ public class Projectile : MonoBehaviour
         {
             lifetime = splinterMult * (_range / _speed) / 2;
             Destroy(gameObject, lifetime);
+        }
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking))
+        {
+            shieldGraphic.SetActive(true);
         }
         accumulatedTime = 0f;
         boomerangReverseTime *= lifetime;
@@ -238,8 +244,18 @@ public class Projectile : MonoBehaviour
 
     private void DestroyingProjectileManager(Collider2D myCollider)
     {
+        Debug.Log(myCollider.gameObject.name + " " + myCollider.CompareTag("EnemyProjectile") + " " + _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking));
         if (!IsMain && myCollider == ignore)
             return;
+
+        if (myCollider.CompareTag("EnemyProjectile") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking))
+        {
+            Destroy(myCollider.transform.parent.gameObject);
+            if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+                return;
+            Destroy(gameObject);
+            return;
+        }
             
         if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
             return;
@@ -282,10 +298,11 @@ public class Projectile : MonoBehaviour
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             int numDivisions = 5;
             numDivisions += Mathf.RoundToInt(_shotCount) - 1;
+            float offset = UnityEngine.Random.Range(0, 360f);
             for (int i = 180 / numDivisions; i < 360; i += 360/numDivisions)
             {
                 Transform myTransform = transform;
-                GameObject g = Instantiate(nonMainProjectilePrefab, myCollider.gameObject.transform.position, Quaternion.AngleAxis(angle + i, Vector3.forward));
+                GameObject g = Instantiate(nonMainProjectilePrefab, myCollider.gameObject.transform.position, Quaternion.AngleAxis(angle + i + offset, Vector3.forward));
                 Projectile p = g.GetComponent<Projectile>();
                 p.SetIgnore(myCollider);
                 p.ProjectileMove();

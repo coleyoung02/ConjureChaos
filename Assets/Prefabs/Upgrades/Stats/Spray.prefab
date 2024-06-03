@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 2411706040342790242}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: name
-      value: Manic Magic
+      value: Frenzied Firing
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
