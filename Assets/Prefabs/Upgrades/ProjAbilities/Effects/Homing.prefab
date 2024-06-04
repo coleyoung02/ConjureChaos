@@ -142,7 +142,7 @@ MonoBehaviour:
   name: Aimbracadabra
   statsList: 00000000
   valuesList:
-  - 0.8
+  - 0.75
   modeList: 00
   healthChange: 0
   dontHeal: 0

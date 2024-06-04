@@ -56,20 +56,20 @@ public class Enemy : MonoBehaviour
             if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Boomerang) &&
                 _conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Splinter))
             {
-                maxHealth *= 1.5f;
-                if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Homing))
-                {
-                    maxHealth *= 1.2f;
-                }
-            }
-            maxHealth *= Mathf.Pow(Mathf.Clamp(_conjurer.GetDamageScale(), 1f, 10f), .3f);
-            maxHealth *= Mathf.Pow(Mathf.Clamp(1 / _conjurer.GetRateScale(), 1f, 5f), .25f);
-            if (_conjurer.GetNumber() > 1)
-            {
-                maxHealth *= 1.2f;
+                maxHealth *= 1.75f;
                 if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Homing))
                 {
                     maxHealth *= 1.1f;
+                }
+            }
+            maxHealth *= Mathf.Pow(Mathf.Clamp(_conjurer.GetDamageScale(), 1f, 7f), .45f);
+            maxHealth *= Mathf.Pow(Mathf.Clamp(1 / _conjurer.GetRateScale(), 1f, 4f), .4f);
+            if (_conjurer.GetNumber() > 1)
+            {
+                maxHealth *= 1.3f;
+                if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Homing))
+                {
+                    maxHealth *= 1.225f;
                 }
             }
         }
@@ -198,12 +198,10 @@ public class Enemy : MonoBehaviour
         }
         if (!IsBoss())
         {
-            Debug.Log("regular kill of " + gameObject.name);
             Destroy(gameObject);
         }
         else
         {
-            Debug.Log("Boss kill");
             if (_parentAI is BossAI)
             {
                 isDead = true;

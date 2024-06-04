@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: valuesList.Array.data[0]
-      value: 1.2
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 5968214206793501979, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Sprite

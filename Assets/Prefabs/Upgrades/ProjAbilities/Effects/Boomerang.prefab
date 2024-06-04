@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb10e9c247693cb4080639b4f997f500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Projectiles fly in a boomerang path
+  description: Projectiles fly in a boomerang path.
   name: Boomerang Beverage
   statsList: 01000000
   valuesList:
-  - 1.35
+  - 1.25
   modeList: 00
   healthChange: 0
   dontHeal: 0

@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f5914c97bedc14f98fd4e039838e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 16000
+  maxHealth: 12000
   isBoss: 1
   contactDamage: 1
 --- !u!50 &5906325846805613152
@@ -300,8 +300,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.005600035, y: 0.000100016594, z: 0}
-    m_Extent: {x: 1.8954, y: 2.4069, z: 0}
+    m_Center: {x: 0.0021999478, y: 0.00454998, z: 0}
+    m_Extent: {x: 1.8926, y: 2.40305, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

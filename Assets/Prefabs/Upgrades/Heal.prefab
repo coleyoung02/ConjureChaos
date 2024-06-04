@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9628b8b00d7e73f48bda97e43bb7383d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Restore all health
+  description: Restore all health, and gain a 5% movement speed boost.
   name: Refreshing Remedy
 --- !u!114 &2158262730769349042 stripped
 MonoBehaviour:

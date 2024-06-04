@@ -16,6 +16,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private AudioClip hovered;
     [SerializeField] private AudioClip selected;
+    [SerializeField] private AudioSource actived;
 
     private void Awake()
     {
@@ -78,8 +79,8 @@ public class UpgradeManager : MonoBehaviour
 
     public void get3()
     {
-
-        bool isMaxHealth = FindAnyObjectByType<PlayerHealth>();
+        actived.Play();
+        bool isMaxHealth = FindAnyObjectByType<PlayerHealth>().IsAtMax();
         upgrades = upgrades.OrderBy(x => Random.value).ToList();
         int iters = 0;
         // do not give duplicates, and do not give healing while at full health

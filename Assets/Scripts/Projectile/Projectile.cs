@@ -162,7 +162,14 @@ public class Projectile : MonoBehaviour
     {
         Dictionary<Stats, float> stats = _conjurer.GetStats();
 
-        _damage = stats[Stats.Damage];
+        if (IsMain)
+        {
+            _damage = stats[Stats.Damage];
+        }
+        else
+        {
+            _damage = stats[Stats.Damage] * .5f;
+        }
         _speed = stats[Stats.Speed];
         _size = stats[Stats.Size];
         _range = stats[Stats.Range];
@@ -177,7 +184,14 @@ public class Projectile : MonoBehaviour
     private void InitializeSize()
     {
         // We could just take the base size and multiply it by the size amount but for now just decided to make it the actual scale factor.
-        transform.localScale = new Vector3(_size, _size, _size);
+        if (IsMain)
+        {
+            transform.localScale = new Vector3(_size, _size, _size);
+        }
+        else
+        {
+            transform.localScale = new Vector3(_size, _size, _size) * .7f;
+        }
     }
 
     private void InitializeDirection()
@@ -244,19 +258,50 @@ public class Projectile : MonoBehaviour
 
     private void DestroyingProjectileManager(Collider2D myCollider)
     {
-        Debug.Log(myCollider.gameObject.name + " " + myCollider.CompareTag("EnemyProjectile") + " " + _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking));
         if (!IsMain && myCollider == ignore)
             return;
-
-        if (myCollider.CompareTag("EnemyProjectile") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking))
+        
+        if (myCollider.CompareTag("EnemyProjectile"))
         {
-            Destroy(myCollider.transform.parent.gameObject);
-            if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
-                return;
-            Destroy(gameObject);
+            float multiplier = .7f;
+            if (IsMain)
+            {
+                multiplier = 1f;
+            }
+            float chance = .5f * multiplier * Mathf.Clamp(_conjurer.GetRateScale(), .3f, 1f) / Mathf.Sqrt(_shotCount);
+            Debug.Log("chance " + chance);
+            if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking) && UnityEngine.Random.Range(0f, 1f) < chance)
+            {
+                Destroy(myCollider.transform.parent.gameObject);
+                if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+                    return;
+                Destroy(gameObject);
+            }
             return;
         }
-            
+
+        if (myCollider.CompareTag("BossProjectile"))
+        {
+            float multiplier = .6f;
+            if (IsMain)
+            {
+                multiplier = 1f;
+            }
+            else if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Boomerang)) 
+            {
+                multiplier = .4f;
+            }
+            float chance = .04f * multiplier * Mathf.Clamp(_conjurer.GetRateScale(), .3f, 1f) / Mathf.Sqrt(_shotCount);
+            if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking) && UnityEngine.Random.Range(0f, 1f) < chance)
+            {
+                Destroy(myCollider.transform.parent.gameObject);
+                if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+                    return;
+                Destroy(gameObject);
+            }
+            return;
+        }
+
         if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
             return;
         

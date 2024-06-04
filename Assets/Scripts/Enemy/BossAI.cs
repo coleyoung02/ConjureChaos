@@ -53,6 +53,7 @@ public class BossAI : Parent_AI
     private List<Attack> laserAttacks = new List<Attack> { Attack.HorizontalLasers, Attack.HorizontalLasersVar2, Attack.VerticalLasers };
     private List<Attack> projectileAttacks = new List<Attack> { Attack.HomingProjectiles, Attack.BulletHell };
     private bool isDead = false;
+    private bool waiting = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -68,6 +69,16 @@ public class BossAI : Parent_AI
         foreach (GameObject go in locs)
         {
             spawnLocations.Add(go.transform.position);
+        }
+        projectileClock = 0f;
+        waitClock = 0f;
+        if (FindAnyObjectByType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
+        {
+            laserBarrageWaveDelay *= .75f;
+            laserBarrageRate *= .7f;
+            laserBarrageVelocity *= 1.2f;
+            waitTime *= .8f;
+            homingProjectilesRate *= .8f;
         }
     }
 
@@ -103,16 +114,17 @@ public class BossAI : Parent_AI
                 potentialNext = GetRandomAttack();
             }
         }
-        else
+        else if (potentialNext == nextAttack)
         {
+            potentialNext = GetRandomAttack();
             if (potentialNext == nextAttack)
             {
                 potentialNext = GetRandomAttack();
-                if (potentialNext == nextAttack)
-                {
-                    potentialNext = GetRandomAttack();
-                }
             }
+        }
+        else if (UnityEngine.Random.Range(0f, 1f) < .085f)
+        {
+            potentialNext = Attack.VerticalLasers;
         }
         nextAttack = potentialNext;
         //nextAttack = Attack.BulletHell;
@@ -213,7 +225,6 @@ public class BossAI : Parent_AI
 
     private IEnumerator sprayRoutine()
     {
-        yield return new WaitForSeconds(.2f);
         int sign = 1;
         Vector2 targetDir = new Vector2();
         for (int j = 0; j < laserBarrageWaves; j++)
@@ -264,10 +275,10 @@ public class BossAI : Parent_AI
         if (direction.magnitude < 7f)
         {
             rb.velocity = direction * speed / 7f;
-            if (direction.magnitude < 4f && state == BossState.moving)
+            if (!waiting && direction.magnitude < 4f && state == BossState.moving)
             {
-                state = BossState.attacking;
-                rb.velocity = Vector2.zero;
+                waiting = true;
+                GetComponent<Animator>().SetTrigger("Attack");
             }
             return;
         }
@@ -281,6 +292,14 @@ public class BossAI : Parent_AI
             direction *= .35f;
         }
         rb.velocity = direction * speed;
+    }
+
+    public void StartAttack()
+    {
+        state = BossState.attacking;
+        rb.velocity = Vector2.zero;
+        waiting = false;
+        Debug.Log("starting attack");
     }
 
     private void DoAttack()
@@ -329,7 +348,7 @@ public class BossAI : Parent_AI
                 else
                 {
                     projectileCount = 0;
-                    projectileClock = homingProjectilesRate;
+                    projectileClock = 0;
                     state = BossState.waiting;
                     waitClock = waitTime;
                 }

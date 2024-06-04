@@ -209,5 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1b7d8187b4a8949bb79c20e6fe03ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Adds small shield orbiting the player that kills enemies on contact
+  description: Adds small shield orbiting the player that kills enemies on contact.
   name: Presence of Protection

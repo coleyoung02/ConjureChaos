@@ -106,6 +106,8 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.duration = leftTopDuration;
             tempSpawnerScript.spawn_delay = leftTopDelay;
             tempSpawnerScript.offset = leftTopOffset;
+            tempSpawnerScript.debug = true;
+            Debug.Log(tempSpawnerScript.NumEnemiesToSpawn());
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
         }
@@ -128,6 +130,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.duration = topDuration;
             tempSpawnerScript.spawn_delay = topDelay;
             tempSpawnerScript.offset = topOffset;
+            tempSpawnerScript.debug = true;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
         }

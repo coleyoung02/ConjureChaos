@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
-      value: Significantly increases projectile range
+      value: Significantly increases projectile range.
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: modeList.Array.size
@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: valuesList.Array.data[0]
-      value: 10
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 8602828216180783186, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Name

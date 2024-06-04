@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public float time_elapsed;
     public float spawn_delay;
     public float offset;
+    public bool debug;
     bool active;
     float time_until_next_spawn;
     public int spawnLocation;
@@ -39,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             if (time_until_next_spawn <= 0)
             {
                 SpawnEnemy();
-                timeSince = 0f;
+                timeSince -= spawn_delay;
             }
             else if (time_until_next_spawn <= appearTime && time_until_next_spawn < duration - time_elapsed)
             {
@@ -72,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
             time_until_next_spawn -= Time.deltaTime;
             time_elapsed += Time.deltaTime;
         }
-        else if (timeSince <= .3f)
+        else if (timeSince <= .6f)
         {
             spawnerSprite.transform.localScale =
                 new Vector3(spawnerSprite.transform.localScale.x - Time.deltaTime * 3,
@@ -88,11 +89,17 @@ public class EnemySpawner : MonoBehaviour
                 spawnerLight.intensity = 0;
             }
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void SpawnEnemy()
     {
         GameObject enemy_instantiated = Instantiate(enemy, transform.position + new Vector3(0, 0, -4.5f), Quaternion.identity);
+        if (debug)
+            Debug.Log(enemy_instantiated.name);
         enemy_instantiated.GetComponent<Parent_AI>().SetPlayer(player);
         enemy_instantiated.GetComponent<Enemy>().SetPlayer(player);
         time_until_next_spawn = spawn_delay + Time.deltaTime;
@@ -100,6 +107,10 @@ public class EnemySpawner : MonoBehaviour
 
     public int NumEnemiesToSpawn()
     {
-        return (int)((duration - .0001) / spawn_delay) + 1;
+        if (debug)
+        {
+            Debug.Log((int)((duration - .1f) / (spawn_delay + .01f)) + 1);
+        }
+        return (int)((duration - .1f) / (spawn_delay + .01f)) + 1;
     }
 }

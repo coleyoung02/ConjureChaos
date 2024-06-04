@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: description
-      value: Projectiles travel through platforms
+      value: Projectiles travel through platforms.
       objectReference: {fileID: 0}
     - target: {fileID: 1120162115619069829, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Pivot.x
