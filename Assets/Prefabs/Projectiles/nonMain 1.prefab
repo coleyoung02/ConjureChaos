@@ -13,6 +13,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423575857615850628, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: trailPeriod
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 423575857615850628, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: nonMainProjectilePrefab
       value: 
       objectReference: {fileID: 3697868449342105524}
@@ -22,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3342725250956619067, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7011823800718256113, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: m_LocalScale.x

@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     private static List<ProjectileConjurer.StatusEffects> tickable = new List<ProjectileConjurer.StatusEffects> { ProjectileConjurer.StatusEffects.Fire };
     private Dictionary<ProjectileConjurer.StatusEffects, Action<bool>> statusActions;
     private bool isDead = false;
+    private float lastTrailDamageTime;
 
     public void SetPlayer(GameObject player)
     {
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
+        lastTrailDamageTime = -100000f;
     }
 
     void Start()
@@ -156,6 +158,17 @@ public class Enemy : MonoBehaviour
         health += heal;
         if (health > maxHealth)
             health = maxHealth;
+    }
+
+    public void TrailDamage(float dmg)
+    {
+        if (Time.time - lastTrailDamageTime > DamageTrail.immunityTime)
+        {
+            _conjurer.PlayHitSound();
+            InstantiateDamageText(dmg);
+            DamageEnemy(dmg);
+            lastTrailDamageTime = Time.time;
+        }
     }
 
     public bool DamageEnemy(float dmg)
@@ -275,18 +288,23 @@ public class Enemy : MonoBehaviour
     {
         if (activation)
         {
-            float damage = Mathf.Max(10f * _conjurer.GetDamageScale(), 10f);
+            float damage = Mathf.Max(10f * _conjurer.GetDamageScale() * _conjurer.GetSkullMult(), 10f);
+            InstantiateDamageText(damage);
             DamageEnemy(damage);
-            Instantiate(Resources.Load("UI/DamageText") as GameObject, new Vector3(
-                    transform.position.x + UnityEngine.Random.Range(-.5f, .5f),
-                    transform.position.y + UnityEngine.Random.Range(-.5f, .5f),
-                    -9.5f
-                    ), Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
-                    .GetComponent<DamageNumbers>()
-                    .SetNumber(damage);
         }  
     }
     
+    private void InstantiateDamageText(float damage)
+    {
+        Instantiate(Resources.Load("UI/DamageText") as GameObject, new Vector3(
+                transform.position.x + UnityEngine.Random.Range(-.5f, .5f),
+                transform.position.y + UnityEngine.Random.Range(-.5f, .5f),
+                -9.5f
+                ), Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
+                .GetComponent<DamageNumbers>()
+                .SetNumber(damage);
+    }
+
     private void SlowStatus(bool activation)
     {
         if (activation) 

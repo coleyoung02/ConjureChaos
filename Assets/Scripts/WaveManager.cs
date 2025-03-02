@@ -38,9 +38,9 @@ public class WaveManager : MonoBehaviour
 
     private void SetWaveUI()
     {
-        if (waveNum <= 15)
+        if (waveNum <= waves.Count - 1)
         {
-            tm.text = "Wave " + waveNum.ToString() + "/15";
+            tm.text = "Wave " + waveNum.ToString() + "/" + (waves.Count - 1);
         }
         else
         {

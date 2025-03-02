@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private float lifeStealSliderTarget;
     [SerializeField] private GameObject lifeStealFullnessIndicator;
     [SerializeField] float invincibilityDuration;
+    private ProjectileConjurer pc;
     private CameraManager camMan;
 
     private static int lifeStealKills = 12;
@@ -37,9 +38,10 @@ public class PlayerHealth : MonoBehaviour
     
     void Start()
     {
+        pc = FindAnyObjectByType<ProjectileConjurer>();
         hurtTime = 0f;
         SetHealth(maxHealth);
-        UpdateHealthUI();
+        OnHealthChanged();
         camMan = FindAnyObjectByType<CameraManager>();
     }
 
@@ -134,7 +136,7 @@ public class PlayerHealth : MonoBehaviour
         {
             enemiesKilled = 0;
         }
-        UpdateHealthUI();
+        OnHealthChanged();
     }
 
     public void PlayerTakeDamage(int damage)
@@ -163,7 +165,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(InvincibilityTimer(invincibilityDuration));
             StartCoroutine(InvincibilityIndicator(invincibilityDuration - .1f));
         }
-        UpdateHealthUI();
+        OnHealthChanged();
         camMan.TakeDamage();
     }
 
@@ -190,7 +192,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth == maxHealth)
         {
         }
-        UpdateHealthUI();
+        OnHealthChanged();
     }
 
     public void ChangeMaxHealth(int value, bool absolute, bool heal=true)
@@ -219,7 +221,7 @@ public class PlayerHealth : MonoBehaviour
         {
             lifeStealFullnessIndicator.SetActive(false);
         }
-        UpdateHealthUI();
+        OnHealthChanged();
     }
 
     public void AddMaxHealth(int value, bool heal=true)
@@ -234,7 +236,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth += value;
         }
         SetHealth(Mathf.Min(currentHealth, maxHealth));
-        UpdateHealthUI();
+        OnHealthChanged();
     }
 
     public void SubtractMaxHealth(int value)
@@ -254,7 +256,7 @@ public class PlayerHealth : MonoBehaviour
             lifeStealSlider.value = 0;
             lifeStealFullnessIndicator.SetActive(true);
         }
-        UpdateHealthUI();
+        OnHealthChanged();
     }
 
     public void HealToFull()
@@ -263,11 +265,12 @@ public class PlayerHealth : MonoBehaviour
         enemiesKilled = 0;
         lifeStealSlider.value = 0;
         lifeStealFullnessIndicator.SetActive(true);
-        UpdateHealthUI();
+        OnHealthChanged();
     }
 
-    void UpdateHealthUI()
+    public void OnHealthChanged()
     {
+        pc.UpdateFromHealth(currentHealth, maxHealth);
         RefreshHeartDisplay();
     }
 

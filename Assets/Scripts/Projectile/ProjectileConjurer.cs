@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProjectileConjurer : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ProjectileConjurer : MonoBehaviour
 
     [SerializeField] private AudioSource hitSFX;
     [SerializeField] private List<AudioSource> sfxPool;
+    [SerializeField] private float skullMultValue;
     private int sfxIndex;
 
     [SerializeField]
@@ -25,13 +27,21 @@ public class ProjectileConjurer : MonoBehaviour
     
     // Time last fired
     private float _timer = 0;
-    
+    private float _burstTimer = 0;
+
     // Main Camera
     private Camera _mainCamera;
+    [SerializeField]
+    private int maxBurstSize;
+    [SerializeField]
+    private Slider burstSlider;
+    [SerializeField]
+    private float burstRateMult;
 
     [SerializeField]
     private float forkingAngle;
     private int forkingCount = 0;
+    private int burstAccumulated = 0;
     
     public enum StatusEffects
     {
@@ -52,6 +62,9 @@ public class ProjectileConjurer : MonoBehaviour
         Homing,
         Regen,
         Blocking,
+        Trail,
+        SkullMult,
+        BurstFire,
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -65,6 +78,7 @@ public class ProjectileConjurer : MonoBehaviour
         { Stats.Rate, 0.275f},
         { Stats.Accuracy, 0f },
         { Stats.ShotCount, 1f },
+        { Stats.SkullMult, 1f },
     };
 
     // Keeps track of status effects that it will apply to enemy
@@ -100,6 +114,11 @@ public class ProjectileConjurer : MonoBehaviour
     public float GetDamageScale()
     {
         return _statsList[Stats.Damage] / 10f;
+    }
+
+    public float GetSkullMult()
+    {
+        return _statsList[Stats.SkullMult];
     }
 
     public int GetNumber()
@@ -182,6 +201,14 @@ public class ProjectileConjurer : MonoBehaviour
         {
             FindAnyObjectByType<PlayerHealth>().ActivateLifeSteal();
         }
+        if (projectileEffects == ProjectileEffects.BurstFire)
+        {
+            burstSlider.gameObject.SetActive(true);
+        }
+        if (projectileEffects == ProjectileEffects.SkullMult)
+        {
+            FindAnyObjectByType<PlayerHealth>().OnHealthChanged();
+        }
     }
 
     public void FlipFirePoint(bool flipRight)
@@ -208,24 +235,53 @@ public class ProjectileConjurer : MonoBehaviour
         Shoot();
     }
 
+    public void UpdateFromHealth(int current, int max)
+    {
+        if (_projectileEffects.Contains(ProjectileEffects.SkullMult))
+        {
+            _statsList[Stats.SkullMult] = 1 + (max - current) * skullMultValue;
+        }
+    }
+
     private void Shoot()
     {
         ShotCooldown();
-        
-        if (Input.GetMouseButton(0) && _canFire)
+
+        if (Input.GetMouseButton(0))
         {
-            Transform myTransform = transform;
-            for (int i = 0; i < Mathf.RoundToInt(_statsList[Stats.ShotCount]); i++)
+            if (burstAccumulated > 0 && _burstTimer > _statsList[Stats.Rate] * burstRateMult)
             {
-                Instantiate(projectilePrefab, myTransform.position, myTransform.rotation);
+                Fire();
+                Debug.Log("fired burst shot" + burstAccumulated);
+                burstAccumulated--;
+                burstSlider.value = burstAccumulated;
+                _burstTimer = 0;
+                if (burstAccumulated == 0)
+                {
+                    _timer = 0;
+                    _canFire = false;
+                }
             }
-            _canFire = false;
+            else if (_canFire)
+            {
+                Fire();
+            }
         }
+    }
+
+    private void Fire()
+    {
+        Transform myTransform = transform;
+        for (int i = 0; i < Mathf.RoundToInt(_statsList[Stats.ShotCount]); i++)
+        {
+            Instantiate(projectilePrefab, myTransform.position, myTransform.rotation);
+        }
+        _canFire = false;
     }
     
     private void ShotCooldown()
     {
-        if (!_canFire)
+        if (!_canFire && burstAccumulated <= 0)
         {
             _timer += Time.deltaTime;
 
@@ -234,6 +290,23 @@ public class ProjectileConjurer : MonoBehaviour
                 _canFire = true;
                 _timer = 0;
             }
+        }
+        else if (_projectileEffects.Contains(ProjectileEffects.BurstFire))
+        {
+            if (burstAccumulated < maxBurstSize && !Input.GetMouseButton(0))
+            {
+                _timer += Time.deltaTime;
+                if (_timer > _statsList[Stats.Rate] * 1.125f)
+                {
+                    burstAccumulated += 1;
+                    burstSlider.value = burstAccumulated;
+                    _timer = 0;
+                }
+            }
+        }
+        if (burstAccumulated > 0)
+        {
+            _burstTimer += Time.deltaTime;
         }
     }
 }

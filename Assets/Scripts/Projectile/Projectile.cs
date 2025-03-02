@@ -17,11 +17,15 @@ public class Projectile : MonoBehaviour
     private bool IsMain;
 
     [SerializeField]
-    private GameObject hitSplat; 
+    private GameObject hitSplat;
+    [SerializeField]
+    private GameObject trail;
     [SerializeField]
     private GameObject shieldGraphic;
     [SerializeField]
     private float boomerangReverseTime = .15f;
+    [SerializeField]
+    private float trailPeriod;
     private float boomerangReverseClock;
     [SerializeField] private GameObject damageText;
 
@@ -46,7 +50,7 @@ public class Projectile : MonoBehaviour
     private float _knockBackAmount = 25f;
 
     //change back to private
-    public Collider2D ignore;
+    private Collider2D ignore;
 
     private Vector2 initialVelocity;
 
@@ -97,6 +101,22 @@ public class Projectile : MonoBehaviour
         }
         accumulatedTime = 0f;
         boomerangReverseTime *= lifetime;
+        if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Trail))
+        {
+            StartCoroutine(SpawnTrailParticle());
+        }
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    private IEnumerator SpawnTrailParticle()
+    {
+        yield return new WaitForSeconds(trailPeriod / _speed );
+        Instantiate(trail, transform.position + Vector3.forward * .1f, transform.rotation);
+        StartCoroutine(SpawnTrailParticle());
     }
 
     private GameObject GetClosestEnemy()
@@ -164,11 +184,11 @@ public class Projectile : MonoBehaviour
 
         if (IsMain)
         {
-            _damage = stats[Stats.Damage];
+            _damage = stats[Stats.Damage] * stats[Stats.SkullMult];
         }
         else
         {
-            _damage = stats[Stats.Damage] * .5f;
+            _damage = stats[Stats.Damage] * .5f * stats[Stats.SkullMult];
         }
         _speed = stats[Stats.Speed];
         _size = stats[Stats.Size];

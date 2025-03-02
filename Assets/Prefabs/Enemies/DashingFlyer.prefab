@@ -99,6 +99,7 @@ MonoBehaviour:
   maxHealth: 20
   isBoss: 0
   contactDamage: 1
+  trailImmunityTime: 0.1
 --- !u!50 &8839806228955375631
 Rigidbody2D:
   serializedVersion: 4

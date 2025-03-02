@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 45
+  isBoss: 0
   contactDamage: 1
+  trailImmunityTime: 0.1
 --- !u!114 &9005310554175371192
 MonoBehaviour:
   m_ObjectHideFlags: 0

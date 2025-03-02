@@ -13,7 +13,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject right;
     [SerializeField] private GameObject drug;
     [SerializeField] private TextMeshProUGUI description;
-    [SerializeField] private TextMeshProUGUI name;
+    [SerializeField] private TextMeshProUGUI upgradeNameField;
     [SerializeField] private AudioClip hovered;
     [SerializeField] private AudioClip selected;
     [SerializeField] private AudioSource actived;
@@ -100,15 +100,15 @@ public class UpgradeManager : MonoBehaviour
     {
         description.text = desc;
         description.gameObject.SetActive(true);
-        this.name.text = name;
-        this.name.gameObject.SetActive(true);
+        this.upgradeNameField.text = name;
+        this.upgradeNameField.gameObject.SetActive(true);
     }
 
     public void Clear()
     {
         description.gameObject.SetActive(false);
         description.text = "";
-        name.gameObject.SetActive(false);
-        name.text = "";
+        upgradeNameField.gameObject.SetActive(false);
+        upgradeNameField.text = "";
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4027320062606458132}
   - component: {fileID: 9068357947428391525}
   m_Layer: 5
-  m_Name: Image
+  m_Name: UpgradePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 7893375643498017347}
   - component: {fileID: 8650143375470022930}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: chooseAnUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,7 +476,7 @@ MonoBehaviour:
   right: {fileID: 8923473719408601716}
   drug: {fileID: 2362197121279423480, guid: 891eff655eb041e44b5c4594058559d4, type: 3}
   description: {fileID: 5647892566638810277}
-  name: {fileID: 3295146187211732778}
+  upgradeNameField: {fileID: 3295146187211732778}
   hovered: {fileID: 8300000, guid: dcb905e977916ad4a9ccc3592762faf9, type: 3}
   selected: {fileID: 8300000, guid: 96a88cd76f0e19b41849583630135301, type: 3}
   actived: {fileID: 6970153168517207848}

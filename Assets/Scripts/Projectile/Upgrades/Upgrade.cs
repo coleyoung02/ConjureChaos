@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public enum Stats
@@ -13,12 +14,13 @@ public enum Stats
     Size = 4,
     Accuracy = 5,
     ShotCount = 6,
+    SkullMult = 7,
 }
 
 public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] protected string description;
-    [SerializeField] protected string name;
+    [SerializeField] [FormerlySerializedAs("name")] protected string upgradeName;
     private Button button;
     private int index;
 
@@ -67,7 +69,7 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         UpgradeManager uMan = FindObjectOfType<UpgradeManager>();
         uMan.PlayButtonHovered();
-        uMan.SetDescription(description, name);
+        uMan.SetDescription(description, upgradeName);
         hovered = true;
     }
 

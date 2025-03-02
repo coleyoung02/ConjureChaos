@@ -99,6 +99,7 @@ MonoBehaviour:
   maxHealth: 25
   isBoss: 0
   contactDamage: 1
+  trailImmunityTime: 0.1
 --- !u!114 &2586097237445304443
 MonoBehaviour:
   m_ObjectHideFlags: 0
