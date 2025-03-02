@@ -166,7 +166,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(InvincibilityTimer(invincibilityDuration));
             StartCoroutine(InvincibilityIndicator(invincibilityDuration - .1f));
         }
-        if (true || (currentHealth > 0 && pc.CheckHasEffect(ProjectileConjurer.ProjectileEffects.Revenge)))
+        if (currentHealth > 0 && pc.CheckHasEffect(ProjectileConjurer.ProjectileEffects.Revenge))
         {
             revenge.Activate();
         }
