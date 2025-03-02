@@ -3826,7 +3826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9121725632596395298, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: upgrades.Array.size
-      value: 36
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 9121725632596395298, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: 'upgrades.Array.data[0]'
@@ -3975,7 +3975,7 @@ PrefabInstance:
     - target: {fileID: 9121725632596395298, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: 'upgrades.Array.data[36]'
       value: 
-      objectReference: {fileID: 6869727706342875258, guid: f799094e125c57444b2e7dcc828c7705, type: 3}
+      objectReference: {fileID: 5130354096077053564, guid: 2507504cfa460c444b460b943769fa2f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
