@@ -17,7 +17,7 @@ public class Walking_AI : Parent_AI
         else
             rb.velocity = new Vector2(-speed, 0);
         BoxCollider2D bc = gameObject.GetComponent<BoxCollider2D>();
-        castDistance = bc.size.y * transform.localScale.y / 2 + .05f - bc.offset.y;
+        castDistance = bc.size.y * transform.localScale.y / 2 + .5f - bc.offset.y;
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class Walking_AI : Parent_AI
         else if (Mathf.Abs(player.transform.position.y - transform.position.y) < height_thresh ||
             (player.transform.position.y < transform.position.y - 2 
                 && Mathf.Abs(player.transform.position.x) < 11f && Mathf.Abs(transform.position.x) > 10f) ||
-            !Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground")))
+            (rb.velocity.y < -5.5f && !Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground"))))
         {
             float dist_move = speed * Time.deltaTime;
             Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, 0);
