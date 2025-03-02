@@ -10,19 +10,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: name
-      value: Skeletal Strength
+      value: Power of Patience
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: effect
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: description
-      value: Deal 35% more damage for each empty heart you currently have.
+      value: When you take damage, release a swirling burst of magic, dealing massive
+        any enemies around you.
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: upgradeName
-      value: Skeletal Strength
+      value: Vicious Vortex
       objectReference: {fileID: 0}
     - target: {fileID: 1120162115619069829, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Pivot.x
@@ -111,14 +112,14 @@ PrefabInstance:
     - target: {fileID: 5428410717039930625, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 708c3b6b76aefea49982fb036e37ed25, type: 3}
+      objectReference: {fileID: 21300000, guid: fe0667cd8f0884a42b2939ad67889ff9, type: 3}
     - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ae4ef5d7debf1f6489d33e7e99c21c39, type: 3}
     - target: {fileID: 8602828216180783186, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Name
-      value: Skull
+      value: Revenge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -41,6 +41,11 @@ public class AudioManager : MonoBehaviour
         a.Play();
     }
 
+    public float GetPitch()
+    {
+        return MusicSource.pitch;
+    }
+
     private AudioSource getNextUISource()
     {
         uiIndex = (uiIndex + 1) % uiSources.Count;

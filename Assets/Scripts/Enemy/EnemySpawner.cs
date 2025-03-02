@@ -97,7 +97,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject enemy_instantiated = Instantiate(enemy, transform.position + new Vector3(0, 0, -4.5f), Quaternion.identity);
+        GameObject enemy_instantiated = Instantiate(enemy, transform.position + 
+            new Vector3(0, 0, -4.5f + UnityEngine.Random.Range(-.02f, .02f)), Quaternion.identity);
         if (debug)
             Debug.Log(enemy_instantiated.name);
         enemy_instantiated.GetComponent<Parent_AI>().SetPlayer(player);

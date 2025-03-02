@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 6091637270686939987}
   - {fileID: 821522829502105540}
   - {fileID: 9103979082143626776}
-  skullMultValue: 0.3
+  skullMultValue: 0.35
   leftFirePosition: -0.5
   projectilePrefab: {fileID: 9131568365663451046, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
   maxBurstSize: 7
@@ -75,6 +75,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3440647997885041583, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
+  m_Resource: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.135
   m_Pitch: 1
@@ -171,6 +172,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3440647997885041583, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
+  m_Resource: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.125
   m_Pitch: 1
@@ -267,6 +269,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3440647997885041583, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
+  m_Resource: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.13
   m_Pitch: 1
@@ -363,6 +366,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3440647997885041583, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
+  m_Resource: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.135
   m_Pitch: 1
@@ -459,6 +463,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3440647997885041583, guid: 072502a2567679c49aac835ac7613d29, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
+  m_Resource: {fileID: 8300000, guid: e7fdc93365242a841b928914c2a43947, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.135
   m_Pitch: 1

@@ -65,6 +65,7 @@ public class ProjectileConjurer : MonoBehaviour
         Trail,
         SkullMult,
         BurstFire,
+        Revenge,
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -209,6 +210,11 @@ public class ProjectileConjurer : MonoBehaviour
         {
             FindAnyObjectByType<PlayerHealth>().OnHealthChanged();
         }
+    }
+
+    public bool CheckHasEffect(ProjectileEffects effect)
+    {
+        return _projectileEffects.Contains(effect);
     }
 
     public void FlipFirePoint(bool flipRight)

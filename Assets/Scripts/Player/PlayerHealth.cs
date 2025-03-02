@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject invulIndicator2;
     [SerializeField] Image[] hearts;
     [SerializeField] Image hurtOverlay;
+    [SerializeField] private RevengeParent revenge;
     private float hurtTime;
     private static float overlayDuration = 1.2f;
     private static float maxOpacity = .4f;
@@ -164,6 +165,10 @@ public class PlayerHealth : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(InvincibilityTimer(invincibilityDuration));
             StartCoroutine(InvincibilityIndicator(invincibilityDuration - .1f));
+        }
+        if (true || (currentHealth > 0 && pc.CheckHasEffect(ProjectileConjurer.ProjectileEffects.Revenge)))
+        {
+            revenge.Activate();
         }
         OnHealthChanged();
         camMan.TakeDamage();

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Jumping_AI : Walking_AI
 {
-    
+    [SerializeField] private float targetX;
+    [SerializeField] private float deltaX;
+    [SerializeField] private float jumpForceMult;
+    [SerializeField] private float jumpHeight;
 
     // Start is called before the first frame update
 
@@ -21,36 +24,44 @@ public class Jumping_AI : Walking_AI
         {
             sprite.flipX = false;
         }
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) < .1f &&
-            Mathf.Abs(player.transform.position.y - transform.position.y) < .5f)
+        float dx = player.transform.position.x - transform.position.x;
+        float dy = player.transform.position.y - transform.position.y;
+        if (Mathf.Abs(dx) < .15f &&
+            (Mathf.Abs(dy) < .75f || (dy > 0 && dy < 1.5f)))
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
-        else if (Mathf.Abs(player.transform.position.y - transform.position.y) < height_thresh)
+        else if (Mathf.Abs(dy) < height_thresh)
         {
             float dist_move = speed * Time.deltaTime;
-            Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, 0);
+            Vector2 direction = new Vector2(dx, 0);
             direction.Normalize();
             direction *= speed;
             
             direction.y = rb.linearVelocity.y;
             rb.linearVelocity = direction;
         }
-        else if (rb.linearVelocity.y < .05f &&
+        else if (Mathf.Abs(rb.linearVelocity.y) < .05f &&
             Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground")))
         {
-            Vector2 direction = rb.linearVelocity;
-            rb.linearVelocity = direction;
-            if (Mathf.Abs(transform.position.x - player.transform.position.x) < 3 &&
-                Mathf.Abs(transform.position.x - player.transform.position.x) > 2 &&
-                transform.position.y < player.transform.position.y &&
-                player.transform.position.y - transform.position.y < 5f) 
+            if (Mathf.Abs(dx) < targetX + deltaX &&
+                Mathf.Abs(dx) > targetX - deltaX * 2 &&
+                dy > 1f &&
+                dy < jumpHeight) 
             {
                 Stun();
                 gameObject.GetComponent<Animator>().SetTrigger("Jump");
-                rb.AddForce(new Vector2(Mathf.Sign(transform.position.x - player.transform.position.x) * 2.4f, 
-                    7.5f * Mathf.Pow(player.transform.position.y - transform.position.y, .25f)), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(Mathf.Sign(-dx) * 2.4f * Mathf.Sqrt(jumpForceMult), 
+                    7.5f * Mathf.Pow(dy, .25f)) * jumpForceMult, ForceMode2D.Impulse);
             }
+            else
+            {
+                Spacing<Jumping_AI>();
+            }
+        }
+        if (rb.linearVelocity.magnitude < .01f)
+        {
+            rb.linearVelocity = new Vector2(Mathf.Sign(-dx) * speed, rb.linearVelocity.y);
         }
     }
 }

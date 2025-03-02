@@ -174,7 +174,11 @@ public class Enemy : MonoBehaviour
     public bool DamageEnemy(float dmg)
     {
         float damageToUse = dmg;
-        damageToUse = Mathf.Clamp(damageToUse, 0, 750f);
+        damageToUse = Mathf.Clamp(damageToUse, 0, 1000f);
+        if (damageToUse >= 1000f)
+        {
+            InstantiateDamageText(Mathf.Min(damageToUse, maxHealth));
+        }
         hurtTime = flashDuration;
         if (IsBoss())
         {

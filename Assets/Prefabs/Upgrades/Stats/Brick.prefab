@@ -121,24 +121,24 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: statsList.Array.data[1]
+      propertyPath: 'statsList.Array.data[1]'
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: statsList.Array.data[2]
+      propertyPath: 'statsList.Array.data[2]'
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: valuesList.Array.data[0]
-      value: 1.225
+      propertyPath: 'valuesList.Array.data[0]'
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: valuesList.Array.data[1]
-      value: 0.325
+      propertyPath: 'valuesList.Array.data[1]'
+      value: 0.315
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: valuesList.Array.data[2]
-      value: 0.65
+      propertyPath: 'valuesList.Array.data[2]'
+      value: 0.625
       objectReference: {fileID: 0}
     - target: {fileID: 5968214206793501979, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Sprite

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,42 +52,47 @@ public class Walking_AI : Parent_AI
         }
         else if (rb.linearVelocity.y < .05f)
         {
-            Vector2 direction = rb.linearVelocity;
-            float closest = 9999f;
-            Walking_AI close = null;
-            foreach (Walking_AI w in FindObjectsOfType<Walking_AI>())
-            {
-                if (Mathf.Abs(w.gameObject.transform.position.x - gameObject.transform.position.x) < Mathf.Abs(closest) &&
-                    Mathf.Abs(w.gameObject.transform.position.y - gameObject.transform.position.y) < 1 &&
-                    w != this)
-                {
-                    closest = w.gameObject.transform.position.x - gameObject.transform.position.x;
-                    close = w;
-                }
-            }
-            if (close != null && Mathf.Abs(closest) < 3f)
-            {
-                if (rb.linearVelocity.x < 0)
-                {
-                    if (closest < 0)
-                        direction.x = -speed + .65f;
-                    else
-                        direction.x = -speed;
-                }
-                else if (rb.linearVelocity.x > 0)
-                {
-                    if (closest > 0)
-                        direction.x = speed - .65f;
-                    else
-                        direction.x = speed;
-                }
-            }
-            else
-            {
-                direction = direction.normalized * speed; 
-            }
-            rb.linearVelocity = direction;
+            Spacing<Walking_AI>();
         }
+    }
+
+    public void Spacing<T>() where T : MonoBehaviour
+    {
+        Vector2 direction = rb.linearVelocity;
+        float closest = 9999f;
+        T close = null;
+        foreach (T w in FindObjectsOfType<T> ())
+        {
+            if (Mathf.Abs(w.gameObject.transform.position.x - gameObject.transform.position.x) < Mathf.Abs(closest) &&
+                Mathf.Abs(w.gameObject.transform.position.y - gameObject.transform.position.y) < 1 &&
+                w != this)
+            {
+                closest = w.gameObject.transform.position.x - gameObject.transform.position.x;
+                close = w;
+            }
+        }
+        if (close != null && Mathf.Abs(closest) < 3f)
+        {
+            if (rb.linearVelocity.x < 0)
+            {
+                if (closest < 0)
+                    direction.x = -speed + .65f;
+                else
+                    direction.x = -speed;
+            }
+            else if (rb.linearVelocity.x > 0)
+            {
+                if (closest > 0)
+                    direction.x = speed - .65f;
+                else
+                    direction.x = speed;
+            }
+        }
+        else
+        {
+            direction = direction.normalized * speed;
+        }
+        rb.linearVelocity = direction;
     }
 
     public void TurnAround(bool left)
