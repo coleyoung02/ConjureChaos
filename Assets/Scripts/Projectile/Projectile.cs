@@ -146,11 +146,11 @@ public class Projectile : MonoBehaviour
                 if (boomerangReverseClock > boomerangReverseTime && !flipped)
                 {
                     gameObject.transform.Rotate(new Vector3(0, 0, 180f));
-                    rb.velocity = -rb.velocity;
+                    rb.linearVelocity = -rb.linearVelocity;
                     closestEnemy = GetClosestEnemy();
                     flipped = true;
                 }
-                rb.velocity = rb.velocity.normalized * Mathf.Abs(Mathf.Lerp(1, -1, Mathf.Clamp(boomerangReverseClock, 0, 2 * boomerangReverseTime) / (2 * boomerangReverseTime))) * _speed;
+                rb.linearVelocity = rb.linearVelocity.normalized * Mathf.Abs(Mathf.Lerp(1, -1, Mathf.Clamp(boomerangReverseClock, 0, 2 * boomerangReverseTime) / (2 * boomerangReverseTime))) * _speed;
             }
         }
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
@@ -166,12 +166,12 @@ public class Projectile : MonoBehaviour
                     if (Vector2.Dot(closestEnemy.transform.position - transform.position, transform.up) > 0)
                     {
                         gameObject.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 110f * MathF.Max(Mathf.Pow(_speed, 1.15f), 20f) / 20f));
-                        rb.velocity = rb.velocity.magnitude * transform.right;
+                        rb.linearVelocity = rb.linearVelocity.magnitude * transform.right;
                     }
                     else
                     {
                         gameObject.transform.Rotate(new Vector3(0, 0, -Time.deltaTime * 110f * MathF.Max(Mathf.Pow(_speed, 1.15f), 20f) / 20f));
-                        rb.velocity = rb.velocity.magnitude * transform.right;
+                        rb.linearVelocity = rb.linearVelocity.magnitude * transform.right;
                     }
                 }
             }
@@ -223,17 +223,17 @@ public class Projectile : MonoBehaviour
     {
         if (IsMain)
         {
-            rb.velocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
-            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            rb.linearVelocity = new Vector2(_direction.x, _direction.y).normalized * _speed;
+            float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
             this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else if (ignore != null)
         {
-            rb.velocity = transform.rotation * (new Vector3(_speed, 0, 0));
+            rb.linearVelocity = transform.rotation * (new Vector3(_speed, 0, 0));
         }
-        if (rb.velocity.magnitude >= .2f)
+        if (rb.linearVelocity.magnitude >= .2f)
         {
-            initialVelocity = rb.velocity;
+            initialVelocity = rb.linearVelocity;
         }
 
     }
@@ -254,7 +254,7 @@ public class Projectile : MonoBehaviour
     {
         if (myCollider.CompareTag("Enemy") && (myCollider != ignore || flipped))
         {
-            Vector3 hitLoc = transform.position + new Vector3(rb.velocity.normalized.x, rb.velocity.normalized.y) * .25f;
+            Vector3 hitLoc = transform.position + new Vector3(rb.linearVelocity.normalized.x, rb.linearVelocity.normalized.y) * .25f;
             Instantiate(hitSplat, hitLoc, transform.rotation, null);
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
@@ -345,7 +345,7 @@ public class Projectile : MonoBehaviour
             Vector3 enemyPos = enemy.transform.position;
 
             enemy.GetComponent<Parent_AI>().Stun();
-            enemy.GetComponent<Rigidbody2D>().AddForce(rb.velocity.normalized * _knockBackAmount, ForceMode2D.Impulse);
+            enemy.GetComponent<Rigidbody2D>().AddForce(rb.linearVelocity.normalized * _knockBackAmount, ForceMode2D.Impulse);
         }
     }
 
@@ -360,7 +360,7 @@ public class Projectile : MonoBehaviour
         {
             GameObject enemy = myCollider.gameObject;
             Vector3 enemyPos = enemy.transform.position;
-            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
             int numDivisions = 5;
             numDivisions += Mathf.RoundToInt(_shotCount) - 1;
             float offset = UnityEngine.Random.Range(0, 360f);

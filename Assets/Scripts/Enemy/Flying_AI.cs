@@ -32,10 +32,10 @@ public class Flying_AI : Parent_AI
         Vector2 direction = (Vector2)player.transform.position - (Vector2)transform.position;
         if (direction.magnitude < .35f)
         {
-            rb.velocity = rb.velocity - rb.velocity * Time.deltaTime * 10f;
+            rb.linearVelocity = rb.linearVelocity - rb.linearVelocity * Time.deltaTime * 10f;
             return;
         }
         direction.Normalize();
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
     }
 }

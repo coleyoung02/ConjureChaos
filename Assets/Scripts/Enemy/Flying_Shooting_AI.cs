@@ -43,7 +43,7 @@ public class Flying_Shooting_AI : Shooting_AI
         {
             new_dir.x = Mathf.Min(0, new_dir.x);
         }
-        rb.velocity = new_dir * speed;
+        rb.linearVelocity = new_dir * speed;
 
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
         {

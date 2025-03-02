@@ -13,9 +13,9 @@ public class Walking_AI : Parent_AI
     {
         base.Start();
         if (player.transform.position.x - transform.position.x > 0)
-            rb.velocity = new Vector2(speed, 0);
+            rb.linearVelocity = new Vector2(speed, 0);
         else
-            rb.velocity = new Vector2(-speed, 0);
+            rb.linearVelocity = new Vector2(-speed, 0);
         BoxCollider2D bc = gameObject.GetComponent<BoxCollider2D>();
         castDistance = bc.size.y * transform.localScale.y / 2 + .5f - bc.offset.y;
     }
@@ -23,7 +23,7 @@ public class Walking_AI : Parent_AI
     // Update is called once per frame
     protected override void OnUpdate()
     {
-        if (rb.velocity.x > 0)
+        if (rb.linearVelocity.x > 0)
         {
             sprite.flipX = false;
         }
@@ -34,24 +34,24 @@ public class Walking_AI : Parent_AI
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < .1f &&
             Mathf.Abs(player.transform.position.y - transform.position.y) < .5f)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
         else if (Mathf.Abs(player.transform.position.y - transform.position.y) < height_thresh ||
             (player.transform.position.y < transform.position.y - 2 
                 && Mathf.Abs(player.transform.position.x) < 11f && Mathf.Abs(transform.position.x) > 10f) ||
-            (rb.velocity.y < -5.5f && !Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground"))))
+            (rb.linearVelocity.y < -5.5f && !Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground"))))
         {
             float dist_move = speed * Time.deltaTime;
             Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, 0);
             direction.Normalize();
             direction *= speed;
             
-            direction.y = rb.velocity.y;
-            rb.velocity = direction;
+            direction.y = rb.linearVelocity.y;
+            rb.linearVelocity = direction;
         }
-        else if (rb.velocity.y < .05f)
+        else if (rb.linearVelocity.y < .05f)
         {
-            Vector2 direction = rb.velocity;
+            Vector2 direction = rb.linearVelocity;
             float closest = 9999f;
             Walking_AI close = null;
             foreach (Walking_AI w in FindObjectsOfType<Walking_AI>())
@@ -66,14 +66,14 @@ public class Walking_AI : Parent_AI
             }
             if (close != null && Mathf.Abs(closest) < 3f)
             {
-                if (rb.velocity.x < 0)
+                if (rb.linearVelocity.x < 0)
                 {
                     if (closest < 0)
                         direction.x = -speed + .65f;
                     else
                         direction.x = -speed;
                 }
-                else if (rb.velocity.x > 0)
+                else if (rb.linearVelocity.x > 0)
                 {
                     if (closest > 0)
                         direction.x = speed - .65f;
@@ -85,7 +85,7 @@ public class Walking_AI : Parent_AI
             {
                 direction = direction.normalized * speed; 
             }
-            rb.velocity = direction;
+            rb.linearVelocity = direction;
         }
     }
 
@@ -94,9 +94,9 @@ public class Walking_AI : Parent_AI
         if (player.transform.position.y - transform.position.y >= height_thresh)
         {
             if (left)
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
             else
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+                rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
         }
 
     }

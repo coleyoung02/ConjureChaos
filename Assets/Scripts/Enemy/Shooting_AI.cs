@@ -45,11 +45,11 @@ public class Shooting_AI : Parent_AI
             Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, 0);
             direction.Normalize();
             direction *= speed;
-            direction.y = rb.velocity.y;
-            rb.velocity = direction;
+            direction.y = rb.linearVelocity.y;
+            rb.linearVelocity = direction;
         }
         else
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
         {
             if (cooldown == 0f)
@@ -69,7 +69,7 @@ public class Shooting_AI : Parent_AI
         direction *= projectile_speed;
         if (FindObjectOfType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
             direction *= 1.85f;
-        Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody2D>().velocity = direction;
+        Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody2D>().linearVelocity = direction;
         cooldown = cooldown_time;
     }
 }

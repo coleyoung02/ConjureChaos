@@ -162,7 +162,7 @@ public class BossAI : Parent_AI
     {
         isDead = true;
         GetComponent<Animator>().SetTrigger("Die");
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         StartCoroutine(WaitAndFlip());
         
     }
@@ -242,7 +242,7 @@ public class BossAI : Parent_AI
             }
             for (float i = -laserBarrageConeSize / 2; i <= laserBarrageConeSize / 2 + .01f; i += laserBarrageConeSize / (numPerWave - 1))
             {
-                Instantiate(bulletProj, transform.position + Quaternion.Euler(0, 0, i * sign) * ((Vector3)targetDir * 1f), Quaternion.Euler(0, 0, i * sign + 180f)).GetComponent<Rigidbody2D>().velocity = Quaternion.Euler(0, 0, i * sign) * targetDir * laserBarrageVelocity;
+                Instantiate(bulletProj, transform.position + Quaternion.Euler(0, 0, i * sign) * ((Vector3)targetDir * 1f), Quaternion.Euler(0, 0, i * sign + 180f)).GetComponent<Rigidbody2D>().linearVelocity = Quaternion.Euler(0, 0, i * sign) * targetDir * laserBarrageVelocity;
                 yield return new WaitForSeconds(laserBarrageRate);
             }
             yield return new WaitForSeconds(laserBarrageWaveDelay);
@@ -274,7 +274,7 @@ public class BossAI : Parent_AI
         }
         if (direction.magnitude < 7f)
         {
-            rb.velocity = direction * speed / 7f;
+            rb.linearVelocity = direction * speed / 7f;
             if (!waiting && direction.magnitude < 4f && state == BossState.moving)
             {
                 waiting = true;
@@ -291,13 +291,13 @@ public class BossAI : Parent_AI
         {
             direction *= .35f;
         }
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
     }
 
     public void StartAttack()
     {
         state = BossState.attacking;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         waiting = false;
         Debug.Log("starting attack");
     }

@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(myCollider, platformCollider);
-        myRigidbody.velocity += new Vector2(0, -fallPower); //add some force to the fall
+        myRigidbody.linearVelocity += new Vector2(0, -fallPower); //add some force to the fall
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(myCollider, platformCollider, false);
     }
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (!usedFall)
         {
-            myRigidbody.velocity += new Vector2(0, -fallPower);
+            myRigidbody.linearVelocity += new Vector2(0, -fallPower);
             usedFall = true;
         }
     }
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     //Handles the player's movement. Also handles other restrictions such as whether or not the player
     //is paused (for future implementations).
     void Move() {
-        myRigidbody.velocity = new Vector2(moveInput.x * moveSpeed, myRigidbody.velocity.y);
+        myRigidbody.linearVelocity = new Vector2(moveInput.x * moveSpeed, myRigidbody.linearVelocity.y);
         if(Mathf.Abs(moveInput.x) < Mathf.Epsilon)
         {
             playerAnimator.SetBool("isWalking", false);
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetBool("isWalking", true);
         }
-        if (myRigidbody.velocity.y <= 0.05f)
+        if (myRigidbody.linearVelocity.y <= 0.05f)
         {
             playerAnimator.SetBool("isFalling", false);
         }
@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
             //regular schmegular jump where the wizard is bound to gravity.
             if(foot.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
-                myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpPower);
+                myRigidbody.linearVelocity = new Vector2 (myRigidbody.linearVelocity.x, jumpPower);
                 playerAnimator.SetTrigger("Jump");
             }
         }

@@ -102,12 +102,12 @@ public class Dashing_AI : Parent_AI
             {
                 state = DashState.spinning;
                 lerpClock = 0f;
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
             }
             else
             {
                 direction.Normalize();
-                rb.velocity = direction * speed;
+                rb.linearVelocity = direction * speed;
             }
         }
     }
@@ -143,7 +143,7 @@ public class Dashing_AI : Parent_AI
         if (!lerpedIn)
         {
             lerpClock += Time.deltaTime;
-            rb.velocity = Mathf.Lerp(0, dashVelocity, Mathf.Min(lerpClock / dashLerpInTime, 1)) * diff.normalized;
+            rb.linearVelocity = Mathf.Lerp(0, dashVelocity, Mathf.Min(lerpClock / dashLerpInTime, 1)) * diff.normalized;
             if (lerpClock >= dashLerpInTime || Vector2.Dot((Vector2)transform.position, diff) >= 0)
             {
                 endRot = transform.rotation;
@@ -156,7 +156,7 @@ public class Dashing_AI : Parent_AI
             if (Vector2.Dot((Vector2)transform.position, diff) >= 0 || forced)
             {
                 lerpClock += Time.deltaTime;
-                rb.velocity = diff.normalized * Mathf.Lerp(dashVelocity, 0f, Mathf.Min(lerpClock / dashLerpOutTime, 1));
+                rb.linearVelocity = diff.normalized * Mathf.Lerp(dashVelocity, 0f, Mathf.Min(lerpClock / dashLerpOutTime, 1));
                 transform.rotation = Quaternion.Lerp(endRot, Quaternion.identity, Mathf.Min(lerpClock / dashLerpOutTime, 1));
                 if (lerpClock >= dashLerpOutTime)
                 {
@@ -173,17 +173,17 @@ public class Dashing_AI : Parent_AI
             }
             if (transform.position.y <= -4.7f)
             {
-                if (rb.velocity.y > 4f)
+                if (rb.linearVelocity.y > 4f)
                 {
-                    rb.velocity += Vector2.up * .25f * Time.deltaTime;
+                    rb.linearVelocity += Vector2.up * .25f * Time.deltaTime;
                     transform.position += Vector3.up * .15f * Time.deltaTime;
-                    rb.velocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.velocity.x);
+                    rb.linearVelocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.linearVelocity.x);
                 }
                 else
                 {
-                    rb.velocity += Vector2.up * .25f * Time.deltaTime * rb.velocity.y / 4f;
+                    rb.linearVelocity += Vector2.up * .25f * Time.deltaTime * rb.linearVelocity.y / 4f;
                     transform.position += Vector3.up * .15f * Time.deltaTime;
-                    rb.velocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.velocity.x);
+                    rb.linearVelocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.linearVelocity.x);
                 }
             }
         }
@@ -215,7 +215,7 @@ public class Dashing_AI : Parent_AI
             else
             {
                 direction.Normalize();
-                rb.velocity = direction * speed;
+                rb.linearVelocity = direction * speed;
             }
         }
     }

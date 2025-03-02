@@ -17,14 +17,14 @@ public class Jumping_AI : Walking_AI
     // Update is called once per frame
     protected override void OnUpdate()
     {
-        if (rb.velocity.x > 0)
+        if (rb.linearVelocity.x > 0)
         {
             sprite.flipX = false;
         }
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < .1f &&
             Mathf.Abs(player.transform.position.y - transform.position.y) < .5f)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
         else if (Mathf.Abs(player.transform.position.y - transform.position.y) < height_thresh)
         {
@@ -33,14 +33,14 @@ public class Jumping_AI : Walking_AI
             direction.Normalize();
             direction *= speed;
             
-            direction.y = rb.velocity.y;
-            rb.velocity = direction;
+            direction.y = rb.linearVelocity.y;
+            rb.linearVelocity = direction;
         }
-        else if (rb.velocity.y < .05f &&
+        else if (rb.linearVelocity.y < .05f &&
             Physics2D.Raycast(transform.position, new Vector2(0, -1), castDistance, LayerMask.GetMask("Ground")))
         {
-            Vector2 direction = rb.velocity;
-            rb.velocity = direction;
+            Vector2 direction = rb.linearVelocity;
+            rb.linearVelocity = direction;
             if (Mathf.Abs(transform.position.x - player.transform.position.x) < 3 &&
                 Mathf.Abs(transform.position.x - player.transform.position.x) > 2 &&
                 transform.position.y < player.transform.position.y &&
