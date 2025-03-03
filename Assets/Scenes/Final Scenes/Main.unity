@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 491751355}
   - component: {fileID: 491751354}
   m_Layer: 12
-  m_Name: GameObject
+  m_Name: PostProcessVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2705,6 +2705,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398e604a9048fc242a32af293ce32f77, type: 3}
+--- !u!20 &1607648370 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8590061637395435481, guid: 137a06897502cb945a1176877291a56c, type: 3}
+  m_PrefabInstance: {fileID: 9120003322845100075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1684152382
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 440079316141905684, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 708820016005217264, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3652,6 +3661,14 @@ PrefabInstance:
       propertyPath: waveMan
       value: 
       objectReference: {fileID: 441989169}
+    - target: {fileID: 2542483317720646850, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1607648370}
+    - target: {fileID: 2542483317720646850, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2780835247947091638, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3768,11 +3785,39 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5897252639750005427, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129482564178543090, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1607648370}
+    - target: {fileID: 6129482564178543090, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157082465321761473, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157082465321761473, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6600697514834789018, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6600697514834789018, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726641438170098522, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726641438170098522, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

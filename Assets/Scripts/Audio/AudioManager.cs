@@ -129,6 +129,7 @@ public class AudioManager : MonoBehaviour
     public void PlayUISound(AudioClip clip)
     {
         UISource.clip = clip;
+        UISource.pitch = UnityEngine.Random.Range(.975f, 1.025f);
         UISource.Play();
     }
 }

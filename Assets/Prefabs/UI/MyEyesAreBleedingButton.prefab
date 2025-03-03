@@ -136,10 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e532870e2219b468e2af5a36ef7d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxScaleMult: 1
   animator: {fileID: 8850706549294776830}
   border: {fileID: 2413198215189788087}
   text: {fileID: 5070429543114068397}
   clip: {fileID: 8300000, guid: a6fa23e4c72a5c74999099f6071faa7c, type: 3}
+  hoverClip: {fileID: 8300000, guid: 4e89f45fad8dbbb479230b99198d6118, type: 3}
   pool: 0
 --- !u!1 &2022886682079540103
 GameObject:
@@ -189,7 +191,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!95 &8850706549294776830
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -203,6 +205,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -346,15 +349,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
