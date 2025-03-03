@@ -3709,6 +3709,46 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008369759933636935, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5198729671441760065, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4350,12 +4390,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5786118158297674392, guid: 137a06897502cb945a1176877291a56c, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
+      propertyPath: m_Antialiasing
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5786118158297674392, guid: 137a06897502cb945a1176877291a56c, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 4096
+      propertyPath: m_AntialiasingQuality
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

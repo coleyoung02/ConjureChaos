@@ -139,10 +139,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Projectiles home in on enemies, but do slightly less damage.
-  name: Aimbracadabra
+  upgradeName: Aimbracadabra
   statsList: 00000000
   valuesList:
-  - 0.75
+  - 0.8
   modeList: 00
   healthChange: 0
   dontHeal: 0
