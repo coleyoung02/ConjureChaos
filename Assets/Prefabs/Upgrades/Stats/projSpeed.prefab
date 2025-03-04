@@ -102,7 +102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
-      value: +50% projectile speed, slight damage boost.
+      value: Projectiles move 40% faster, and deal 15% more damage.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: upgradeName
+      value: Zippier Zaps
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: modeList.Array.size
@@ -117,24 +121,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: modeList.Array.data[0]
+      propertyPath: 'modeList.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: statsList.Array.data[0]
+      propertyPath: 'statsList.Array.data[0]'
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: statsList.Array.data[1]
+      propertyPath: 'statsList.Array.data[1]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: valuesList.Array.data[0]
-      value: 1.5
+      propertyPath: 'valuesList.Array.data[0]'
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
-      propertyPath: valuesList.Array.data[1]
-      value: 1.085
+      propertyPath: 'valuesList.Array.data[1]'
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 8602828216180783186, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Name

@@ -8,7 +8,8 @@ public class DamageTrail : MonoBehaviour
     private ProjectileConjurer pc;
     [SerializeField] private float damage;
     [SerializeField] private float lifetime;
-
+    private float damageBoost = 1f;
+    
     public void Start()
     {
         pc = FindAnyObjectByType<ProjectileConjurer>();
@@ -19,8 +20,13 @@ public class DamageTrail : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TrailDamage(damage * 
+            collision.gameObject.GetComponent<Enemy>().TrailDamage(damage * damageBoost * 
                 pc.GetStats()[Stats.Damage] * pc.GetStats()[Stats.SkullMult]);
         }
+    }
+
+    public void Boost(float mult)
+    {
+        damageBoost = mult;
     }
 }

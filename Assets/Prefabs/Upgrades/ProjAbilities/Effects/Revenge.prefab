@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: description
       value: When you take damage, release a swirling burst of magic, dealing massive
-        any enemies around you.
+        damage to any enemies around you.
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: upgradeName
@@ -112,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 5428410717039930625, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: fe0667cd8f0884a42b2939ad67889ff9, type: 3}
+      objectReference: {fileID: 21300000, guid: 3525be35a13b6ea4997f3cd175495b4d, type: 3}
     - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 

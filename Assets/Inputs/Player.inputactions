@@ -18,19 +18,19 @@
                     "name": "Jump",
                     "type": "Value",
                     "id": "d152e628-ebac-49b8-9c36-0f4cefe53d45",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Fall",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "9a434b43-5386-429d-917a-6f60bbd4948e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [

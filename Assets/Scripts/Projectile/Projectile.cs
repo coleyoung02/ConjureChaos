@@ -49,6 +49,8 @@ public class Projectile : MonoBehaviour
     // KnockBack
     private float _knockBackAmount = 25f;
 
+    private const float burstShotDamageBoost = 1.5f;
+
     //change back to private
     private Collider2D ignore;
 
@@ -57,8 +59,9 @@ public class Projectile : MonoBehaviour
     private float accumulatedTime;
     private bool flipped;
     private GameObject closestEnemy;
+    private bool isBoosted = false;
 
-    private void Start()
+    private void Awake()
     {
         boomerangReverseClock = 0f;
         // Saves the conjurer so we only have to get it once
@@ -106,6 +109,14 @@ public class Projectile : MonoBehaviour
             StartCoroutine(SpawnTrailParticle());
         }
     }
+    public void Boost()
+    {
+        isBoosted = true;
+        _damage *= burstShotDamageBoost;
+        _speed *= 1.3f;
+        ProjectileMove();
+        transform.localScale *= 1.75f;
+    }
 
     private void OnDestroy()
     {
@@ -115,7 +126,12 @@ public class Projectile : MonoBehaviour
     private IEnumerator SpawnTrailParticle()
     {
         yield return new WaitForSeconds(trailPeriod / _speed );
-        Instantiate(trail, transform.position + Vector3.forward * .1f, transform.rotation);
+        DamageTrail dt = Instantiate(trail, transform.position + Vector3.forward * .1f, 
+            transform.rotation).GetComponent<DamageTrail>();
+        if (isBoosted)
+        {
+            dt.Boost(burstShotDamageBoost);
+        }
         StartCoroutine(SpawnTrailParticle());
     }
 
@@ -289,7 +305,6 @@ public class Projectile : MonoBehaviour
                 multiplier = 1f;
             }
             float chance = .5f * multiplier * Mathf.Clamp(_conjurer.GetRateScale(), .3f, 1f) / Mathf.Sqrt(_shotCount);
-            Debug.Log("chance " + chance);
             if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Blocking) && UnityEngine.Random.Range(0f, 1f) < chance)
             {
                 Destroy(myCollider.transform.parent.gameObject);
@@ -369,6 +384,10 @@ public class Projectile : MonoBehaviour
                 Transform myTransform = transform;
                 GameObject g = Instantiate(nonMainProjectilePrefab, myCollider.gameObject.transform.position, Quaternion.AngleAxis(angle + i + offset, Vector3.forward));
                 Projectile p = g.GetComponent<Projectile>();
+                if (isBoosted)
+                {
+                    p.Boost();
+                }
                 p.SetIgnore(myCollider);
                 p.ProjectileMove();
             }

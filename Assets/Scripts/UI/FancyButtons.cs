@@ -18,16 +18,12 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private Animator animator;
     [SerializeField] private Image border;
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private AudioClip clip;
-    [SerializeField] private AudioClip hoverClip;
     [SerializeField] private bool pool;
     private float r;
     private float g;
     private float b;
     private Button button;
     private int change;
-    private static float changeRate = 100f;
-    private static float bottomVal = 130f;
 
     private void OnEnable()
     {
@@ -47,7 +43,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         r = 255f;
         g = 255f;
-        b = bottomVal;
+        b = PooledShimmer.bottomVal;
         change = 0;
         button = GetComponent<Button>();
         button.onClick.AddListener(ButtonSound);
@@ -55,7 +51,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void ButtonSound()
     {
-        AudioManager.instance.PlayUISound(clip);
+        AudioManager.instance.PlayUISoundClick();
     }
 
     private void Update()
@@ -82,15 +78,15 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             return;
         if (change == 0)
         {
-            r = Mathf.Max(r - Time.unscaledDeltaTime * changeRate, bottomVal);
-            if (r <= bottomVal + .01f)
+            r = Mathf.Max(r - Time.unscaledDeltaTime * PooledShimmer.changeRate, PooledShimmer.bottomVal);
+            if (r <= PooledShimmer.bottomVal + .01f)
             {
                 change = 1;
             }
         }
         else if (change == 1)
         {
-            b = Mathf.Min(b + Time.unscaledDeltaTime * changeRate, 255f);
+            b = Mathf.Min(b + Time.unscaledDeltaTime * PooledShimmer.changeRate, 255f);
             if (b >= 254.99f)
             {
                 change = 2;
@@ -98,15 +94,15 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if (change == 2)
         {
-            g = Mathf.Max(g - Time.unscaledDeltaTime * changeRate, bottomVal);
-            if (g <= bottomVal + .01f)
+            g = Mathf.Max(g - Time.unscaledDeltaTime * PooledShimmer.changeRate, PooledShimmer.bottomVal);
+            if (g <= PooledShimmer.bottomVal + .01f)
             {
                 change = 3;
             }
         }
         else if (change == 3)
         {
-            r = Mathf.Min(r + Time.unscaledDeltaTime * changeRate, 255f);
+            r = Mathf.Min(r + Time.unscaledDeltaTime * PooledShimmer.changeRate, 255f);
             if (r >= 254.99f)
             {
                 change = 4;
@@ -114,15 +110,15 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
         else if (change == 4)
         {
-            b = Mathf.Max(b - Time.unscaledDeltaTime * changeRate, bottomVal);
-            if (b <= bottomVal + .01f)
+            b = Mathf.Max(b - Time.unscaledDeltaTime * PooledShimmer.changeRate, PooledShimmer.bottomVal);
+            if (b <= PooledShimmer.bottomVal + .01f)
             {
                 change = 5;
             }
         }
         else if (change == 5)
         {
-            g = Mathf.Min(g + Time.unscaledDeltaTime * changeRate, 255f);
+            g = Mathf.Min(g + Time.unscaledDeltaTime * PooledShimmer.changeRate, 255f);
             if (g >= 254.99f)
             {
                 change = 0;
@@ -135,7 +131,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         hovered = true;
-        AudioManager.instance.PlayUISound(hoverClip);
+        AudioManager.instance.PlayUISoundHover();
         if (animator != null)
         {
             animator.speed = 1f;
@@ -144,6 +140,7 @@ public class FancyButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void OnDisable()
     {
+        scaleMult = 1;
         hovered = false;
         if (animator != null)
         {

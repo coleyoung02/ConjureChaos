@@ -56,6 +56,11 @@ public class PlayerHealth : MonoBehaviour
         return currentHealth == maxHealth;
     }
 
+    public bool NearDeath()
+    {
+        return (currentHealth == 1 && maxHealth >= 2) || currentHealth <= maxHealth - 4;
+    }
+
     public float GetInvul()
     {
         return invincibilityDuration;

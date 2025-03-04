@@ -18,7 +18,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: description
-      value: Not firing allows you to build up a rapid fire burst of up to 7 projectiles.
+      value: Not firing allows you to build up a rapid fire burst of up to 7 enhanced
+        projectiles.
+      objectReference: {fileID: 0}
+    - target: {fileID: -400005552444552454, guid: 9e1e466738c847346851da793dc37d57, type: 3}
+      propertyPath: upgradeName
+      value: Power of Patience
       objectReference: {fileID: 0}
     - target: {fileID: 1120162115619069829, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Pivot.x
@@ -107,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 5428410717039930625, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: fe0667cd8f0884a42b2939ad67889ff9, type: 3}
+      objectReference: {fileID: 21300000, guid: 6d9624217562840478d5026686fb4165, type: 3}
     - target: {fileID: 5968214206793501979, guid: 9e1e466738c847346851da793dc37d57, type: 3}
       propertyPath: m_Sprite
       value: 

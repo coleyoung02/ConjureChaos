@@ -11,7 +11,7 @@ public class Drug : StatUpgrade
             .GetProjectileEffects()
             .Contains(ProjectileConjurer.ProjectileEffects.Drugs))
         {
-            this.description += " +100% damage, +18% fire rate";
+            this.description += " +100% damage, +20% fire rate";
         }
         else
         {

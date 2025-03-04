@@ -8,7 +8,7 @@ public class Heal : Upgrade
     public override void DoUpgrade()
     {
         FindAnyObjectByType<PlayerHealth>().HealToFull();
-        FindAnyObjectByType<PlayerMovement>().UpdateMoveSpeed(1.05f);
+        FindAnyObjectByType<PlayerMovement>().UpdateMoveSpeed(1.1f);
         base.DoUpgrade();
     }
 }

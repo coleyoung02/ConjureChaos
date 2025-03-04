@@ -12,8 +12,8 @@ public class PooledShimmer : MonoBehaviour
     private float g;
     private float b;
     private int change;
-    private static float changeRate = 100f;
-    private static float bottomVal = 130f;
+    public const float changeRate = 30f;
+    public const float bottomVal = 195f;
     private List<Image> borders;
     private TextMeshProUGUI[] texts;
 

@@ -98,11 +98,15 @@ PrefabInstance:
         fire rate).
       objectReference: {fileID: 0}
     - target: {fileID: 2643624706395810131, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
-      propertyPath: valuesList.Array.data[0]
+      propertyPath: upgradeName
+      value: Hot Sauce
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643624706395810131, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
+      propertyPath: 'valuesList.Array.data[0]'
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2643624706395810131, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}
-      propertyPath: statusEffectsList.Array.data[0]
+      propertyPath: 'statusEffectsList.Array.data[0]'
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3587286022515817106, guid: 91add8da97b46204d8eb893ff8aae696, type: 3}

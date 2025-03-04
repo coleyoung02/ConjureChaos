@@ -101,12 +101,25 @@ PrefabInstance:
       value: Thick Robes
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: dontHeal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: invulMult
       value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: description
-      value: Invincibility after taking damage lasts twice as long.
+      value: Invincibility after taking damage lasts twice as long. Gain an empty
+        heart.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: upgradeName
+      value: Thick Robes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604848272079332094, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
+      propertyPath: healthChange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5968214206793501979, guid: 0d04e8507698c874e851a8d8cf8335fe, type: 3}
       propertyPath: m_Sprite

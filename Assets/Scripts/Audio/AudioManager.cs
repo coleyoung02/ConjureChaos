@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource MusicSource;
     [SerializeField] private AudioLowPassFilter filter;
     [SerializeField] private List<AudioSource> uiSources;
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip clickSound;
     private int uiIndex = 0;
 
 
@@ -31,7 +33,7 @@ public class AudioManager : MonoBehaviour
         AudioSource a = getNextUISource();
         if (withPitch)
         {
-            a.pitch = UnityEngine.Random.Range(.95f, 1.05f);
+            a.pitch = UnityEngine.Random.Range(.975f, 1.025f);
         }
         else
         {
@@ -126,10 +128,13 @@ public class AudioManager : MonoBehaviour
         hurtSource.Play();
     }
 
-    public void PlayUISound(AudioClip clip)
+    public void PlayUISoundClick()
     {
-        UISource.clip = clip;
-        UISource.pitch = UnityEngine.Random.Range(.975f, 1.025f);
-        UISource.Play();
+        PlayUIClip(clickSound, true);
+    }
+
+    public void PlayUISoundHover()
+    {
+        PlayUIClip(hoverSound, true);
     }
 }

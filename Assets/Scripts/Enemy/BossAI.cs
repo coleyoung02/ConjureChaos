@@ -38,6 +38,9 @@ public class BossAI : Parent_AI
     [SerializeField] private float laserBarrageVelocity;
     [SerializeField] private float waitTime;
     [SerializeField] private int enemiesToSpawn;
+    [Header("Debug")]
+    [SerializeField] private bool attackTestDebug;
+    [SerializeField] private Attack debugAttack;
     private List<GameObject> laserWaitPoints;
 
 
@@ -84,6 +87,10 @@ public class BossAI : Parent_AI
 
     private Attack GetRandomAttack()
     {
+        if (attackTestDebug)
+        {
+            return debugAttack;
+        }
         int attackIndex = UnityEngine.Random.Range(0, 9);
         if (attackIndex > 5)
         {

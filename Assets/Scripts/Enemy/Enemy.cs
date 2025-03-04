@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
     private Dictionary<ProjectileConjurer.StatusEffects, Action<bool>> statusActions;
     private bool isDead = false;
     private float lastTrailDamageTime;
+    private GameObject lastflames;
 
     public void SetPlayer(GameObject player)
     {
@@ -41,6 +43,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Awake()
     {
+        lastflames = null;
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
@@ -206,6 +209,10 @@ public class Enemy : MonoBehaviour
     {
         if (isDead)
             return;
+        if (lastflames != null)
+        {
+            lastflames.transform.SetParent(null, true);
+        }
         if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.LifeSteal))
             playerHealth.EnemyKilled();
         deathEvent.Invoke();
@@ -276,10 +283,13 @@ public class Enemy : MonoBehaviour
         if (tickable.Contains(status))
         {
             ticks[status] += Time.deltaTime;
-            if (ticks[status] >= .65f * _conjurer.GetRateScale())
+            if (ticks[status] >= .5f * _conjurer.GetRateScale())
             {
-                statusActions[status].Invoke(true);
-                ticks[status] = ticks[status] - .75f * _conjurer.GetRateScale();
+                for (int i = 0; i < _conjurer.GetStats()[Stats.ShotCount]; ++i)
+                {
+                    statusActions[status].Invoke(true);
+                }
+                ticks[status] = ticks[status] - .5f * _conjurer.GetRateScale();
             }
         }
         if (durations[status] <= 0) 
@@ -293,6 +303,11 @@ public class Enemy : MonoBehaviour
         if (activation)
         {
             float damage = Mathf.Max(10f * _conjurer.GetDamageScale() * _conjurer.GetSkullMult(), 10f);
+            GameObject g = Instantiate(Resources.Load("UI/FlamesEffect") as GameObject, transform, true);
+            g.transform.localPosition = new Vector3(UnityEngine.Random.Range(-.5f, .5f) / transform.lossyScale.x * g.transform.localScale.x,
+                UnityEngine.Random.Range(-.5f, .5f) / transform.lossyScale.y * g.transform.localScale.y,
+                -.1f / transform.lossyScale.z * g.transform.localScale.z);
+            lastflames = g;
             InstantiateDamageText(damage);
             DamageEnemy(damage);
         }  

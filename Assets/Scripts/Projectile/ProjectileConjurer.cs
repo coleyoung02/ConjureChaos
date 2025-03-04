@@ -66,6 +66,7 @@ public class ProjectileConjurer : MonoBehaviour
         SkullMult,
         BurstFire,
         Revenge,
+        Gambling,
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -257,8 +258,7 @@ public class ProjectileConjurer : MonoBehaviour
         {
             if (burstAccumulated > 0 && _burstTimer > _statsList[Stats.Rate] * burstRateMult)
             {
-                Fire();
-                Debug.Log("fired burst shot" + burstAccumulated);
+                Fire(true);
                 burstAccumulated--;
                 burstSlider.value = burstAccumulated;
                 _burstTimer = 0;
@@ -275,12 +275,16 @@ public class ProjectileConjurer : MonoBehaviour
         }
     }
 
-    private void Fire()
+    private void Fire(bool burst=false)
     {
         Transform myTransform = transform;
         for (int i = 0; i < Mathf.RoundToInt(_statsList[Stats.ShotCount]); i++)
         {
-            Instantiate(projectilePrefab, myTransform.position, myTransform.rotation);
+            Projectile p = Instantiate(projectilePrefab, myTransform.position, myTransform.rotation).GetComponent<Projectile>();
+            if (burst)
+            {
+                p.Boost();
+            }
         }
         _canFire = false;
     }

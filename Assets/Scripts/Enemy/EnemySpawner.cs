@@ -99,8 +99,6 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject enemy_instantiated = Instantiate(enemy, transform.position + 
             new Vector3(0, 0, -4.5f + UnityEngine.Random.Range(-.02f, .02f)), Quaternion.identity);
-        if (debug)
-            Debug.Log(enemy_instantiated.name);
         enemy_instantiated.GetComponent<Parent_AI>().SetPlayer(player);
         enemy_instantiated.GetComponent<Enemy>().SetPlayer(player);
         time_until_next_spawn = spawn_delay + Time.deltaTime;
@@ -108,10 +106,6 @@ public class EnemySpawner : MonoBehaviour
 
     public int NumEnemiesToSpawn()
     {
-        if (debug)
-        {
-            Debug.Log((int)((duration - .1f) / (spawn_delay + .01f)) + 1);
-        }
         return (int)((duration - .1f) / (spawn_delay + .01f)) + 1;
     }
 }
