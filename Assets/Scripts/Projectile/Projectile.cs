@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private GameObject particleSystemObject;
 
     [SerializeField]
     private GameObject nonMainProjectilePrefab;
@@ -116,6 +118,10 @@ public class Projectile : MonoBehaviour
         _speed *= 1.3f;
         ProjectileMove();
         transform.localScale *= 1.75f;
+        if (particleSystemObject != null)
+        {
+            particleSystemObject.transform.localScale /= 1.75f;
+        }
     }
 
     private void OnDestroy()
@@ -126,7 +132,7 @@ public class Projectile : MonoBehaviour
     private IEnumerator SpawnTrailParticle()
     {
         yield return new WaitForSeconds(trailPeriod / _speed );
-        DamageTrail dt = Instantiate(trail, transform.position + Vector3.forward * .1f, 
+        DamageTrail dt = Instantiate(trail, transform.position + Vector3.forward * 2f, 
             transform.rotation).GetComponent<DamageTrail>();
         if (isBoosted)
         {
@@ -227,6 +233,10 @@ public class Projectile : MonoBehaviour
         else
         {
             transform.localScale = new Vector3(_size, _size, _size) * .7f;
+        }
+        if (particleSystemObject != null)
+        {
+            particleSystemObject.transform.localScale /= 1.75f;
         }
     }
 

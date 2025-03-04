@@ -14,7 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 423575857615850628, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: trailPeriod
-      value: 1.2
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 423575857615850628, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: particleSystemObject
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 423575857615850628, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: nonMainProjectilePrefab
@@ -85,7 +89,8 @@ PrefabInstance:
       value: nonMain 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4481105097287886768, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
