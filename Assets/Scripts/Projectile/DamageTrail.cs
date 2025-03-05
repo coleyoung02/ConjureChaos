@@ -9,11 +9,16 @@ public class DamageTrail : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float lifetime;
     private float damageBoost = 1f;
-    
-    public void Start()
+
+    private void Awake()
     {
         pc = FindAnyObjectByType<ProjectileConjurer>();
-        Destroy(gameObject, lifetime);
+    }
+
+    public void OnEnable()
+    {
+        StopAllCoroutines();
+        StartCoroutine(DisableAfterWait());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,5 +33,16 @@ public class DamageTrail : MonoBehaviour
     public void Boost(float mult)
     {
         damageBoost = mult;
+    }
+
+    public void NonBoost()
+    {
+        damageBoost = 1f;
+    }
+
+    private IEnumerator DisableAfterWait()
+    {
+        yield return new WaitForSeconds(lifetime);
+        gameObject.SetActive(false);
     }
 }

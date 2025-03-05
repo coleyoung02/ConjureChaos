@@ -64,6 +64,7 @@ MonoBehaviour:
   burstSlider: {fileID: 0}
   burstRateMult: 0.3
   forkingAngle: 12.5
+  trail: {fileID: 7249375252559684447, guid: dc263dccf18f405409ea7c2d57abfeab, type: 3}
 --- !u!82 &644623504593314431
 AudioSource:
   m_ObjectHideFlags: 0

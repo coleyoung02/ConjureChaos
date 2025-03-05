@@ -42,7 +42,14 @@ public class ProjectileConjurer : MonoBehaviour
     private float forkingAngle;
     private int forkingCount = 0;
     private int burstAccumulated = 0;
-    
+
+    private LinkedList<GameObject> trails;
+    private const int maxTrails = 150;
+    [SerializeField]
+    private GameObject trail;
+    [SerializeField]
+    private Transform trailHolder;
+
     public enum StatusEffects
     {
         Slow,
@@ -67,6 +74,40 @@ public class ProjectileConjurer : MonoBehaviour
         BurstFire,
         Revenge,
         Gambling,
+    }
+
+    public void MakeTrail(Transform t, bool boost=false)
+    {
+        GameObject replacement;
+        bool enableCall = false;
+        if (!trails.First.Value.activeSelf || maxTrails == trails.Count)
+        {
+            enableCall = trails.First.Value.activeSelf;
+            replacement = trails.First.Value;
+            replacement.transform.position = t.transform.position;
+            replacement.transform.rotation = t.transform.rotation;
+            replacement.SetActive(true);
+            trails.RemoveFirst();
+        }
+        else
+        {
+            replacement = Instantiate(trail, t.position + Vector3.forward * 2f, 
+            t.rotation, trailHolder);
+        }
+        DamageTrail dt = replacement.GetComponent<DamageTrail>();
+        if (boost)
+        {
+            dt.Boost(Projectile.burstShotDamageBoost);
+        }
+        else
+        {
+            dt.NonBoost();
+        }
+        if (enableCall)
+        {
+            dt.OnEnable();
+        }
+        trails.AddLast(replacement);
     }
 
     // The float listed for fire rate is the cooldown time between shots.
@@ -235,6 +276,9 @@ public class ProjectileConjurer : MonoBehaviour
     {
         _mainCamera = Camera.main;
         sfxIndex = 0;
+        trails = new LinkedList<GameObject>();
+        trails.AddLast(Instantiate(trail, new Vector3(1000f, 1000f, 1000f), Quaternion.identity, trailHolder));
+        trails.First.Value.SetActive(false);
     }
 
     private void Update()

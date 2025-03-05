@@ -21,8 +21,6 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private GameObject hitSplat;
     [SerializeField]
-    private GameObject trail;
-    [SerializeField]
     private GameObject shieldGraphic;
     [SerializeField]
     private float boomerangReverseTime = .15f;
@@ -51,7 +49,7 @@ public class Projectile : MonoBehaviour
     // KnockBack
     private float _knockBackAmount = 25f;
 
-    private const float burstShotDamageBoost = 1.5f;
+    public const float burstShotDamageBoost = 1.5f;
 
     //change back to private
     private Collider2D ignore;
@@ -117,10 +115,10 @@ public class Projectile : MonoBehaviour
         _damage *= burstShotDamageBoost;
         _speed *= 1.3f;
         ProjectileMove();
-        transform.localScale *= 1.75f;
+        transform.localScale *= 1.5f;
         if (particleSystemObject != null)
         {
-            particleSystemObject.transform.localScale /= 1.75f;
+            particleSystemObject.transform.localScale /= 1.5f;
         }
     }
 
@@ -132,12 +130,7 @@ public class Projectile : MonoBehaviour
     private IEnumerator SpawnTrailParticle()
     {
         yield return new WaitForSeconds(trailPeriod / _speed );
-        DamageTrail dt = Instantiate(trail, transform.position + Vector3.forward * 2f, 
-            transform.rotation).GetComponent<DamageTrail>();
-        if (isBoosted)
-        {
-            dt.Boost(burstShotDamageBoost);
-        }
+        _conjurer.MakeTrail(transform, isBoosted);
         StartCoroutine(SpawnTrailParticle());
     }
 
