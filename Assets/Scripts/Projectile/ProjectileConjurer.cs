@@ -49,6 +49,8 @@ public class ProjectileConjurer : MonoBehaviour
     private GameObject trail;
     [SerializeField]
     private Transform trailHolder;
+    [SerializeField]
+    private Transform projectileHolder;
 
     public enum StatusEffects
     {
@@ -324,7 +326,7 @@ public class ProjectileConjurer : MonoBehaviour
         Transform myTransform = transform;
         for (int i = 0; i < Mathf.RoundToInt(_statsList[Stats.ShotCount]); i++)
         {
-            Projectile p = Instantiate(projectilePrefab, myTransform.position, myTransform.rotation).GetComponent<Projectile>();
+            Projectile p = Instantiate(projectilePrefab, myTransform.position, myTransform.rotation, projectileHolder).GetComponent<Projectile>();
             if (burst)
             {
                 p.Boost();

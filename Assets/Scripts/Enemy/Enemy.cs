@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private float hurtTime;
     private static float flashDuration = .3f;
     private static float redness = .5f;
+    private float iceDamageBoost = 1.25f;
+    private float iceDamageMult = 1f;
     
     // Status effect variables
     protected ProjectileConjurer _conjurer;
@@ -33,7 +35,11 @@ public class Enemy : MonoBehaviour
     private Dictionary<ProjectileConjurer.StatusEffects, Action<bool>> statusActions;
     private bool isDead = false;
     private float lastTrailDamageTime;
-    private GameObject lastflames;
+    private GameObject flames;
+    private GameObject lastFlames;
+    private GameObject ice;
+    private GameObject lastIce;
+    private GameObject damageTextGameObj;
 
     public void SetPlayer(GameObject player)
     {
@@ -43,7 +49,11 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Awake()
     {
-        lastflames = null;
+        flames = Resources.Load("UI/FlamesEffect") as GameObject;
+        ice = Resources.Load("UI/IceEffect") as GameObject;
+        damageTextGameObj = Resources.Load("UI/DamageText") as GameObject;
+        lastFlames = null;
+        lastIce = null;
         if (!player)
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
@@ -55,7 +65,7 @@ public class Enemy : MonoBehaviour
         hurtTime = 0f;
         sprite = gameObject.GetComponent<SpriteRenderer>();
         // Saves the conjurer so we only have to get it once
-        _conjurer = FindObjectOfType<ProjectileConjurer>();
+        _conjurer = FindAnyObjectByType<ProjectileConjurer>();
         if (IsBoss())
         {
             if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Boomerang) &&
@@ -167,37 +177,58 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time - lastTrailDamageTime > DamageTrail.immunityTime)
         {
-            _conjurer.PlayHitSound();
-            InstantiateDamageText(dmg);
+            if (_conjurer != null)
+            {
+                _conjurer.PlayHitSound();
+            }
             DamageEnemy(dmg);
             lastTrailDamageTime = Time.time;
         }
     }
 
-    public bool DamageEnemy(float dmg)
+    public bool DamageEnemy(float dmg, Vector3 hitLoc)
+    {
+        InstantiateDamageText(dmg * iceDamageMult, hitLoc);
+        return DamageEnemy(dmg, false);
+    }
+
+    public bool DamageEnemy(float dmg, bool instantiateText=true)
     {
         float damageToUse = dmg;
         damageToUse = Mathf.Clamp(damageToUse, 0, 1000f);
-        if (damageToUse >= 1000f)
+        damageToUse *= iceDamageMult;
+        if (instantiateText)
         {
-            InstantiateDamageText(Mathf.Min(damageToUse, maxHealth));
+            if (damageToUse >= 1000f)
+            {
+                InstantiateDamageText(Mathf.Min(damageToUse, maxHealth));
+            }
+            else
+            {
+                InstantiateDamageText(damageToUse);
+            }
         }
+        return ApplyHarm(damageToUse);
+    }
+
+    public bool ApplyHarm(float dmg)
+    {
         hurtTime = flashDuration;
         if (IsBoss())
         {
             FindAnyObjectByType<ProgressManager>().SetBossProgress(1f - (float)health / (float)maxHealth);
         }
         //setup to allow a return of boolean before destruction, in case damager has to know if the attack killed the enemy. If multiplayer allows for kill counts per player
-        if (health < damageToUse)
+        if (health < dmg)
         {
             health = 0;
             return true;
         }
         else
         {
-            health -= damageToUse;
+            health -= dmg;
             return false;
-        }  
+        }
     }
 
     public bool IsBoss()
@@ -209,9 +240,9 @@ public class Enemy : MonoBehaviour
     {
         if (isDead)
             return;
-        if (lastflames != null)
+        if (lastFlames != null)
         {
-            lastflames.transform.SetParent(null, true);
+            lastFlames.transform.SetParent(null, true);
         }
         if (_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.LifeSteal))
             playerHealth.EnemyKilled();
@@ -303,36 +334,51 @@ public class Enemy : MonoBehaviour
         if (activation)
         {
             float damage = Mathf.Max(10f * _conjurer.GetDamageScale() * _conjurer.GetSkullMult(), 10f);
-            GameObject g = Instantiate(Resources.Load("UI/FlamesEffect") as GameObject, transform, true);
+            GameObject g = Instantiate(flames, transform, true);
             g.transform.localPosition = new Vector3(UnityEngine.Random.Range(-.5f, .5f) / transform.lossyScale.x * g.transform.localScale.x,
                 UnityEngine.Random.Range(-.5f, .5f) / transform.lossyScale.y * g.transform.localScale.y,
                 -.1f / transform.lossyScale.z * g.transform.localScale.z);
-            lastflames = g;
-            InstantiateDamageText(damage);
+            lastFlames = g;
             DamageEnemy(damage);
-        }  
+        }
     }
-    
-    private void InstantiateDamageText(float damage)
+
+    private void InstantiateDamageText(float damage, Vector3 location)
     {
-        Instantiate(Resources.Load("UI/DamageText") as GameObject, new Vector3(
-                transform.position.x + UnityEngine.Random.Range(-.5f, .5f),
-                transform.position.y + UnityEngine.Random.Range(-.5f, .5f),
-                -9.5f
-                ), Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
+        Instantiate(damageTextGameObj, location
+            , Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
                 .GetComponent<DamageNumbers>()
                 .SetNumber(damage);
     }
 
+    private void InstantiateDamageText(float damage)
+    {
+        InstantiateDamageText(damage, new Vector3(
+                transform.position.x + UnityEngine.Random.Range(-.5f, .5f),
+                transform.position.y + UnityEngine.Random.Range(-.5f, .5f),
+                -9.5f
+                ));
+    }
+
     private void SlowStatus(bool activation)
     {
-        if (activation) 
+        if (activation)
         {
+            if (lastIce != null)
+            {
+                Destroy(lastIce);
+            }
+            lastIce = Instantiate(ice, transform, true);
+            lastIce.transform.localPosition = Vector3.back;
+            iceDamageMult = iceDamageBoost;
             _parentAI.SetSpeed(baseSpeed * .5f);
         }
         else
         {
+            iceDamageMult = 1f;
             _parentAI.SetSpeed(baseSpeed);
+            Destroy(lastIce);
+            lastIce = null;
         }
     }
 

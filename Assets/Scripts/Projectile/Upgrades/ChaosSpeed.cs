@@ -12,7 +12,7 @@ public class ChaosSpeed : Upgrade
     [SerializeField] private float speedMult = 1.5f;
     public override void DoUpgrade()
     {
-        ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
+        ProjectileConjurer conjurer = FindAnyObjectByType<ProjectileConjurer>();
         conjurer.UpdateProjectileEffect(ProjectileConjurer.ProjectileEffects.IAMSPEED);
         for (int i = 0; i < statsList.Count; ++i)
         {

@@ -9,7 +9,7 @@ public class StatAndEffectUpgrade : StatUpgrade
     
     public override void DoUpgrade()
     {
-        FindObjectOfType<ProjectileConjurer>().UpdateProjectileEffect(effect);
+        FindAnyObjectByType<ProjectileConjurer>().UpdateProjectileEffect(effect);
         base.DoUpgrade();
     }
 }

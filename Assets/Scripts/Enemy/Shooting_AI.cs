@@ -67,7 +67,7 @@ public class Shooting_AI : Parent_AI
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
         direction *= projectile_speed;
-        if (FindObjectOfType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
+        if (FindAnyObjectByType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
             direction *= 1.85f;
         Instantiate(projectilePrefab, transform.position - Vector3.forward * .25f, Quaternion.identity).GetComponent<Rigidbody2D>().linearVelocity = direction;
         cooldown = cooldown_time;

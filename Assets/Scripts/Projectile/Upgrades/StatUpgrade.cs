@@ -15,7 +15,7 @@ public class StatUpgrade : Upgrade
     [SerializeField] protected float invulMult;
     public override void DoUpgrade()
     {
-        ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
+        ProjectileConjurer conjurer = FindAnyObjectByType<ProjectileConjurer>();
         for (int i = 0; i < statsList.Count; ++i)
         {
             conjurer.UpdateStats(statsList[i], valuesList[i], modeList[i]);

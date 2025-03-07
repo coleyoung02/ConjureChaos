@@ -67,7 +67,7 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UpgradeManager uMan = FindObjectOfType<UpgradeManager>();
+        UpgradeManager uMan = FindAnyObjectByType<UpgradeManager>();
         uMan.PlayButtonHovered();
         uMan.SetDescription(description, upgradeName);
         hovered = true;
@@ -75,13 +75,13 @@ public abstract class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        FindObjectOfType<UpgradeManager>().Clear();
+        FindAnyObjectByType<UpgradeManager>().Clear();
         hovered = false;
     }
 
     private void destruction()
     {
-        UpgradeManager uMan = FindObjectOfType<UpgradeManager>();
+        UpgradeManager uMan = FindAnyObjectByType<UpgradeManager>();
         uMan.OnSelected(this);
     }
 

@@ -7,7 +7,7 @@ public class Orbit : Upgrade
 {
     public override void DoUpgrade()
     { 
-        foreach (ShieldParent sp in FindObjectsOfType<ShieldParent>())
+        foreach (ShieldParent sp in FindObjectsByType<ShieldParent>(FindObjectsSortMode.None))
         {
             sp.Activate();
         }

@@ -7,8 +7,8 @@ public class AddEffect : Upgrade
 {
     [SerializeField] ProjectileConjurer.ProjectileEffects effect;
     public override void DoUpgrade()
-    { 
-        FindObjectOfType<ProjectileConjurer>().UpdateProjectileEffect(effect);
+    {
+        FindAnyObjectByType<ProjectileConjurer>().UpdateProjectileEffect(effect);
         base.DoUpgrade();
     }
 }

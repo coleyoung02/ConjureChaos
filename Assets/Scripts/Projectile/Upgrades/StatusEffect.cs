@@ -10,7 +10,7 @@ public class StatusEffect : Upgrade
     [SerializeField] List<float> valuesList;
     public override void DoUpgrade()
     {
-        ProjectileConjurer conjurer = FindObjectOfType<ProjectileConjurer>();
+        ProjectileConjurer conjurer = FindAnyObjectByType<ProjectileConjurer>();
         for (int i = 0; i < statusEffectsList.Count; ++i)
         {
             conjurer.UpdateStatusEffect(statusEffectsList[i], valuesList[i]);

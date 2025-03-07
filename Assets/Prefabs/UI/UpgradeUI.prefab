@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
+  - {fileID: 728180130761794050, guid: bddfd0f01a5f74b4da4263e0fccd3436, type: 3}
   - {fileID: 456439034025510686, guid: cbb9e1380e0a0f94cbcb304838fdef15, type: 3}
   - {fileID: 5130354096077053564, guid: d9623d8538ff667499023f1fe6fc99d3, type: 3}
   - {fileID: 5438301884126781889, guid: 045f0d7642a328d42b6382438123b0a4, type: 3}
@@ -474,7 +475,6 @@ MonoBehaviour:
   - {fileID: 5130354096077053564, guid: 07862626b3e4c9842b056b74e63157a4, type: 3}
   - {fileID: 5909413881650301925, guid: baaac0fd0367aaa4ea30dd2512982bfc, type: 3}
   - {fileID: 970785580582685448, guid: 71d4f34aa9e760f4b9f444fcddcd28f8, type: 3}
-  - {fileID: 728180130761794050, guid: bddfd0f01a5f74b4da4263e0fccd3436, type: 3}
   - {fileID: 8602828216180783186, guid: ac6c4b25116890f4da9b3b9f22e85cb8, type: 3}
   - {fileID: 2993281237934175336, guid: 45448b034d8341f498a206083924c0f8, type: 3}
   - {fileID: 456439034025510686, guid: cbb9e1380e0a0f94cbcb304838fdef15, type: 3}

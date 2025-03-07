@@ -8,6 +8,7 @@ public class DamageTrail : MonoBehaviour
     private ProjectileConjurer pc;
     [SerializeField] private float damage;
     [SerializeField] private float lifetime;
+    [SerializeField] private ParticleSystem particles;
     private float damageBoost = 1f;
 
     private void Awake()
@@ -17,7 +18,9 @@ public class DamageTrail : MonoBehaviour
 
     public void OnEnable()
     {
+        particles.Stop();
         StopAllCoroutines();
+        particles.Play();
         StartCoroutine(DisableAfterWait());
     }
 

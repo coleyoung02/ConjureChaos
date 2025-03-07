@@ -115,7 +115,7 @@ public class UpgradeManager : MonoBehaviour
     {
         bool isMaxHealth = FindAnyObjectByType<PlayerHealth>().IsAtMax();
         bool isNearDeath = FindAnyObjectByType<PlayerHealth>().NearDeath();
-        upgrades = upgrades.OrderBy(x => Random.value).ToList();
+        //upgrades = upgrades.OrderBy(x => Random.value).ToList();
         int iters = 0;
         // do not give duplicates, and do not give healing while at full health
         while (iters < 75 && (CheckRepeats(upgrades) || (isMaxHealth && CheckForHeals(upgrades)) || 
@@ -123,7 +123,7 @@ public class UpgradeManager : MonoBehaviour
                 OverlapRerollCriteria(isReroll) ) )
         {
             ++iters;
-            upgrades = upgrades.OrderBy(x => Random.value).ToList();
+            //upgrades = upgrades.OrderBy(x => Random.value).ToList();
         }
         for (int i = 0; i < 3; ++i)
         {

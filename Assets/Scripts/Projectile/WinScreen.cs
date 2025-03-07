@@ -7,6 +7,6 @@ public class WinScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().PauseMusic();
+        FindAnyObjectByType<AudioManager>().PauseMusic();
     }
 }

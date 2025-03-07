@@ -29,7 +29,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Start()
     {
-        FindObjectOfType<AudioManager>().PlayMusic();
+        FindAnyObjectByType<AudioManager>().PlayMusic();
     }
 
     public void QuitGame()

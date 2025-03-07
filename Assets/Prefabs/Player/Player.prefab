@@ -197,6 +197,8 @@ MonoBehaviour:
   - {fileID: 7275173174802443247}
   - {fileID: 7524361945158926427}
   - {fileID: 1693355572112127293}
+  - {fileID: 8155859883996512439}
+  - {fileID: 3722996007268521417}
   hurtOverlay: {fileID: 6699031085621877097}
   revenge: {fileID: 4685643616624683152}
   fullHeartImage: {fileID: 21300000, guid: a50cb169aec50bd47ac3870a7a271090, type: 3}
@@ -1396,6 +1398,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3722996007268521417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8628115893115254635, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+  m_PrefabInstance: {fileID: 4906536091768152738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3912603306057548578 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8240425607950573952, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
@@ -1476,6 +1489,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8155859883996512439 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3835074352903217685, guid: 703bc410995e6904ea36355f5c2d417c, type: 3}
+  m_PrefabInstance: {fileID: 4906536091768152738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8825151849159651168 stripped

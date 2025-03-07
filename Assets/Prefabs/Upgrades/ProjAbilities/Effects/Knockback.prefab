@@ -153,14 +153,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb10e9c247693cb4080639b4f997f500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Projectiles knock enemies back,deal a bit more damage, and travel
+  description: Projectiles knock enemies back, deal a bit more damage, and travel
     faster and farther. You also move faster.
-  name: Strongly Worded Spells
+  upgradeName: Strongly Worded Spells
   statsList: 010000000200000000000000
   valuesList:
   - 1.3
   - 3
-  - 1.1
+  - 1.15
   modeList: 000100
   healthChange: 0
   dontHeal: 0

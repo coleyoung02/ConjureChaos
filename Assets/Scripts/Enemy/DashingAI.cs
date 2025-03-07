@@ -39,7 +39,7 @@ public class Dashing_AI : Parent_AI
         {
             player = FindFirstObjectByType<PlayerMovement>().gameObject;
         }
-        if (FindObjectOfType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
+        if (FindAnyObjectByType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
         {
             dashVelocity *= 1.35f;
             spinDegsPerSec *= 1.4f;

@@ -17,7 +17,7 @@ public class SpriteDirection : MonoBehaviour
         _mainCamera = Camera.main;
         
         // Saves the conjurer so we only have to get it once
-        _conjurer = FindObjectOfType<ProjectileConjurer>();
+        _conjurer = FindAnyObjectByType<ProjectileConjurer>();
     }
 
     private void Update()

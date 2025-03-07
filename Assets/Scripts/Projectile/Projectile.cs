@@ -65,7 +65,7 @@ public class Projectile : MonoBehaviour
     {
         boomerangReverseClock = 0f;
         // Saves the conjurer so we only have to get it once
-        _conjurer = FindObjectOfType<ProjectileConjurer>();
+        _conjurer = FindAnyObjectByType<ProjectileConjurer>();
 
         // Initializes everything needed for projectile
         InitializeStats();
@@ -165,7 +165,9 @@ public class Projectile : MonoBehaviour
                     closestEnemy = GetClosestEnemy();
                     flipped = true;
                 }
-                rb.linearVelocity = rb.linearVelocity.normalized * Mathf.Abs(Mathf.Lerp(1, -1, Mathf.Clamp(boomerangReverseClock, 0, 2 * boomerangReverseTime) / (2 * boomerangReverseTime))) * _speed;
+                rb.linearVelocity = rb.linearVelocity.normalized * Mathf.Abs(
+                    Mathf.Lerp(1, -1, 
+                        Mathf.Clamp(boomerangReverseClock, 0, 2 * boomerangReverseTime) / (2 * boomerangReverseTime))) * _speed;
             }
         }
         if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.Homing))
@@ -274,16 +276,13 @@ public class Projectile : MonoBehaviour
         if (myCollider.CompareTag("Enemy") && (myCollider != ignore || flipped))
         {
             Vector3 hitLoc = transform.position + new Vector3(rb.linearVelocity.normalized.x, rb.linearVelocity.normalized.y) * .25f;
-            Instantiate(hitSplat, hitLoc, transform.rotation, null);
+            Instantiate(hitSplat, hitLoc, transform.rotation, transform.parent);
             // Is this the best way to do this?
             Enemy script = myCollider.gameObject.GetComponent<Enemy>();
-            script.DamageEnemy(_damage);
             hitLoc.z = -9.5f;
             hitLoc.x += UnityEngine.Random.Range(-.3f, .3f);
             hitLoc.y += UnityEngine.Random.Range(-.3f, .3f);
-            Instantiate(damageText, hitLoc, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
-                .GetComponent<DamageNumbers>()
-                .SetNumber(_damage);
+            script.DamageEnemy(_damage, hitLoc);
 
             _conjurer.PlayHitSound();
             // Call status effect here instead of in damage enemy function to avoid bugs
@@ -385,7 +384,10 @@ public class Projectile : MonoBehaviour
             for (int i = 180 / numDivisions; i < 360; i += 360/numDivisions)
             {
                 Transform myTransform = transform;
-                GameObject g = Instantiate(nonMainProjectilePrefab, myCollider.gameObject.transform.position, Quaternion.AngleAxis(angle + i + offset, Vector3.forward));
+                GameObject g = Instantiate(nonMainProjectilePrefab, 
+                    myCollider.gameObject.transform.position, 
+                    Quaternion.AngleAxis(angle + i + offset, Vector3.forward), 
+                    transform.parent);
                 Projectile p = g.GetComponent<Projectile>();
                 if (isBoosted)
                 {

@@ -61,7 +61,7 @@ public class Walking_AI : Parent_AI
         Vector2 direction = rb.linearVelocity;
         float closest = 9999f;
         T close = null;
-        foreach (T w in FindObjectsOfType<T> ())
+        foreach (T w in FindObjectsByType<T>(FindObjectsSortMode.None))
         {
             if (Mathf.Abs(w.gameObject.transform.position.x - gameObject.transform.position.x) < Mathf.Abs(closest) &&
                 Mathf.Abs(w.gameObject.transform.position.y - gameObject.transform.position.y) < 1 &&
