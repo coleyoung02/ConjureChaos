@@ -62,13 +62,15 @@ public class Wave : MonoBehaviour
     public float centerPlatDuration;
     public float centerPlatDelay;
     public float centerPlatOffset;
+    private WaveManager wm;
 
     // Start is called before the first frame update
     void Start()
     {
         killQuota = 0;
         spawners = new List<GameObject>();
-        spawnPoints = gameObject.transform.parent.gameObject.GetComponent<WaveManager>().spawnPoints;
+        wm = gameObject.transform.parent.gameObject.GetComponent<WaveManager>();
+        spawnPoints = wm.spawnPoints;
         instantiateSpawners();
     }
 
@@ -76,6 +78,7 @@ public class Wave : MonoBehaviour
     {
         GameObject tempSpawner;
         EnemySpawner tempSpawnerScript;
+        int locationCount = 0;
         if(leftFloorType)
         {
             tempSpawner = Instantiate(spawnerPrefab, spawnPoints[0].transform);
@@ -86,6 +89,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = leftFloorOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if(rightFloorType)
         {
@@ -97,6 +101,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = rightFloorOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (leftTopType)
         {
@@ -109,6 +114,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.debug = true;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (rightTopType)
         {
@@ -120,6 +126,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = rightTopOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (topType)
         {
@@ -132,6 +139,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.debug = true;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (leftPlatType)
         {
@@ -143,6 +151,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = leftPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (rightPlatType)
         {
@@ -154,6 +163,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = rightPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (upperLeftPlatType)
         {
@@ -165,6 +175,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = upperLeftPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (upperRightPlatType)
         {
@@ -176,6 +187,7 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = upperRightPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
         if (centerPlatType)
         {
@@ -187,7 +199,9 @@ public class Wave : MonoBehaviour
             tempSpawnerScript.offset = centerPlatOffset;
             killQuota += tempSpawnerScript.NumEnemiesToSpawn();
             spawners.Add(tempSpawner);
+            locationCount++;
         }
+        wm.SetPortalCount(locationCount);
     }
 
     public void end()

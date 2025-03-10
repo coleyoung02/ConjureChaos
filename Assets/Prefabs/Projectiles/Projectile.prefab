@@ -5086,6 +5086,10 @@ MonoBehaviour:
   nonMainProjectilePrefab: {fileID: 3697868449342105524, guid: 2f9f65fbcd213e94bbdd04f47e4af913, type: 3}
   IsMain: 1
   hitSplat: {fileID: 6700741493639778302, guid: dd6b643d9e20a26498241e6c8c0b88fa, type: 3}
+  wallHitSplat: {fileID: 2926640662947387135, guid: 6c74937dbe2d75941bb6adbcfc09b574, type: 3}
+  wallHitLayers:
+    serializedVersion: 2
+    m_Bits: 64
   shieldGraphic: {fileID: 5685985286985595932}
   boomerangReverseTime: 0.1
   trailPeriod: 1.3

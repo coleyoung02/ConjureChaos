@@ -306,7 +306,6 @@ public class BossAI : Parent_AI
         state = BossState.attacking;
         rb.linearVelocity = Vector2.zero;
         waiting = false;
-        Debug.Log("starting attack");
     }
 
     private void DoAttack()

@@ -61,15 +61,18 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFall(InputValue value)
     {
-        if(value.isPressed && currentOneWayPlatform != null)
+        if (Time.timeScale > 0)
         {
-            StartCoroutine(DisableCollision());
-            usedFall = true;
-        }
-        else if (!usedFall)
-        {
-            myRigidbody.linearVelocity += new Vector2(0, -fallPower);
-            usedFall = true;
+            if (value.isPressed && currentOneWayPlatform != null)
+            {
+                StartCoroutine(DisableCollision());
+                usedFall = true;
+            }
+            else if (!usedFall)
+            {
+                myRigidbody.linearVelocity += new Vector2(0, -fallPower);
+                usedFall = true;
+            }
         }
     }
 
@@ -108,15 +111,20 @@ public class PlayerMovement : MonoBehaviour
 
     //Receives the jump inputs from the input system and makes the player jump.
     void OnJump(InputValue value) {
-        if(value.isPressed) {
+        if (Time.timeScale > 0)
+        {
+            if (value.isPressed)
+            {
 
-            //super cool effect where the wizard has multiple jumps and can FLY
-            //myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpPower);
+                //super cool effect where the wizard has multiple jumps and can FLY
+                //myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpPower);
 
-            //regular schmegular jump where the wizard is bound to gravity.
-            if(foot.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
-                myRigidbody.linearVelocity = new Vector2 (myRigidbody.linearVelocity.x, jumpPower);
-                playerAnimator.SetTrigger("Jump");
+                //regular schmegular jump where the wizard is bound to gravity.
+                if (foot.IsTouchingLayers(LayerMask.GetMask("Ground")))
+                {
+                    myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, jumpPower);
+                    playerAnimator.SetTrigger("Jump");
+                }
             }
         }
     }

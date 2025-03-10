@@ -76,6 +76,7 @@ public class ProjectileConjurer : MonoBehaviour
         BurstFire,
         Revenge,
         Gambling,
+        Vitality,
     }
 
     public void MakeTrail(Transform t, bool boost=false)
@@ -253,6 +254,10 @@ public class ProjectileConjurer : MonoBehaviour
         if (projectileEffects == ProjectileEffects.SkullMult)
         {
             FindAnyObjectByType<PlayerHealth>().OnHealthChanged();
+        }
+        if (projectileEffects == ProjectileEffects.Vitality)
+        {
+            FindAnyObjectByType<HeartPortalManager>().Activate();
         }
     }
 

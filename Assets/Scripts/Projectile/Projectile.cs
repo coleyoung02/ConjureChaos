@@ -21,6 +21,8 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private GameObject hitSplat;
     [SerializeField]
+    private GameObject wallHitSplat;
+    [SerializeField]
     private GameObject shieldGraphic;
     [SerializeField]
     private float boomerangReverseTime = .15f;
@@ -338,9 +340,15 @@ public class Projectile : MonoBehaviour
             }
             return;
         }
-
-        if (myCollider.CompareTag("Enemy") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
-            return;
+        bool instantiateSplat = true;
+        if (myCollider.CompareTag("Enemy"))
+        {
+            instantiateSplat = false;
+            if (_projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.EnemyPiercing))
+            {
+                return;
+            }
+        }
         
         if (myCollider.CompareTag("OneWayPlatform") && _projectileEffects.Contains(ProjectileConjurer.ProjectileEffects.PlatformPiercing))
             return;
@@ -351,6 +359,11 @@ public class Projectile : MonoBehaviour
         if (myCollider.CompareTag("Laser"))
             return;
 
+        if (instantiateSplat && IsMain)
+        {
+            Vector3 hitLoc = transform.position + new Vector3(rb.linearVelocity.normalized.x, rb.linearVelocity.normalized.y) * .1f;
+            Instantiate(wallHitSplat, hitLoc, transform.rotation, transform.parent);
+        }
         Destroy(gameObject);
     }
 

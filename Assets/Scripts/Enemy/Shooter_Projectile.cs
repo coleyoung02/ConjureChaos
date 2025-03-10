@@ -6,10 +6,12 @@ public class Shooter_Projectile : MonoBehaviour
 {
     public int damage;
     [SerializeField] private bool dodgePlatoforms;
+    [SerializeField] private GameObject hitEffect;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         Destroy(gameObject, 14f / rb.linearVelocity.magnitude);
@@ -26,6 +28,11 @@ public class Shooter_Projectile : MonoBehaviour
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             FindAnyObjectByType<PlayerHealth>().PlayerTakeDamage(damage);
+            if (hitEffect != null)
+            {
+                float quatZ = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+                Instantiate(hitEffect, transform.position + (Vector3)rb.linearVelocity.normalized * .1f, Quaternion.Euler(0,0, quatZ));
+            }
             Destroy(gameObject, .05f);
         }
         else if (collider.gameObject.layer == LayerMask.NameToLayer("Ground"))

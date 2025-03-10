@@ -32,6 +32,14 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6956855585739299359, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956855585739299359, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 7011823800718256113, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4
@@ -88,9 +96,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: nonMain 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 814292466278837659, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4481105097287886768, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
+    - {fileID: 4441214837520281868, guid: c57a2f532dcc8424292fa7d245976511, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c57a2f532dcc8424292fa7d245976511, type: 3}

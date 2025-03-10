@@ -13,14 +13,34 @@ public class WaveManager : MonoBehaviour
     Wave currWave;
     int waveNum;
     private int killQuota;
+    private int portalCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        portalCount = 0;
         //waves = new List<GameObject>();
         //waves.Add(Resources.Load<GameObject>("Waves/DefaultWave"));
         waveNum = 0;
         nextWave();
+    }
+
+    public void SetPortalCount(int c)
+    {
+        portalCount = c;
+        Debug.Break();
+    }
+
+    public void NotifyPortalClosing()
+    {
+        if (Time.timeScale > 0)
+        {
+            portalCount--;
+        }
+        if (portalCount <= 0 && waveNum != waves.Count)
+        {
+            FindAnyObjectByType<HeartPortalManager>().CancelFuture();
+        }
     }
 
     void Update()
@@ -74,6 +94,7 @@ public class WaveManager : MonoBehaviour
             StartCoroutine(WaitAndWin());
             return;
         }
+        FindAnyObjectByType<HeartPortalManager>().NewWave();
         currWave = Instantiate(waves[waveNum-1], gameObject.transform).GetComponent<Wave>();
         killQuota = currWave.getQuota();
     }

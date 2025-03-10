@@ -353,7 +353,7 @@ RectTransform:
   m_GameObject: {fileID: 7019834886609811915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4095105628851798318}
@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
+  - {fileID: 5130354096077053564, guid: ea47ba12cad5d3449922deb852f73d67, type: 3}
   - {fileID: 728180130761794050, guid: bddfd0f01a5f74b4da4263e0fccd3436, type: 3}
   - {fileID: 456439034025510686, guid: cbb9e1380e0a0f94cbcb304838fdef15, type: 3}
   - {fileID: 5130354096077053564, guid: d9623d8538ff667499023f1fe6fc99d3, type: 3}

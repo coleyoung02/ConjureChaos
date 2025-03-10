@@ -95,6 +95,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        FindAnyObjectByType<WaveManager>().NotifyPortalClosing();
+    }
+
     void SpawnEnemy()
     {
         GameObject enemy_instantiated = Instantiate(enemy, transform.position + 

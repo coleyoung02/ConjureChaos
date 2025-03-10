@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class Shooting_AI : Parent_AI
 {
@@ -12,6 +11,7 @@ public class Shooting_AI : Parent_AI
     protected float cooldown;
     [SerializeField] private float projectile_speed;
     [SerializeField] protected SpriteRenderer sprite;
+    protected bool isShooting;
 
     // Start is called before the first frame update
     public override void Start()
@@ -20,7 +20,7 @@ public class Shooting_AI : Parent_AI
         float offset = UnityEngine.Random.Range(-.5f, .5f);
         desired_distance += offset;
         shooting_distance += offset / 2;
-        cooldown = 0f;
+        cooldown = cooldown_time;
     }
 
     protected void FlipSprite()
@@ -50,26 +50,30 @@ public class Shooting_AI : Parent_AI
         }
         else
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
+        if(!isShooting && Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
         {
-            if (cooldown == 0f)
+            if (cooldown <= 0f)
                 Shoot();
         }
         if (cooldown > 0f)
             cooldown -= Time.deltaTime;
-        if(cooldown < 0f)
-            cooldown = 0f;
     }
 
-    protected void Shoot()
+    protected virtual void Shoot()
     {
+        isShooting = true;
         gameObject.GetComponent<Animator>().SetTrigger("Shoot");
+    }
+
+    public void InstantiateProjectile()
+    {
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
         direction *= projectile_speed;
         if (FindAnyObjectByType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
-            direction *= 1.85f;
+            direction *= 1.5f;
         Instantiate(projectilePrefab, transform.position - Vector3.forward * .25f, Quaternion.identity).GetComponent<Rigidbody2D>().linearVelocity = direction;
         cooldown = cooldown_time;
+        isShooting = false;
     }
 }

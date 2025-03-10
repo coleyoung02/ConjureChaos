@@ -130,10 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: All speeds up...
-  name: Temporal Transcendence
+  upgradeName: Temporal Transcendence
   statsList: 0300000001000000
   valuesList:
-  - 0.7
+  - 0.65
   - 1.8
   modeList: 0000
   speedMult: 1.45

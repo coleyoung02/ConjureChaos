@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Flying_Shooting_AI : Shooting_AI
 {
+    [SerializeField] private LayerMask projectileCollisionLayers;
     // Update is called once per frame
     protected override void OnUpdate()
     {
@@ -45,16 +46,17 @@ public class Flying_Shooting_AI : Shooting_AI
         }
         rb.linearVelocity = new_dir * speed;
 
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
+        if (!isShooting && Vector3.Distance(gameObject.transform.position, player.transform.position) <= shooting_distance)
         {
-            if (cooldown == 0f)
+            Vector2 dir = player.transform.position - transform.position;
+            RaycastHit2D rh = Physics2D.Raycast(transform.position, dir, dir.magnitude, projectileCollisionLayers);
+            if (rh && rh.collider.gameObject == player.gameObject)
             {
-                Shoot();
+                if (cooldown <= 0f)
+                    Shoot();
             }
         }
         if (cooldown > 0f)
             cooldown -= Time.deltaTime;
-        if (cooldown < 0f)
-            cooldown = 0f;
     }
 }

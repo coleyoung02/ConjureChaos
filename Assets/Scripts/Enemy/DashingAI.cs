@@ -155,38 +155,29 @@ public class Dashing_AI : Parent_AI
         {
             if (Vector2.Dot((Vector2)transform.position, diff) >= 0 || forced)
             {
-                lerpClock += Time.deltaTime;
+                lerpClock += Time.deltaTime * Mathf.Pow(Mathf.Max(1, -4.75f - transform.position.y), 1.5f);
                 rb.linearVelocity = diff.normalized * Mathf.Lerp(dashVelocity, 0f, Mathf.Min(lerpClock / dashLerpOutTime, 1));
                 transform.rotation = Quaternion.Lerp(endRot, Quaternion.identity, Mathf.Min(lerpClock / dashLerpOutTime, 1));
                 if (lerpClock >= dashLerpOutTime)
                 {
-                    state = DashState.wait;
-                    lerpClock = 0f;
-                    xOffset = UnityEngine.Random.Range(xGap + .5f, xGap + 3.5f);
-                    yOffset = UnityEngine.Random.Range(0, yOffsetRange) + yOffsetRange / 2;
-                    if (player.transform.position.x > transform.position.x)
-                    {
-                        xOffset *= -1;
-                    }
-                    lerpedIn = false;
-                }
-            }
-            if (transform.position.y <= -4.7f)
-            {
-                if (rb.linearVelocity.y > 4f)
-                {
-                    rb.linearVelocity += Vector2.up * .25f * Time.deltaTime;
-                    transform.position += Vector3.up * .15f * Time.deltaTime;
-                    rb.linearVelocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.linearVelocity.x);
-                }
-                else
-                {
-                    rb.linearVelocity += Vector2.up * .25f * Time.deltaTime * rb.linearVelocity.y / 4f;
-                    transform.position += Vector3.up * .15f * Time.deltaTime;
-                    rb.linearVelocity += Vector2.right * .25f * Time.deltaTime * Mathf.Sign(rb.linearVelocity.x);
+                    OnEndDash();
                 }
             }
         }
+    }
+
+    private void OnEndDash()
+    {
+
+        state = DashState.wait;
+        lerpClock = 0f;
+        xOffset = UnityEngine.Random.Range(xGap + .5f, xGap + 3.5f);
+        yOffset = UnityEngine.Random.Range(0, yOffsetRange) + yOffsetRange / 2;
+        if (player.transform.position.x > transform.position.x)
+        {
+            xOffset *= -1;
+        }
+        lerpedIn = false;
     }
 
     private IEnumerator Force()
@@ -240,6 +231,5 @@ public class Dashing_AI : Parent_AI
         {
             Waiting();
         }
-
     }
 }
