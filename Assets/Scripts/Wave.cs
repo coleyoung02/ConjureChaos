@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wave : MonoBehaviour
 {
     public GameObject spawnerPrefab;
+    public bool isBoss = false;
 
     int killQuota;
 
@@ -67,6 +68,10 @@ public class Wave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (isBoss)
+        {
+            FindAnyObjectByType<AudioManager>().FadeMusic(true);
+        }
         killQuota = 0;
         spawners = new List<GameObject>();
         wm = gameObject.transform.parent.gameObject.GetComponent<WaveManager>();

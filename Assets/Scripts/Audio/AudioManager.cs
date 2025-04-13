@@ -13,12 +13,23 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource hurtSource;
     [SerializeField] private AudioSource UISource;
     [SerializeField] private AudioSource MusicSource;
-    [SerializeField] private AudioLowPassFilter filter;
+    [SerializeField] private AudioSource BossSource;
+    [SerializeField] private List<AudioLowPassFilter> filters;
     [SerializeField] private List<AudioSource> uiSources;
     [SerializeField] private AudioClip hoverSound;
     [SerializeField] private AudioClip clickSound;
+    private Coroutine pitchRoutine;
+    private Coroutine fadeRoutine;
     private int uiIndex = 0;
 
+    private const float musicVol = .587f;
+
+
+    public void Start()
+    {
+        pitchRoutine = null;
+        fadeRoutine = null;
+    }
 
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "SFXVolume";
@@ -26,6 +37,7 @@ public class AudioManager : MonoBehaviour
     public void PauseMusic()
     {
         MusicSource.Pause();
+        BossSource.Stop();
     }
 
     public void PlayUIClip(AudioClip clip, bool withPitch=false)
@@ -56,22 +68,30 @@ public class AudioManager : MonoBehaviour
 
     public void SetFilter(bool f)
     {
-        filter.enabled = f;
-        StopAllCoroutines();
+        filters.ForEach(item => item.enabled = f);
+        if (pitchRoutine != null)
+        {
+            StopCoroutine(pitchRoutine);
+        }
         if (f)
         {
             MusicSource.pitch = .7f;
+            BossSource.pitch = .7f;
         }
         else
         {
             MusicSource.pitch = 1f;
+            BossSource.pitch = 1f;
         }
     }
 
     public void PitchDown(float duration)
     {
-        StopAllCoroutines();
-        StartCoroutine(DownPitch(duration));
+        if (pitchRoutine != null)
+        {
+            StopCoroutine(pitchRoutine);
+        }
+        pitchRoutine = StartCoroutine(DownPitch(duration));
     }
 
     private IEnumerator DownPitch(float duration)
@@ -79,23 +99,80 @@ public class AudioManager : MonoBehaviour
         for (float f = 0; f < duration / 7f; f += Time.unscaledDeltaTime)
         {
             MusicSource.pitch = Mathf.Lerp(1, .5f, f / (duration / 7));
+            BossSource.pitch = Mathf.Lerp(1, .5f, f / (duration / 7));
             yield return new WaitForEndOfFrame();
         }
         MusicSource.pitch = .5f;
+        BossSource.pitch = .5f;
         yield return new WaitForSecondsRealtime(duration * 4f / 5);
         for (float f = 0; f < (duration * 3f / 7); f += Time.unscaledDeltaTime)
         {
             MusicSource.pitch = Mathf.Lerp(.5f, 1f, f / (duration * 3f / 7));
+            BossSource.pitch = Mathf.Lerp(.5f, 1f, f / (duration * 3f / 7));
             yield return new WaitForEndOfFrame();
         }
         MusicSource.pitch = 1f;
+        BossSource.pitch = 1f;
 
+    }
+
+    public void FadeMusic(bool toBoss, float duration=3f)
+    {
+        if (fadeRoutine != null)
+        {
+            StopCoroutine(fadeRoutine);
+        }
+        fadeRoutine = StartCoroutine(FadeMusicCoroutine(toBoss, duration));
+    }
+
+    private IEnumerator FadeMusicCoroutine(bool toBoss, float duration)
+    {
+        float maxVol = musicVol;
+        AudioSource toFadeIn;
+        AudioSource toFadeOut;
+        if (toBoss)
+        {
+            toFadeIn = BossSource;
+            toFadeOut = MusicSource;
+            yield return new WaitForSeconds(1.5f);
+            BossSource.Play();
+            BossSource.volume = 0f;
+        }
+        else
+        {
+            toFadeIn = MusicSource;
+            toFadeOut = BossSource;
+        }
+        for (float f = 0; f < duration / 2; f += Time.unscaledDeltaTime)
+        {
+            toFadeOut.volume = Mathf.Abs(1 - f / duration) * maxVol;
+            yield return new WaitForEndOfFrame();
+        }
+        for (float f = 0; f < duration / 2; f += Time.unscaledDeltaTime)
+        {
+            toFadeOut.volume = (.5f - f / duration) * maxVol;
+            toFadeIn.volume = f / duration * maxVol;
+            yield return new WaitForEndOfFrame();
+        }
+        for (float f = 0; f < duration / 2; f += Time.unscaledDeltaTime)
+        {
+            toFadeIn.volume = (f / duration + .5f) * maxVol;
+            yield return new WaitForEndOfFrame();
+        }
+        toFadeOut.volume = 0f * maxVol;
+        toFadeIn.volume = 1f * maxVol;
+        if (toFadeOut == BossSource)
+        {
+            BossSource.Stop();
+        }
     }
 
 
     public void PlayMusic()
     {
         MusicSource.pitch = 1f;
+        MusicSource.volume = musicVol;
+        BossSource.volume = 0f;
         MusicSource.Play();
     }
 
@@ -110,7 +187,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        filter.enabled = false;
+        filters.ForEach(item => item.enabled = false);
 
     }
 

@@ -28,7 +28,6 @@ public class WaveManager : MonoBehaviour
     public void SetPortalCount(int c)
     {
         portalCount = c;
-        Debug.Break();
     }
 
     public void NotifyPortalClosing()

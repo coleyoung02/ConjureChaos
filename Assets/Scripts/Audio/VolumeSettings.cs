@@ -12,6 +12,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] Slider SFXSlider;
     [SerializeField] private TextMeshProUGUI resText;
     [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Toggle screenShakeToggle;
 
     public const string MIXER_MUSIC = "MusicVolume";
     public const string MIXER_SFX = "SFXVolume";
@@ -21,6 +22,8 @@ public class VolumeSettings : MonoBehaviour
     private List<(int, int)> validResolutions;
     private int currentRes;
     private bool fullscreen;
+    private bool screenShake;
+
     void Awake()
     {
         maxHeight = Display.main.systemHeight;
@@ -39,6 +42,9 @@ public class VolumeSettings : MonoBehaviour
 
         int usedIndex = -1;
         fullscreen = PlayerPrefs.GetInt("Fullscreen", -1) != 0;
+        screenShake = PlayerPrefs.GetInt("ScreenShake", -1) != 0;
+        Debug.Log("screenShake" + screenShake);
+        Debug.Log("screenShake" + PlayerPrefs.GetInt("ScreenShake", -1));
 
         if (PlayerPrefs.GetInt("Res", -1) <= -1)
         {
@@ -64,6 +70,7 @@ public class VolumeSettings : MonoBehaviour
             setResText();
         }
         fullscreenToggle.isOn = fullscreen;
+        screenShakeToggle.isOn = screenShake;
 
 
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
@@ -80,6 +87,10 @@ public class VolumeSettings : MonoBehaviour
 
         mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f)) * 20);
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f)) * 20);
+    }
+    public bool UseScreenShake()
+    {
+        return screenShake;
     }
 
     public void BumpResolution(bool up)
@@ -102,6 +113,12 @@ public class VolumeSettings : MonoBehaviour
     {
         fullscreen = f;
         SaveResolution();
+    }
+
+    public void SetScreenShake(bool f)
+    {
+        screenShake = f;
+        PlayerPrefs.SetInt("ScreenShake", f ? 1 : 0);
     }
 
     public void SaveResolution()

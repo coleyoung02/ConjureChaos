@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
+      propertyPath: isBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: topType
       value: 
       objectReference: {fileID: 257578625451431830, guid: db55d16413b018943ab431c665bf2a4f, type: 3}

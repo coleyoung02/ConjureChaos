@@ -5595,6 +5595,62 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5130354096077053564, guid: 2507504cfa460c444b460b943769fa2f, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5130354096077053564, guid: ea47ba12cad5d3449922deb852f73d67, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[2]'
+      value: 
+      objectReference: {fileID: 728180130761794050, guid: bddfd0f01a5f74b4da4263e0fccd3436, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[3]'
+      value: 
+      objectReference: {fileID: 456439034025510686, guid: cbb9e1380e0a0f94cbcb304838fdef15, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[4]'
+      value: 
+      objectReference: {fileID: 5130354096077053564, guid: d9623d8538ff667499023f1fe6fc99d3, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[5]'
+      value: 
+      objectReference: {fileID: 5438301884126781889, guid: 045f0d7642a328d42b6382438123b0a4, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[6]'
+      value: 
+      objectReference: {fileID: 7613179133370900632, guid: fa5d014ce17fdd84fb2ff834ce8751fc, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[7]'
+      value: 
+      objectReference: {fileID: 6869727706342875258, guid: f799094e125c57444b2e7dcc828c7705, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[8]'
+      value: 
+      objectReference: {fileID: 7613179133370900632, guid: fa5d014ce17fdd84fb2ff834ce8751fc, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[9]'
+      value: 
+      objectReference: {fileID: 5130354096077053564, guid: f731f3dbf81c39c40831769067082820, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[10]'
+      value: 
+      objectReference: {fileID: 253804326589010976, guid: 5d662d6438fe0b846811a7c397bfb92f, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[11]'
+      value: 
+      objectReference: {fileID: 5130354096077053564, guid: db33cd34f29385849a64d022dd1ac657, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[12]'
+      value: 
+      objectReference: {fileID: 5221516622347913150, guid: b4b21a74317cbd64c83e61dbfc5ccdb7, type: 3}
+    - target: {fileID: 3483959127806560240, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
+      propertyPath: 'upgrades.Array.data[13]'
+      value: 
+      objectReference: {fileID: 5130354096077053564, guid: a081689459c247e4e96ff801a219476f, type: 3}
     - target: {fileID: 3997293522620446161, guid: bead07c5a3ddbbb4eab9658e8f6cad38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5838,10 +5894,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2106127202}
     - target: {fileID: 2783673317322736419, guid: c0467b0b7b922ed49a251da2c76959cc, type: 3}
-      propertyPath: 'waves.Array.data[17]'
-      value: 
-      objectReference: {fileID: 7777662331874007740, guid: 847917b2a4edffe49b7d7aeaf2de438e, type: 3}
-    - target: {fileID: 2783673317322736419, guid: c0467b0b7b922ed49a251da2c76959cc, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1033563199}
@@ -6038,6 +6090,10 @@ PrefabInstance:
     - target: {fileID: 3999122609236556124, guid: 137a06897502cb945a1176877291a56c, type: 3}
       propertyPath: minY
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3999122609236556124, guid: 137a06897502cb945a1176877291a56c, type: 3}
+      propertyPath: nonShakeTargetSize
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5786118158297674392, guid: 137a06897502cb945a1176877291a56c, type: 3}
       propertyPath: m_Antialiasing

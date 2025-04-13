@@ -181,7 +181,10 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator LoseAfterTime()
     {
-        yield return new WaitForSecondsRealtime(.75f);
+        FindAnyObjectByType<AudioManager>().FadeMusic(false, 1.5f);
+        yield return new WaitForSecondsRealtime(.25f);
+        yield return new WaitForSecondsRealtime(.5f);
+        FindAnyObjectByType<AudioManager>().SetFilter(false);
         Time.timeScale = 1;
         SceneManager.LoadScene("LoseScreen");
     }

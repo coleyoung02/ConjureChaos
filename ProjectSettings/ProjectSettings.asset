@@ -16,7 +16,7 @@ PlayerSettings:
   productName: ConjureChaos
   defaultCursor: {fileID: 2800000, guid: 370313c9feeff7942ae929902bd6725a, type: 3}
   cursorHotspot: {x: 16, y: 16}
-  m_SplashScreenBackgroundColor: {r: 0.6792453, g: 0, b: 0.5514664, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.2754717, g: 0.086799555, b: 0.24167961, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 0.5
@@ -142,7 +142,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 2.1
+  bundleVersion: 3.1
   preloadedAssets:
   - {fileID: 11400000, guid: a256090232998f94391cbbb20a02ba21, type: 2}
   metroInputSource: 0

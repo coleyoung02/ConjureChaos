@@ -74,7 +74,7 @@ public class BossAI : Parent_AI
             spawnLocations.Add(go.transform.position);
         }
         projectileClock = 0f;
-        waitClock = 0f;
+        waitClock = 1f;
         if (FindAnyObjectByType<ProjectileConjurer>().GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.IAMSPEED))
         {
             laserBarrageWaveDelay *= .75f;

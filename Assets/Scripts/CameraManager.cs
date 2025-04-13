@@ -14,17 +14,20 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float maxAimDist;
     [SerializeField] private float maxXGap;
     [SerializeField] private float shakeTargetSize;
+    [SerializeField] private float nonShakeTargetSize;
     private GameObject player;
     private PlayerMovement playerMovement;
     private float zOffset;
     private Camera cam;
     private Vector3 lastPos;
     private Vector3 playerPos;
+    VolumeSettings settings;
     private float baseSize;
 
     // Start is called before the first frame update
     void Start()
     {
+        settings = FindAnyObjectByType<VolumeSettings>();
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         player = playerMovement.gameObject;
         zOffset = transform.position.z;
@@ -43,28 +46,56 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator Resume()
     {
+        float targetSize = shakeTargetSize;
+        bool doShake = true;
+        if (!settings.UseScreenShake())
+        {
+            targetSize = nonShakeTargetSize;
+            doShake = false;
+        }
         for (float f = 0f; f < .35f; f += Time.unscaledDeltaTime)
         {
-            cam.orthographicSize = Mathf.Lerp(baseSize, shakeTargetSize, f / .35f);
-            transform.position = Vector3.Lerp(lastPos, (playerPos + lastPos * 2) / 3, f / .35f);
-            if (f > .15f)
+            cam.orthographicSize = Mathf.Lerp(baseSize, targetSize, f / .35f);
+            if (doShake)
+            {
+                transform.position = Vector3.Lerp(lastPos, (playerPos + lastPos) / 3, f / .35f);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(lastPos, (playerPos + lastPos * 4) / 5, f / .35f);
+            }
+            if (f > .15f && doShake)
             {
                 Shake();
             }
             yield return new WaitForEndOfFrame();
         }
-        Time.timeScale = .1f;
-        cam.orthographicSize = shakeTargetSize;
+
+        if (Time.timeScale != 0f)
+        {
+            Time.timeScale = .1f;
+        }
+        cam.orthographicSize = targetSize;
         for (float f = 0f; f < .3f; f += Time.unscaledDeltaTime)
         {
-            Shake();
+            if (doShake)
+            {
+                Shake();
+            }
             yield return new WaitForEndOfFrame();
         }
         for (float f = 0f; f < .3f; f += Time.unscaledDeltaTime)
         {
-            cam.orthographicSize = Mathf.Lerp(shakeTargetSize, baseSize, f / .3f);
-            transform.position = Vector3.Lerp((playerPos + lastPos * 2) / 3, lastPos, f / .3f);
-            if (f < .15f)
+            cam.orthographicSize = Mathf.Lerp(targetSize, baseSize, f / .3f);
+            if (doShake)
+            {
+                transform.position = Vector3.Lerp((playerPos + lastPos * 2) / 3, lastPos, f / .3f);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp((playerPos + lastPos * 4) / 5, lastPos, f / .3f);
+            }
+            if (f < .15f && doShake)
             {
                 Shake();
             }
@@ -72,7 +103,10 @@ public class CameraManager : MonoBehaviour
         }
         cam.orthographicSize = baseSize;
         yield return new WaitForSecondsRealtime(.1f);
-        Time.timeScale = 1;
+        if (Time.timeScale != 0f)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     private void Shake()
@@ -90,7 +124,7 @@ public class CameraManager : MonoBehaviour
 
     public void ForceStop()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
     }
 
     private void SetPos(Vector3 playerPos)
@@ -115,7 +149,7 @@ public class CameraManager : MonoBehaviour
         lastPos = transform.position;
         playerPos = player.transform.position;
         playerPos.z = lastPos.z;
-        Time.timeScale = 0f;
+        Time.timeScale = 0.001f;
         StopAllCoroutines();
         FindAnyObjectByType<AudioManager>().PitchDown(1.5f);
         StartCoroutine(Resume());
