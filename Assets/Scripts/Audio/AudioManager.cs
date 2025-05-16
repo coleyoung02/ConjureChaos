@@ -173,6 +173,7 @@ public class AudioManager : MonoBehaviour
         MusicSource.pitch = 1f;
         MusicSource.volume = musicVol;
         BossSource.volume = 0f;
+        BossSource.Stop();
         MusicSource.Play();
     }
 
