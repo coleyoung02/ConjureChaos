@@ -284,7 +284,7 @@ public class Projectile : MonoBehaviour
             hitLoc.z = -9.5f;
             hitLoc.x += UnityEngine.Random.Range(-.3f, .3f);
             hitLoc.y += UnityEngine.Random.Range(-.3f, .3f);
-            script.DamageEnemy(_damage, hitLoc);
+            script.DamageEnemy(_damage, hitLoc, true);
 
             _conjurer.PlayHitSound();
             // Call status effect here instead of in damage enemy function to avoid bugs

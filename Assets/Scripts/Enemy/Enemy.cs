@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public static bool deathListenerAdded = false;
     [SerializeField] public float maxHealth;
     [SerializeField] public bool isBoss;
+    private GameObject zapEffect;
     protected float health;
     private float baseSpeed;
     [SerializeField] protected int contactDamage;
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour
     private GameObject ice;
     private GameObject lastIce;
     private GameObject damageTextGameObj;
+    [SerializeField] private bool isFake;
 
     public void SetPlayer(GameObject player)
     {
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Awake()
     {
+        if (isFake) return;
         flames = Resources.Load("UI/FlamesEffect") as GameObject;
         ice = Resources.Load("UI/IceEffect") as GameObject;
         damageTextGameObj = Resources.Load("UI/DamageText") as GameObject;
@@ -62,6 +65,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        if (isFake) return;
+        zapEffect = Resources.Load("ZapArc") as GameObject;
         hurtTime = 0f;
         sprite = gameObject.GetComponent<SpriteRenderer>();
         // Saves the conjurer so we only have to get it once
@@ -137,6 +142,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFake) return;
         if (health <= 0)
         {   
             die();
@@ -186,7 +192,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public bool DamageEnemy(float dmg, Vector3 hitLoc)
+    public bool DamageEnemy(float dmg, Vector3 hitLoc, bool wasFromProjectile=false)
     {
         InstantiateDamageText(dmg * iceDamageMult, hitLoc);
         return DamageEnemy(dmg, false);
@@ -240,6 +246,27 @@ public class Enemy : MonoBehaviour
     {
         if (isDead)
             return;
+
+        if (//_conjurer.GetProjectileEffects().Contains(ProjectileConjurer.ProjectileEffects.Zap))
+            true)
+        {
+            foreach (Enemy e in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+            {
+                Vector2 delta = e.transform.position - transform.position;
+                if (e != this && (delta).magnitude < 7f)
+                {
+                    ZapEffectController zec = Instantiate(
+                        zapEffect,
+                        transform.position + Vector3.back,
+                        transform.rotation,
+                        null
+                        ).GetComponent<ZapEffectController>();
+                    zec.SetRotation(Quaternion.Euler(0, 0, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg));
+                    zec.SetTarget(e);
+                    zec.SetDamage(_conjurer.GetDamageScale());
+                }
+            }
+        }
         if (lastFlames != null)
         {
             lastFlames.transform.SetParent(null, true);
@@ -345,6 +372,7 @@ public class Enemy : MonoBehaviour
 
     private void InstantiateDamageText(float damage, Vector3 location)
     {
+        if (isFake) return;
         Instantiate(damageTextGameObj, location
             , Quaternion.Euler(0, 0, UnityEngine.Random.Range(-7f, 7f)))
                 .GetComponent<DamageNumbers>()

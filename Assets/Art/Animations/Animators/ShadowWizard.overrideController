@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShadowWizard
+  m_Controller: {fileID: 9100000, guid: 5aee7f80e5cd01249937b5fd01045375, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f3dfc74a694470f4bb8d8d8cc2b6554e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9abe8157b97d4a043b467501ad7d12d3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c05d1fdb62435c0449e0c8940480cac3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 99d216568af605e42af2f63abd2043a7, type: 2}

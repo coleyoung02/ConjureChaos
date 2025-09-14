@@ -77,6 +77,7 @@ public class ProjectileConjurer : MonoBehaviour
         Revenge,
         Gambling,
         Vitality,
+        Zap,
     }
 
     public void MakeTrail(Transform t, bool boost=false)

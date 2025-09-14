@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - damageText: {fileID: 516186836923948736, guid: 32a60133b06ddd243a07309db45327b5, type: 3}
+  - zapEffect: {fileID: 1955257142436301062, guid: 274a00349219128458bc486004cccd9b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

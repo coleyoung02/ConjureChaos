@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 7810913572183534023}
   - component: {fileID: 7670101080026379522}
   - component: {fileID: 6945313711109720573}
-  - component: {fileID: 2586097237445304443}
   - component: {fileID: 8839806228955375631}
   - component: {fileID: 3974095728624141124}
   - component: {fileID: 7906834818809735299}
+  - component: {fileID: 5608937527752661558}
   m_Layer: 10
-  m_Name: FlyingEnemy
+  m_Name: ShadowWizard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3853318864948723879}
@@ -77,13 +77,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.4, y: 14.4}
+    oldSize: {x: 3.43, y: 4.12}
     newSize: {x: 9.46, y: 8.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 3, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &6945313711109720573
 MonoBehaviour:
@@ -100,22 +100,6 @@ MonoBehaviour:
   maxHealth: 25
   isBoss: 0
   contactDamage: 1
---- !u!114 &2586097237445304443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4949422371381433468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea319e96851cf244a792cf280b3e108, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 5.5
-  turnRate: 27.5
-  sprite: {fileID: 3974095728624141124}
 --- !u!50 &8839806228955375631
 Rigidbody2D:
   serializedVersion: 5
@@ -187,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3b8506df08dd95543812bea7eaba6016, type: 3}
+  m_Sprite: {fileID: 4006670338036991081, guid: 373f8f8e3aeb50040af8da8105cfe75a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -208,7 +192,7 @@ Animator:
   m_GameObject: {fileID: 4949422371381433468}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 44eef655e8ae0714bbd8f1088c309a40, type: 2}
+  m_Controller: {fileID: 22100000, guid: ae5935f02e109e84eb7a3864d526ab36, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -220,6 +204,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5608937527752661558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949422371381433468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e5913817b237045bfcf6ca86763dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8839806228955375631}
+  speed: 1
+  desired_distance: 0
+  shooting_distance: 15
+  projectilePrefab: {fileID: 7232488084303066669, guid: 0def917feeee02c44bb5c2df95f93581, type: 3}
+  cooldown_time: 5
+  projectile_speed: 10
+  sprite: {fileID: 3974095728624141124}
+  projectileCollisionLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  maxAccelerationMult: 12
+  maxVelocity: 10
 --- !u!1 &7809872917911029353
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +277,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.6
-  m_Color: {r: 0, g: 0.9111445, b: 1, a: 1}
+  m_Color: {r: 0.701225, g: 0.37011746, b: 0.86415094, a: 1}
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
@@ -380,5 +389,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 3, y: 4}
   m_EdgeRadius: 0

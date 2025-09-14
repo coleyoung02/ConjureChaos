@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftTopType
       value: 
-      objectReference: {fileID: 4949422371381433468, guid: 1fce2acdc64f3d444a5b1fcf3ea5b9d3, type: 3}
+      objectReference: {fileID: 4949422371381433468, guid: 563a152a5458acc45bb442e24e2b83f6, type: 3}
     - target: {fileID: 1416054660428696088, guid: 401be34afb7ffde429e959508442c2c6, type: 3}
       propertyPath: leftTopDelay
       value: 5.1
