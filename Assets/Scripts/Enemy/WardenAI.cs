@@ -4,24 +4,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class BossAI : Parent_AI
+public class WardenAI : BossAI
 {
-    protected enum BossState
-    {
-        attacking,
-        moving,
-        waiting,
-    }
-
-    protected enum Attack
-    {
-        HorizontalLasers = 0,
-        HorizontalLasersVar2 = 1,
-        VerticalLasers = 2,
-        HomingProjectiles = 3,
-        BulletHell = 4,
-        EnemySpawns = 5,
-    }
 
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] private GameObject homingProj;
@@ -153,42 +137,6 @@ public abstract class BossAI : Parent_AI
         xOffset *= UnityEngine.Random.Range(0, 2) * 2 - 1;
     }
 
-    protected void FlipSprite()
-    {
-        if (transform.position.x > player.transform.position.x)
-        {
-            sprite.flipX = false;
-        }
-        else
-        {
-            sprite.flipX = true;
-        }
-    }
-
-    public void Kill()
-    {
-        isDead = true;
-        GetComponent<Animator>().SetTrigger("Die");
-        rb.linearVelocity = Vector3.zero;
-        StartCoroutine(WaitAndFlip());
-        
-    }
-
-    private IEnumerator WaitAndFlip()
-    {
-        yield return new WaitForSeconds(.6f);
-        rb.freezeRotation = false;
-        if (sprite.flipX)
-        {
-            rb.AddTorque(2f, ForceMode2D.Impulse);
-        }
-        else
-        {
-            rb.AddTorque(-2f, ForceMode2D.Impulse);
-        }
-        rb.gravityScale = 1f;
-    }
-
     // Update is called once per frame
     protected override void OnUpdate()
     {
@@ -257,9 +205,51 @@ public abstract class BossAI : Parent_AI
         yield return new WaitForSeconds(2f * Time.timeScale * laserBarrageWaveDelay);
     }
 
-    protected abstract void Move();
+    protected override void Move()
+    {
+        float dist_move = speed * Time.deltaTime;
+        Vector2 direction;
+        if (state == BossState.waiting && (nextAttack == Attack.VerticalLasers || 
+            nextAttack == Attack.HorizontalLasers || 
+            nextAttack == Attack.HorizontalLasersVar2 || 
+            nextAttack == Attack.EnemySpawns))
+        {
+            direction = (Vector2)laserWaitPoints[waitIndex].transform.position - (Vector2)transform.position;
+        }
+        else
+        {
+            Vector2 clampedDestination = (Vector2)player.transform.position + new Vector2(xOffset, yOffset);
+            clampedDestination.x = Mathf.Clamp(clampedDestination.x, -13.75f, 13.75f);
+            clampedDestination.y = Mathf.Clamp(clampedDestination.y, -4.25f, 10.25f);
+            direction = clampedDestination - (Vector2)transform.position;
+        }
+        if (Mathf.Abs(direction.y) < 2f)
+        {
+            direction.y /= 2f;
+        }
+        if (direction.magnitude < 7f)
+        {
+            rb.linearVelocity = direction * speed / 7f;
+            if (!waiting && direction.magnitude < 4f && state == BossState.moving)
+            {
+                waiting = true;
+                GetComponent<Animator>().SetTrigger("Attack");
+            }
+            return;
+        }
+        direction.Normalize();
+        if (state == BossState.attacking && nextAttack == Attack.HomingProjectiles)
+        {
+            direction *= .7f;
+        }
+        if (state == BossState.waiting && nextAttack == Attack.BulletHell)
+        {
+            direction *= .35f;
+        }
+        rb.linearVelocity = direction * speed;
+    }
 
-    public virtual void StartAttack()
+    public override void StartAttack()
     {
         state = BossState.attacking;
         rb.linearVelocity = Vector2.zero;
@@ -335,21 +325,6 @@ public abstract class BossAI : Parent_AI
             StartCoroutine(sprayRoutine());
             state = BossState.waiting;
             waitClock = waitTime + laserBarrageWaveDelay * laserBarrageWaves + laserBarrageRate * laserBarrageCountPerWave;
-        }
-    }
-
-    protected IEnumerator Spawns()
-    {
-        for (int i = 0; i < enemiesToSpawn; i++)
-        {
-            EnemySpawner tempSpawner;
-            tempSpawner = Instantiate(spawnerPrefab, new Vector3(spawnLocations[i].x, spawnLocations[i].y, -4.4f), Quaternion.identity).GetComponent<EnemySpawner>();
-            tempSpawner = tempSpawner.GetComponent<EnemySpawner>();
-            tempSpawner.enemy = validEnemies[UnityEngine.Random.Range(0, validEnemies.Count)];
-            tempSpawner.duration = .5f;
-            tempSpawner.spawn_delay = 2f;
-            tempSpawner.offset = 1.45f;
-            yield return new WaitForSeconds(.2f);
         }
     }
 }
