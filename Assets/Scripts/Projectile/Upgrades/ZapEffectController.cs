@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -10,16 +11,18 @@ public class ZapEffectController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     private Enemy target;
     private float damage;
+    private bool used;
 
     private void Start()
     {
         Destroy(gameObject, .25f);
         Destroy(ps.gameObject, .25f);
+        used = false;
     }
 
     private void Update()
     {
-        if (target != null && !target.gameObject.IsDestroyed())
+        if (!used && target != null && !target.gameObject.IsDestroyed())
         {
             Vector2 moveDir = target.transform.position - transform.position;
             rb.linearVelocity = moveDir.normalized * velocity;
@@ -48,20 +51,30 @@ public class ZapEffectController : MonoBehaviour
 
     private void HurtEnemy(Collider2D myCollider)
     {
-        if (myCollider.CompareTag("Enemy"))
+        if (!used)
         {
-            Enemy script = myCollider.gameObject.GetComponent<Enemy>();
-            if (script != target)
+            if (myCollider.CompareTag("Enemy"))
             {
-                return;
+                Enemy script = myCollider.gameObject.GetComponent<Enemy>();
+                if (script != target)
+                {
+                    return;
+                }
+                Vector3 hitLoc = transform.position + new Vector3(rb.linearVelocity.normalized.x, rb.linearVelocity.normalized.y) * .25f;
+                hitLoc.z = -9.5f;
+                hitLoc.x += UnityEngine.Random.Range(-.3f, .3f);
+                hitLoc.y += UnityEngine.Random.Range(-.3f, .3f);
+                script.DamageEnemy(damage, hitLoc);
+                used = true;
+                StartCoroutine(HandleParticleDeath());
             }
-            Vector3 hitLoc = transform.position + new Vector3(rb.linearVelocity.normalized.x, rb.linearVelocity.normalized.y) * .25f;
-            hitLoc.z = -9.5f;
-            hitLoc.x += UnityEngine.Random.Range(-.3f, .3f);
-            hitLoc.y += UnityEngine.Random.Range(-.3f, .3f);
-            script.DamageEnemy(damage, hitLoc);
-            ps.transform.parent = null;
-            Destroy(gameObject);
         }
+    }
+
+    private IEnumerator HandleParticleDeath()
+    {
+        yield return new WaitForSeconds(.035f);
+        ps.transform.parent = null;
+        Destroy(gameObject);
     }
 }

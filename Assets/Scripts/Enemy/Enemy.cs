@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     private Dictionary<ProjectileConjurer.StatusEffects, Action<bool>> statusActions;
     private bool isDead = false;
     private float lastTrailDamageTime;
+    private float lastPortalDamageTime;
     private GameObject flames;
     private GameObject lastFlames;
     private GameObject ice;
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour
             player = FindAnyObjectByType<PlayerMovement>().gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
         lastTrailDamageTime = -100000f;
+        lastPortalDamageTime = -100000f;
     }
 
     void Start()
@@ -189,6 +191,19 @@ public class Enemy : MonoBehaviour
             }
             DamageEnemy(dmg);
             lastTrailDamageTime = Time.time;
+        }
+    }
+
+    public void PortalDamage()
+    {
+        if (Time.time - lastPortalDamageTime > VoidPortal.ImmunityTime)
+        {
+            if (_conjurer != null)
+            {
+                _conjurer.PlayHitSound();
+            }
+            DamageEnemy(_conjurer.GetDamageScale() * 10f);
+            lastPortalDamageTime = Time.time;
         }
     }
 
