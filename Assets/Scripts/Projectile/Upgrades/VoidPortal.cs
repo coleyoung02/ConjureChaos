@@ -4,6 +4,7 @@ using UnityEngine;
 public class VoidPortal : MonoBehaviour
 {
     public const float ImmunityTime = .25f;
+    public const float Duration = 10f;
     [SerializeField] private BoxCollider2D col;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private ParticleSystem ps;
@@ -18,7 +19,7 @@ public class VoidPortal : MonoBehaviour
         isOpened = false;
         isClosing = false;
         StartCoroutine(Anim(true, .3f));
-        StartCoroutine(ClosePortalAfterDelay(15f));
+        StartCoroutine(ClosePortalAfterDelay(Duration));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

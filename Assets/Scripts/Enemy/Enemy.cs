@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour
 
     public void PortalDamage()
     {
-        if (Time.time - lastPortalDamageTime > VoidPortal.ImmunityTime)
+        if (Time.time - lastPortalDamageTime > VoidPortal.ImmunityTime * _conjurer.GetRateScale())
         {
             if (_conjurer != null)
             {

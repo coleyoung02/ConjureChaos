@@ -38,7 +38,11 @@ public class WaveManager : MonoBehaviour
         }
         if (portalCount <= 0 && waveNum != waves.Count)
         {
-            FindAnyObjectByType<HeartPortalManager>().CancelFuture();
+            HeartPortalManager hpm = FindAnyObjectByType<HeartPortalManager>();
+            if (hpm)
+            {
+                hpm.CancelFuture();
+            }
         }
     }
 

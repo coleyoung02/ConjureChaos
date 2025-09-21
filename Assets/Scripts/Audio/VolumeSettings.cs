@@ -43,8 +43,6 @@ public class VolumeSettings : MonoBehaviour
         int usedIndex = -1;
         fullscreen = PlayerPrefs.GetInt("Fullscreen", -1) != 0;
         screenShake = PlayerPrefs.GetInt("ScreenShake", -1) != 0;
-        Debug.Log("screenShake" + screenShake);
-        Debug.Log("screenShake" + PlayerPrefs.GetInt("ScreenShake", -1));
 
         if (PlayerPrefs.GetInt("Res", -1) <= -1)
         {

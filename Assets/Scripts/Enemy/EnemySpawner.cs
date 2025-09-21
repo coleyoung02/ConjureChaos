@@ -97,7 +97,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindAnyObjectByType<WaveManager>().NotifyPortalClosing();
+        WaveManager wm = FindAnyObjectByType<WaveManager>();
+        if (wm != null)
+        {
+            wm.NotifyPortalClosing();
+        }
     }
 
     void SpawnEnemy()
